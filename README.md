@@ -11,6 +11,8 @@
 
 `docker-compose up`
 
+If you have been done some change in js files, you have to wait for the building of bundle.js to see the changes in the application.
+
 
 ## Launch API tests
 
