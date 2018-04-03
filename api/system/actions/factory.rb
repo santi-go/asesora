@@ -22,11 +22,6 @@ module Actions
       @context[key]=value
     end
 
-    def in_board (board)
-      add( :board, board)
-      self
-    end
-
     def do
       @action.do(@context)
     end
