@@ -19,3 +19,7 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 ### Run all test
 
 `docker-compose run --rm node npm run test-all`
+
+## Styles
+
+Demo template available at `[domain::port]/demo-template/`
