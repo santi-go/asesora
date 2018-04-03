@@ -24,6 +24,7 @@ services:
     depends_on:
       - asesora
       - selenium
+    command: sh -c 'npm install -s && npm run test-all'
 
   api:
     image: ruby:2.4.2
@@ -32,7 +33,7 @@ services:
       - './api/:/api'
     ports:
       - '4567:4567'
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake'
+    command: sh -c 'gem install bundler && bundle install && bundle exec rake test'
 
 volumes:
   bundle:
