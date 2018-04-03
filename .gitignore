@@ -1,0 +1,7 @@
+.env
+app/node_modules/
+app/dist/
+dist/
+
+.Spotlight-V100
+.DS_Store

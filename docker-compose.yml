@@ -1,0 +1,40 @@
+version: '2'
+services:
+  asesora:
+    image: nginx
+    ports:
+      - '8080:80'
+    volumes:
+      - './app:/usr/share/nginx/html'
+      - './app/conf/nginx.conf:/etc/nginx/nginx.conf'
+
+  selenium:
+    image: selenium/standalone-chrome
+    environment:
+      - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    ports:
+      - '4444:4444'
+
+  node:
+    image: 'node:7.9.0'
+    user: node
+    working_dir: '/test'
+    volumes:
+      - './app/:/test'
+    depends_on:
+      - asesora
+      - selenium
+    command: sh -c 'npm install'
+
+  api:
+    image: ruby:2.4.2
+    working_dir: '/api'
+    volumes:
+      - './api/:/api'
+    ports:
+      - '4567:4567'
+    command: sh -c 'gem install bundler && bundle install && bundle exec rake'
+
+volumes:
+  bundle:
+    driver: local
