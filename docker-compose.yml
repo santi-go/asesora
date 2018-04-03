@@ -33,7 +33,16 @@ services:
       - './api/:/api'
     ports:
       - '4567:4567'
+    links:
+      - mongo
     command: sh -c 'gem install bundler && bundle install && bundle exec rake'
+
+  mongo:
+    image: mongo
+    environment:
+      - AUTH=no
+    ports:
+      - 27017:27017
 
 volumes:
   bundle:
