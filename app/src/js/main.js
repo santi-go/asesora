@@ -1,5 +1,5 @@
 import App from './components/app'
-import Title from './services/title'
+import Information from './services/information'
 
-new Title()
+new Information()
 new App('#asesora')

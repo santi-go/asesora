@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import Title from '../views/title-asesora'
+import TitleAsesora from '../views/title-asesora'
+import Version from '../views/version'
 import {Bus} from '../bus'
 
 export default class App {
@@ -8,21 +9,20 @@ export default class App {
     this.element = 'asesora'
     this.data = this.model()
     this.subscribe()
-    this.retrieveData()
+    this.retrieveAbout()
     this.initializeViews()
   }
 
   subscribe(){
-    Bus.subscribe("got.title", this.setValues.bind(this))
+    Bus.subscribe("got.information", this.setAboutInfo.bind(this))
   }
 
-  setValues(payload){
+  setAboutInfo(payload){
     this.data.setValues(payload)
   }
 
-  retrieveData(){
-    let title = "Asesora"
-    Bus.publish("get.title", title)
+  retrieveAbout(){
+    Bus.publish("get.information")
   }
 
   initializeViews(){
@@ -30,7 +30,8 @@ export default class App {
       el: '#' + this.element,
       data: this.data,
       components: {
-        'title-asesora': Title,
+        'title-asesora': TitleAsesora,
+        'version': Version
       }
     })
   }
@@ -38,8 +39,10 @@ export default class App {
   model(){
     return {
       title: "ASESORA",
+      version: "Version 0.0.0",
       setValues:function(values){
-        this.title = values
+        this.title = values.name
+        this.version = values.version
       }
     }
   }

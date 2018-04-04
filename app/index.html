@@ -20,14 +20,17 @@
     <link rel="stylesheet" href="public/css/styles.css">
 </head>
 <body>
-    <main id="main-content" class="column column-offset-20">
-        <div class="row grid-responsive">
-            <div class="column page-heading">
-                <div class="large-card" id="asesora">
-                    <title-asesora :title="title"></title-asesora>
-                </div>
-            </div>
-        </div>
+    <main id="asesora">
+      <section id="main-content" class="column column-offset-20">
+          <div class="row grid-responsive">
+              <div class="column page-heading">
+                  <div  class="large-card">
+                      <title-asesora :title="title"></title-asesora>
+                      <version :version="version"></version>
+                  </div>
+              </div>
+          </div>
+      </section>
     </main>
     <script src="dist/bundle.js" type="text/javascript"></script>
 </body>

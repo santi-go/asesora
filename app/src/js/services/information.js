@@ -1,20 +1,20 @@
 import {Bus} from '../bus'
 import aja from 'aja'
 
-export default class Title {
+export default class Information {
   constructor() {
     this.baseURL = 'http://localhost:4567/api/'
     this.subscribe()
   }
 
   subscribe() {
-    Bus.subscribe("get.title", this.retrieveTitle.bind(this))
+    Bus.subscribe("get.information", this.retrieveAbout.bind(this))
   }
 
-  retrieveTitle(payload) {
-    let callback = this.buildCallback('got.title')
-    let body = { name: payload }
-    let url = 'greet'
+  retrieveAbout(payload) {
+    let callback = this.buildCallback('got.information')
+    let body = {}
+    let url = 'about'
     this.hit(url, body, callback)
   }
 
