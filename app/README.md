@@ -20,6 +20,15 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 `docker-compose run --rm node npm run test-all`
 
+### Run end to end tests:
+
+`docker-compose run --rm node npm run test-e2e`
+
+
+### Run unit tests:
+
+`docker-compose run --rm node npm run test-unit`
+
 ## Styles
 
 Demo template available at `[domain::port]/demo-template/`
