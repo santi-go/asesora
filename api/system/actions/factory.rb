@@ -1,16 +1,11 @@
-require_relative 'hello_world'
-
+require_relative 'retrieve_about'
 
 module Actions
-  class Salutations
-    def self.greet(name)
-      context = ActionContext.new(Actions::HelloWorld)
-      context.add(:name, name)
-      context
+  class About
+    def self.retrieve
+      ActionContext.new(Actions::RetrieveAbout)
     end
   end
-
-  
 
   class ActionContext
     def initialize(action)
@@ -25,7 +20,5 @@ module Actions
     def do
       @action.do(@context)
     end
-
   end
-
 end

@@ -13,17 +13,13 @@ class Asesora < Sinatra::Base
   before do
      response.headers['Access-Control-Allow-Origin'] = '*'
   end
-  
-  post '/api/greet' do
-    params = JSON.parse(request.body.read)
-    name = params['name']
-    saludation = Actions::Salutations.greet(name).do
-    saludation.to_json
+
+  post '/api/about' do
+    application_information = Actions::About.retrieve.do()
+
+    application_information.to_json
   end
 
-  
-  
-  
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
