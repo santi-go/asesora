@@ -6,6 +6,10 @@
 
 `docker-compose build`
 
+### Build-watch
+
+`docker-compose run --rm node npm run build-watch`
+
 
 ### Up docker
 

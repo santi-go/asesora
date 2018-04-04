@@ -24,7 +24,7 @@ services:
     depends_on:
       - asesora
       - selenium
-    command: sh -c 'npm install && npm run build-watch'
+    command: sh -c 'npm install && npm run build -s'
 
   api:
     image: ruby:2.4.2
