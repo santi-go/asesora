@@ -33,7 +33,9 @@
   "scripts": {
     "build": "webpack --config conf/webpack.config.js",
     "build-watch": "webpack --config conf/webpack.config.js --watch",
-    "test-all": "mocha test"
+    "test-all": "mocha test/**/*",
+    "test-e2e": "mocha test/e2e/*",
+    "test-unit": "mocha test/unit/*"
   },
 
   "babel": {
