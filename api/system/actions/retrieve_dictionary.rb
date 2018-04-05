@@ -1,7 +1,7 @@
 require_relative '../services/translation/service'
 
 module Actions
-  class RetrieveTranslations
+  class RetrieveDictionary
     def self.do(locale:)
       ::Translation::Service.retrieve(locale)
     end
