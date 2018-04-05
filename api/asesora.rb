@@ -14,6 +14,14 @@ class Asesora < Sinatra::Base
      response.headers['Access-Control-Allow-Origin'] = '*'
   end
 
+  post '/api/translations' do
+    params = JSON.parse(request.body.read)
+    locale = params['locale']
+
+    translations = Actions::Translation.retrieve(locale).do()
+    {data: translations}.to_json
+  end
+
   post '/api/about' do
     application_information = Actions::About.retrieve.do()
 
