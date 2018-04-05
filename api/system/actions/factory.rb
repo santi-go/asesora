@@ -1,9 +1,18 @@
 require_relative 'retrieve_about'
+require_relative 'retrieve_translations'
 
 module Actions
   class About
     def self.retrieve
       ActionContext.new(Actions::RetrieveAbout)
+    end
+  end
+
+  class Translation
+    def self.retrieve(locale)
+      context = ActionContext.new(Actions::RetrieveTranslations)
+      context.add(:locale, locale)
+      context
     end
   end
 
