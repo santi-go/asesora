@@ -1,7 +1,6 @@
 <template>
-  <p>{{ version }}</p>
+  <div>{{ version }}</div>
 </template>
-
 <script>
 export default {
   name: 'version',
