@@ -1,5 +1,5 @@
 <template>
-  <h1>{{title}}</h1>
+  <a href="#" class="site-title float-left">{{title}}</a>
 </template>
 
 <script>
