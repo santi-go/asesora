@@ -1,12 +1,13 @@
 require_relative '../../domain/about'
+require 'mongo'
 
 module About
   class Collection
-    @collection = [{
+    DEFAULT_ABOUT = {
       "name" => 'Asesora',
       "description" => 'Registro de asesoramientos técnicos en salud laboral.',
       "version" => '0.0.1'
-    }]
+    }
 
     class << self
       def retrieve
@@ -18,7 +19,36 @@ module About
       private
 
       def find
-        @collection.first
+        get_about
+      end
+
+      def get_about
+        MongoClient.about()
+      end
+
+      class MongoClient
+        class << self
+
+          def about
+            return set_default if client[:about].count({})== 0
+            client[:about].find().first
+          end
+
+          def set_default
+              client[:about].insert_one(DEFAULT_ABOUT)
+              DEFAULT_ABOUT
+          end
+
+          private
+
+          def client
+            mongo_uri = ENV['MONGODB_URI']
+            Mongo::Logger.logger.level = Logger::INFO
+
+            @client ||= Mongo::Client.new(mongo_uri)
+          end
+
+        end
       end
     end
   end

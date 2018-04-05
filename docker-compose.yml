@@ -28,6 +28,8 @@ services:
 
   api:
     image: ruby:2.4.2
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/db
     working_dir: '/api'
     volumes:
       - './api/:/api'
