@@ -16,6 +16,18 @@ export default class App {
 
   subscribe(){
     Bus.subscribe("got.information", this.setAboutInfo.bind(this))
+    Bus.subscribe("got.information", this.askTranslation.bind(this))
+    Bus.subscribe("sent.translation", this.translateDescription.bind(this))
+  }
+
+  translateDescription(payload) {
+    let description = payload.translation
+    this.data.translateDescription(description)
+  }
+
+  askTranslation(payload) {
+    let data = { key: payload.description }
+    Bus.publish('ask.translation', data)
   }
 
   setAboutInfo(payload){
@@ -47,6 +59,9 @@ export default class App {
         this.title = values.name
         this.description = values.description
         this.version = values.version
+      },
+      translateDescription:function(value) {
+        this.description = value
       }
     }
   }
