@@ -5,7 +5,7 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - './app:/usr/share/nginx/html'
+      - './app/public:/usr/share/nginx/html'
       - './app/conf/nginx.conf:/etc/nginx/nginx.conf'
 
   selenium:
