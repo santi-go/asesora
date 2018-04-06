@@ -6,6 +6,29 @@ export default class Translations {
     this.baseURL = 'http://localhost:4567/api/'
     this.retrieve()
     this.translations = {}
+    this.subscriptions()
+  }
+
+  subscriptions() {
+    Bus.subscribe('ask.translation', this.sendTranslation.bind(this))
+  }
+
+  sendTranslation(payload) {
+    let key = payload.key
+    let data = this.buildTranslation(key)
+    Bus.publish('sent.translation', data)
+  }
+
+  buildTranslation(key) {
+    let translation = {}
+
+    translation = { key: this.translations[key] }
+
+    if (!this.translations[key]) {
+      translation = { translation: key }
+    }
+
+    return translation
   }
 
   retrieve() {
@@ -17,13 +40,8 @@ export default class Translations {
 
   store(){
     return function(response) {
-      let locale = this.getLocale(response)
-      this.translations[locale] = response[locale]
+      this.translations = response.data
     }.bind(this)
-  }
-
-  getLocale(response){
-    return Object.keys(response)[0]
   }
 
   hit(endpoint, data, action){
@@ -32,7 +50,6 @@ export default class Translations {
       .body(data)
       .url(this.baseURL + endpoint)
       .on('success', action)
-      .on('40x', this.store({}))
     .go();
   }
 }

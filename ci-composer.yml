@@ -5,7 +5,7 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - './app:/usr/share/nginx/html'
+      - './app/public:/usr/share/nginx/html'
       - './app/conf/nginx.conf:/etc/nginx/nginx.conf'
 
   selenium:
@@ -27,7 +27,7 @@ services:
     command: sh -c 'npm install -s && npm run test-all'
 
   api:
-    image: ruby:2.4.2
+    image: ruby:2.5.0
     environment:
       - MONGODB_URI=mongodb://mongo:27017/db
     working_dir: '/api'
