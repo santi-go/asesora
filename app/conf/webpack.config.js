@@ -9,7 +9,7 @@ module.exports = {
     filename: './src/js/main.js'
   },
   output: {
-    filename: './dist/bundle.js'
+    filename: './public/dist/bundle.js'
   },
   module: {
     loaders: [
@@ -49,14 +49,14 @@ module.exports = {
     new PermissionsOutputPlugin({
       buildFolders: [
         {
-          path: path.resolve(__dirname, '../dist/'),
+          path: path.resolve(__dirname, '../public/dist/'),
           fileMode: '777',
           dirMode: '666'
         }
       ],
       buildFiles: [
         {
-          path: path.resolve(__dirname, '../dist/bundle.js'),
+          path: path.resolve(__dirname, '../public/dist/bundle.js'),
           fileMode: '777'
         }
       ]
