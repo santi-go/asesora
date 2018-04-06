@@ -2,7 +2,7 @@
 
 ## Start project
 
-### Build
+### Build for most users
 
 `docker-compose build`
 

@@ -18,12 +18,13 @@ class Asesora < Sinatra::Base
     params = JSON.parse(request.body.read)
     locale = params['locale']
 
-    translations = Actions::Translation.retrieve(locale).do()
+    translations = Actions.retrieve_dictionary_for(locale).do()
+
     {data: translations}.to_json
   end
 
   post '/api/about' do
-    application_information = Actions::About.retrieve.do()
+    application_information = Actions.retrieve_about().do()
 
     application_information.to_json
   end
