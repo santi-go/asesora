@@ -2,6 +2,11 @@
   "name": "asesora",
   "version": "0.0.1",
   "description": "Asesora Application",
+  "author": "Devscola <hola@devscola.org> (http://devscola.org)",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/devscola/asesora.git"
+  },
   "dependencies": {
     "xhr2": "*",
     "postal": "*",
