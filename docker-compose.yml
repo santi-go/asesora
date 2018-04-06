@@ -16,7 +16,7 @@ services:
       - '4444:4444'
 
   node:
-    image: 'node:7.9.0'
+    image: 'node:8.11.1'
     user: node
     working_dir: '/test'
     volumes:
