@@ -8,7 +8,7 @@
 
 ### Build-watch
 
-`docker-compose run --rm node npm run build-watch`
+`docker-compose run --rm app npm run build-watch`
 
 
 ### Up docker
@@ -29,7 +29,7 @@ If you have been done some change in js files, you have to wait for the building
 
 ### Run all test
 
-`docker-compose run --rm node npm run test-all`
+`docker-compose run --rm app npm run test-all`
 
 ## Styles
 

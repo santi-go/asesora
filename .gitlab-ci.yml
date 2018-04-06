@@ -10,6 +10,6 @@ test:
   stage: test
   script:
     - docker-compose -f ci-composer.yml up --build -d
-    - docker-compose -f ci-composer.yml run node
+    - docker-compose -f ci-composer.yml run app
     - docker-compose -f ci-composer.yml run api
     - docker-compose -f ci-composer.yml down
