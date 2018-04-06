@@ -12,9 +12,9 @@ module Translation
 
     class << self
       def retrieve(locale)
-        lang = DEFAULT_LOCALE unless @collection.has_key?(locale)
+        locale = DEFAULT_LOCALE unless @collection.has_key?(locale)
 
-        @collection[lang]
+        @collection[locale]
       end
     end
   end

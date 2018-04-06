@@ -19,7 +19,7 @@ describe 'Translations Api' do
         "locale" => "es"
       }.to_json
 
-      post '/api/translations', body.to_json
+      post '/api/translations', body
 
       retrieved_dictionary = JSON.parse(last_response.body)
       expect(retrieved_dictionary["data"]).not_to be_nil
