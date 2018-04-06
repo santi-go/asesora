@@ -28,7 +28,7 @@
       <header class="navbar">
           <div class="row">
               <div class="column column-30 col-site-title">
-                  <title-asesora :title="title"></title-asesora>
+                  <asesora-title :title="title"></asesora-title>
               </div>
           </div>
       </header>
@@ -43,14 +43,14 @@
           <div class="row grid-responsive">
               <div class="column page-heading">
                   <div  class="large-card">
-                      <description-asesora :description="description"></description-asesora>
+                      <asesora-description :description="description"></asesora-description>
                   </div>
               </div>
           </div>
       </section>
     </main>
     <footer>
-           <version :version="version"></version>
+           <asesora-version :version="version"></asesora-version>
        </footer>
   </div>
     <script src="dist/bundle.js" type="text/javascript"></script>

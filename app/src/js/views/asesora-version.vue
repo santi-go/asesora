@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: 'version',
+  name: 'asesora-version',
   props: ['version']
 }
 </script>

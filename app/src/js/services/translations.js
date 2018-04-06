@@ -15,8 +15,8 @@ export default class Translations {
     this.hit(url, body, callback)
   }
 
-  store(response){
-    return function() {
+  store(){
+    return function(response) {
       let locale = this.getLocale(response)
       this.translations[locale] = response[locale]
     }.bind(this)

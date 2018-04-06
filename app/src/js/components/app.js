@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import TitleAsesora from '../views/title-asesora'
-import DescriptionAsesora from '../views/description-asesora'
-import Version from '../views/version'
+import AsesoraTitle from '../views/asesora-title'
+import AsesoraDescription from '../views/asesora-description'
+import AsesoraVersion from '../views/asesora-version'
 import {Bus} from '../bus'
 
 export default class App {
@@ -31,9 +31,9 @@ export default class App {
       el: '#' + this.element,
       data: this.data,
       components: {
-        'title-asesora': TitleAsesora,
-        'description-asesora': DescriptionAsesora,
-        'version': Version
+        'asesora-title': AsesoraTitle,
+        'asesora-description': AsesoraDescription,
+        'asesora-version': AsesoraVersion
       }
     })
   }

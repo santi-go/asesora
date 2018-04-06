@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'description',
+  name: 'asesora-description',
   props: ['description']
 }
 </script>
