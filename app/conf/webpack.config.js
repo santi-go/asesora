@@ -16,10 +16,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015-native-modules']
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.vue$/,
