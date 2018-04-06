@@ -1,9 +1,8 @@
 import {Bus} from '../bus'
-import aja from 'aja'
 
 export default class Translations {
-  constructor() {
-    this.baseURL = 'http://localhost:4567/api/'
+  constructor(client) {
+    this.client = client
     this.retrieve()
     this.translations = {}
     this.subscriptions()
@@ -35,21 +34,12 @@ export default class Translations {
     let callback = this.store()
     let body = { locale: 'es' }
     let url = 'translations'
-    this.hit(url, body, callback)
+    this.client.hit(url, body, callback)
   }
 
   store(){
     return function(response) {
       this.translations = response.data
     }.bind(this)
-  }
-
-  hit(endpoint, data, action){
-    aja()
-      .method('post')
-      .body(data)
-      .url(this.baseURL + endpoint)
-      .on('success', action)
-    .go();
   }
 }
