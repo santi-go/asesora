@@ -24,7 +24,7 @@ services:
     depends_on:
       - asesora
       - selenium
-    command: sh -c 'npm install -s && npm run test-all'
+    command: sh -c 'npm install -s'
 
   api:
     image: ruby:2.5.0
@@ -37,7 +37,7 @@ services:
       - '4567:4567'
     links:
       - mongo
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake test'
+    command: sh -c 'gem install bundler && bundle install'
 
   mongo:
     image: mongo
