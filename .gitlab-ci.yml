@@ -10,6 +10,6 @@ test:
   stage: test
   script:
     - docker-compose -f ci-composer.yml up --build -d
+    - docker-compose -f ci-composer.yml exec -T api gem install bundler && bundle install && bundle exec rake test
     - docker-compose -f ci-composer.yml run app npm run test-all
-    - docker-compose -f ci-composer.yml exec -T api bundle exec rake test
     - docker-compose -f ci-composer.yml down
