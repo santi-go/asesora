@@ -1,8 +1,5 @@
 image: tmaier/docker-compose:latest
 
-variables:
-  DOCKER_DRIVER: overlay
-
 services:
   - docker:dind
 
@@ -13,6 +10,6 @@ test:
   stage: test
   script:
     - docker-compose -f ci-composer.yml up --build -d
-    - docker-compose -f ci-composer.yml exec -T api rake test
     - docker-compose -f ci-composer.yml run app npm run test-all
+    - docker-compose -f ci-composer.yml exec -T api bundle install && ls -la && bundle exec rake test
     - docker-compose -f ci-composer.yml down
