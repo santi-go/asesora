@@ -11,5 +11,5 @@ test:
   script:
     - docker-compose -f ci-composer.yml up --build -d
     - docker-compose -f ci-composer.yml run app npm run test-all
-    - docker-compose -f ci-composer.yml exec -T api
+    - docker-compose -f ci-composer.yml exec api
     - docker-compose -f ci-composer.yml down
