@@ -50,9 +50,10 @@ export default class Solicitude {
 
   model(){
     return {
-      labels: { "applicant": "El aplicante",
-                "text": "Texto" },
-      values: { "text": "" },
+      labels: { "applicant": "XXXXXXXX",
+                "text": "XXXXX" },
+      values: { "applicant" : "",
+                "text": "" },
 
       translate:function(key,value) {
         this.labels[key] = value
