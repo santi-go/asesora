@@ -1,13 +1,15 @@
 <template>
     <div>
         <label for="date">{{label}}</label>
-        <input id="date" type="date">
+        <input  id="date" 
+                type="date" 
+                v-model="date">
     </div>
 </template>
 <script>
 export default {
   name: 'asesora-solicitude',
-  props: ['label']
+  props: ['label', 'date']
 }
 </script>
 <style>
