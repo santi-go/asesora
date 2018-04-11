@@ -1,10 +1,12 @@
 image: docker:latest
 
-stages:
-  - test
-
 variables:
   DOCKER_DRIVER: overlay
+
+stages:
+  - test
+  - build
+  - deploy
 
 services:
   - docker:dind
