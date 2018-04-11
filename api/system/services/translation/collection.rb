@@ -4,8 +4,9 @@ module Translation
     @collection = {
         "es" => {
             "description": "Registro de asesoramientos tecnicos en salud laboral",
-            "applicant": "Solicitante"
-            
+            "applicant": "Solicitante",
+            "text": "Texto"
+
         },
         "en" => {
             "description": "asesora application"
