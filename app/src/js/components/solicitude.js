@@ -23,9 +23,12 @@ export default class Solicitude {
   }
 
   askTranslations() {
-    let data = {  for: this.element,
-                  key: "applicant" }
-    Bus.publish('ask.translation', data)
+    let labelKeys = ["applicant", "date"]
+    for (const labelKey of labelKeys) {
+      let data = {  for: this.element,
+                    key: labelKey }
+      Bus.publish('ask.translation', data)  
+    }
   }
 
 
@@ -41,7 +44,9 @@ export default class Solicitude {
 
   model(){
     return {
-      labels: {"applicant": "El aplicante"},
+      labels: {"applicant": "El aplicante",
+                "date": "fecha"
+              },
 
       translate:function(key,value) {
         this.labels[key] = value
