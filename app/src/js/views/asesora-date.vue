@@ -22,7 +22,7 @@ export default {
     outline: none;
   }
   input:invalid {
-      border: 1px solid red;
+      border: 1px solid #fc4660;
   }
   input:valid {
       border: 1px solid #36cebe;

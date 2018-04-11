@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import SolicitudeView from '../views/asesora-solicitude'
+import SolicitudeText from '../views/asesora-solicitude-text'
 import {Bus} from '../bus'
 
 export default class Solicitude {
@@ -9,6 +10,7 @@ export default class Solicitude {
     this.data = this.model()
     this.subscribe()
     this.askTranslations()
+    this.askTranslationsText()
     this.initializeViews()
   }
 
@@ -31,22 +33,30 @@ export default class Solicitude {
     }
   }
 
+  askTranslationsText() {
+    let data = {  for: this.element,
+                  key: "text" }
+    Bus.publish('ask.translation', data)
+  }
+
 
   initializeViews(){
     new Vue({
       el: '#' + this.element,
       data: this.data,
       components: {
-        'asesora-solicitude': SolicitudeView
+        'asesora-solicitude': SolicitudeView,
+        'asesora-solicitude-text': SolicitudeText
       }
     })
   }
 
   model(){
     return {
-      labels: {"applicant": "El aplicante",
-                "date": "fecha"
-              },
+      labels: { "applicant": "El aplicante",
+                "date": "fecha",
+                "text": "Texto" },
+      values: { "text": "" },
 
       translate:function(key,value) {
         this.labels[key] = value

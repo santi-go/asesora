@@ -5,8 +5,8 @@ module Translation
         "es" => {
             "description": "Registro de asesoramientos tecnicos en salud laboral",
             "applicant": "Solicitante",
-            "date": "Fecha"
-            
+            "date": "Fecha",
+            "text": "Texto"
         },
         "en" => {
             "description": "asesora application"
