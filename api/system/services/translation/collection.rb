@@ -2,10 +2,12 @@ module Translation
   class Collection
     DEFAULT_LOCALE = 'es'
     @collection = {
-        "es" => { 
-            "description": "aplicacion asesora"
+        "es" => {
+            "description": "Registro de asesoramientos tecnicos en salud laboral",
+            "applicant": "Solicitante"
+            
         },
-        "en" => { 
+        "en" => {
             "description": "asesora application"
         }
     }

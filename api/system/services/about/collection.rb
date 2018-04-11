@@ -5,7 +5,7 @@ module About
   class Collection
     DEFAULT_ABOUT = {
       "name" => 'Asesora',
-      "description" => 'Registro de asesoramientos técnicos en salud laboral.',
+      "description" => 'description',
       "version" => '0.0.1'
     }
 

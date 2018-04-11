@@ -4,37 +4,40 @@ import AsesoraDescription from '../views/asesora-description'
 import AsesoraVersion from '../views/asesora-version'
 import {Bus} from '../bus'
 
-export default class App {
+export default class About {
 
-  constructor(elementID){
-    this.element = 'asesora'
+  constructor(){
+    this.element = 'about'
     this.data = this.model()
+
     this.subscribe()
-    this.retrieveAbout()
+    this.retrieve()
     this.initializeViews()
   }
 
   subscribe(){
-    Bus.subscribe("got.information", this.setAboutInfo.bind(this))
-    Bus.subscribe("got.information", this.askTranslation.bind(this))
-    Bus.subscribe("sent.translation", this.translateDescription.bind(this))
+    Bus.subscribe("got.information", this.setInfo.bind(this))
+    Bus.subscribe("got.information", this.askTranslations.bind(this))
+    Bus.subscribe("translation.for.about", this.translate.bind(this))
   }
 
-  translateDescription(payload) {
-    let description = payload.translation
-    this.data.translateDescription(description)
+  translate(payload) {
+    let key= payload.key
+    let label = payload.label
+    this.data.translate(key,label)
   }
 
-  askTranslation(payload) {
-    let data = { key: payload.description }
+  askTranslations(payload) {
+    let data = {  for: this.element,
+                  key: payload.description }
     Bus.publish('ask.translation', data)
   }
 
-  setAboutInfo(payload){
+  setInfo(payload){
     this.data.setValues(payload)
   }
 
-  retrieveAbout(){
+  retrieve(){
     Bus.publish("get.information")
   }
 
@@ -52,16 +55,18 @@ export default class App {
 
   model(){
     return {
-      title: "ASESORA",
-      description: 'Registro de asesoramientos técnicos en salud laboral',
-      version: "Version 0.0.0",
+      title: "XXXXXXX",
+      version: "Version X.X.X",
+      labels: {"description": "lorem ipsum dolor lorem ipsum dolor"},
+
       setValues:function(values){
         this.title = values.name
-        this.description = values.description
+        this.descriptionKey = values.description
         this.version = values.version
       },
-      translateDescription:function(value) {
-        this.description = value
+
+      translate:function(key,value) {
+        this.labels[key] = value
       }
     }
   }
