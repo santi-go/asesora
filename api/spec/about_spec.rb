@@ -17,7 +17,7 @@ describe 'About Api' do
     it 'retieves the application basic information' do
       basic_information = {
         "name" => 'Asesora',
-        "description" => 'Registro de asesoramientos técnicos en salud laboral.',
+        "description" => 'description',
         "version" => '0.0.1'
       }
 
