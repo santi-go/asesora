@@ -1,7 +1,5 @@
 import Vue from 'vue'
-import AsesoraTitle from '../views/asesora-title'
-import AsesoraDescription from '../views/asesora-description'
-import AsesoraVersion from '../views/asesora-version'
+import AsesoraAbout from '../views/asesora-about'
 import {Bus} from '../bus'
 
 export default class About {
@@ -9,7 +7,6 @@ export default class About {
   constructor(){
     this.element = 'about'
     this.data = this.model()
-
     this.subscribe()
     this.retrieve()
     this.initializeViews()
@@ -46,9 +43,7 @@ export default class About {
       el: '#' + this.element,
       data: this.data,
       components: {
-        'asesora-title': AsesoraTitle,
-        'asesora-description': AsesoraDescription,
-        'asesora-version': AsesoraVersion
+        'asesora-about': AsesoraAbout
       }
     })
   }
