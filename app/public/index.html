@@ -43,8 +43,12 @@
       <div class="row grid-responsive">
         <div class="column page-heading">
           <div  class="large-card" id="solicitude">
-            <asesora-solicitude :labels='labels'></asesora-solicitude>
-            <asesora-solicitude-text :labels='labels' :values='values'></asesora-solicitude-text>
+            <form>
+                <fieldset>
+                    <asesora-solicitude :values='values' :labels='labels'></asesora-solicitude>
+                    <asesora-solicitude-text :labels='labels' :values='values'></asesora-solicitude-text>
+                </fieldset>
+            </form>
           </div>
         </div>
       </div>
