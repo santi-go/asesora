@@ -9,7 +9,7 @@
             v-on:focus="recoverFocus"
             v-model="values.applicant"
             >
-    <asesora-date :date='values.date' :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels"></asesora-date>
   </div>
 </template>
 
