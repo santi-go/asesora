@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import SolicitudeView from '../views/asesora-solicitude'
-import SolicitudeText from '../views/asesora-solicitude-text'
 import {Bus} from '../bus'
 
 export default class Solicitude {
@@ -29,7 +28,7 @@ export default class Solicitude {
     for (const labelKey of labelKeys) {
       let data = {  for: this.element,
                     key: labelKey }
-      Bus.publish('ask.translation', data)  
+      Bus.publish('ask.translation', data)
     }
   }
 
@@ -45,8 +44,7 @@ export default class Solicitude {
       el: '#' + this.element,
       data: this.data,
       components: {
-        'asesora-solicitude': SolicitudeView,
-        'asesora-solicitude-text': SolicitudeText
+        'asesora-solicitude': SolicitudeView
       }
     })
   }
