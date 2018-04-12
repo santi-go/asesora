@@ -2,14 +2,14 @@
     <div>
         <label for="date">{{label}}</label>
         <input  id="date" 
-                type="date" 
+                type="date"
                 v-model="date">
     </div>
 </template>
 <script>
 export default {
   name: 'asesora-solicitude',
-  props: ['label', 'date']
+  props: ['label', 'date'],
 }
 </script>
 <style>
@@ -26,7 +26,11 @@ export default {
   input:invalid {
       border: 1px solid #fc4660;
   }
-  input:valid {
+  input:focus {
       border: 1px solid #36cebe;
+  }
+  input:after {
+      content:"*";
+      color: red;
   }
 </style>
