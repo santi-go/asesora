@@ -35,10 +35,6 @@ export default {
   input:focus {
       border: 1px solid #36cebe;
   }
-  input:after {
-      content:"*";
-      color: red;
-  }
   .hide {
     display: none;
   }
