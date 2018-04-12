@@ -18,7 +18,7 @@ export default {
   props: ['labels', 'date'],
 }
 </script>
-<style>
+<style scoped>
   input[type="date"] {
     border: 0.1rem solid #eee;
     border-radius: .4rem;

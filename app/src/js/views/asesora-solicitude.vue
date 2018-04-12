@@ -29,7 +29,7 @@ export default {
       }
     },
     recoverFocus(){
-      this.invalid = true
+      this.invalid = false
     }
   }
 }

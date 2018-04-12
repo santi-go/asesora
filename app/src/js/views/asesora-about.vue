@@ -14,7 +14,7 @@ export default {
   props: ['title', 'version', 'labels']
 }
 </script>
-<style>
+<style scoped>
 .about-header {
   display: flex;
   width: 30%;
