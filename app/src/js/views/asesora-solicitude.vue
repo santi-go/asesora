@@ -4,12 +4,33 @@
     <input  name="applicant"
             placeholder="*"
             type="text"
-            v-bind:class="{error: invalid}"
-            v-on:blur="lostFocus"
-            v-on:focus="recoverFocus"
+            v-bind:class="{error: invalidapplicant}"
+            v-on:blur="lostFocusApplicant"
+            v-on:focus="recoverFocusApplicant"
             v-model="values.applicant"
             >
-    <asesora-date :values="values" :labels="labels"></asesora-date>
+  </input>
+
+  <asesora-date :values="values" :labels="labels"></asesora-date>
+
+  <label>{{ labels.text }}</label>
+  <textarea placeholder="*"
+            v-bind:class="{errortext: invalidtext}"
+            v-on:blur="lostFocusText"
+            v-on:focus="recoverFocusText"
+            v-model="values.text">
+  </textarea>
+
+  <button type="button"
+          name="submit"
+          class="submitbutton"
+          v-bind:disabled="true"
+          v-on:click="animate"
+          >XXXXX</button>
+  <div class="message-sent alert background-success">
+    <em class="fa fa-thumbs-up"></em>
+    Todo Ok! Enviando!
+  </div>
   </div>
 </template>
 
@@ -17,31 +38,90 @@
 import DateView from '../views/asesora-date'
 export default {
   name: 'asesora-solicitude',
-  props: ['labels', 'invalid', 'values'],
+  props: ['labels', 'invalidapplicant', 'invalidtext', 'values'],
   components: {
     "asesora-date" : DateView
   },
   methods: {
-    lostFocus(){
-      this.invalid=false
+    lostFocusApplicant(){
+      this.invalidapplicant=false
       if (this.values.applicant == "") {
-        this.invalid = true
+        this.invalidapplicant = true
       }
+      this.enableButton()
+    },
+    recoverFocusApplicant(){
+      this.invalidapplicant = true
+    },
+    lostFocusText(){
+      this.invalidtext=false
+      this.activateButton(true)
+      if (this.values.text == "") {
+        this.invalidtext = true
+      }
+      this.enableButton()
+    },
+    recoverFocusText(){
+      this.invalidtext = true
+    },
+    enableButton(){
+      let applicantIsEmpty = this.contentApplicant()
+      let textIsEmpty = this.contentText()
+      this.activateButton(true)
+      if (applicantIsEmpty == true && textIsEmpty == true){
+        this.activateButton(false)
+      }
+    },
+    contentText(){
+      return !(this.values.text == "")
+    },
+    contentApplicant(){
+      return !(this.values.applicant == "")
+    },
+    activateButton(toggle){
+      document.querySelector(".submitbutton").disabled = toggle
     },
     recoverFocus(){
       this.invalid = false
+    },
+    animate() {
+      this.show()
+      this.$parent.$emit('moveCard');
+    },
+    show() {
+      let message = document.querySelector(".message-sent")
+      message.style.display = 'block'
     }
+
   }
 }
 </script>
 
 <style scoped>
+
   input::placeholder {
-    color: red ;
     text-align: right;
-    border: red;
+    font-size: 2em;
+    color: #fc4660;
   }
   .error {
     border: 1px solid red !important;
+  }
+  textarea{
+    min-height: 200px;
+    width: 100%;
+  }
+  textarea::placeholder {
+    text-align: right;
+    font-size: 2em;
+    color: #fc4660;
+  }
+  .errortext {
+    border: 1px solid red !important;
+  }
+  .message-sent {
+    margin-bottom: 0;
+    margin-top: 1em;
+    display: none;
   }
 </style>

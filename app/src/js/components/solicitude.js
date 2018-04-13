@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import SolicitudeView from '../views/asesora-solicitude'
-import SolicitudeText from '../views/asesora-solicitude-text'
 import {Bus} from '../bus'
 
 export default class Solicitude {
@@ -37,8 +36,13 @@ export default class Solicitude {
       el: '#' + this.element,
       data: this.data,
       components: {
-        'asesora-solicitude': SolicitudeView,
-        'asesora-solicitude-text': SolicitudeText
+        'asesora-solicitude': SolicitudeView
+      },
+      mounted: function() {
+        this.$on('moveCard', function(){
+          let element = this.$el
+          window.setTimeout(function(){element.style.marginTop = '-1000px'}, 1000)
+        }.bind(this))
       }
     })
   }

@@ -24,7 +24,6 @@
 
 </head>
 <body>
-
     <header class="navbar">
         <div class="row">
             <div class="column column-30 col-site-title" id="about">
@@ -43,37 +42,17 @@
             <div class="row grid-responsive">
                 <div class="column page-heading">
                     <div  class="large-card" id="solicitude">
-                        <form>
+                        <form class="solucitude-form">
                             <fieldset>
                                 <asesora-solicitude :values='values' :labels='labels'></asesora-solicitude>
-                                <asesora-solicitude-text :labels='labels' :values='values'></asesora-solicitude-text>
                             </fieldset>
-                            <button class="send button button-outline">Send</button>
                         </form>
-                        <div class="message-sent alert background-success">
-                            <em class="fa fa-thumbs-up"></em>
-                            Todo Ok! Enviando!
-                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-    </footer>
-
-    <script src='dist/bundle.js' type="text/javascript"></script>
-    <script  type="text/javascript">
-        let message = document.querySelector('.message-sent')
-        let send = document.querySelector(".send")
-        let container = document.querySelector('.large-card')
-        send.addEventListener('click', function() {
-            message.style.opacity = '1'
-            window.setTimeout(moveMessage, 1000)
-        });
-        function moveMessage() {
-            container.style.marginTop = '-600px'
-        }
-    </script>
-</body>
-</html>
+            </section>
+        </main>
+        <footer>
+        </footer>
+        <script src="dist/bundle.js" type="text/javascript"></script>
+    </body>
+    </html>
