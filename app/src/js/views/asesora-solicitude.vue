@@ -14,9 +14,7 @@
     <asesora-date :values="values" :labels="labels"></asesora-date>
 
     <label>{{ labels.text }}</label>
-    <textarea rows="8"
-              cols="8"
-              placeholder="*"
+    <textarea placeholder="*"
               v-bind:class="{errortext: invalidtext}"
               v-on:blur="lostFocusText"
               v-on:focus="recoverFocusText"
@@ -95,6 +93,10 @@ export default {
   }
   .error {
     border: 1px solid red !important;
+  }
+  textarea{
+    min-height: 200px;
+    width: 100%;
   }
   textarea::placeholder {
     text-align: right;
