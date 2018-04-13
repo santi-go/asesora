@@ -24,7 +24,7 @@ services:
     depends_on:
       - asesora
       - selenium
-    command: sh -c 'npm install && npm run test-all -s'
+    command: sh -c 'npm install && npm run test-all'
 
   api:
     image: ruby:2.5.0
