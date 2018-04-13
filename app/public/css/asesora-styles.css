@@ -1,3 +1,7 @@
+*{
+  transition: all 1s ease-in-out;
+}
+
 footer{
   position: absolute;
   bottom: 0;
@@ -6,4 +10,9 @@ footer{
   width: 80% !important;
   justify-content: center;
   display: flex;
+}
+
+.message-sent {
+  margin-bottom: 0;
+  opacity: 0;
 }
