@@ -3,8 +3,8 @@
         <label for="date">{{labels.date}}</label>
         <input  id="date"
                 type="date"
-                v-model="date">
-        <div v-bind:class="{hide: date}">
+                v-model="values.date">
+        <div v-bind:class="{hide: values.date}">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'asesora-solicitude',
-  props: ['labels', 'date'],
+  props: ['labels', 'values'],
 }
 </script>
 <style scoped>

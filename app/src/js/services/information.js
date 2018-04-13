@@ -1,8 +1,10 @@
 import {Bus} from '../bus'
+import {APIClient} from '../infrastructure/api_client'
+
 
 export default class Information {
-  constructor(client) {
-    this.client = client
+  constructor() {
+    this.client = APIClient
     this.subscribe()
   }
 

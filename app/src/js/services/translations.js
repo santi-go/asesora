@@ -1,8 +1,10 @@
 import {Bus} from '../bus'
+import {APIClient} from '../infrastructure/api_client'
+
 
 export default class Translations {
-  constructor(client) {
-    this.client = client
+  constructor() {
+    this.client = APIClient
     this.retrieve()
     this.loaded = false
     this.pending = []
@@ -17,6 +19,7 @@ export default class Translations {
   sendTranslation(payload) {
     if (!this.loaded){
         this.pending.push(payload)
+        return
     }
     let key = payload.key
     let component= payload.for

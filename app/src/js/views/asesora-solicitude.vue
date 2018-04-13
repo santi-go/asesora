@@ -11,7 +11,7 @@
             >
           </input>
 
-    <asesora-date :values='values' :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels"></asesora-date>
 
     <label>{{ labels.text }}</label>
     <textarea rows="8"
@@ -50,7 +50,7 @@ export default {
       recoverFocusApplicant(){
         this.invalidapplicant = true
       },
-      
+
       lostFocusText(){
         this.invalidtext=false
         this.activateButton(true)
