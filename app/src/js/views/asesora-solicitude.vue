@@ -89,9 +89,9 @@ export default {
 
 <style scoped>
   input::placeholder {
-    color: red ;
     text-align: right;
-    border: red;
+    font-size: 2em;
+    color: #fc4660;
   }
   .error {
     border: 1px solid red !important;
@@ -99,7 +99,7 @@ export default {
   textarea::placeholder {
     text-align: right;
     font-size: 2em;
-    color: red;
+    color: #fc4660;
   }
   .errortext {
     border: 1px solid red !important;
