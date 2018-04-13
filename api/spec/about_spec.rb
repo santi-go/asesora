@@ -13,18 +13,15 @@ describe 'About Api' do
     Asesora
   end
 
-  context 'retieves the application' do
-    it 'about information' do
-      basic_information = {
-        "name" => 'Asesora',
-        "description" => 'description',
-        "version" => '0.0.1'
-      }
-
+  context 'retieves the about information' do
+    it 'returns all' do
       post '/api/about'
 
       retrieved_information = JSON.parse(last_response.body)
-      expect(retrieved_information).to eq(basic_information)
+
+      expect(retrieved_information['name']).to_not be_nil
+      expect(retrieved_information['description']).to_not be_nil
+      expect(retrieved_information['version']).to_not be_nil
     end
   end
 end
