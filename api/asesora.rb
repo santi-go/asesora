@@ -29,6 +29,16 @@ class Asesora < Sinatra::Base
     application_information.to_json
   end
 
+  post '/api/create-solicitude' do
+    params = JSON.parse(request.body.read)
+    text = params['text']
+    applicant = params['applicant']
+    date = params['date']
+
+    created = Actions.create_solicitude(text, applicant, date).do()
+    created.serialize.to_json
+  end
+
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"

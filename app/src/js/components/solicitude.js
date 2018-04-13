@@ -10,10 +10,23 @@ export default class Solicitude {
     this.subscribe()
     this.askTranslations()
     this.initializeViews()
+    this.watchActions()
   }
 
   subscribe(){
     Bus.subscribe("translation.for.solicitude", this.translate.bind(this))
+    Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
+  }
+
+  watchActions(){
+    document.getElementById(this.element).addEventListener(
+      'submit.solicitude',
+      this.submit.bind(this)
+    )
+  }
+
+  submit(){
+    Bus.publish('create.solicitude', this.data.values)
   }
 
   translate(payload) {
@@ -46,16 +59,23 @@ export default class Solicitude {
       }
     })
   }
+  createdSolicitude(){
+    console.log("fullfilled ", this.data.fullfilled);
+    this.data.fullfilled = true
+  }
 
   model(){
     return {
       labels: { "applicant": "XXXXXXXX",
                 "date": "fecha",
                 "text": "XXXXX",
-                "noDate": 'XXXXX' },
+                "noDate": "XXXXX",
+                "submitting" : "xxxxxxxxxx",
+                "submit" : "xxxxxxxxxx" },
       values: { "text": "",
                 "date": "",
                 "applicant": "" },
+      fullfilled: false,
       translate:function(key,value) {
         this.labels[key] = value
       }

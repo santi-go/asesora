@@ -7,7 +7,9 @@ module Translation
             "applicant": "Solicitante",
             "date": "Fecha",
             "text": "Texto",
-            "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy"
+            "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
+            "submit": "Solicitar",
+            "submitting": "Solicitando"
         },
         "en" => {
             "description": "asesora application"
