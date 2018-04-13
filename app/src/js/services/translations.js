@@ -19,6 +19,7 @@ export default class Translations {
   sendTranslation(payload) {
     if (!this.loaded){
         this.pending.push(payload)
+        return
     }
     let key = payload.key
     let component= payload.for
