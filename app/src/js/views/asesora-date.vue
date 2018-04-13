@@ -1,18 +1,24 @@
 <template>
     <div>
-        <label for="date">{{label}}</label>
-        <input  id="date" 
+        <label for="date">{{labels.date}}</label>
+        <input  id="date"
                 type="date"
                 v-model="date">
+        <div v-bind:class="{hide: date}">
+          <div class="alert">
+            <em class="fa fa-calendar"></em>
+             {{ labels.noDate }}
+          </div>
+        </div>
     </div>
 </template>
 <script>
 export default {
   name: 'asesora-solicitude',
-  props: ['label', 'date'],
+  props: ['labels', 'date'],
 }
 </script>
-<style>
+<style scoped>
   input[type="date"] {
     border: 0.1rem solid #eee;
     border-radius: .4rem;
@@ -29,8 +35,7 @@ export default {
   input:focus {
       border: 1px solid #36cebe;
   }
-  input:after {
-      content:"*";
-      color: red;
+  .hide {
+    display: none;
   }
 </style>

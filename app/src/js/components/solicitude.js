@@ -9,7 +9,6 @@ export default class Solicitude {
     this.data = this.model()
     this.subscribe()
     this.askTranslations()
-    this.askTranslationsText()
     this.initializeViews()
   }
 
@@ -24,20 +23,13 @@ export default class Solicitude {
   }
 
   askTranslations() {
-    let labelKeys = ["applicant", "date"]
+    let labelKeys = ["applicant", "date", "noDate", "text"]
     for (const labelKey of labelKeys) {
       let data = {  for: this.element,
                     key: labelKey }
       Bus.publish('ask.translation', data)
     }
   }
-
-  askTranslationsText() {
-    let data = {  for: this.element,
-                  key: "text" }
-    Bus.publish('ask.translation', data)
-  }
-
 
   initializeViews(){
     new Vue({
@@ -53,9 +45,11 @@ export default class Solicitude {
     return {
       labels: { "applicant": "XXXXXXXX",
                 "date": "fecha",
-                "text": "XXXXX" },
+                "text": "XXXXX",
+                "noDate": 'XXXXX' },
       values: { "text": "",
-                "date": "" },
+                "date": "",
+                "applicant": "" },
       translate:function(key,value) {
         this.labels[key] = value
       }
