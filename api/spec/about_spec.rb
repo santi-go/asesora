@@ -13,8 +13,8 @@ describe 'About Api' do
     Asesora
   end
 
-  describe 'About API' do
-    it 'retieves the application basic information' do
+  context 'retieves the application' do
+    it 'about information' do
       basic_information = {
         "name" => 'Asesora',
         "description" => 'description',

@@ -13,8 +13,8 @@ describe 'Translations Api' do
     Asesora
   end
 
-  describe 'Translations api' do
-    it 'allows extract any language' do
+  context 'allows extract' do
+    it 'locale language' do
       body = {
         "locale" => "es"
       }.to_json
