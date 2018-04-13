@@ -23,7 +23,7 @@ export default class Solicitude {
   }
 
   askTranslations() {
-    let labelKeys = ["applicant", "date", "noDate", "text"]
+    let labelKeys = Object.keys(this.model().labels)
     for (const labelKey of labelKeys) {
       let data = {  for: this.element,
                     key: labelKey }
