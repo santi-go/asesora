@@ -20,7 +20,7 @@ export default {
 </script>
 <style scoped>
   input[type="date"] {
-    border: 0.1rem solid #eee;
+    border: 0.1rem solid var(--ligth-grey-color);
     border-radius: .4rem;
     box-shadow: none;
     height: 3.8rem;
@@ -30,10 +30,10 @@ export default {
     outline: none;
   }
   input:invalid {
-      border: 1px solid #fc4660;
+      border: 1px solid var(--error-color);
   }
   input:focus {
-      border: 1px solid #36cebe;
+      border: 1px solid var(--main-color);
   }
   .hide {
     display: none;

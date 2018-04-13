@@ -15,7 +15,7 @@
 
   <label>{{ labels.text }}</label>
   <textarea placeholder="*"
-            v-bind:class="{errortext: invalidtext}"
+            v-bind:class="{error: invalidtext}"
             v-on:blur="lostFocusText"
             v-on:focus="recoverFocusText"
             v-model="values.text">
@@ -51,18 +51,18 @@ export default {
       this.enableButton()
     },
     recoverFocusApplicant(){
-      this.invalidapplicant = true
+      this.invalidapplicant = false
     },
     lostFocusText(){
       this.invalidtext=false
       this.activateButton(true)
-      if (this.values.text == "") {
+        if (this.values.text == "") {
         this.invalidtext = true
       }
       this.enableButton()
     },
     recoverFocusText(){
-      this.invalidtext = true
+      this.invalidtext = false
     },
     enableButton(){
       let applicantIsEmpty = this.contentApplicant()
@@ -102,10 +102,11 @@ export default {
   input::placeholder {
     text-align: right;
     font-size: 2em;
-    color: #fc4660;
+    color: var(--error-color);
+    line-height: 1.4em;
   }
   .error {
-    border: 1px solid red !important;
+    border: 1px solid var(--error-color) !important;
   }
   textarea{
     min-height: 200px;
@@ -114,10 +115,7 @@ export default {
   textarea::placeholder {
     text-align: right;
     font-size: 2em;
-    color: #fc4660;
-  }
-  .errortext {
-    border: 1px solid red !important;
+    color: var(--error-color);
   }
   .message-sent {
     margin-bottom: 0;

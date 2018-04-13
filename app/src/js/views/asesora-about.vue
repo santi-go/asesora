@@ -30,7 +30,7 @@ export default {
 
 .about-version {
   font-size: 0.8em;
-  color: #cac8c8;
+  color: var(--ligth-grey-color);
 }
 
 .about-description  {
