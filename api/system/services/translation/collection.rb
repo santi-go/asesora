@@ -6,7 +6,7 @@ module Translation
       def retrieve(locale)
         locale = DEFAULT_LOCALE unless Dictionary.has?(locale)
 
-        Dictionary.retrive(locale)
+        Dictionary.retrieve(locale)
       end
     end
 
@@ -16,7 +16,7 @@ module Translation
           dictionary.has_key?(locale)
         end
 
-        def retrive(locale)
+        def retrieve(locale)
           dictionary[locale]
         end
 
