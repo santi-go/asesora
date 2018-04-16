@@ -17,23 +17,24 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "chai": "^3.5.0",
+    "css-loader": "*",
     "mocha": "^3.4.1",
+    "sinon": "^4.5.0",
+    "vue": "^2.5.13",
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
     "webpack": "^3.10.0",
-    "webpack-permissions-plugin": "0.0.2",
-    "vue": "^2.5.13",
-    "vue-loader": "^13.7.0",
-    "vue-template-compiler": "^2.5.13",
-    "css-loader": "*"
+    "webpack-permissions-plugin": "0.0.2"
   },
   "scripts": {
     "build": "webpack --config conf/webpack.config.js",
     "build-watch": "webpack --config conf/webpack.config.js --watch",
-    "test-all": "mocha test/**/*",
+    "test-all": "mocha test/e2e/* && mocha test/unit --compilers js:babel-core/register",
     "test-e2e": "mocha test/e2e/*",
-    "test-unit": "mocha test/unit/*"
+    "test-unit": "mocha test/unit --compilers js:babel-core/register"
   },
   "babel": {
     "presets": [
