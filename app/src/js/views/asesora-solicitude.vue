@@ -7,6 +7,7 @@
             v-bind:class="{error: invalidapplicant}"
             v-on:blur="lostFocusApplicant"
             v-on:focus="recoverFocusApplicant"
+            v-on:keydown="checkChar"
             v-model="values.applicant"
             >
     </input>
@@ -101,6 +102,15 @@ export default {
       let button = this.$el.querySelector('button')
       button.value = this.labels.submitting
       button.disabled = true
+    },
+    checkChar(e) {
+      if (this.isEnter(e)) {
+        e.preventDefault()
+      }
+    },
+    isEnter(e) {
+      if (e.keyCode === 13) { return true }
+      return false
     }
   },
   watch: {
