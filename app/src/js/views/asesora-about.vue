@@ -17,7 +17,7 @@ export default {
 <style scoped>
 .about-header {
   display: flex;
-  width: 30%;
+  width: 50%;
   flex-direction: column;
 }
 

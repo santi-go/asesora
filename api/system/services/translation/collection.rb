@@ -25,7 +25,7 @@ module Translation
         def dictionary
           {
             "es" => {
-                "description": "Registro de asesoramientos tecnicos en salud laboral",
+                "description": "Registro de asesoramientos técnicos en salud laboral",
                 "applicant": "Solicitante",
                 "date": "Fecha",
                 "text": "Texto",

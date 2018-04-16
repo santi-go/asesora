@@ -134,7 +134,8 @@ export default {
     line-height: 1.4em;
   }
   input::-webkit-input-placeholder {
-    transform: translateY(12px);
+    position: relative;
+    top: 12px;
   }
   .error {
     border: 1px solid var(--error-color) !important;
