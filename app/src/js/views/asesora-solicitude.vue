@@ -4,11 +4,8 @@
     <input  name="applicant"
             placeholder="*"
             type="text"
-            autofocus="true"
-            v-bind:class="{error: invalidapplicant}"
-            v-on:blur="lostFocusApplicant"
-            v-on:focus="recoverFocusApplicant"
-            v-on:keydown="checkChar"
+            v-on:blur="onBlur"
+            v-on:focus="onFocus"
             v-model="values.applicant"
             >
     </input>
@@ -17,9 +14,8 @@
 
   <label>{{ labels.text }}</label>
   <textarea placeholder="*"
-            v-bind:class="{error: invalidtext}"
-            v-on:keyup="keyUpText"
-            v-on:focus="recoverFocusText"
+            v-on:blur="onBlur"
+            v-on:focus="onFocus"
             v-model="values.text">
   </textarea>
 
@@ -41,32 +37,34 @@
 import DateView from '../views/asesora-date'
 export default {
   name: 'asesora-solicitude',
-  props: ['labels', 'invalidapplicant', 'invalidtext', 'values', 'fullfilled'],
+
+  props: ['labels', 'values', 'fullfilled'],
+
   components: {
     "asesora-date" : DateView
   },
+
+  watch: {
+    fullfilled: function(val, oldVal){
+      if (val == true){
+        this.animateCard()
+      }
+    }
+  },
+
   methods: {
-    lostFocusApplicant(){
-      this.invalidapplicant=false
-      if (this.values.applicant == "") {
-        this.invalidapplicant = true
+    onBlur(event){
+      event.target.className = ""
+      if (event.target.value == "") {
+        event.target.className = "error"
       }
       this.enableButton()
     },
-    recoverFocusApplicant(){
-      this.invalidapplicant = false
+
+    onFocus(){
+      event.target.className = ""
     },
-    keyUpText(){
-      this.invalidtext=false
-      this.activateButton(true)
-      if (this.values.text == "") {
-        this.invalidtext = true
-      }
-      this.enableButton()
-    },
-    recoverFocusText(){
-      this.invalidtext = false
-    },
+
     enableButton(){
       let applicantIsEmpty = this.contentApplicant()
       let textIsEmpty = this.contentText()
@@ -75,26 +73,29 @@ export default {
         this.activateButton(false)
       }
     },
+
     contentText(){
       return !(this.values.text == "")
     },
+
     contentApplicant(){
       return !(this.values.applicant == "")
     },
+
     activateButton(toggle){
       document.querySelector(".submitbutton").disabled = toggle
     },
-    recoverFocus(){
-      this.invalid = false
-    },
-    animate() {
+
+    animateCard() {
       this.show()
       this.$parent.$emit('moveCard');
     },
+
     show() {
       let message = document.querySelector(".message-sent")
       message.style.display = 'block'
     },
+
     submit(){
       let signal = new CustomEvent('submit.solicitude',
                                   {'detail': {},
@@ -103,23 +104,6 @@ export default {
       let button = this.$el.querySelector('button')
       button.value = this.labels.submitting
       button.disabled = true
-    },
-    checkChar(e) {
-      if (this.isEnter(e)) {
-        e.preventDefault()
-      }
-    },
-    isEnter(e) {
-      if (e.keyCode === 13) { return true }
-      return false
-    }
-  },
-  watch: {
-    fullfilled: function(val, oldVal){
-      console.log("val ", val);
-      if (val == true){
-        this.animate()
-      }
     }
   }
 }
@@ -132,10 +116,6 @@ export default {
     font-size: 2em;
     color: var(--error-color);
     line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
   }
   .error {
     border: 1px solid var(--error-color) !important;

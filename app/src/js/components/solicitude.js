@@ -64,8 +64,8 @@ export default class Solicitude {
       }
     })
   }
+  
   createdSolicitude(){
-    console.log("fullfilled ", this.data.fullfilled);
     this.data.fullfilled = true
   }
 
