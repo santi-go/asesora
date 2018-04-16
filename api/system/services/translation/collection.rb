@@ -25,16 +25,24 @@ module Translation
         def dictionary
           {
             "es" => {
-                "description": "Registro de asesoramientos técnicos en salud laboral",
+              "about": {
+                "description": "Registro de asesoramientos técnicos en salud laboral"
+              },
+
+              "solicitude": {
                 "applicant": "Solicitante",
                 "date": "Fecha",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
                 "submit": "Solicitar",
                 "submitting": "Solicitando"
+              }
             },
+
             "en" => {
+              "about": {
                 "description": "asesora application"
+              }
             }
           }
         end
