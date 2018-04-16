@@ -4,6 +4,7 @@
     <input  name="applicant"
             placeholder="*"
             type="text"
+            autofocus="true"
             v-bind:class="{error: invalidapplicant}"
             v-on:blur="lostFocusApplicant"
             v-on:focus="recoverFocusApplicant"
@@ -16,7 +17,7 @@
   <label>{{ labels.text }}</label>
   <textarea placeholder="*"
             v-bind:class="{error: invalidtext}"
-            v-on:blur="lostFocusText"
+            v-on:keyup="keyUpText"
             v-on:focus="recoverFocusText"
             v-model="values.text">
   </textarea>
@@ -54,10 +55,10 @@ export default {
     recoverFocusApplicant(){
       this.invalidapplicant = false
     },
-    lostFocusText(){
+    keyUpText(){
       this.invalidtext=false
       this.activateButton(true)
-        if (this.values.text == "") {
+      if (this.values.text == "") {
         this.invalidtext = true
       }
       this.enableButton()
@@ -123,7 +124,6 @@ export default {
     line-height: 1.4em;
   }
   input::-webkit-input-placeholder {
-    line-height: 1.4em;
     transform: translateY(12px);
   }
   .error {
