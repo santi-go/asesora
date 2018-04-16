@@ -54,7 +54,12 @@ export default class Solicitude {
       mounted: function() {
         this.$on('moveCard', function(){
           let element = this.$el
-          window.setTimeout(function(){element.style.marginTop = '-1000px'}, 1000)
+          window.setTimeout(function(){
+            element.style.marginTop = '-1000px'
+            window.setTimeout(function(){
+              location.reload()
+            }, 1000)
+          }, 1000)
         }.bind(this))
       }
     })

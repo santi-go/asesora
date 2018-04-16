@@ -1,11 +1,10 @@
-require 'net/http'
-require 'rspec'
 require 'json'
 require 'rack/test'
 
 require_relative '../asesora.rb'
+require_relative './fixtures'
 
-describe 'Translations Api' do
+describe 'Translations' do
 
   include Rack::Test::Methods
 
@@ -13,16 +12,14 @@ describe 'Translations Api' do
     Asesora
   end
 
-  context 'allows extract' do
-    it 'locale language' do
-      body = {
-        "locale" => "es"
-      }.to_json
+  it 'retrieve all translations for a locale' do
+    body = {
+      "locale" => Fixture.locale
+    }.to_json
 
-      post '/api/translations', body
+    post '/api/translations', body
 
-      retrieved_dictionary = JSON.parse(last_response.body)
-      expect(retrieved_dictionary["data"]).not_to be_nil
-    end
+    retrieved_dictionary = JSON.parse(last_response.body)
+    expect(retrieved_dictionary["data"]).not_to be_nil
   end
 end
