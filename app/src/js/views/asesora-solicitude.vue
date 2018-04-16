@@ -9,28 +9,29 @@
             v-on:focus="recoverFocusApplicant"
             v-model="values.applicant"
             >
-  </input>
+    </input>
 
-  <asesora-date :values="values" :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels"></asesora-date>
 
   <label>{{ labels.text }}</label>
   <textarea placeholder="*"
-            v-bind:class="{errortext: invalidtext}"
+            v-bind:class="{error: invalidtext}"
             v-on:blur="lostFocusText"
             v-on:focus="recoverFocusText"
             v-model="values.text">
   </textarea>
 
-  <button type="button"
-          name="submit"
-          class="submitbutton"
-          v-bind:disabled="true"
-          v-on:click="animate"
-          >XXXXX</button>
-  <div class="message-sent alert background-success">
-    <em class="fa fa-thumbs-up"></em>
-    Todo Ok! Enviando!
-  </div>
+    <button type="button"
+            name="submit"
+            class="submitbutton"
+            v-bind:disabled="true"
+            v-on:click="submit()">
+      {{ labels.submit }}
+    </button>
+    <div class="message-sent alert background-success">
+      <em class="fa fa-thumbs-up"></em>
+      Todo Ok! Enviando!
+    </div>
   </div>
 </template>
 
@@ -38,7 +39,7 @@
 import DateView from '../views/asesora-date'
 export default {
   name: 'asesora-solicitude',
-  props: ['labels', 'invalidapplicant', 'invalidtext', 'values'],
+  props: ['labels', 'invalidapplicant', 'invalidtext', 'values', 'fullfilled'],
   components: {
     "asesora-date" : DateView
   },
@@ -51,18 +52,18 @@ export default {
       this.enableButton()
     },
     recoverFocusApplicant(){
-      this.invalidapplicant = true
+      this.invalidapplicant = false
     },
     lostFocusText(){
       this.invalidtext=false
       this.activateButton(true)
-      if (this.values.text == "") {
+        if (this.values.text == "") {
         this.invalidtext = true
       }
       this.enableButton()
     },
     recoverFocusText(){
-      this.invalidtext = true
+      this.invalidtext = false
     },
     enableButton(){
       let applicantIsEmpty = this.contentApplicant()
@@ -91,8 +92,24 @@ export default {
     show() {
       let message = document.querySelector(".message-sent")
       message.style.display = 'block'
+    },
+    submit(){
+      let signal = new CustomEvent('submit.solicitude',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
+      let button = this.$el.querySelector('button')
+      button.value = this.labels.submitting
+      button.disabled = true
     }
-
+  },
+  watch: {
+    fullfilled: function(val, oldVal){
+      console.log("val ", val);
+      if (val == true){
+        this.animate()
+      }
+    }
   }
 }
 </script>
@@ -102,10 +119,11 @@ export default {
   input::placeholder {
     text-align: right;
     font-size: 2em;
-    color: #fc4660;
+    color: var(--error-color);
+    line-height: 1.4em;
   }
   .error {
-    border: 1px solid red !important;
+    border: 1px solid var(--error-color) !important;
   }
   textarea{
     min-height: 200px;
@@ -114,10 +132,7 @@ export default {
   textarea::placeholder {
     text-align: right;
     font-size: 2em;
-    color: #fc4660;
-  }
-  .errortext {
-    border: 1px solid red !important;
+    color: var(--error-color);
   }
   .message-sent {
     margin-bottom: 0;

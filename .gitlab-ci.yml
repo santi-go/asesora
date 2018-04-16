@@ -12,6 +12,7 @@ stages:
 test:
   stage: test
   script:
+    - docker-compose -f ci-composer.yml pull
     - docker-compose -f ci-composer.yml up --build -d
     - docker-compose -f ci-composer.yml run api
     - docker-compose -f ci-composer.yml run app
