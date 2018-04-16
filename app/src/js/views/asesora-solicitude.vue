@@ -122,6 +122,10 @@ export default {
     color: var(--error-color);
     line-height: 1.4em;
   }
+  input::-webkit-input-placeholder {
+    line-height: 1.4em;
+    transform: translateY(12px);
+  }
   .error {
     border: 1px solid var(--error-color) !important;
   }
