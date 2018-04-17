@@ -9,5 +9,9 @@ module Solicitudes
 
       Collection.create(solicitude)
     end
+
+    def self.retrieve
+      Collection.retrieve
+    end
   end
 end

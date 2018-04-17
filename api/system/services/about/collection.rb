@@ -47,7 +47,7 @@ module About
 
             @client ||= Mongo::Client.new(mongo_uri, { max_pool_size: 5 })
           end
-        end 
+        end
       end
     end
   end
