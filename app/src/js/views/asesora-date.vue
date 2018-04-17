@@ -4,7 +4,8 @@
         <input  id="date"
                 type="date"
                 v-model="values.date">
-        <div v-bind:class="{hide: values.date}">
+        <div    id="date-info"
+                v-bind:class="{hide: values.date}">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}

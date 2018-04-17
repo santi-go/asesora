@@ -1,7 +1,8 @@
 <template>
   <div>
     <label>{{ labels.applicant }}:</label>
-    <input  name="applicant"
+    <input  id="applicant"
+            name="applicant"
             placeholder="*"
             type="text"
             v-on:blur="onBlur"
@@ -13,13 +14,15 @@
     <asesora-date :values="values" :labels="labels"></asesora-date>
 
   <label>{{ labels.text }}</label>
-  <textarea placeholder="*"
+  <textarea id="solicitude-text"
+            placeholder="*"
             v-on:blur="onBlur"
             v-on:focus="onFocus"
             v-model="values.text">
   </textarea>
 
-    <button type="button"
+    <button  id="submit"
+            type="button"
             name="submit"
             class="submitbutton"
             v-bind:disabled="true"
@@ -116,6 +119,10 @@ export default {
     font-size: 2em;
     color: var(--error-color);
     line-height: 1.4em;
+  }
+  input::-webkit-input-placeholder {
+    position: relative;
+    top: 12px;
   }
   .error {
     border: 1px solid var(--error-color) !important;

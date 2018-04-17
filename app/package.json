@@ -32,8 +32,9 @@
   "scripts": {
     "build": "webpack --config conf/webpack.config.js",
     "build-watch": "webpack --config conf/webpack.config.js --watch",
-    "test-all": "mocha test/e2e/* && mocha test/unit --compilers js:babel-core/register",
-    "test-e2e": "mocha test/e2e/*",
+    "test-all": "npm run builde2e -s && wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
+    "test-e2e": "npm run builde2e -s && wdio ./conf/wdio.conf.js",
+    "builde2e": "API_HOST=api webpack --config ./conf/webpack.config.js",
     "test-unit": "mocha test/unit --compilers js:babel-core/register"
   },
   "babel": {

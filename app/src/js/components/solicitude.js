@@ -64,7 +64,7 @@ export default class Solicitude {
       }
     })
   }
-  
+
   createdSolicitude(){
     this.data.fullfilled = true
   }
