@@ -29,6 +29,11 @@ module Translation
                 "description": "Registro de asesoramientos técnicos en salud laboral"
               },
 
+              "sidebar": {
+                "solicitudeList": "Listado de solicitudes",
+                "createSolicitude": "Nueva solicitud"
+              },
+
               "solicitude": {
                 "applicant": "Solicitante",
                 "date": "Fecha",
