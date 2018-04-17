@@ -3,6 +3,7 @@ require 'sinatra/cross_origin'
 require 'json'
 
 require_relative 'system/actions/factory'
+require_relative 'system/domain/solicitude'
 
 class Asesora < Sinatra::Base
 
@@ -37,6 +38,15 @@ class Asesora < Sinatra::Base
 
     created = Actions.create_solicitude(text, applicant, date).do()
     created.serialize.to_json
+  end
+
+  post '/api/retrieve-solicitudes' do
+    retrieve_solicitudes = Actions.retrieve_solicitudes().do()
+
+    list_solicitudes = retrieve_solicitudes.serialize
+
+    {data: list_solicitudes}.to_json
+
   end
 
   options "*" do

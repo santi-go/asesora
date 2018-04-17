@@ -1,4 +1,6 @@
 require_relative '../../domain/solicitude'
+require_relative '../../domain/list_solicitudes'
+
 require 'mongo'
 
 module Solicitudes
@@ -12,6 +14,12 @@ module Solicitudes
         Domain::Solicitude.from_document(document)
       end
 
+      def retrieve
+        solicitudes = MongoClient.retrieve
+
+        Domain::ListSolicitudes.from_document(solicitudes)
+      end
+
       private
 
       class MongoClient
@@ -19,6 +27,10 @@ module Solicitudes
           def create(descriptor)
             client[:solicitudes].insert_one(descriptor)
             descriptor
+          end
+
+          def retrieve
+            client[:solicitudes].find()
           end
 
           private
