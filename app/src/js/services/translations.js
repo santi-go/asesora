@@ -32,8 +32,8 @@ export default class Translations {
     translation = { 'key': key,
                     'label': this.translations[component][key]}
 
-    if (!this.translations[key]) {
-      translation['label']=key
+    if (!this.translations[component][key]) {
+      translation['label'] = component + '.' + key
     }
 
     return translation
