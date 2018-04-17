@@ -30,7 +30,7 @@ module Solicitudes
           end
 
           def retrieve
-            client[:solicitudes].find()
+            client[:solicitudes].find().sort({"date": -1, "creation_moment": -1})
           end
 
           private

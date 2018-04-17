@@ -88,5 +88,41 @@ describe 'Solicitude Api' do
 
       expect(responses).to eq(true)
     end
+    it 'returns solicitudes in descendent order' do
+      body1 = {
+        "applicant" => "an applicant",
+        "text" => "a text",
+        "date" => "2050-03-20"
+      }.to_json
+
+      body2 = {
+        "applicant" => "an applicant",
+        "text" => "a text",
+        "date" => "2050-03-20"
+      }.to_json
+
+      post '/api/create-solicitude', body1
+      sleep 1
+      post '/api/create-solicitude', body2
+
+      post '/api/retrieve-solicitudes'
+
+      retrieved_information = JSON.parse(last_response.body)
+
+      first_solicitude = retrieved_information['data'][0]['date']
+      second_solicitude = retrieved_information['data'][1]['date']
+
+      first_creation_moment = retrieved_information['data'][0]['creation_moment']
+      second_creation_moment = retrieved_information['data'][1]['creation_moment']
+
+      creation_moment = first_creation_moment > second_creation_moment
+
+      expect(first_solicitude).to eq("2050-03-20")
+      expect(second_solicitude).to eq("2050-03-20")
+
+      expect(creation_moment).to eq(true)
+
+
+    end
   end
 end
