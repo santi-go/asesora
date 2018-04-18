@@ -10,11 +10,23 @@ export default class SolicitudesList {
     this.retrieve()
     this.askTranslations()
     this.initializeViews()
+    this.watchActions()
   }
 
   subscribe(){
     Bus.subscribe("got.solicitudes-list", this.populateSolicitudeList.bind(this))
     Bus.subscribe("translation.for.solicitudes-list", this.translate.bind(this))
+  }
+
+  watchActions(){
+    document.getElementById(this.element).addEventListener(
+      'load.solicitude',
+      this.load.bind(this)
+    )
+  }
+
+  load(event){
+    window.location.href = "/solicitude-edit.html?id=" + event.detail
   }
 
   initializeViews(){
