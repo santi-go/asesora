@@ -1,0 +1,64 @@
+import Vue from 'vue'
+import SolicitudesListView from '../views/asesora-solicitudes-list'
+import {Bus} from '../bus'
+
+export default class SolicitudesList {
+  constructor(){
+    this.element = 'solicitudes-list'
+    this.data = this.model()
+    this.subscribe()
+    this.askTranslations()
+    this.initializeViews()
+  }
+
+  subscribe(){
+    Bus.subscribe("translation.for.solicitudes-list", this.translate.bind(this))
+  }
+
+  initializeViews(){
+    new Vue({
+      el: '#' + this.element,
+      data: this.data,
+      components: {
+        'asesora-solicitudes-list': SolicitudesListView
+      }
+    })
+  }
+
+  translate(payload) {
+    let key= payload.key
+    let label = payload.label
+    this.data.translate(key,label)
+  }
+
+  askTranslations() {
+    let labelKeys = Object.keys(this.model().labels)
+    for (const labelKey of labelKeys) {
+      let data = {  for: this.element,
+                    key: labelKey }
+      Bus.publish('ask.translation', data)
+    }
+  }
+
+  model(){
+    return {
+      labels: { "code": "XXXXXXXX",
+                "date": "XXXXX",
+                "applicant": "XXXXX",
+                "company": "XXXXX",
+                "topics": "xxxxxxxxxx" },
+      solicitudes: [
+        {
+          applicant:"qwerty",
+          creation_moment:"1523991256366",
+          date:"2018-12-31",
+          text:"qwertyu"
+        },
+      ],
+      fullfilled: false,
+      translate:function(key,value) {
+        this.labels[key] = value
+      }
+    }
+  }
+}

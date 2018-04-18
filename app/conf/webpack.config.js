@@ -9,7 +9,9 @@ module.exports = {
     filename: './src/js/main.js'
   },
   output: {
-    filename: './public/dist/bundle.js'
+    filename: './public/dist/bundle.js',
+    libraryTarget: 'var',
+    library: 'Asesora'
   },
   module: {
     loaders: [

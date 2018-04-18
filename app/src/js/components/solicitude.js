@@ -72,7 +72,7 @@ export default class Solicitude {
   model(){
     return {
       labels: { "applicant": "XXXXXXXX",
-                "date": "fecha",
+                "date": "XXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",

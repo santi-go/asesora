@@ -41,6 +41,14 @@ module Translation
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
                 "submit": "Solicitar",
                 "submitting": "Solicitando"
+              },
+
+              "solicitudes-list": {
+                "code": "Código de registro",
+                "date": "Fecha de solicitud",
+                "applicant": "Nombre completo del solicitante",
+                "company": "Nombre de empresa",
+                "topics": "Temas del caso"
               }
             },
 
