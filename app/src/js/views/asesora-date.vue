@@ -3,9 +3,11 @@
         <label for="date">{{labels.date}}</label>
         <input  id="date"
                 type="date"
-                v-model="values.date">
+                v-model="values.date"
+                v-bind:required="editionmode"
+                v-bind:class="{editionmode: editionmode}">
         <div    id="date-info"
-                v-bind:class="{hide: values.date}">
+                v-bind:class="{hide: values.date, hide: editionmode}">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}
@@ -16,7 +18,7 @@
 <script>
 export default {
   name: 'asesora-solicitude',
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'editionmode'],
 }
 </script>
 <style scoped>
@@ -38,5 +40,12 @@ export default {
   }
   .hide {
     display: none;
+  }
+  .editionmode::after {
+    content: '*';
+    font-size: 32px;
+    color: var(--error-color);
+    position: relative;
+    top: 6px;
   }
 </style>

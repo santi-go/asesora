@@ -71,6 +71,7 @@ export default class Solicitude {
 
   model(){
     return {
+      editionmode: false,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
                 "text": "XXXXX",

@@ -11,7 +11,7 @@
             >
     </input>
 
-    <asesora-date :values="values" :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
 
   <label>{{ labels.text }}</label>
   <textarea id="solicitude-text"
@@ -41,7 +41,7 @@ import DateView from '../views/asesora-date'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode'],
 
   components: {
     "asesora-date" : DateView
@@ -116,7 +116,7 @@ export default {
 
   input::placeholder {
     text-align: right;
-    font-size: 2em;
+    font-size: 32px;
     color: var(--error-color);
     line-height: 1.4em;
   }
@@ -133,7 +133,7 @@ export default {
   }
   textarea::placeholder {
     text-align: right;
-    font-size: 2em;
+    font-size: 32px;
     color: var(--error-color);
   }
   .message-sent {
