@@ -7,11 +7,13 @@ export default class SolicitudesList {
     this.element = 'solicitudes-list'
     this.data = this.model()
     this.subscribe()
+    this.retrieve()
     this.askTranslations()
     this.initializeViews()
   }
 
   subscribe(){
+    Bus.subscribe("got.solicitudes-list", this.populateSolicitudeList.bind(this))
     Bus.subscribe("translation.for.solicitudes-list", this.translate.bind(this))
   }
 
@@ -23,6 +25,14 @@ export default class SolicitudesList {
         'asesora-solicitudes-list': SolicitudesListView
       }
     })
+  }
+
+  retrieve(){
+    Bus.publish("get.solicitudes-list")
+  }
+
+  populateSolicitudeList(payload){
+    this.data.solicitudes = payload.data
   }
 
   translate(payload) {

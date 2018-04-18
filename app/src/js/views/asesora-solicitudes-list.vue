@@ -12,10 +12,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in solicitudes">
+        <tr v-for="item in solicitudes" :key="item.creation_moment">
           <td>n/a</td>
-          <td></td>
-          <td></td>
+          <td>{{ item.date | es }}</td>
+          <td>{{ item.applicant }}</td>
           <td>n/a</td>
           <td>n/a</td>
         </tr>
@@ -27,6 +27,12 @@
 <script>
   export default {
     name: 'asesora-solicitudes-list',
-    props: ['labels', 'solicitudes']
+    props: ['labels', 'solicitudes'],
+    filters: {
+      es: function (date_en) {
+        const date_parts = date_en.split('-')
+        return date_parts.reverse().join('/')
+      }
+    }
   }
 </script>

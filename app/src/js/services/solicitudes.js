@@ -8,7 +8,15 @@ export default class Solicitudes {
   }
 
   subscribe() {
+    Bus.subscribe("get.solicitudes-list", this.getSolicitudesList.bind(this))
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
+  }
+
+  getSolicitudesList() {
+    let callback = this.buildCallback('got.solicitudes-list')
+    let body = {}
+    let url = 'retrieve-solicitudes'
+    this.client.hit(url, body, callback)
   }
 
   createSolicitude(payload) {
