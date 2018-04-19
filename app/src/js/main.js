@@ -6,6 +6,8 @@ import About from './components/about'
 import Sidebar from './components/sidebar'
 import Solicitude from './components/solicitude'
 import SolicitudesList from './components/solicitudes-list'
+import SolicitudesEdition from './components/solicitudes-edition'
+
 
 new Translations()
 new Information()
@@ -16,6 +18,6 @@ new Sidebar()
 
 module.exports = {
   Solicitude: Solicitude,
-  SolicitudesList: SolicitudesList
+  SolicitudesList: SolicitudesList,
+  SolicitudesEdition: SolicitudesEdition
 };
-

@@ -26,7 +26,7 @@ export default class SolicitudesList {
   }
 
   load(event){
-    window.location.href = "/solicitude-edit.html?id=" + event.detail
+    window.location.href = "/solicitudes-edition.html?id=" + event.detail
   }
 
   initializeViews(){

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Asesora</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
+
+    <!-- Template Styles -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <!-- Milligram CSS minified -->
+    <link rel="stylesheet" href="css/milligram.min.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Our Styles -->
+    <link rel="stylesheet" href="css/asesora-styles.css">
+
+</head>
+<body>
+    <header class="navbar">
+        <div class="row">
+            <div class="column column-30 col-site-title" id="about">
+                <asesora-about :title="title" :version="version" :labels="labels"></asesora-about>
+            </div>
+        </div>
+    </header>
+    <main class="row">
+        <aside id="sidebar" class="column">
+            <asesora-sidebar :labels='labels'></asesora-sidebar>
+        </aside>
+        <section id="main-content" class="column column-offset-20">
+            <div class="row grid-responsive">
+                <div class="column page-heading">
+                    <div  class="large-card" id="solicitudes-edition">
+                        <form class="solucitude-form">
+                            <fieldset>
+                                <asesora-solicitudes-edition :values='values' :labels='labels' :fullfilled='fullfilled'></asesora-solicitudes-edition>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+    </footer>
+    <script src="dist/bundle.js" type="text/javascript"></script>
+    <script>
+        new Asesora.SolicitudesEdition
+    </script>
+</body>
+</html>

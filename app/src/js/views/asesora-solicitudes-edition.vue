@@ -1,7 +1,7 @@
 <template>
   <div>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
+    <asesora-date :values="values" :labels="labels"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels"></asesora-button>
 
@@ -21,9 +21,9 @@ import ButtonView from '../views/asesora-button'
 
 
 export default {
-  name: 'asesora-solicitude',
+  name: 'asesora-solicitudes-edition',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode'],
+  props: ['labels', 'values', 'fullfilled'],
 
   components: {
     "asesora-date" : DateView,
@@ -75,28 +75,6 @@ export default {
 </script>
 
 <style scoped>
-  input::placeholder {
-    text-align: right;
-    font-size: 32px;
-    color: var(--error-color);
-    line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
-  }
-  .error {
-    border: 1px solid var(--error-color) !important;
-  }
-  textarea{
-    min-height: 200px;
-    width: 100%;
-  }
-  textarea::placeholder {
-    text-align: right;
-    font-size: 32px;
-    color: var(--error-color);
-  }
   .message-sent {
     margin-bottom: 0;
     margin-top: 1em;
