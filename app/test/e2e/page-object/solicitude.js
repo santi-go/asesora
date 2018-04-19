@@ -4,9 +4,10 @@ class Solicitude{
     browser.url('/')
   }
 
-  fillAplicant(){
+  fillAplicant(value){
+    value = value || "applicant name"
     let applicant =  $('#applicant')
-    applicant.setValue("applicant name")
+    applicant.setValue(value)
   }
 
   fillText(){
@@ -40,6 +41,23 @@ class Solicitude{
     let dateInfo = $("#date-info")
     let isHiden = dateInfo.getAttribute("class")
     return isHiden == "hide"
+  }
+
+  submit(){
+    this.lostFocus()
+    $('#submit').click()
+    browser.waitForVisible('.message-sent', 2000)
+  }
+
+  fill(){
+    this.fillAplicant()
+    this.fillText()
+    return this
+  }
+
+  withApplicant(text){
+    this.fillAplicant(text)
+    return this
   }
 }
 module.exports = Solicitude

@@ -1,10 +1,10 @@
-var expect = require('chai').expect
-var Solicitude = require('./page-object/solicitude')
+const expect = require('chai').expect
+const Solicitude = require('./page-object/solicitude')
 
 describe('Solicitude', () => {
 
   it ("can be created", () => {
-    let solicitude = new Solicitude()
+    const solicitude = new Solicitude()
 
     solicitude.fillAplicant()
 
@@ -16,7 +16,7 @@ describe('Solicitude', () => {
   })
 
   it ("hides date info when is not needed", () => {
-    let solicitude = new Solicitude()
+    const solicitude = new Solicitude()
 
     solicitude.fillDate()
 
@@ -24,7 +24,7 @@ describe('Solicitude', () => {
   })
 
   it ("knows when the date is invalid", () => {
-    let solicitude = new Solicitude()
+    const solicitude = new Solicitude()
 
     solicitude.fillWrongDate()
 

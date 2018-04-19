@@ -9,5 +9,9 @@ exports.config = {
   capabilities: [{
     browserName: 'chrome'
   }],
-  reporters: ['spec']
+  reporters: ['spec'],
+  framework: 'mocha',
+  mochaOpts: {
+    timeout: 20000
+  }
 }
