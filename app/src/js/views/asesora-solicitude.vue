@@ -1,26 +1,9 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <label>{{ labels.applicant }}:</label>
-    <input  id="applicant"
-            name="applicant"
-            placeholder="*"
-            type="text"
-            v-on:blur="onBlur"
-            v-on:focus="onFocus"
-            v-model="values.applicant"
-            >
-    </input>
-
-    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
-=======
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-date :values="values" :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels"></asesora-button>
->>>>>>> 209e2bee125e589ecfb75e18f4cfdd32b5b1f6dd
-
-
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
       Todo Ok! Enviando!
