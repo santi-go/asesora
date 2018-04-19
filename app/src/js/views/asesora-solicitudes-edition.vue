@@ -1,7 +1,7 @@
 <template>
   <div>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-date :values="values" :labels="labels"></asesora-date>
+    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels"></asesora-button>
 
@@ -23,7 +23,7 @@ import ButtonView from '../views/asesora-button'
 export default {
   name: 'asesora-solicitudes-edition',
 
-  props: ['labels', 'values', 'fullfilled'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode'],
 
   components: {
     "asesora-date" : DateView,

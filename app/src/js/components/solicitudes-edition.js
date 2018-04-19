@@ -72,6 +72,7 @@ export default class SolicitudesEdition {
 
   model(){
     return {
+      editionmode: true,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
                 "text": "XXXXX",
