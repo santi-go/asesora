@@ -7,7 +7,7 @@
                 v-bind:required="editionmode"
                 v-bind:class="{editionmode: editionmode}">
         <div    id="date-info"
-                v-bind:class="{hide: values.date, hide: editionmode}">
+                v-bind:class="{hide: mustBeHidden}">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}
@@ -19,6 +19,15 @@
 export default {
   name: 'asesora-solicitude',
   props: ['labels', 'values', 'editionmode'],
+  computed: {
+    mustBeHidden() {
+      if (this.editionmode || this.values.date){
+        return true
+      }
+
+      return false
+    }
+  }
 }
 </script>
 <style scoped>
