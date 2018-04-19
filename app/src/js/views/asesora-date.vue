@@ -7,7 +7,7 @@
                 v-bind:required="editionmode"
                 v-bind:class="{editionmode: editionmode}">
         <div    id="date-info"
-                v-bind:class="{hide: values.date, hide: editionmode}">
+                v-bind:class="{hide: values.date}">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}
