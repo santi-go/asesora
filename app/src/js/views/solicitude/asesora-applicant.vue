@@ -1,17 +1,20 @@
 <template>
   <div>
-    <label>{{ labels.text }}</label>
-    <textarea id="solicitude-text"
-              placeholder="*"
-              v-on:blur="onBlur"
-              v-on:focus="onFocus"
-              v-model="values.text">
-    </textarea>
+    <label>{{ labels.applicant }}:</label>
+    <input  id="applicant"
+            name="applicant"
+            placeholder="*"
+            type="text"
+            v-on:blur="onBlur"
+            v-on:focus="onFocus"
+            v-model="values.applicant"
+            >
   </div>
 </template>
 
 <script>
 export default {
+  name: 'asesora-applicant',
 
   props: ['labels', 'values'],
 
@@ -33,14 +36,15 @@ export default {
 
 <style scoped>
 
-  textarea{
-    min-height: 200px;
-    width: 100%;
-  }
-  textarea::placeholder {
+  input::placeholder {
     text-align: right;
     font-size: 2em;
     color: var(--error-color);
+    line-height: 1.4em;
+  }
+  input::-webkit-input-placeholder {
+    position: relative;
+    top: 12px;
   }
   .error {
     border: 1px solid var(--error-color) !important;

@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  name: 'asesora-solicitude',
+  name: 'asesora-date',
   props: ['labels', 'values', 'editionmode'],
   computed: {
     mustBeHidden() {

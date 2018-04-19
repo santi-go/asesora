@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import SolicitudesListView from '../views/asesora-solicitudes-list'
+import SolicitudesListView from '../views/solicitude/asesora-solicitudes-list'
 import {Bus} from '../bus'
 
 export default class SolicitudesList {

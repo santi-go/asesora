@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'asesora-button',
 
   props: ['labels', 'values'],
 
