@@ -18,6 +18,8 @@ services:
   app:
     image: 'node:8.11.1'
     user: node
+    environment:
+      - API_HOST=localhost
     working_dir: '/test'
     volumes:
       - './app/:/test'
