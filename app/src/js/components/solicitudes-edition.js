@@ -23,6 +23,13 @@ export default class SolicitudesEdition {
       'submit.solicitudes-edition',
       this.submit.bind(this)
     )
+    window.addEventListener("beforeunload", this.leaving)
+  }
+
+  leaving(event){
+    var confirmationMessage = "\o/"
+    event.returnValue = confirmationMessage
+    return confirmationMessage
   }
 
   submit(){
