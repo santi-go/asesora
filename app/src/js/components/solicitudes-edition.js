@@ -68,6 +68,16 @@ export default class SolicitudesEdition {
               location.reload()
             }, 1000)
           }, 1000)
+        }.bind(this)),
+
+        this.$on('discardCard', function(){
+          let element = this.$el
+          window.setTimeout(function(){
+            element.style.marginTop = '1000px'
+            window.setTimeout(function(){
+              location.reload()
+            }, 1000)
+          }, 1000)
         }.bind(this))
       }
     })
@@ -85,7 +95,10 @@ export default class SolicitudesEdition {
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
-                "submit" : "xxxxxxxxxx" },
+                "submit" : "xxxxxxxxxx",
+                "discard" : "xxxxxxx",
+                "discarding" : "xxxxxxxxxx"
+               },
       values: { "text": "",
                 "date": "",
                 "applicant": "" },

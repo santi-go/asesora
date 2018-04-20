@@ -4,6 +4,7 @@
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels"></asesora-button>
+    <asesora-button-discard :labels="labels"></asesora-button-discard>
 
 
     <div class="message-sent alert background-success">
@@ -18,6 +19,7 @@ import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
+import ButtonDiscardView from './asesora-button-discard'
 
 
 export default {
@@ -29,7 +31,14 @@ export default {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
     "asesora-text" : TextView,
-    "asesora-button" : ButtonView
+    "asesora-button" : ButtonView,
+    "asesora-button-discard" : ButtonDiscardView
+  },
+
+  mounted: function() {
+    this.$on('discardCard', function(){
+      this.discardCard()
+    }.bind(this))
   },
 
   watch: {
@@ -51,6 +60,10 @@ export default {
     },
     contentApplicant(){
       return !(this.values.applicant == "")
+    },
+
+    discardCard(){
+      this.$parent.$emit('discardCard');
     },
 
     contentText(){
@@ -79,5 +92,9 @@ export default {
     margin-bottom: 0;
     margin-top: 1em;
     display: none;
+  }
+  .button-inline {
+    display: inline-block;
+    margin-right: 1em;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="button-inline">
     <button  id="submit"
             type="button"
             name="submit"
