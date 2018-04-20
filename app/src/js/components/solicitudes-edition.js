@@ -8,20 +8,21 @@ export default class SolicitudesEdition {
     this.element = 'solicitudes-edition'
     this.data = this.model()
     this.subscribe()
+    this.retrieve()
     this.askTranslations()
     this.initializeViews()
     this.watchActions()
   }
 
   subscribe(){
+    Bus.subscribe("got.solicitudes-list", this.SolicitudeData.bind(this))
     Bus.subscribe("translation.for.solicitudes-edition", this.translate.bind(this))
-    Bus.subscribe("created.solicitudes-edition", this.createdSolicitude.bind(this))
   }
 
   watchActions(){
     document.getElementById(this.element).addEventListener(
-      'submit.solicitudes-edition',
-      this.submit.bind(this)
+      'load.solicitude',
+      this.load.bind(this)
     )
     window.addEventListener("beforeunload", this.leaving)
   }
@@ -32,8 +33,29 @@ export default class SolicitudesEdition {
     return confirmationMessage
   }
 
-  submit(){
-    Bus.publish('create.solicitudes-edition', this.data.values)
+  load(event){
+    window.location.href = "/solicitudes-edition.html?id=" + event.detail
+  }
+
+  initializeViews(){
+    new Vue({
+      el: '#' + this.element,
+      data: this.data,
+      components: {
+        'asesora-solicitudes-edition': SolicitudesEditionView
+      }
+    })
+  }
+
+  retrieve(){
+    Bus.publish("get.solicitudes-list")
+  }
+
+  SolicitudeData(payload){
+    let idPosition = payload.data['data'][]
+    console.log(idPosition)
+    let id = payload.data['data'][0]['creation_moment']
+    console.log(id)
   }
 
   translate(payload) {
