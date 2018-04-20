@@ -8,14 +8,15 @@ export default class SolicitudesEdition {
     this.element = 'solicitudes-edition'
     this.data = this.model()
     this.subscribe()
-    this.retrieve()
     this.askTranslations()
     this.initializeViews()
     this.watchActions()
+    this.load()
   }
 
   subscribe(){
-    Bus.subscribe("got.solicitudes-list", this.SolicitudeData.bind(this))
+    Bus.subscribe('got.solicitude', this.updateModel.bind(this))
+    Bus.subscribe("create.solicitudes-edition", this.createdSolicitude.bind(this))
     Bus.subscribe("translation.for.solicitudes-edition", this.translate.bind(this))
   }
 
@@ -33,29 +34,12 @@ export default class SolicitudesEdition {
     return confirmationMessage
   }
 
+  submit(){
+    Bus.publish('create.solicitudes-edition', this.data.values)
+  }
+
   load(event){
     window.location.href = "/solicitudes-edition.html?id=" + event.detail
-  }
-
-  initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-solicitudes-edition': SolicitudesEditionView
-      }
-    })
-  }
-
-  retrieve(){
-    Bus.publish("get.solicitudes-list")
-  }
-
-  SolicitudeData(payload){
-    let idPosition = payload.data['data'][]
-    console.log(idPosition)
-    let id = payload.data['data'][0]['creation_moment']
-    console.log(id)
   }
 
   translate(payload) {
@@ -71,6 +55,11 @@ export default class SolicitudesEdition {
                     key: labelKey }
       Bus.publish('ask.translation', data)
     }
+  }
+  updateModel(payload) {
+    this.data.setValues('text', payload.data.text)
+    this.data.setValues('date', payload.data.date)
+    this.data.setValues('applicant', payload.data.applicant)
   }
 
   initializeViews(){
@@ -127,6 +116,9 @@ export default class SolicitudesEdition {
       fullfilled: false,
       translate:function(key,value) {
         this.labels[key] = value
+      },
+      setValues:function(key, value){
+        this.values[key] = value
       }
     }
   }
