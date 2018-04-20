@@ -38,8 +38,11 @@ export default class SolicitudesEdition {
     Bus.publish('create.solicitudes-edition', this.data.values)
   }
 
-  load(event){
-    window.location.href = "/solicitudes-edition.html?id=" + event.detail
+  load(){
+    let url = document.URL
+    let index = url.indexOf("=")
+    let id = url.slice(index + 1)
+    Bus.publish('get.solicitude', {id: id})
   }
 
   translate(payload) {
