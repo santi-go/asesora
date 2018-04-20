@@ -37,6 +37,7 @@
     },
       methods: {
         solicitudeEdit(id){
+          console.log(id)
           let signal = new CustomEvent('load.solicitude',
                                       {'detail': id,
                                       'bubbles': true})

@@ -10,8 +10,14 @@ module Solicitudes
       Collection.create(solicitude)
     end
 
-    def self.retrieve
-      Collection.retrieve
+    def self.all
+      Collection.all
+    end
+
+    def self.retrieve(id)
+      solicitude = Collection.retrieve(id)
+
+      solicitude.serialize
     end
   end
 end

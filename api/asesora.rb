@@ -49,6 +49,17 @@ class Asesora < Sinatra::Base
 
   end
 
+  post '/api/retrieve-solicitude' do
+    params = JSON.parse(request.body.read)
+
+    id = params['id']
+
+    solicitude = Actions.retrieve_solicitude(id).do()
+
+    {data: solicitude}.to_json
+
+  end
+
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"

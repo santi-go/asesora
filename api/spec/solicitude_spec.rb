@@ -117,4 +117,26 @@ describe 'Solicitude Api' do
       expect(creation_moment).to eq(true)
     end
   end
+  context 'retrieve solicitude' do
+    it 'returns one solicitude' do
+      body = {
+        "applicant" => "an applicant",
+        "text" => "a text",
+        "date" => "2018-12-25"
+      }.to_json
+      post_create_solicitude(body)
+
+      created_solicitude = JSON.parse(last_response.body)
+
+      id = {id: created_solicitude['creation_moment']}.to_json
+
+      post '/api/retrieve-solicitude', id
+
+      solicitude = JSON.parse(last_response.body)
+
+      expect(solicitude['data']['text']).to eq(created_solicitude['text'])
+      expect(solicitude['data']['date']).to eq(created_solicitude['date'])
+      expect(solicitude['data']['applicant']).to eq(created_solicitude['applicant'])
+    end
+  end
 end

@@ -14,10 +14,18 @@ module Solicitudes
         Domain::Solicitude.from_document(document)
       end
 
-      def retrieve
-        solicitudes = MongoClient.retrieve
+      def all
+        solicitudes = MongoClient.all
 
         Domain::ListSolicitudes.from_document(solicitudes)
+      end
+
+      def retrieve(id)
+        document = MongoClient.retrieve(id)
+
+        solicitude = Domain::Solicitude.from_document(document)
+
+        solicitude
       end
 
       private
@@ -29,8 +37,13 @@ module Solicitudes
             descriptor
           end
 
-          def retrieve
+          def all
             client[:solicitudes].find().sort({"date": -1, "creation_moment": -1})
+          end
+
+          def retrieve(id)
+            document = client[:solicitudes].find({ "creation_moment": id })
+            document.first
           end
 
           private

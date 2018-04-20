@@ -2,6 +2,7 @@ require_relative 'retrieve_about'
 require_relative 'retrieve_dictionary'
 require_relative 'create_solicitude'
 require_relative 'retrieve_solicitudes'
+require_relative 'retrieve_solicitude'
 
 
 module Actions
@@ -27,6 +28,13 @@ module Actions
   def self.retrieve_solicitudes
     ActionContext.new(Actions::RetrieveSolicitudes)
   end
+
+  def self.retrieve_solicitude(id)
+    context = ActionContext.new(Actions::RetrieveSolicitude)
+    context.add(:id, id)
+    context
+  end
+
 
   class ActionContext
     def initialize(action)
