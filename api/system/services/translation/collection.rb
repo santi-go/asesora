@@ -56,8 +56,8 @@ module Translation
                 "date": "Fecha",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
-                "submit": "Editar",
-                "submitting": "Editando",
+                "submit": "Guardar cambios",
+                "submitting": "Guardando",
                 "discard": "Descartar",
                 "discarding": "Descartando"
               }

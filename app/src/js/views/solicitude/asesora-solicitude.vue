@@ -3,7 +3,7 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
-    <asesora-button :values="values" :labels="labels"></asesora-button>
+    <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
       Todo Ok! Enviando!

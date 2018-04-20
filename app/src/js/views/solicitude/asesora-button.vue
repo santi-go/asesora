@@ -15,17 +15,22 @@
 export default {
   name: 'asesora-button',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'editionmode'],
 
   methods: {
 
     submit(){
-      let signal = new CustomEvent('submit.solicitude',
+      let event = 'submit.solicitude'
+      if (this.editionmode) {
+        event = 'edit.solicitude'
+      }
+
+      let signal = new CustomEvent(event,
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
       let button = this.$el.querySelector('button')
-      button.value = this.labels.submitting
+      button.innerText = this.labels.submitting
       button.disabled = true
     }
   }

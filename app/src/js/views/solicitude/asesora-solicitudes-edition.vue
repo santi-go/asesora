@@ -3,13 +3,18 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
-    <asesora-button :values="values" :labels="labels"></asesora-button>
+    <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <asesora-button-discard :labels="labels"></asesora-button-discard>
 
 
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
-      Guardando edición...
+      Todo Ok! Guardado!
+    </div>
+
+    <div class="message-error alert background-danger">
+      <em class="fa fa-times-circle"></em>
+      Lo sentimos, ha habido un error
     </div>
   </div>
 </template>
@@ -25,7 +30,7 @@ import ButtonDiscardView from './asesora-button-discard'
 export default {
   name: 'asesora-solicitudes-edition',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode'],
+  props: ['labels', 'values', 'fullfilled', 'errors', 'editionmode'],
 
   components: {
     "asesora-date" : DateView,
@@ -39,6 +44,10 @@ export default {
     this.$on('discardCard', function(){
       this.discardCard()
     }.bind(this))
+
+    this.$nextTick(function (){
+      this.disableButton(false)
+    })
   },
 
   watch: {
@@ -46,13 +55,13 @@ export default {
       if (val == true){
         this.animateCard()
       }
+    },
+    errors: function(val, oldVal){
+      if (val == true){
+        this.animateErrorCard()
+      }
+      this.errors = false
     }
-  },
-
-  mounted: function(){
-    this.$nextTick(function (){
-      this.disableButton(false)
-    })
   },
 
   methods: {
@@ -97,13 +106,29 @@ export default {
     show() {
       let message = document.querySelector(".message-sent")
       message.style.display = 'block'
+    },
+
+    animateErrorCard() {
+      this.showError()
+      setTimeout(this.hideError, 3000)
+    },
+
+    showError() {
+      let message = document.querySelector(".message-error")
+      message.style.display = 'block'
+    },
+
+    hideError() {
+      let message = document.querySelector(".message-error")
+      message.style.display = 'none'
     }
+
   }
 }
 </script>
 
 <style scoped>
-  .message-sent {
+  .message-sent, .message-error {
     margin-bottom: 0;
     margin-top: 1em;
     display: none;

@@ -9,8 +9,9 @@ export default class Solicitudes {
 
   subscribe() {
     Bus.subscribe("get.solicitudes-list", this.getSolicitudesList.bind(this))
-    Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
     Bus.subscribe("get.solicitude", this.getSolicitude.bind(this))
+    Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
+    Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
   }
 
   getSolicitudesList() {
@@ -31,6 +32,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('created.solicitude')
     let body = payload
     let url = 'create-solicitude'
+    this.client.hit(url, body, callback)
+  }
+
+  updateSolicitude(payload) {
+    let callback = this.buildCallback('updated.solicitude')
+    let body = payload
+    let url = 'update-solicitude'
     this.client.hit(url, body, callback)
   }
 

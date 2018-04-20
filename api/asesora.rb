@@ -40,6 +40,20 @@ class Asesora < Sinatra::Base
     created.serialize.to_json
   end
 
+  post '/api/update-solicitude' do
+    params = JSON.parse(request.body.read)
+    text = params['text']
+    applicant = params['applicant']
+    date = params['date']
+    creation_moment = params['creation_moment']
+
+    updated = Actions.update_solicitude(text, applicant, date, creation_moment).do()
+
+    return {}.to_json if updated.nil?
+
+    updated.serialize.to_json
+  end
+
   post '/api/retrieve-solicitudes' do
     retrieve_solicitudes = Actions.retrieve_solicitudes().do()
 

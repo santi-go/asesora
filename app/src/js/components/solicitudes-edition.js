@@ -16,7 +16,7 @@ export default class SolicitudesEdition {
 
   subscribe(){
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
-    Bus.subscribe("create.solicitudes-edition", this.createdSolicitude.bind(this))
+    Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
     Bus.subscribe("translation.for.solicitudes-edition", this.translate.bind(this))
   }
 
@@ -24,6 +24,10 @@ export default class SolicitudesEdition {
     document.getElementById(this.element).addEventListener(
       'load.solicitude',
       this.load.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'edit.solicitude',
+      this.update.bind(this)
     )
     window.addEventListener("beforeunload", this.leaving)
   }
@@ -34,8 +38,8 @@ export default class SolicitudesEdition {
     return confirmationMessage
   }
 
-  submit(){
-    Bus.publish('create.solicitudes-edition', this.data.values)
+  update(){
+    Bus.publish('update.solicitude', this.data.values)
   }
 
   load(){
@@ -84,6 +88,16 @@ export default class SolicitudesEdition {
           }, 1000)
         }.bind(this)),
 
+        this.$on('moveErrorCard', function(){
+          let element = this.$el
+          window.setTimeout(function(){
+            element.style.marginTop = '-1000px'
+            window.setTimeout(function(){
+              location.reload()
+            }, 1000)
+          }, 1000)
+        }.bind(this)),
+
         this.$on('discardCard', function(){
           let element = this.$el
           window.setTimeout(function(){
@@ -97,8 +111,12 @@ export default class SolicitudesEdition {
     })
   }
 
-  createdSolicitude(){
-    this.data.fullfilled = true
+  updatedSolicitude(response){
+    if (Object.keys(response).length === 0){
+      this.data.errors = true
+    }else{
+      this.data.fullfilled = true
+    }
   }
 
   model(){
@@ -115,8 +133,10 @@ export default class SolicitudesEdition {
                },
       values: { "text": "",
                 "date": "",
-                "applicant": "" },
+                "applicant": "",
+                "creation_moment": "" },
       fullfilled: false,
+      errors: false,
       translate:function(key,value) {
         this.labels[key] = value
       },

@@ -14,6 +14,16 @@ module Solicitudes
         Domain::Solicitude.from_document(document)
       end
 
+      def update(creation_moment, solicitude)
+        serialized = solicitude.serialize()
+
+        document = MongoClient.update(creation_moment, serialized)
+
+        return if document.nil?
+
+        Domain::Solicitude.from_document(document)
+      end
+
       def all
         solicitudes = MongoClient.all
 
@@ -37,13 +47,17 @@ module Solicitudes
             descriptor
           end
 
-          def all
-            client[:solicitudes].find().sort({"date": -1, "creation_moment": -1})
+          def retrieve(id)
+            documents = client[:solicitudes].find({"creation_moment": id})
+            documents.first
           end
 
-          def retrieve(id)
-            document = client[:solicitudes].find({ "creation_moment": id })
-            document.first
+          def update(creation_moment, data)
+            client[:solicitudes].find_one_and_replace({ creation_moment: creation_moment }, data, :return_document => :after)
+          end
+
+          def all
+            client[:solicitudes].find().sort({"date": -1, "creation_moment": -1})
           end
 
           private

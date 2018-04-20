@@ -1,6 +1,7 @@
 require_relative 'retrieve_about'
 require_relative 'retrieve_dictionary'
 require_relative 'create_solicitude'
+require_relative 'update_solicitude'
 require_relative 'retrieve_solicitudes'
 require_relative 'retrieve_solicitude'
 
@@ -22,6 +23,15 @@ module Actions
     context.add(:text, text)
     context.add(:applicant, applicant)
     context.add(:date, date)
+    context
+  end
+
+  def self.update_solicitude(text, applicant, date, creation_moment)
+    context = ActionContext.new(Actions::UpdateSolicitude)
+    context.add(:text, text)
+    context.add(:applicant, applicant)
+    context.add(:date, date)
+    context.add(:creation_moment, creation_moment)
     context
   end
 
