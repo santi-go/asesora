@@ -8,7 +8,7 @@
 
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
-      Todo Ok! Enviando!
+      Guardando edición...
     </div>
   </div>
 </template>
@@ -40,24 +40,39 @@ export default {
     }
   },
 
+  mounted: function(){
+    this.$nextTick(function (){
+      this.disableButton(false)
+    })
+  },
+
   methods: {
-    enableButton(){
-      let applicantIsEmpty = this.contentApplicant()
-      let textIsEmpty = this.contentText()
-      this.activateButton(true)
-      if (applicantIsEmpty == true && textIsEmpty == true){
-        this.activateButton(false)
-      }
-    },
-    contentApplicant(){
-      return !(this.values.applicant == "")
+    setButtonStatus(){
+      let applicantIsEmpty = this.applicantIsEmpty()
+      let textIsEmpty = this.textIsEmpty()
+      let dateIsEmpty = this.dateIsEmpty()
+      this.disableButton(true)
+
+      if(this.editionmode == true) {
+        if (applicantIsEmpty == false && textIsEmpty == false && dateIsEmpty == false)
+
+        this.disableButton(false)
+        }
     },
 
-    contentText(){
-      return !(this.values.text == "")
+    applicantIsEmpty(){
+      return (this.values.applicant == "")
     },
 
-    activateButton(toggle){
+    textIsEmpty(){
+      return (this.values.text == "")
+    },
+
+    dateIsEmpty(){
+      return !this.values.date
+    },
+
+    disableButton(toggle){
       document.querySelector(".submitbutton").disabled = toggle
     },
 

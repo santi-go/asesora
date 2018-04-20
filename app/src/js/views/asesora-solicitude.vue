@@ -39,23 +39,24 @@ export default {
   },
 
   methods: {
-    enableButton(){
-      let applicantIsEmpty = this.contentApplicant()
-      let textIsEmpty = this.contentText()
-      this.activateButton(true)
-      if (applicantIsEmpty == true && textIsEmpty == true){
-        this.activateButton(false)
-      }
+    setButtonStatus(){
+      let applicantIsEmpty = this.applicantIsEmpty()
+      let textIsEmpty = this.textIsEmpty()
+      this.disableButton(true)
+      if (applicantIsEmpty == false && textIsEmpty == false)
+        {
+        this.disableButton(false)
+        }
     },
-    contentApplicant(){
-      return !(this.values.applicant == "")
-    },
-
-    contentText(){
-      return !(this.values.text == "")
+    applicantIsEmpty(){
+      return (this.values.applicant == "")
     },
 
-    activateButton(toggle){
+    textIsEmpty(){
+      return (this.values.text == "")
+    },
+
+    disableButton(toggle){
       document.querySelector(".submitbutton").disabled = toggle
     },
 

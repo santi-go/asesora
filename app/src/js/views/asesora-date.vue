@@ -5,7 +5,8 @@
                 type="date"
                 v-model="values.date"
                 v-bind:required="editionmode"
-                v-bind:class="{editionmode: editionmode}">
+                v-bind:class="{editionmode: editionmode}"
+                v-on:blur="onBlur">
         <div    id="date-info"
                 v-bind:class="{hide: mustBeHidden}">
           <div class="alert">
@@ -26,6 +27,11 @@ export default {
       }
 
       return false
+    }
+  },
+  methods: {
+    onBlur() {
+      this.$parent.setButtonStatus()
     }
   }
 }

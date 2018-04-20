@@ -23,7 +23,7 @@ export default {
       if (event.target.value == "") {
         event.target.className = "error"
       }
-      this.$parent.enableButton()
+      this.$parent.setButtonStatus()
     },
 
     onFocus(){
