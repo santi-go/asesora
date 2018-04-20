@@ -50,14 +50,16 @@ module Translation
                 "company": "Nombre de empresa",
                 "topics": "Temas del caso"
               },
-              
+
               "solicitudes-edition": {
                 "applicant": "Solicitante",
                 "date": "Fecha",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
-                "submit": "Solicitar",
-                "submitting": "Solicitando"
+                "submit": "Editar",
+                "submitting": "Editando",
+                "discard": "Descartar",
+                "discarding": "Descartando"
               }
             },
 

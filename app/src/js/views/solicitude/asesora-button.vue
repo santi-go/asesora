@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="button-inline">
     <button  id="submit"
             type="button"
             name="submit"
@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'asesora-button',
 
   props: ['labels', 'values'],
 

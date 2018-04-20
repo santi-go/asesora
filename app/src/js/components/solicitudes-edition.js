@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import SolicitudesEditionView from '../views/asesora-solicitudes-edition'
+import SolicitudesEditionView from '../views/solicitude/asesora-solicitudes-edition'
 import {Bus} from '../bus'
 
 export default class SolicitudesEdition {
@@ -23,6 +23,13 @@ export default class SolicitudesEdition {
       'submit.solicitudes-edition',
       this.submit.bind(this)
     )
+    window.addEventListener("beforeunload", this.leaving)
+  }
+
+  leaving(event){
+    var confirmationMessage = "\o/"
+    event.returnValue = confirmationMessage
+    return confirmationMessage
   }
 
   submit(){
@@ -61,6 +68,16 @@ export default class SolicitudesEdition {
               location.reload()
             }, 1000)
           }, 1000)
+        }.bind(this)),
+
+        this.$on('discardCard', function(){
+          let element = this.$el
+          window.setTimeout(function(){
+            element.style.marginTop = '1000px'
+            window.setTimeout(function(){
+              location.reload()
+            }, 1000)
+          }, 1000)
         }.bind(this))
       }
     })
@@ -78,7 +95,10 @@ export default class SolicitudesEdition {
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
-                "submit" : "xxxxxxxxxx" },
+                "submit" : "xxxxxxxxxx",
+                "discard" : "xxxxxxx",
+                "discarding" : "xxxxxxxxxx"
+               },
       values: { "text": "",
                 "date": "",
                 "applicant": "" },

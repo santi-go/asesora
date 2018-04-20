@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'asesora-applicant',
 
   props: ['labels', 'values'],
 

@@ -3,7 +3,7 @@
     <label>{{ labels.text }}</label>
     <textarea id="solicitude-text"
               placeholder="*"
-              v-on:blur="onBlur"
+              v-on:keyup="onKeyUp"
               v-on:focus="onFocus"
               v-model="values.text">
     </textarea>
@@ -12,11 +12,12 @@
 
 <script>
 export default {
+  name: 'asesora-text',
 
   props: ['labels', 'values'],
 
   methods: {
-    onBlur(event){
+    onKeyUp(event){
       event.target.className = ""
       if (event.target.value == "") {
         event.target.className = "error"
