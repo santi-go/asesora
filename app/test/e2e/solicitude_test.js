@@ -1,4 +1,5 @@
 const expect = require('chai').expect
+const assert = require('chai').assert
 const Solicitude = require('./page-object/solicitude')
 
 describe('Solicitude', () => {
@@ -19,14 +20,19 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
 
     solicitude.fillDate()
+    solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(true)
   })
 
   it ("knows when the date is invalid", () => {
     const solicitude = new Solicitude()
+    solicitude.fillDate()
+    assert(solicitude.isDateInfoHiden(), true)
+    solicitude.lostFocus()
 
     solicitude.fillWrongDate()
+    solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(false)
   })
