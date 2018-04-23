@@ -33,7 +33,7 @@ export default class SolicitudesEdition {
   }
 
   leaving(event){
-    event.returnValue = ""
+    // event.returnValue = ""
   }
 
   update(){
