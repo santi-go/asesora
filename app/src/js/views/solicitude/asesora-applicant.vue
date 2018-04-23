@@ -7,6 +7,7 @@
             type="text"
             v-on:blur="onBlur"
             v-on:focus="onFocus"
+            v-on:keydown="keydown"
             v-model="values.applicant"
             >
   </div>
@@ -29,6 +30,12 @@ export default {
 
     onFocus(){
       event.target.className = ""
+    },
+
+    keydown(event){
+      if (event.keyCode == 13){
+        event.preventDefault()
+      }
     }
   }
 }
