@@ -4,7 +4,7 @@
             type="button"
             name="submit"
             class="submitbutton"
-            v-bind:disabled="true"
+            disabled="true"
             v-on:click="submit()">
       {{ labels.submit }}
     </button>

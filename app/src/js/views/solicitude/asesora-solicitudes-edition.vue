@@ -44,10 +44,6 @@ export default {
     this.$on('discardCard', function(){
       this.discardCard()
     }.bind(this))
-
-    this.$nextTick(function (){
-      this.disableButton(false)
-    })
   },
 
   watch: {
@@ -72,10 +68,10 @@ export default {
       this.disableButton(true)
 
       if(this.editionmode == true) {
-        if (applicantIsEmpty == false && textIsEmpty == false && dateIsEmpty == false)
-
-        this.disableButton(false)
+        if (applicantIsEmpty == false && textIsEmpty == false && dateIsEmpty == false){
+          this.disableButton(false)
         }
+      }
     },
 
     applicantIsEmpty(){
