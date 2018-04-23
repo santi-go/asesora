@@ -5,7 +5,7 @@
             name="applicant"
             placeholder="*"
             type="text"
-            v-on:blur="onBlur"
+            v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-model="values.applicant"
@@ -20,7 +20,7 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    onBlur(event){
+    onKeyUp(event){
       event.target.className = ""
       if (event.target.value == "") {
         event.target.className = "error"

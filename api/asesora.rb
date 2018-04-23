@@ -13,6 +13,7 @@ class Asesora < Sinatra::Base
 
   before do
      response.headers['Access-Control-Allow-Origin'] = '*'
+     content_type 'application/json'
   end
 
   post '/api/translations' do
