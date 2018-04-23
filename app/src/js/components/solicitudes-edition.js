@@ -7,6 +7,7 @@ export default class SolicitudesEdition {
   constructor(){
     this.element = 'solicitudes-edition'
     this.data = this.model()
+    this.showAlert = true
     this.subscribe()
     this.askTranslations()
     this.initializeViews()
@@ -29,11 +30,20 @@ export default class SolicitudesEdition {
       'edit.solicitude',
       this.update.bind(this)
     )
-    window.addEventListener("beforeunload", this.leaving)
+    window.addEventListener("beforeunload", this.leaving.bind(this))
+  }
+
+  hasChanges(){
+    return this.data.values.applicant != this.initialValues.applicant || this.data.values.date != this.initialValues.date || this.data.values.text != this.initialValues.text
   }
 
   leaving(event){
-    // event.returnValue = ""
+    if(!this.showAlert){
+      return
+    }
+    if(this.hasChanges()){
+      event.returnValue = ""
+    }
   }
 
   update(){
@@ -62,6 +72,7 @@ export default class SolicitudesEdition {
     }
   }
   updateModel(payload) {
+    this.initialValues = payload.data
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
     this.data.setValues('applicant', payload.data.applicant)
@@ -111,6 +122,7 @@ export default class SolicitudesEdition {
   }
 
   updatedSolicitude(response){
+    this.showAlert = false
     if (Object.keys(response).length === 0){
       this.data.errors = true
     }else{

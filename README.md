@@ -5,7 +5,7 @@
 You need to install docker and docker-compose.
 
 
-## URL del proyecto
+## Project URL
 
 To acces the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
 
