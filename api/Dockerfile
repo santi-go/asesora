@@ -4,6 +4,6 @@ RUN mkdir /api
 WORKDIR /api
 
 COPY . /api
-RUN rm Gemfile.lock
+RUN rm -f Gemfile.lock
 
 RUN bundle install -j 10
