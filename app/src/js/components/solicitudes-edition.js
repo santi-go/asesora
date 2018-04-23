@@ -7,7 +7,6 @@ export default class SolicitudesEdition {
   constructor(){
     this.element = 'solicitudes-edition'
     this.data = this.model()
-    this.showAlert = true
     this.subscribe()
     this.askTranslations()
     this.initializeViews()
@@ -38,7 +37,7 @@ export default class SolicitudesEdition {
   }
 
   leaving(event){
-    if(!this.showAlert){
+    if(!this.data.showAlert){
       return
     }
     if(this.hasChanges()){
@@ -109,6 +108,7 @@ export default class SolicitudesEdition {
         }.bind(this)),
 
         this.$on('discardCard', function(){
+          this.$data.showAlert = false
           let element = this.$el
           window.setTimeout(function(){
             element.style.marginTop = '1000px'
@@ -122,7 +122,7 @@ export default class SolicitudesEdition {
   }
 
   updatedSolicitude(response){
-    this.showAlert = false
+    this.data.showAlert = false
     if (Object.keys(response).length === 0){
       this.data.errors = true
     }else{
@@ -133,6 +133,9 @@ export default class SolicitudesEdition {
   model(){
     return {
       editionmode: true,
+      showAlert: true,
+      fullfilled: false,
+      errors: false,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
                 "text": "XXXXX",
@@ -146,8 +149,6 @@ export default class SolicitudesEdition {
                 "date": "",
                 "applicant": "",
                 "creation_moment": "" },
-      fullfilled: false,
-      errors: false,
       translate:function(key,value) {
         this.labels[key] = value
       },
