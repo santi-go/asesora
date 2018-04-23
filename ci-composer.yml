@@ -18,26 +18,26 @@ services:
   app:
     image: 'node:8.11.1'
     user: node
+    environment:
+      - API_HOST=localhost
     working_dir: '/test'
     volumes:
       - './app/:/test'
     depends_on:
       - asesora
+      - api
       - selenium
     command: sh -c 'npm install && npm run test-all'
 
   api:
-    image: ruby:2.5.0
+    build: ./api
     environment:
       - MONGODB_URI=mongodb://mongo:27017/db
-    working_dir: '/api'
-    volumes:
-      - './api/:/api'
     ports:
       - '4567:4567'
     links:
       - mongo
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake test'
+    command: sh -c 'rackup --port 4567 -o 0.0.0.0'
 
   mongo:
     image: mongo

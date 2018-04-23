@@ -14,5 +14,5 @@ test:
   script:
     - docker-compose -f ci-composer.yml pull
     - docker-compose -f ci-composer.yml up --build -d
-    - docker-compose -f ci-composer.yml run api
+    - docker-compose -f ci-composer.yml exec api bundle exec rake test
     - docker-compose -f ci-composer.yml run app
