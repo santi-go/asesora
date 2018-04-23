@@ -15,7 +15,7 @@ export default {
   name: 'asesora-text',
 
   props: ['labels', 'values'],
-
+  
   methods: {
     onKeyUp(event){
       event.target.className = ""

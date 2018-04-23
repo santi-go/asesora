@@ -94,8 +94,8 @@ export default {
       this.$parent.$emit('discardCard');
     },
 
-    disableButton(toggle){
-      document.querySelector(".submitbutton").disabled = toggle
+    disableButton(option){
+      document.querySelector(".submitbutton").disabled = option
     },
 
     animateCard() {

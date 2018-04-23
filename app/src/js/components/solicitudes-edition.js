@@ -33,9 +33,7 @@ export default class SolicitudesEdition {
   }
 
   leaving(event){
-    var confirmationMessage = "\o/"
-    event.returnValue = confirmationMessage
-    return confirmationMessage
+    event.returnValue = ""
   }
 
   update(){
@@ -67,6 +65,7 @@ export default class SolicitudesEdition {
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
     this.data.setValues('applicant', payload.data.applicant)
+    this.data.setValues('creation_moment',payload.data.creation_moment)
   }
 
   initializeViews(){
@@ -83,7 +82,7 @@ export default class SolicitudesEdition {
           window.setTimeout(function(){
             element.style.marginTop = '-1000px'
             window.setTimeout(function(){
-              location.reload()
+              window.location = "/solicitudes-list.html"
             }, 1000)
           }, 1000)
         }.bind(this)),
@@ -103,7 +102,7 @@ export default class SolicitudesEdition {
           window.setTimeout(function(){
             element.style.marginTop = '1000px'
             window.setTimeout(function(){
-              location.reload()
+              window.location = "/solicitudes-list.html"
             }, 1000)
           }, 1000)
         }.bind(this))
