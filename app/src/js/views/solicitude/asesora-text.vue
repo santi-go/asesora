@@ -15,7 +15,7 @@ export default {
   name: 'asesora-text',
 
   props: ['labels', 'values'],
-  
+
   methods: {
     onKeyUp(event){
       event.target.className = ""
@@ -25,7 +25,7 @@ export default {
       this.$parent.setButtonStatus()
     },
 
-    onFocus(){
+    onFocus(event){
       event.target.className = ""
     }
   }

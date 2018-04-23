@@ -41,7 +41,10 @@ export default class SolicitudesEdition {
       return
     }
     if(this.hasChanges()){
-      event.returnValue = ""
+      const confirmationMessage = "\o/"
+
+      event.returnValue = confirmationMessage
+      return confirmationMessage
     }
   }
 
