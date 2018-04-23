@@ -4,10 +4,6 @@ class SolicitudesEdition{
     browser.url('/solicitudes-edition.html')
   }
 
-  acceptAlert(){
-    browser.alertAccept()
-  }
-
   fillAplicant(value){
     value = value || "applicant name"
     let applicant =  $('#applicant')
