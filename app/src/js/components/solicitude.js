@@ -30,7 +30,7 @@ export default class Solicitude {
   }
 
   translate(payload) {
-    let key= payload.key
+    let key = payload.key
     let label = payload.label
     this.data.translate(key,label)
   }
@@ -74,13 +74,20 @@ export default class Solicitude {
       editionmode: false,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
+                "email": "XXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
                 "date": "",
-                "applicant": "" },
+                "applicant": {
+                  "name": "",
+                  "secondname": "",
+                  "email": "",
+                  "phonenumber": ""
+                }
+              },
       fullfilled: false,
       translate:function(key,value) {
         this.labels[key] = value

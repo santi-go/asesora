@@ -1,6 +1,7 @@
 <template>
   <div>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
+    <asesora-email :values="values.applicant" :labels="labels"></asesora-email>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
@@ -14,6 +15,7 @@
 <script>
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
+import EmailView from './asesora-email'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
 
@@ -25,6 +27,7 @@ export default {
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
+    "asesora-email" : EmailView,
     "asesora-text" : TextView,
     "asesora-button" : ButtonView
   },
@@ -48,7 +51,7 @@ export default {
         }
     },
     applicantIsEmpty(){
-      return (this.values.applicant == "")
+      return (this.values.applicant.name == "")
     },
 
     textIsEmpty(){
