@@ -1,7 +1,7 @@
  <template>
   <div>
-    <label>{{ labels.applicant.contact }}:</label>
-    <label>{{ labels.applicant.phonenumber }}:</label>
+    <label>{{ labels.contact }}</label>
+    <label>{{ labels.phonenumber }}</label>
     <input  id="phonenumber"
             name="phonenumber"
             placeholder="*"
@@ -11,27 +11,21 @@
             v-on:keydown="keydown"
             v-model="values.applicant.phonenumber"
             >
-
-    <label>{{ labels.applicant.email }}:</label>
-    <input  id="email"
-            name="email"
-            placeholder="*"
-            type="text"
-            v-on:keyup="onKeyUp"
-            v-on:focus="onFocus"
-            v-on:keydown="keydown"
-            v-model="values.applicant.email"
-            >
-
+    <asesora-email :values="values.applicant.email" :labels="labels"></asesora-email>
     </div>
 </template>
 
 <script>
+import EmailView from './asesora-email'
+
 export default {
   name: 'asesora-applicant-contact',
 
   props: ['labels', 'values'],
 
+  components: {
+    "asesora-email" : EmailView
+  },
   methods: {
     onKeyUp(event){
       event.target.className = ""

@@ -1,6 +1,6 @@
  <template>
   <div>
-    <label>{{ labels.applicant.name }}:</label>
+    <label>{{ labels.name }}</label>
     <input  id="name"
             name="name"
             placeholder="*"

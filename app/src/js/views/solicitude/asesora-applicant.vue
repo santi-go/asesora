@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.applicant }}:</label>
+    <label>{{ labels.applicant }}</label>
 
     <asesora-applicant-name :values="values" :labels="labels"></asesora-applicant-name>
     <asesora-applicant-secondname :values="values" :labels="labels"></asesora-applicant-secondname>

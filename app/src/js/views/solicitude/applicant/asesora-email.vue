@@ -1,21 +1,22 @@
- <template>
+<template>
   <div>
-    <label>{{ labels.secondname }}</label>
-    <input  id="secondname"
-            name="secondname"
+    <label>{{ labels.email }}</label>
+    <input  id="email"
+            name="email"
             placeholder="*"
             type="text"
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-model="values.applicant.secondname"
+            v-on:blur="emailValidation"
+            v-model="values.email"
             >
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'asesora-applicant-secondname',
+  name: 'asesora-email',
 
   props: ['labels', 'values'],
 
@@ -25,7 +26,7 @@ export default {
       if (event.target.value == "") {
         event.target.className = "error"
       }
-      this.$parent.$parent.setButtonStatus()
+      this.$parent.$parent.$parent.setButtonStatus()
     },
 
     onFocus(){
@@ -33,8 +34,17 @@ export default {
     },
 
     keydown(event){
-      if (event.keyCode == 13){
+      let enter = 13
+      if (event.keyCode == enter){
         event.preventDefault()
+      }
+    },
+
+    emailValidation(){
+      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+      let email = event.target.value
+      if(!EMAIL_PATTERN.test(email)){
+          event.target.className = "error"
       }
     }
   }
