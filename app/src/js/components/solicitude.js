@@ -78,7 +78,6 @@ export default class Solicitude {
                 "phonenumber": "XXXXXXXXX",
                 "name": "XXXX",
                 "surname": "XXXXXXXXX",
-                "contact": "XXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",

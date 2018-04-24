@@ -39,7 +39,6 @@ module Translation
                 "date": "Fecha",
                 "name": "Nombre",
                 "surname": "Apellidos",
-                "contact": "Contacto",
                 "email": "Correo Electrónico",
                 "phonenumber": "Teléfono",
                 "text": "Texto",
