@@ -6,7 +6,10 @@ module Domain
 
     def self.from_document(document)
       solicitude = new(
-        document['applicant'],
+        document['applicant']['name'],
+        document['applicant']['secondname'],
+        document['applicant']['email'],
+        document['applicant']['phonenumber'],
         document['date'],
         document['creation_moment']
       )
@@ -15,15 +18,35 @@ module Domain
       solicitude
     end
 
-    def initialize(applicant, date, creation_moment = nil)
-      @applicant = applicant
+    def self.from(applicant, date)
+      solicitude = new(
+        applicant['name'],
+        applicant['secondname'],
+        applicant['email'],
+        applicant['phonenumber'],
+        date
+      )
+
+      solicitude
+    end
+
+    def initialize(applicant_name, applicant_secondname, applicant_email, applicant_phonenumber, date, creation_moment = nil)
+      @applicant_name = applicant_name
+      @applicant_secondname = applicant_secondname
+      @applicant_email = applicant_email
+      @applicant_phonenumber = applicant_phonenumber
       @date = parse(date)
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
     end
 
     def serialize
       {
-        "applicant" => @applicant,
+        "applicant" => {
+          "name" => @applicant_name,
+          "secondname" => @applicant_secondname,
+          "email" => @applicant_email,
+          "phonenumber" => @applicant_phonenumber
+        },
         "text" => @text,
         "date" => @date.to_s,
         "creation_moment" => @creation_moment
