@@ -4,8 +4,7 @@ require_relative 'collection'
 module Solicitudes
   class Service
     def self.create(text, applicant, date)
-      solicitude = Domain::Solicitude.from(applicant, date)
-      solicitude.text = text
+      solicitude = Domain::Solicitude.with(applicant, date, text)
 
       Collection.create(solicitude)
     end
@@ -17,8 +16,7 @@ module Solicitudes
     end
 
     def self.update(text, applicant, date, creation_moment)
-      solicitude = Domain::Solicitude.from(applicant, date, creation_moment)
-      solicitude.text = text
+      solicitude = Domain::Solicitude.with(applicant, date, text, creation_moment)
 
       Collection.update(creation_moment, solicitude)
     end

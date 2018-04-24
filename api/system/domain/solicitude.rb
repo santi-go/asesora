@@ -18,14 +18,16 @@ module Domain
       solicitude
     end
 
-    def self.from(applicant, date)
+    def self.with(applicant, date, text, creation_moment = nil)
       solicitude = new(
         applicant['name'],
         applicant['secondname'],
         applicant['email'],
         applicant['phonenumber'],
-        date
+        date,
+        creation_moment
       )
+      solicitude.text = text
 
       solicitude
     end
