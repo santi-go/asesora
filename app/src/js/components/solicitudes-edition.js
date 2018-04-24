@@ -33,7 +33,7 @@ export default class SolicitudesEdition {
   }
 
   hasChanges(){
-    return this.data.values.applicant.name != this.initialValues.applicant.name || this.data.values.date != this.initialValues.date || this.data.values.text != this.initialValues.text
+    return this.data.values.name != this.initialValues.name || this.data.values.date != this.initialValues.date || this.data.values.text != this.initialValues.text
   }
 
   leaving(event){
@@ -77,7 +77,10 @@ export default class SolicitudesEdition {
     this.initialValues = payload.data
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
-    this.data.setValues('applicant', payload.data.applicant.name)
+    this.data.setValues('name', payload.data.name)
+    this.data.setValues('surname', payload.data.surname)
+    this.data.setValues('email', payload.data.email)
+    this.data.setValues('phonenumber', payload.data.phonenumber)
     this.data.setValues('creation_moment',payload.data.creation_moment)
   }
 
@@ -150,12 +153,10 @@ export default class SolicitudesEdition {
                },
       values: { "text": "",
                 "date": "",
-                "applicant": {
-                  "name": "",
-                  "secondname": "",
-                  "email": "",
-                  "phonenumber": ""
-                },
+                "name": "",
+                "surname": "",
+                "email": "",
+                "phonenumber": "",
                 "creation_moment": "" },
       translate:function(key,value) {
         this.labels[key] = value

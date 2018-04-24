@@ -16,7 +16,7 @@
             v-for="item in solicitudes">
           <td>n/a</td>
           <td>{{ item.date | es }}</td>
-          <td>{{ item.applicant.name }}</td>
+          <td>{{ item.name }}</td>
           <td>n/a</td>
           <td>n/a</td>
         </tr>

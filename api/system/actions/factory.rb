@@ -18,18 +18,24 @@ module Actions
     context
   end
 
-  def self.create_solicitude(text, applicant, date)
+  def self.create_solicitude(text, name, surname, email, phonenumber, date)
     context = ActionContext.new(Actions::CreateSolicitude)
     context.add(:text, text)
-    context.add(:applicant, applicant)
+    context.add(:name, name)
+    context.add(:surname, surname)
+    context.add(:email, email)
+    context.add(:phonenumber, phonenumber)
     context.add(:date, date)
     context
   end
 
-  def self.update_solicitude(text, applicant, date, creation_moment)
+  def self.update_solicitude(text, name, surname, email, phonenumber, date, creation_moment)
     context = ActionContext.new(Actions::UpdateSolicitude)
     context.add(:text, text)
-    context.add(:applicant, applicant)
+    context.add(:name, name)
+    context.add(:surname, surname)
+    context.add(:email, email)
+    context.add(:phonenumber, phonenumber)
     context.add(:date, date)
     context.add(:creation_moment, creation_moment)
     context

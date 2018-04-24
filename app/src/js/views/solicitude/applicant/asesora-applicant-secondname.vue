@@ -8,7 +8,7 @@
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-model="values.applicant.secondname"
+            v-model="values.surname"
             >
     </div>
 </template>

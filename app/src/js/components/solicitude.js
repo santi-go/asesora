@@ -85,12 +85,10 @@ export default class Solicitude {
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
                 "date": "",
-                "applicant": {
-                  "name": "",
-                  "secondname": "",
-                  "email": "",
-                  "phonenumber": ""
-                }
+                "name": "",
+                "surname": "",
+                "email": "",
+                "phonenumber": ""
               },
       fullfilled: false,
       translate:function(key,value) {
