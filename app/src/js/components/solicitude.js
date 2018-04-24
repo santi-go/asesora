@@ -77,7 +77,7 @@ export default class Solicitude {
                 "email": "XXX",
                 "phonenumber": "XXXXXXXXX",
                 "name": "XXXX",
-                "secondname": "XXXXXXXXX",
+                "surname": "XXXXXXXXX",
                 "contact": "XXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",

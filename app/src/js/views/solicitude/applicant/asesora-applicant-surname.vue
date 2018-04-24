@@ -1,6 +1,6 @@
  <template>
   <div>
-    <label>{{ labels.secondname }}</label>
+    <label>{{ labels.surname }}</label>
     <input  id="surname"
             name="surname"
             placeholder="*"

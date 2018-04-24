@@ -38,7 +38,7 @@ module Translation
                 "applicant": "Solicitante",
                 "date": "Fecha",
                 "name": "Nombre",
-                "secondname": "Apellidos",
+                "surname": "Apellidos",
                 "contact": "Contacto",
                 "email": "Correo Electrónico",
                 "phonenumber": "Teléfono",
@@ -58,6 +58,11 @@ module Translation
 
               "solicitudes-edition": {
                 "applicant": "Solicitante",
+                "name": "Nombre",
+                "surname": "Apellidos",
+                "contact": "Contacto",
+                "email": "Correo Electrónico",
+                "phonenumber": "Teléfono",
                 "date": "Fecha",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
