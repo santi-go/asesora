@@ -74,6 +74,7 @@ export default class Solicitude {
       editionmode: false,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
+                "email": "XXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
                 "submitting" : "xxxxxxxxxx",

@@ -37,6 +37,7 @@ module Translation
               "solicitude": {
                 "applicant": "Solicitante",
                 "date": "Fecha",
+                "email": "Correo Electrónico",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
                 "submit": "Solicitar",
