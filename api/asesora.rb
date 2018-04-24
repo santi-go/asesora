@@ -9,6 +9,8 @@ class Asesora < Sinatra::Base
 
   configure do
     enable :cross_origin
+    set :raise_errors, true
+    set :show_exceptions, false
   end
 
   before do
