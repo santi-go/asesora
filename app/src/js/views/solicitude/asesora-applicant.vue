@@ -1,7 +1,8 @@
 <template>
   <div>
-    <label>{{ labels.applicant }}</label>
-
+    <div class="card-title">
+			<h3>{{ labels.applicant }}</h3>
+		</div>
     <asesora-applicant-name :values="values" :labels="labels"></asesora-applicant-name>
     <asesora-applicant-secondname :values="values" :labels="labels"></asesora-applicant-secondname>
     <asesora-applicant-contact :values="values" :labels="labels"></asesora-applicant-contact>
@@ -47,7 +48,9 @@ export default {
 </script>
 
 <style scoped>
-
+  .card-title {
+    padding: 15px 0px;
+  }
   input::placeholder {
     text-align: right;
     font-size: 2em;

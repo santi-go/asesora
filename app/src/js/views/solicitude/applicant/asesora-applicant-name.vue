@@ -42,7 +42,9 @@ export default {
 </script>
 
 <style scoped>
-
+  label {
+    margin-top: 1em;
+  }
   input::placeholder {
     text-align: right;
     font-size: 2em;

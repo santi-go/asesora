@@ -1,6 +1,5 @@
  <template>
   <div>
-    <label>{{ labels.contact }}</label>
     <label>{{ labels.phonenumber }}</label>
     <input  id="phonenumber"
             name="phonenumber"
