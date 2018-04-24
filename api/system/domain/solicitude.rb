@@ -6,10 +6,10 @@ module Domain
 
     def self.from_document(document)
       solicitude = new(
-        document['applicant']['name'],
-        document['applicant']['secondname'],
-        document['applicant']['email'],
-        document['applicant']['phonenumber'],
+        document['name'],
+        document['surname'],
+        document['email'],
+        document['phonenumber'],
         document['date'],
         document['creation_moment']
       )
@@ -18,12 +18,12 @@ module Domain
       solicitude
     end
 
-    def self.with(applicant, date, text, creation_moment = nil)
+    def self.with(name, surname, email, phonenumber, date, text, creation_moment = nil)
       solicitude = new(
-        applicant['name'],
-        applicant['secondname'],
-        applicant['email'],
-        applicant['phonenumber'],
+        name,
+        surname,
+        email,
+        phonenumber,
         date,
         creation_moment
       )
@@ -32,23 +32,21 @@ module Domain
       solicitude
     end
 
-    def initialize(applicant_name, applicant_secondname, applicant_email, applicant_phonenumber, date, creation_moment = nil)
-      @applicant_name = applicant_name
-      @applicant_secondname = applicant_secondname
-      @applicant_email = applicant_email
-      @applicant_phonenumber = applicant_phonenumber
+    def initialize(name, surname, email, phonenumber, date, creation_moment = nil)
+      @name = name
+      @surname = surname
+      @email = email
+      @phonenumber = phonenumber
       @date = parse(date)
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
     end
 
     def serialize
       {
-        "applicant" => {
-          "name" => @applicant_name,
-          "secondname" => @applicant_secondname,
-          "email" => @applicant_email,
-          "phonenumber" => @applicant_phonenumber
-        },
+        "name" => @name,
+        "surname" => @surname,
+        "email" => @email,
+        "phonenumber" => @phonenumber,
         "text" => @text,
         "date" => @date.to_s,
         "creation_moment" => @creation_moment

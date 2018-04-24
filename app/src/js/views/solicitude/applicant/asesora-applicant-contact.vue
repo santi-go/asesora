@@ -8,9 +8,9 @@
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-model="values.applicant.phonenumber"
+            v-model="values.phonenumber"
             >
-    <asesora-email :values="values.applicant.email" :labels="labels"></asesora-email>
+    <asesora-email :values="values" :labels="labels"></asesora-email>
     </div>
 </template>
 

@@ -48,7 +48,7 @@ export default {
         }
     },
     applicantIsEmpty(){
-      return (this.values.applicant.name == "")
+      return (this.values.name == "")
     },
 
     textIsEmpty(){

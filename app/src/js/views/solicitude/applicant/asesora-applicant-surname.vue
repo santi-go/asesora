@@ -1,21 +1,21 @@
  <template>
   <div>
-    <label>{{ labels.secondname }}</label>
-    <input  id="secondname"
-            name="secondname"
+    <label>{{ labels.surname }}</label>
+    <input  id="surname"
+            name="surname"
             placeholder="*"
             type="text"
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-model="values.applicant.secondname"
+            v-model="values.surname"
             >
     </div>
 </template>
 
 <script>
 export default {
-  name: 'asesora-applicant-secondname',
+  name: 'asesora-applicant-surname',
 
   props: ['labels', 'values'],
 

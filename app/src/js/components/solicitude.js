@@ -77,7 +77,7 @@ export default class Solicitude {
                 "email": "XXX",
                 "phonenumber": "XXXXXXXXX",
                 "name": "XXXX",
-                "secondname": "XXXXXXXXX",
+                "surname": "XXXXXXXXX",
                 "contact": "XXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
@@ -85,12 +85,10 @@ export default class Solicitude {
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
                 "date": "",
-                "applicant": {
-                  "name": "",
-                  "secondname": "",
-                  "email": "",
-                  "phonenumber": ""
-                }
+                "name": "",
+                "surname": "",
+                "email": "",
+                "phonenumber": ""
               },
       fullfilled: false,
       translate:function(key,value) {

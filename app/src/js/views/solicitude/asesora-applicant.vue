@@ -4,14 +4,14 @@
 			<h3>{{ labels.applicant }}</h3>
 		</div>
     <asesora-applicant-name :values="values" :labels="labels"></asesora-applicant-name>
-    <asesora-applicant-secondname :values="values" :labels="labels"></asesora-applicant-secondname>
+    <asesora-applicant-surname :values="values" :labels="labels"></asesora-applicant-surname>
     <asesora-applicant-contact :values="values" :labels="labels"></asesora-applicant-contact>
   </div>
 </template>
 
 <script>
 import ApplicantNameView from './applicant/asesora-applicant-name'
-import ApplicantSecondnameView from './applicant/asesora-applicant-secondname'
+import ApplicantSurnameView from './applicant/asesora-applicant-surname'
 import ApplicantContactView from './applicant/asesora-applicant-contact'
 
 export default {
@@ -21,7 +21,7 @@ export default {
 
   components: {
     "asesora-applicant-name" : ApplicantNameView,
-    "asesora-applicant-secondname" : ApplicantSecondnameView,
+    "asesora-applicant-surname" : ApplicantSurnameView,
     "asesora-applicant-contact" : ApplicantContactView
   },
 

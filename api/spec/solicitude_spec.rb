@@ -18,12 +18,10 @@ describe 'Solicitude Api' do
   context 'create solicitude' do
     it 'returns the brand new solicitude' do
       body = {
-        "applicant" => {
-          "name": "an applicant",
-          "secondname": "Dou",
-          "email": "applicant@dou.com",
-          "phonenumber": "123456789"
-        },
+        "name": "an applicant",
+        "surname": "Dou",
+        "email": "applicant@dou.com",
+        "phonenumber": "123456789",
         "text" => "a text",
         "date" => "2018-12-25"
       }.to_json
@@ -31,10 +29,10 @@ describe 'Solicitude Api' do
 
       created_solicitude = JSON.parse(last_response.body)
 
-      expect(created_solicitude["applicant"]["name"]).to eq("an applicant")
-      expect(created_solicitude["applicant"]["secondname"]).to eq("Dou")
-      expect(created_solicitude["applicant"]["email"]).to eq("applicant@dou.com")
-      expect(created_solicitude["applicant"]["phonenumber"]).to eq("123456789")
+      expect(created_solicitude["name"]).to eq("an applicant")
+      expect(created_solicitude["surname"]).to eq("Dou")
+      expect(created_solicitude["email"]).to eq("applicant@dou.com")
+      expect(created_solicitude["phonenumber"]).to eq("123456789")
       expect(created_solicitude["text"]).to eq("a text")
       expect(created_solicitude["date"]).to eq("2018-12-25")
       expect(created_solicitude["creation_moment"]).not_to be_nil
@@ -42,7 +40,10 @@ describe 'Solicitude Api' do
 
     it 'generate creation moment in milliseconds' do
       body = {
-        "applicant" => "an applicant",
+        "name" => "an",
+        "surname" => "applicant",
+        "email" => "an@applicant.com",
+        "phonenumber" => "987654321",
         "text" => "a text",
         "date" => ""
       }.to_json
@@ -58,12 +59,10 @@ describe 'Solicitude Api' do
 
     it 'new solicitude has today date' do
       body = {
-        "applicant" => {
-          "name": "an applicant",
-          "secondname": "Dou",
-          "email": "applicant@dou.com",
-          "phonenumber": "123456789"
-        },
+        "name": "an applicant",
+        "surname": "Dou",
+        "email": "applicant@dou.com",
+        "phonenumber": "123456789",
         "text" => "a text",
         "date" => ""
       }.to_json
@@ -72,10 +71,10 @@ describe 'Solicitude Api' do
 
       created_solicitude = JSON.parse(last_response.body)
 
-      expect(created_solicitude["applicant"]["name"]).to eq("an applicant")
-      expect(created_solicitude["applicant"]["secondname"]).to eq("Dou")
-      expect(created_solicitude["applicant"]["email"]).to eq("applicant@dou.com")
-      expect(created_solicitude["applicant"]["phonenumber"]).to eq("123456789")
+      expect(created_solicitude["name"]).to eq("an applicant")
+      expect(created_solicitude["surname"]).to eq("Dou")
+      expect(created_solicitude["email"]).to eq("applicant@dou.com")
+      expect(created_solicitude["phonenumber"]).to eq("123456789")
       expect(created_solicitude["text"]).to eq("a text")
       expect(created_solicitude["date"]).to eq(today)
     end
@@ -84,7 +83,10 @@ describe 'Solicitude Api' do
   context 'retrieve solicitude' do
     it 'returns all solicitudes' do
       body = {
-        "applicant" => "an applicant",
+        "name" => "an",
+        "surname" => "applicant",
+        "email" => "an@applicant.com",
+        "phonenumber" => "987654321",
         "text" => "a text",
         "date" => ""
       }.to_json
@@ -108,13 +110,19 @@ describe 'Solicitude Api' do
 
     it 'returns solicitudes in descendent order' do
       first_body = {
-          "applicant" => "an applicant",
+          "name" => "an",
+          "surname" => "applicant",
+          "email" => "an@applicant.com",
+          "phonenumber" => "987654321",
           "text" => "a text",
           "date" => "2050-03-20"
         }.to_json
       retrieve_first_information = post_create_solicitude(first_body)
       second_body = {
-          "applicant" => "an applicant",
+          "name" => "an",
+          "surname" => "applicant",
+          "email" => "an@applicant.com",
+          "phonenumber" => "987654321",
           "text" => "a text",
           "date" => "2050-03-20"
         }.to_json
@@ -136,12 +144,10 @@ describe 'Solicitude Api' do
   context 'retrieve solicitude' do
     it 'returns one solicitude' do
       body = {
-        "applicant" => {
-          "name": "an applicant",
-          "secondname": "Dou",
-          "email": "applicant@dou.com",
-          "phonenumber": "123456789"
-        },
+        "name": "an applicant",
+        "surname": "Dou",
+        "email": "applicant@dou.com",
+        "phonenumber": "123456789",
         "text" => "a text",
         "date" => "2018-12-25"
       }.to_json
@@ -157,10 +163,10 @@ describe 'Solicitude Api' do
 
       expect(solicitude['data']['text']).to eq(created_solicitude['text'])
       expect(solicitude['data']['date']).to eq(created_solicitude['date'])
-      expect(solicitude['data']['applicant']['name']).to eq(created_solicitude['applicant']['name'])
-      expect(solicitude['data']['applicant']['secondname']).to eq(created_solicitude['applicant']['secondname'])
-      expect(solicitude['data']['applicant']['email']).to eq(created_solicitude['applicant']['email'])
-      expect(solicitude['data']['applicant']['phonenumber']).to eq(created_solicitude['applicant']['phonenumber'])
+      expect(solicitude['data']['name']).to eq(created_solicitude['name'])
+      expect(solicitude['data']['surname']).to eq(created_solicitude['surname'])
+      expect(solicitude['data']['email']).to eq(created_solicitude['email'])
+      expect(solicitude['data']['phonenumber']).to eq(created_solicitude['phonenumber'])
     end
   end
 end
