@@ -8,6 +8,7 @@
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
+            v-on:blur="emailValidation"
             v-model="values.email"
             >
   </div>
@@ -40,7 +41,11 @@ export default {
     },
 
     emailValidation(){
-      console.log(this.values.email);
+      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+      let email = event.target.value
+      if(!EMAIL_PATTERN.test(email)){
+          event.target.className = "error"
+      }
     }
   }
 }

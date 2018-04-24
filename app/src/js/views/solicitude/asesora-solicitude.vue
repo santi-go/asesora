@@ -1,7 +1,7 @@
 <template>
   <div>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-email :values="values" :labels="labels"></asesora-email>
+    <asesora-email :values="values.applicant" :labels="labels"></asesora-email>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
@@ -51,7 +51,7 @@ export default {
         }
     },
     applicantIsEmpty(){
-      return (this.values.applicant == "")
+      return (this.values.applicant.name == "")
     },
 
     textIsEmpty(){
