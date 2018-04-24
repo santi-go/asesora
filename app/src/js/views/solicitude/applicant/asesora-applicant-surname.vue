@@ -1,8 +1,8 @@
  <template>
   <div>
     <label>{{ labels.secondname }}</label>
-    <input  id="secondname"
-            name="secondname"
+    <input  id="surname"
+            name="surname"
             placeholder="*"
             type="text"
             v-on:keyup="onKeyUp"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'asesora-applicant-secondname',
+  name: 'asesora-applicant-surname',
 
   props: ['labels', 'values'],
 
