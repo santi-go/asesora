@@ -6,12 +6,41 @@ describe('Solicitude List', () => {
 
   it ('can be populated', () => {
     const solicitude = new Solicitude()
-    const applicantName = 'An applicant name'
-    solicitude.fill().withApplicantName(applicantName).submit()
+    const applicantName = 'John'
+    const applicant = applicantName
+
+    solicitude.withApplicantName(applicantName)
+    solicitude.fill().submit()
 
     const solicitudesList = new SolicitudesList()
 
-    expect(solicitudesList.existApplicant(applicantName)).to.be.true
+    expect(solicitudesList.existApplicant(applicant)).to.be.true
+  })
+
+  it ('can be populated with complete name', () => {
+    const solicitude = new Solicitude()
+    const applicantName = 'John'
+    const applicantSurname = 'Doe'
+    const applicant = applicantName + " " + applicantSurname
+
+    solicitude.withApplicantName(applicantName)
+    solicitude.withApplicantSurname(applicantSurname)
+    solicitude.fill().submit()
+
+    const solicitudesList = new SolicitudesList()
+
+    expect(solicitudesList.existApplicant(applicant)).to.be.true
+  })
+
+  it ('can be populated without complete name', () => {
+    const solicitude = new Solicitude()
+    const notApplicant = "n/a"
+
+    solicitude.fill().submit()
+
+    const solicitudesList = new SolicitudesList()
+
+    expect(solicitudesList.existNotApplicant(notApplicant)).to.be.true
   })
 
 })

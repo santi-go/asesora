@@ -7,9 +7,7 @@ describe('Solicitude', () => {
   it ("can be created", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillApplicantName()
-
-    solicitude.fillText()
+    solicitude.fill()
 
     solicitude.lostFocus()
 
@@ -37,5 +35,16 @@ describe('Solicitude', () => {
     expect(solicitude.isDateInfoHiden()).to.eq(false)
   })
 
+  it ("can be created with phone number and email", () => {
+    const solicitude = new Solicitude()
+
+    solicitude.fillApplicantPhonenumber()
+    solicitude.fillApplicantEmail()
+    solicitude.fillText()
+
+    solicitude.lostFocus()
+
+    expect(solicitude.isSubmitEnabled()).to.eq(true)
+  })
 
 })

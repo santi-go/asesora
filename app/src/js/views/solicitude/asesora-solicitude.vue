@@ -39,7 +39,7 @@ export default {
 
   methods: {
     setButtonStatus(){
-      let applicantIsEmpty = this.applicantIsEmpty()
+      let applicantIsEmpty = ( this.applicantPhonenumberIsEmpty() && this.applicantEmailIsEmpty() )
       let textIsEmpty = this.textIsEmpty()
       this.disableButton(true)
       if (applicantIsEmpty == false && textIsEmpty == false)
@@ -47,8 +47,13 @@ export default {
         this.disableButton(false)
         }
     },
-    applicantIsEmpty(){
-      return (this.values.name == "")
+
+    applicantPhonenumberIsEmpty(){
+      return (this.values.phonenumber == "")
+    },
+
+    applicantEmailIsEmpty(){
+      return (this.values.email == "")
     },
 
     textIsEmpty(){

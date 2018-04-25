@@ -16,7 +16,10 @@
             v-for="item in solicitudes">
           <td>n/a</td>
           <td>{{ item.date | es }}</td>
-          <td>{{ item.name }}</td>
+          <td>
+          <template v-if=" item.name =='' && item.surname =='' ">n/a</template>
+          <template v-else>{{ item.name }} {{ item.surname }}</template>
+          </td>
           <td>n/a</td>
           <td>n/a</td>
         </tr>
@@ -37,7 +40,6 @@
     },
       methods: {
         solicitudeEdit(id){
-          console.log(id)
           let signal = new CustomEvent('load.solicitude',
                                       {'detail': id,
                                       'bubbles': true})

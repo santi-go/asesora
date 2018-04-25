@@ -26,18 +26,6 @@ export default {
   },
 
   methods: {
-    onKeyUp(event){
-      event.target.className = ""
-      if (event.target.value == "") {
-        event.target.className = "error"
-      }
-      this.$parent.setButtonStatus()
-    },
-
-    onFocus(){
-      event.target.className = ""
-    },
-
     keydown(event){
       if (event.keyCode == 13){
         event.preventDefault()
@@ -50,18 +38,5 @@ export default {
 <style scoped>
   .card-title {
     padding: 15px 0px;
-  }
-  input::placeholder {
-    text-align: right;
-    font-size: 2em;
-    color: var(--error-color);
-    line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
-  }
-  .error {
-    border: 1px solid var(--error-color) !important;
   }
 </style>

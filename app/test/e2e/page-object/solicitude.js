@@ -10,6 +10,24 @@ class Solicitude{
     applicantName.setValue(value)
   }
 
+  fillApplicantSurname(value){
+    value = value || "applicant surname"
+    let applicantSurname =  $('#surname')
+    applicantSurname.setValue(value)
+  }
+
+  fillApplicantPhonenumber(value){
+    value = value || "666666666"
+    let applicantPhonenumber =  $('#phonenumber')
+    applicantPhonenumber.setValue(value)
+  }
+
+  fillApplicantEmail(value){
+    value = value || "a@a.com"
+    let applicantEmail =  $('#email')
+    applicantEmail.setValue(value)
+  }
+
   fillText(){
     let text =  $('#solicitude-text')
     text.setValue("sample text")
@@ -50,13 +68,18 @@ class Solicitude{
   }
 
   fill(){
-    this.fillApplicantName()
+    this.fillApplicantPhonenumber()
     this.fillText()
     return this
   }
 
   withApplicantName(text){
     this.fillApplicantName(text)
+    return this
+  }
+
+  withApplicantSurname(text){
+    this.fillApplicantSurname(text)
     return this
   }
 }
