@@ -48,8 +48,11 @@ export default {
       let isHyphen = keycode == 189
       let isTab = keycode == 9
       let isBackSpace = keycode == 8
+      let isLeftArrow = keycode == 37
+      let isRightArrow = keycode == 39
 
-      return isNumber || isSpaceBar || isPeriod || isHyphen || isTab || isBackSpace
+      return isNumber || isSpaceBar || isPeriod || isHyphen
+             || isTab || isBackSpace || isLeftArrow || isRightArrow
     },
 
     phoneValidation(event){
