@@ -4,10 +4,10 @@ class SolicitudesEdition{
     browser.url('/solicitudes-edition.html')
   }
 
-  fillAplicant(value){
+  fillApplicantName(value){
     value = value || "applicant name"
-    let applicant =  $('#applicant')
-    applicant.setValue(value)
+    let applicantName =  $('#name')
+    applicantName.setValue(value)
   }
 
   fillText(){

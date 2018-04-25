@@ -4,10 +4,10 @@ class Solicitude{
     browser.url('/')
   }
 
-  fillAplicant(value){
+  fillApplicantName(value){
     value = value || "applicant name"
-    let applicant =  $('#applicant')
-    applicant.setValue(value)
+    let applicantName =  $('#name')
+    applicantName.setValue(value)
   }
 
   fillText(){
@@ -50,13 +50,13 @@ class Solicitude{
   }
 
   fill(){
-    this.fillAplicant()
+    this.fillApplicantName()
     this.fillText()
     return this
   }
 
-  withApplicant(text){
-    this.fillAplicant(text)
+  withApplicantName(text){
+    this.fillApplicantName(text)
     return this
   }
 }

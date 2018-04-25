@@ -6,12 +6,12 @@ describe('Solicitude List', () => {
 
   it ('can be populated', () => {
     const solicitude = new Solicitude()
-    const applicant = 'An applicant name'
-    solicitude.fill().withApplicant(applicant).submit()
+    const applicantName = 'An applicant name'
+    solicitude.fill().withApplicantName(applicantName).submit()
 
     const solicitudesList = new SolicitudesList()
 
-    expect(solicitudesList.existApplicant(applicant)).to.be.true
+    expect(solicitudesList.existApplicant(applicantName)).to.be.true
   })
 
 })

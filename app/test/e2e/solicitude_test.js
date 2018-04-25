@@ -7,7 +7,7 @@ describe('Solicitude', () => {
   it ("can be created", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillAplicant()
+    solicitude.fillApplicantName()
 
     solicitude.fillText()
 

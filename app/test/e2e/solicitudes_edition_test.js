@@ -5,7 +5,7 @@ describe('Solicitude Edition', () => {
   it ("knows when fields are correctly filled", () => {
     const solicitude = new SolicitudesEdition()
 
-    solicitude.fillAplicant()
+    solicitude.fillApplicantName()
     solicitude.fillText()
     solicitude.fillDate()
     solicitude.lostFocus()
@@ -16,7 +16,7 @@ describe('Solicitude Edition', () => {
   it ("knows when fields are not correctly filled", () => {
     const solicitude = new SolicitudesEdition()
 
-    solicitude.fillAplicant()
+    solicitude.fillApplicantName()
     solicitude.fillText()
     solicitude.fillWrongDate()
     solicitude.lostFocus()
