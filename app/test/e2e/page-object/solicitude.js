@@ -33,9 +33,10 @@ class Solicitude{
     text.setValue("sample text")
   }
 
-  fillDate(){
+  fillDate(value){
+    value = value || "01/01/2018"
     let date = $("#date")
-    date.addValue("01/01/2018")
+    date.addValue(value)
   }
 
   fillWrongDate(){

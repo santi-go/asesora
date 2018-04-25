@@ -35,12 +35,14 @@ describe('Solicitude List', () => {
   it ('can be populated without complete name', () => {
     const solicitude = new Solicitude()
     const notApplicant = "n/a"
+    const solicitudeDate = "01/01/2018"
 
+    solicitude.fillDate(solicitudeDate)
     solicitude.fill().submit()
 
     const solicitudesList = new SolicitudesList()
 
-    expect(solicitudesList.existNotApplicant(notApplicant)).to.be.true
+    expect(solicitudesList.existNotApplicant(solicitudeDate, notApplicant)).to.be.true
   })
 
 })
