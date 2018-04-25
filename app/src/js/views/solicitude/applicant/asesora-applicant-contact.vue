@@ -1,21 +1,13 @@
  <template>
   <div>
-    <label>{{ labels.phonenumber }}</label>
-    <input  id="phonenumber"
-            name="phonenumber"
-            placeholder="*"
-            type="text"
-            v-on:keyup="onKeyUp"
-            v-on:focus="onFocus"
-            v-on:keydown="keydown"
-            v-model="values.phonenumber"
-            >
+    <asesora-phone :values="values" :labels="labels"></asesora-phone>
     <asesora-email :values="values" :labels="labels"></asesora-email>
     </div>
 </template>
 
 <script>
 import EmailView from './asesora-email'
+import PhoneView from './asesora-phone'
 
 export default {
   name: 'asesora-applicant-contact',
@@ -23,7 +15,9 @@ export default {
   props: ['labels', 'values'],
 
   components: {
-    "asesora-email" : EmailView
+    "asesora-email" : EmailView,
+    "asesora-phone" : PhoneView
+
   },
   methods: {
     onKeyUp(event){
