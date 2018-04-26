@@ -1,8 +1,6 @@
 <template>
   <div>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-email :values="values.applicant" :labels="labels"></asesora-email>
-    <asesora-phone :values="values.applicant" :labels="labels"></asesora-phone>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values" :labels="labels"></asesora-company>
@@ -26,6 +24,10 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'editionmode'],
 
+  data: {
+    validContact: false
+  },
+
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
@@ -43,14 +45,17 @@ export default {
   },
 
   methods: {
+    setContactStatus(status){
+      this.validContact = status
+      this.setButtonStatus()
+    },
+
     setButtonStatus(){
-      let applicantIsEmpty = ( this.applicantPhonenumberIsEmpty() && this.applicantEmailIsEmpty() )
-      let textIsEmpty = this.textIsEmpty()
       this.disableButton(true)
-      if (applicantIsEmpty == false && textIsEmpty == false)
-        {
+
+      if (!this.textIsEmpty() && this.validContact) {
         this.disableButton(false)
-        }
+      }
     },
 
     applicantPhonenumberIsEmpty(){

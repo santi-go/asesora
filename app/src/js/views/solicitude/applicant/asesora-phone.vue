@@ -3,12 +3,10 @@
     <label>{{ labels.phonenumber }}:</label>
     <input  id="phonenumber"
             name="phonenumber"
-            placeholder="*"
             type="text"
-            v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-on:blur="phoneValidation"
+            v-on:blur="blur"
             v-model="values.phonenumber"
             >
   </div>
@@ -21,14 +19,6 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    onKeyUp(event){
-      event.target.className = ""
-      if (event.target.value == "") {
-        event.target.className = "error"
-      }
-      // this.$parent.setButtonStatus()
-    },
-
     onFocus(){
       event.target.className = ""
     },
@@ -39,6 +29,11 @@ export default {
           event.preventDefault()
         }
       }
+    },
+
+    blur(){
+      let valid = this.phoneValidation()
+      this.$parent.setValidPhonenumber(valid)
     },
 
     isValidKeyCode(keycode){
@@ -55,13 +50,18 @@ export default {
              || isTab || isBackSpace || isLeftArrow || isRightArrow
     },
 
-    phoneValidation(event){
-        let phoneNumber = this.phoneNumberfilter(event.target.value)
-        if(phoneNumber.length != 9){
-            event.target.className = "error"
-        }
-        event.target.value = phoneNumber
-      },
+    phoneValidation(){
+      let field = this.$el.querySelector('#phonenumber')
+      let phoneNumber = field.value
+      field.className = ""
+      if(phoneNumber == ""){
+        return false
+      }else if(phoneNumber.length != 9){
+        field.className = "error"
+        return false
+      }
+      return true
+    },
 
     phoneNumberfilter(rawPhoneNumber) {
         let splitNumber = rawPhoneNumber.split("");
@@ -75,17 +75,6 @@ export default {
 </script>
 
 <style scoped>
-
-  input::placeholder {
-    text-align: right;
-    font-size: 2em;
-    color: var(--error-color);
-    line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
-  }
   .error {
     border: 1px solid var(--error-color) !important;
   }

@@ -149,6 +149,7 @@ export default class SolicitudesEdition {
                 "date": "XXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
+                "noContact": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx",
                 "discard" : "xxxxxxx",

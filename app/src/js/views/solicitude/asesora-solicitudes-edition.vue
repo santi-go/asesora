@@ -32,6 +32,10 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'errors', 'editionmode'],
 
+  data: {
+    validContact: false
+  },
+
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
@@ -41,6 +45,8 @@ export default {
   },
 
   mounted: function() {
+    this.validContact = true
+
     this.$on('discardCard', function(){
       this.discardCard()
     }.bind(this))
@@ -61,21 +67,17 @@ export default {
   },
 
   methods: {
-    setButtonStatus(){
-      let applicantIsEmpty = this.applicantIsEmpty()
-      let textIsEmpty = this.textIsEmpty()
-      let dateIsEmpty = this.dateIsEmpty()
-      this.disableButton(true)
-
-      if(this.editionmode == true) {
-        if (applicantIsEmpty == false && textIsEmpty == false && dateIsEmpty == false){
-          this.disableButton(false)
-        }
-      }
+    setContactStatus(status){
+      this.validContact = status
+      this.setButtonStatus()
     },
 
-    applicantIsEmpty(){
-      return (this.values.name == "")
+    setButtonStatus(){
+      this.disableButton(true)
+
+      if (!this.textIsEmpty() && !this.dateIsEmpty() && this.validContact) {
+        this.disableButton(false)
+      }
     },
 
     textIsEmpty(){

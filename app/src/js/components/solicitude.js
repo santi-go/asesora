@@ -85,6 +85,7 @@ export default class Solicitude {
                 "companyCif": "XXXXXX",
                 "companyEmployees": "XXXXXX",
                 "companyCnae": "XXXXXXXX",
+                "noContact": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
