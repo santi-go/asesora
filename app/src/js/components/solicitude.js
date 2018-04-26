@@ -80,6 +80,11 @@ export default class Solicitude {
                 "surname": "XXXXXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
+                "company": "XXXXXXX",
+                "companyName": "XXXXXXXX",
+                "companyCif": "XXXXXX",
+                "companyEmployees": "XXXXXX",
+                "companyCnae": "XXXXXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
@@ -87,7 +92,11 @@ export default class Solicitude {
                 "name": "",
                 "surname": "",
                 "email": "",
-                "phonenumber": ""
+                "phonenumber": "",
+                "companyName": "",
+                "companyCif": "",
+                "companyEmployees": "",
+                "companyCnae": ""
               },
       fullfilled: false,
       translate:function(key,value) {

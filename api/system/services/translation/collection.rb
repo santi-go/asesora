@@ -43,6 +43,11 @@ module Translation
                 "phonenumber": "Teléfono",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
+                "company": "Empresa",
+                "companyName": "Nombre empresa",
+                "companyCif": "CIF",
+                "companyEmployees": "Número trabajadoras y trabajadores",
+                "companyCnae": "CNAE",
                 "submit": "Solicitar",
                 "submitting": "Solicitando"
               },

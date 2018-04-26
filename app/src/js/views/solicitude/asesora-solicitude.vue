@@ -5,6 +5,7 @@
     <asesora-phone :values="values.applicant" :labels="labels"></asesora-phone>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
+    <asesora-company :values="values" :labels="labels"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
@@ -18,6 +19,7 @@ import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
+import CompanyView from './asesora-company'
 
 export default {
   name: 'asesora-solicitude',
@@ -28,6 +30,7 @@ export default {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
     "asesora-text" : TextView,
+    "asesora-company" : CompanyView,
     "asesora-button" : ButtonView
   },
 
