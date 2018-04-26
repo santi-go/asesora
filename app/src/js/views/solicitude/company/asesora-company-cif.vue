@@ -1,10 +1,11 @@
  <template>
   <div>
     <label>{{ labels.companyCif }}</label>
-    <input  id="company-name-cif"
-            name="company-name-cif"
+    <input  id="company-cif"
+            name="company-cif"
             type="text"
             v-on:keydown="keydown"
+            v-on:blur="checkIfEmpty"
             v-model="values.companyCif"
             >
     </div>
@@ -21,6 +22,11 @@ export default {
       if (event.keyCode == 13){
         event.preventDefault()
       }
+    },
+
+    checkIfEmpty(event){
+      let isEmpty = event.target.value == ""
+      this.$parent.setCifEmptyStatus(isEmpty)
     }
   }
 }

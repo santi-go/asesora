@@ -44,6 +44,7 @@ module Translation
                 "noContact": "No has proporcionado suficiente información para poder contactar con la persona",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
+                "incompleteCompanyIdentity": "No has proporcionado suficiente información de la empresa",
                 "company": "Empresa",
                 "companyName": "Nombre empresa",
                 "companyCif": "CIF",
