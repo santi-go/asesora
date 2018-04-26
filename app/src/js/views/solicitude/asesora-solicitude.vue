@@ -1,5 +1,6 @@
 <template>
   <div>
+    <asesora-company-cif :values="values.cif" :labels="labels"></asesora-company-cif>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-email :values="values.applicant" :labels="labels"></asesora-email>
     <asesora-phone :values="values.applicant" :labels="labels"></asesora-phone>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import CifView from './company/asesora-company-cif'
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
@@ -25,6 +27,7 @@ export default {
   props: ['labels', 'values', 'fullfilled', 'editionmode'],
 
   components: {
+    "asesora-company-cif" : CifView,
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
     "asesora-text" : TextView,

@@ -80,6 +80,7 @@ export default class Solicitude {
                 "surname": "XXXXXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
+                "cif": "X-XXXXXXXX-X",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
@@ -87,7 +88,8 @@ export default class Solicitude {
                 "name": "",
                 "surname": "",
                 "email": "",
-                "phonenumber": ""
+                "phonenumber": "",
+                "cif": ""
               },
       fullfilled: false,
       translate:function(key,value) {
