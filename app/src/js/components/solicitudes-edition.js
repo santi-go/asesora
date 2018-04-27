@@ -82,6 +82,10 @@ export default class SolicitudesEdition {
     this.data.setValues('email', payload.data.email)
     this.data.setValues('phonenumber', payload.data.phonenumber)
     this.data.setValues('creation_moment',payload.data.creation_moment)
+    this.data.setValues('companyName',payload.data.company_name)
+    this.data.setValues('companyCif',payload.data.company_cif)
+    this.data.setValues('companyEmployees',payload.data.company_employees)
+    this.data.setValues('companyCnae',payload.data.company_cnae)
   }
 
   initializeViews(){
@@ -149,7 +153,13 @@ export default class SolicitudesEdition {
                 "date": "XXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
+                "company": "XXXXXXX",
+                "companyName": "XXXXXXXX",
+                "companyCif": "XXXXXX",
+                "companyEmployees": "XXXXXX",
+                "companyCnae": "XXXXXXXX",
                 "noContact": "XXXXX",
+                "incompleteCompanyIdentity": "XXXXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx",
                 "discard" : "xxxxxxx",
@@ -161,7 +171,11 @@ export default class SolicitudesEdition {
                 "surname": "",
                 "email": "",
                 "phonenumber": "",
-                "creation_moment": "" },
+                "creation_moment": "",
+                "companyName": "",
+                "companyCif": "",
+                "companyEmployees": "",
+                "companyCnae": "" },
       translate:function(key,value) {
         this.labels[key] = value
       },

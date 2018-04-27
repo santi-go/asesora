@@ -2,7 +2,7 @@
   <div>
     <asesora-company-name :values="values" :labels="labels"></asesora-company-name>
     <asesora-company-cif :values="values" :labels="labels" :validatedcif="validatedcif"></asesora-company-cif>
-    <div  id="company-identity-info" v-bind:class="{hide: mustBeHidden}">
+    <div  id="company-identity-info" v-bind:class="{hide: validIdentity}">
       <div class="alert background-danger">
         <em class="fa fa-times-circle"></em>
          {{ labels.incompleteCompanyIdentity }}
@@ -24,7 +24,7 @@ export default {
     return {
       isNameEmpty: true,
       isCifEmpty: true,
-      mustBeHidden: true
+      validIdentity: true
     }
   },
 
@@ -32,25 +32,27 @@ export default {
     "asesora-company-name" : CompanyNameView,
     "asesora-company-cif" : CompanyCifView,
   },
+
   methods: {
     setNameEmptyStatus(value){
         this.isNameEmpty = value
-        this.setEnoughInfo()
+        this.setValidInfo()
     },
 
     setCifEmptyStatus(value){
         this.isCifEmpty = value
-        this.setEnoughInfo()
+        this.setValidInfo()
     },
 
-    setEnoughInfo(){
+    setValidInfo(){
         if(this.isNameEmpty && this.isCifEmpty){
-            this.mustBeHidden = true
+            this.validIdentity = true
         } else if(this.isNameEmpty || this.isCifEmpty){
-            this.mustBeHidden = false
+            this.validIdentity = false
         } else {
-            this.mustBeHidden = true
+            this.validIdentity = true
         }
+        this.$parent.$parent.setCompanyIdentityStatus(this.validIdentity)
     }
   }
 }

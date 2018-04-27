@@ -3,6 +3,7 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
+    <asesora-company :values="values" :labels="labels"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <asesora-button-discard :labels="labels"></asesora-button-discard>
 
@@ -22,6 +23,7 @@
 <script>
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
+import CompanyView from './asesora-company'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
 import ButtonDiscardView from './asesora-button-discard'
@@ -32,13 +34,17 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'errors', 'editionmode'],
 
-  data: {
-    validContact: false
+  data() {
+    return {
+      validContact: true,
+      validCompanyIdentity: true
+    }
   },
 
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
+    "asesora-company" : CompanyView,
     "asesora-text" : TextView,
     "asesora-button" : ButtonView,
     "asesora-button-discard" : ButtonDiscardView
@@ -72,10 +78,15 @@ export default {
       this.setButtonStatus()
     },
 
+    setCompanyIdentityStatus(status){
+      this.validCompanyIdentity = status
+      this.setButtonStatus()
+    },
+
     setButtonStatus(){
       this.disableButton(true)
 
-      if (!this.textIsEmpty() && !this.dateIsEmpty() && this.validContact) {
+      if (!this.textIsEmpty() && !this.dateIsEmpty() && this.validContact && this.validCompanyIdentity) {
         this.disableButton(false)
       }
     },

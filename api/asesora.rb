@@ -45,7 +45,7 @@ class Asesora < Sinatra::Base
     company_cif = params['companyCif']
     company_employees = params['companyEmployees']
     company_cnae = params['companyCnae']
-    
+
     created = Actions.create_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae).do()
     created.serialize.to_json
   end
@@ -59,8 +59,12 @@ class Asesora < Sinatra::Base
     phonenumber = params['phonenumber']
     date = params['date']
     creation_moment = params['creation_moment']
+    company_name = params['companyName']
+    company_cif = params['companyCif']
+    company_employees = params['companyEmployees']
+    company_cnae = params['companyCnae']
 
-    updated = Actions.update_solicitude(text, name, surname, email, phonenumber, date, creation_moment).do()
+    updated = Actions.update_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae, creation_moment).do()
 
     return {}.to_json if updated.nil?
 

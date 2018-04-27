@@ -29,9 +29,9 @@ module Domain
         email,
         phonenumber,
         date,
-        company_name, 
-        company_cif, 
-        company_employees, 
+        company_name,
+        company_cif,
+        company_employees,
         company_cnae,
         creation_moment
       )
@@ -46,7 +46,7 @@ module Domain
       @email = email
       @phonenumber = phonenumber
       @date = parse(date)
-      @company_name = company_name 
+      @company_name = company_name
       @company_cif = company_cif
       @company_employees = company_employees
       @company_cnae = company_cnae
