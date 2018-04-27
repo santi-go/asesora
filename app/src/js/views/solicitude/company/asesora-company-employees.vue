@@ -17,15 +17,28 @@ export default {
   name: 'asesora-company-employees',
 
   props: ['labels', 'values'],
+  
+  data: { function () {
+      commandKey: false
+    }
+  },
 
   methods: {
     keydown(event){
-      if(!event.ctrlKey){
+      let cmdKeyMac = 91
+      if (event.keyCode == cmdKeyMac){
+        this.commandKey = true
+      }
+      if(!event.ctrlKey && this.commandKey != true){
         if (!this.isValidKeyCode(event.keyCode)){
           event.preventDefault()
         }
       }
+      if (event.keyCode != cmdKeyMac){
+        this.commandKey = false
+      }
     },
+    
     isArrowKeyCode(keycode){
       let isLeftArrow = keycode == 37
       let isArrowUp = keycode == 38
