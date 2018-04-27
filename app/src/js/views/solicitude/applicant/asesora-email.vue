@@ -19,12 +19,12 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    blur(){
+    blur(event){
       let valid = this.emailValidation()
       this.$parent.setValidEmail(valid)
     },
 
-    focus(){
+    focus(event){
       event.target.className = ""
     },
 

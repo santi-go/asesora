@@ -56,7 +56,6 @@ export default {
     setValidation(){
       this.isValid = this.contactIsValid()
       this.$parent.$parent.setContactStatus(this.isValid)
-      console.log(this.isValid)
     }
   }
 }
