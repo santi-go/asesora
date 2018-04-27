@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import SolicitudeView from '../views/solicitude/asesora-solicitude'
+import ValidationCif from '../library/validation-cif'
 import {Bus} from '../bus'
 
 export default class Solicitude {
@@ -23,10 +24,19 @@ export default class Solicitude {
       'submit.solicitude',
       this.submit.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'validate.cif',
+      this.validateCif.bind(this)
+    )
   }
 
   submit(){
     Bus.publish('create.solicitude', this.data.values)
+  }
+
+  validateCif(){
+    let validationCif = new ValidationCif()
+    this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
   }
 
   translate(payload) {
@@ -80,7 +90,12 @@ export default class Solicitude {
                 "surname": "XXXXXXXXX",
                 "text": "XXXXX",
                 "noDate": "XXXXX",
-                "cif": "X-XXXXXXXX-X",
+                "company": "XXXXXXX",
+                "companyName": "XXXXXXXX",
+                "companyCif": "XXXXXX",
+                "companyEmployees": "XXXXXX",
+                "companyCnae": "XXXXXXXX",
+                "noContact": "XXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",
@@ -89,9 +104,13 @@ export default class Solicitude {
                 "surname": "",
                 "email": "",
                 "phonenumber": "",
-                "cif": ""
+                "companyName": "",
+                "companyCif": "",
+                "companyEmployees": "",
+                "companyCnae": ""
               },
       fullfilled: false,
+      validatedcif: true,
       translate:function(key,value) {
         this.labels[key] = value
       }

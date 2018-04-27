@@ -1,19 +1,18 @@
  <template>
   <div>
-    <label>{{ labels.name }}</label>
-    <input  id="name"
-            name="name"
+    <label>{{ labels.companyEmployees }}</label>
+    <input  id="company-employees"
+            name="company-employees"
             type="text"
             v-on:keydown="keydown"
-            v-on:blur="blur"
-            v-model="values.name"
+            v-model="values.companyEmployees"
             >
     </div>
 </template>
 
 <script>
 export default {
-  name: 'asesora-applicant-name',
+  name: 'asesora-company-employees',
 
   props: ['labels', 'values'],
 
@@ -22,9 +21,6 @@ export default {
       if (event.keyCode == 13){
         event.preventDefault()
       }
-    },
-    blur(event){
-      this.$parent.$parent.setButtonStatus()
     }
   }
 }
@@ -34,4 +30,5 @@ export default {
   label {
     margin-top: 1em;
   }
+
 </style>

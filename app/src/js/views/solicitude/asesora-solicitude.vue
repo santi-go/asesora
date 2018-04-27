@@ -1,11 +1,9 @@
 <template>
   <div>
-    <asesora-company-cif :values="values.cif" :labels="labels"></asesora-company-cif>
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
-    <asesora-email :values="values.applicant" :labels="labels"></asesora-email>
-    <asesora-phone :values="values.applicant" :labels="labels"></asesora-phone>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
+    <asesora-company :values="values" :labels="labels" :validatedcif="validatedcif"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
@@ -15,22 +13,26 @@
 </template>
 
 <script>
-import CifView from './company/asesora-company-cif'
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
+import CompanyView from './asesora-company'
 
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif'],
+
+  data: {
+    validContact: false
+  },
 
   components: {
-    "asesora-company-cif" : CifView,
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
     "asesora-text" : TextView,
+    "asesora-company" : CompanyView,
     "asesora-button" : ButtonView
   },
 
@@ -43,14 +45,17 @@ export default {
   },
 
   methods: {
+    setContactStatus(status){
+      this.validContact = status
+      this.setButtonStatus()
+    },
+
     setButtonStatus(){
-      let applicantIsEmpty = ( this.applicantPhonenumberIsEmpty() && this.applicantEmailIsEmpty() )
-      let textIsEmpty = this.textIsEmpty()
       this.disableButton(true)
-      if (applicantIsEmpty == false && textIsEmpty == false)
-        {
+
+      if (!this.textIsEmpty() && this.validContact) {
         this.disableButton(false)
-        }
+      }
     },
 
     applicantPhonenumberIsEmpty(){

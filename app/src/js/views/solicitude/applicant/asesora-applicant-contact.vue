@@ -2,7 +2,13 @@
   <div>
     <asesora-phone :values="values" :labels="labels"></asesora-phone>
     <asesora-email :values="values" :labels="labels"></asesora-email>
+    <div  id="contact-info" v-bind:class="{hide: isValid}">
+      <div class="alert background-danger">
+        <em class="fa fa-times-circle"></em>
+         {{ labels.noContact }}
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -14,46 +20,49 @@ export default {
 
   props: ['labels', 'values'],
 
+  data() {
+    return {
+      validEmail: true,
+      validPhoneNumber: true,
+      isValid: true
+    }
+  },
+
   components: {
     "asesora-email" : EmailView,
     "asesora-phone" : PhoneView
-
   },
+
   methods: {
-    onKeyUp(event){
-      event.target.className = ""
-      if (event.target.value == "") {
-        event.target.className = "error"
-      }
+    keyup(event){
       this.$parent.$parent.setButtonStatus()
     },
-
-    onFocus(){
-      event.target.className = ""
-    },
-
     keydown(event){
       if (event.keyCode == 13){
         event.preventDefault()
       }
+    },
+    setValidEmail(status){
+      this.validEmail = status
+      this.setValidation()
+    },
+    setValidPhonenumber(status){
+      this.validPhonenumber = status
+      this.setValidation()
+    },
+    contactIsValid(){
+      return this.validEmail || this.validPhonenumber
+    },
+    setValidation(){
+      this.isValid = this.contactIsValid()
+      this.$parent.$parent.setContactStatus(this.isValid)
     }
   }
 }
 </script>
 
 <style scoped>
-
-  input::placeholder {
-    text-align: right;
-    font-size: 2em;
-    color: var(--error-color);
-    line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
-  }
-  .error {
-    border: 1px solid var(--error-color) !important;
+  .hide {
+    display: none;
   }
 </style>

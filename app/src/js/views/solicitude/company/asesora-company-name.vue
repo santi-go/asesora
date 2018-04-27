@@ -1,26 +1,23 @@
-<template>
+ <template>
   <div>
-    <label>{{ labels.companyCif }}:</label>
-    <input  id="company-name-cif"
-            name="company-name-cif"
+    <label>{{ labels.companyName }}</label>
+    <input  id="company-name"
+            name="company-name"
             placeholder="*"
             type="text"
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-on:blur="cifValidation"
-            v-bind:required="validatedcif"
-            v-bind:class="{error: !validatedcif}"
-            v-model="values.companyCif"
+            v-model="values.companyName"
             >
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'asesora-company-cif',
+  name: 'asesora-company-name',
 
-  props: ['labels', 'values', 'validatedcif'],
+  props: ['labels', 'values'],
 
   methods: {
     onKeyUp(event){
@@ -28,28 +25,27 @@ export default {
       if (event.target.value == "") {
         event.target.className = "error"
       }
+      this.$parent.$parent.setButtonStatus()
     },
 
-    onFocus(event){
+    onFocus(){
       event.target.className = ""
     },
 
-    cifValidation(event){
-      let signal = new CustomEvent('validate.cif',
-                                  {'detail': {},
-                                  'bubbles': true})
-      this.$el.dispatchEvent(signal)
-    },
-
     keydown(event){
-      let isReturnKey = (event.keyCode == 13)
-      if (isReturnKey) event.preventDefault()
+      if (event.keyCode == 13){
+        event.preventDefault()
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+  label {
+    margin-top: 1em;
+  }
+
   input::placeholder {
     text-align: right;
     font-size: 2em;
@@ -63,8 +59,4 @@ export default {
   .error {
     border: 1px solid var(--error-color) !important;
   }
-  label {
-    margin-top: 1em;
-  }
-
 </style>
