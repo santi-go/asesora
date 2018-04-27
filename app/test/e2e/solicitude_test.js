@@ -51,4 +51,32 @@ describe('Solicitude', () => {
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
 
+  it ("hides company identity error when name and cif are present", () => {
+    const solicitude = new Solicitude()
+
+    solicitude.fillCompanyName()
+    solicitude.fillCompanyCif()
+    solicitude.lostFocus()
+
+    expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(true)
+  })
+
+  it ("shows company identity error when name is present and cif is not", () => {
+    const solicitude = new Solicitude()
+
+    solicitude.fillCompanyName()
+    solicitude.lostFocus()
+
+    expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
+  })
+
+  it ("shows company identity error when cif is present and name is not", () => {
+    const solicitude = new Solicitude()
+
+    solicitude.fillCompanyCif()
+    solicitude.lostFocus()
+
+    expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
+  })
+
 })

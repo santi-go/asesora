@@ -44,6 +44,16 @@ class Solicitude{
     date.addValue("02/31/2018")
   }
 
+  fillCompanyName(){
+    let name = $("#company-name")
+    name.addValue("a Company Name")
+  }
+
+  fillCompanyCif(){
+    let cif = $("#company-cif")
+    cif.addValue("123456789")
+  }
+
   lostFocus(){
     let keyTab="\u0009"
     browser.keys(keyTab)
@@ -60,6 +70,12 @@ class Solicitude{
     let dateInfo = $("#date-info")
     let isHiden = dateInfo.getAttribute("class")
     return isHiden == "hide"
+  }
+
+  isCompanyIdentityInfoHidden(){
+    let companyInfo = $("#company-identity-info")
+    let isHidden = companyInfo.getAttribute("class")
+    return isHidden == "hide"
   }
 
   submit(){

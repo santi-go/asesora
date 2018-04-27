@@ -1,14 +1,13 @@
 <template>
   <div>
-    <label>{{ labels.companyCif }}:</label>
-    <input  id="company-name-cif"
-            name="company-name-cif"
-            placeholder="*"
+    <label>{{ labels.companyCif }}</label>
+    <input  id="company-cif"
+            name="company-cif"
             type="text"
             v-on:keyup="onKeyUp"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-on:blur="cifValidation"
+            v-on:blur="checker"
             v-bind:required="validatedcif"
             v-bind:class="{error: !validatedcif}"
             v-model="values.companyCif"
@@ -34,6 +33,16 @@ export default {
       event.target.className = ""
     },
 
+    keydown(event){
+      let isReturnKey = (event.keyCode == 13)
+      if (isReturnKey) event.preventDefault()
+    },
+
+    checker(event){
+      this.cifValidation(event)
+      this.checkIfEmpty(event)
+    },
+
     cifValidation(event){
       let signal = new CustomEvent('validate.cif',
                                   {'detail': {},
@@ -41,9 +50,9 @@ export default {
       this.$el.dispatchEvent(signal)
     },
 
-    keydown(event){
-      let isReturnKey = (event.keyCode == 13)
-      if (isReturnKey) event.preventDefault()
+    checkIfEmpty(event){
+      let isEmpty = event.target.value == ""
+      this.$parent.setCifEmptyStatus(isEmpty)
     }
   }
 }

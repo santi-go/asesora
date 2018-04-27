@@ -96,6 +96,7 @@ export default class Solicitude {
                 "companyEmployees": "XXXXXX",
                 "companyCnae": "XXXXXXXX",
                 "noContact": "XXXXX",
+                "incompleteCompanyIdentity": "XXXXXXX",
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx" },
       values: { "text": "",

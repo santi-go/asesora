@@ -3,8 +3,11 @@
     <label>{{ labels.companyEmployees }}</label>
     <input  id="company-employees"
             name="company-employees"
-            type="text"
+            type="number"
+            min="1"
+            v-on:keypress="onlyNumbers"
             v-on:keydown="keydown"
+            v-on:blur="checkNumber"
             v-model="values.companyEmployees"
             >
     </div>
@@ -20,6 +23,17 @@ export default {
     keydown(event){
       if (event.keyCode == 13){
         event.preventDefault()
+      }
+    },
+    onlyNumbers(event){
+      if(event.charCode < 48 || event.charCode > 57){
+        event.preventDefault()
+      }
+    },
+    checkNumber(event){
+      let value = event.target.value
+      if(parseInt(value) < 1 ){
+        event.target.value = ""
       }
     }
   }

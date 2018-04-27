@@ -25,7 +25,7 @@ class SolicitudesList{
       let name = applicantNames[counter].getText() == notApplicant
       let date = solicitudeDates[counter].getText() == solicitudeDate
       if (name && date) return true
-      }
+    }
     return false
   }
 }

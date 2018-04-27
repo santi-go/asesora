@@ -3,8 +3,8 @@ require_relative 'collection'
 
 module Solicitudes
   class Service
-    def self.create(text, name, surname, email, phonenumber, date)
-      solicitude = Domain::Solicitude.with(name, surname, email, phonenumber, date, text)
+    def self.create(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae)
+      solicitude = Domain::Solicitude.with(name, surname, email, phonenumber, date, text, company_name, company_cif, company_employees, company_cnae)
 
       Collection.create(solicitude)
     end
