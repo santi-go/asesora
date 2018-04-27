@@ -20,7 +20,7 @@
           <template v-if=" item.name =='' && item.surname =='' ">n/a</template>
           <template v-else>{{ item.name }} {{ item.surname }}</template>
           </td>
-          <td>n/a</td>
+          <td>{{item.company_name}}</td>
           <td>n/a</td>
         </tr>
       </tbody>
