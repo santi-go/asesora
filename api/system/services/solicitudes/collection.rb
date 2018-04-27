@@ -41,7 +41,9 @@ module Solicitudes
       private
 
       class MongoClient
+        DESCENDENT = -1
         class << self
+
           def create(descriptor)
             client[:solicitudes].insert_one(descriptor)
             descriptor
@@ -57,7 +59,7 @@ module Solicitudes
           end
 
           def all
-            client[:solicitudes].find().sort({"date": -1, "creation_moment": -1})
+            client[:solicitudes].find().sort({"date": DESCENDENT, "creation_moment": DESCENDENT})
           end
 
           private
