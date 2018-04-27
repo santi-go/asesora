@@ -41,8 +41,12 @@ class Asesora < Sinatra::Base
     email = params['email']
     phonenumber = params['phonenumber']
     date = params['date']
-
-    created = Actions.create_solicitude(text, name, surname, email, phonenumber, date).do()
+    company_name = params['companyName']
+    company_cif = params['companyCif']
+    company_employees = params['companyEmployees']
+    company_cnae = params['companyCnae']
+    
+    created = Actions.create_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae).do()
     created.serialize.to_json
   end
 

@@ -170,6 +170,8 @@ describe 'Solicitude Api' do
     end
   end
 
+  private
+
   def in_microseconds
     return "%Q"
   end
