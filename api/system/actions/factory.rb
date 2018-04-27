@@ -33,7 +33,7 @@ module Actions
     context
   end
 
-  def self.update_solicitude(text, name, surname, email, phonenumber, date, creation_moment)
+  def self.update_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae, creation_moment)
     context = ActionContext.new(Actions::UpdateSolicitude)
     context.add(:text, text)
     context.add(:name, name)
@@ -41,6 +41,10 @@ module Actions
     context.add(:email, email)
     context.add(:phonenumber, phonenumber)
     context.add(:date, date)
+    context.add(:company_name, company_name)
+    context.add(:company_cif, company_cif)
+    context.add(:company_employees, company_employees)
+    context.add(:company_cnae, company_cnae)
     context.add(:creation_moment, creation_moment)
     context
   end

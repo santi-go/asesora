@@ -3,6 +3,7 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
+    <asesora-company :values="values" :labels="labels"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <asesora-button-discard :labels="labels"></asesora-button-discard>
 
@@ -22,6 +23,7 @@
 <script>
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
+import CompanyView from './asesora-company'
 import TextView from './asesora-text'
 import ButtonView from './asesora-button'
 import ButtonDiscardView from './asesora-button-discard'
@@ -39,6 +41,7 @@ export default {
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
+    "asesora-company" : CompanyView,
     "asesora-text" : TextView,
     "asesora-button" : ButtonView,
     "asesora-button-discard" : ButtonDiscardView
