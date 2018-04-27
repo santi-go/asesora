@@ -19,7 +19,7 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    onFocus(){
+    onFocus(event){
       event.target.className = ""
     },
 
@@ -31,44 +31,60 @@ export default {
       }
     },
 
-    blur(){
+    blur(event){
       let valid = this.phoneValidation()
       this.$parent.setValidPhonenumber(valid)
     },
 
+    isArrowKeyCode(keycode){
+      let isLeftArrow = keycode == 37
+      let isArrowUp = keycode == 38
+      let isRightArrow = keycode == 39
+      let isArrowDown = keycode == 40
+
+      return isLeftArrow || isRightArrow || isArrowDown || isArrowUp
+    },
+
+    isSeparatorKeyCode(keycode){
+      let isSpaceBar = keycode == 32
+      let isPeriod = keycode == 190 || keycode == 110
+      let isHyphen = keycode == 189 || keycode == 109
+
+      return isSpaceBar || isPeriod || isHyphen
+    },
+
     isValidKeyCode(keycode){
       let isNumber = keycode >= 48 && keycode <= 57
-      let isSpaceBar = keycode == 32
-      let isPeriod = keycode == 190
-      let isHyphen = keycode == 189
-      let isTab = keycode == 9
+      let isNumericKey = keycode >= 96 && keycode <= 105
       let isBackSpace = keycode == 8
-      let isLeftArrow = keycode == 37
-      let isRightArrow = keycode == 39
+      let isTab = keycode == 9
+      let isSeparator = this.isSeparatorKeyCode(keycode)
+      let isArrow = this.isArrowKeyCode(keycode)
 
-      return isNumber || isSpaceBar || isPeriod || isHyphen
-             || isTab || isBackSpace || isLeftArrow || isRightArrow
+      return isNumber || isNumericKey || isSeparator || isTab || isBackSpace || isArrow
     },
 
     phoneValidation(){
       let field = this.$el.querySelector('#phonenumber')
-      let phoneNumber = field.value
+      let phoneNumber = this.phoneNumberfilter(field.value)
+
       field.className = ""
       if(phoneNumber == ""){
         return false
-      }else if(phoneNumber.length != 9){
+      }else if(phoneNumber.length != 9 ){
         field.className = "error"
         return false
       }
+      field.value = phoneNumber
       return true
     },
 
     phoneNumberfilter(rawPhoneNumber) {
-        let splitNumber = rawPhoneNumber.split("");
-        let phoneNumber = splitNumber.filter(function(item){
-            return item != "-" && item != " " & item != "."
-        }).join("")
-        return phoneNumber
+      let splitNumber = rawPhoneNumber.split("");
+      let phoneNumber = splitNumber.filter(function(item){
+          return item != "-" && item != " " & item != "."
+      }).join("")
+      return phoneNumber
     }
   }
 }
