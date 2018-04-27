@@ -1,16 +1,16 @@
 const expect = require('chai').expect
 const Solicitude = require('./page-object/solicitude')
 const SolicitudesList = require('./page-object/solicitudes-list')
+const Fixtures = require('./fixtures')
 
 describe('Solicitude List', () => {
+  before(() => {
+    this.fixtures = new Fixtures()
+    this.fixtures.pristine()
+  })
 
   it ('can be populated', () => {
-    const solicitude = new Solicitude()
-    const applicantName = 'John'
-    const applicant = applicantName
-
-    solicitude.withApplicantName(applicantName)
-    solicitude.fill().submit()
+    const applicant = this.fixtures.fullName()
 
     const solicitudesList = new SolicitudesList()
 

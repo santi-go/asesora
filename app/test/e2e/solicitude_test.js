@@ -1,8 +1,13 @@
 const expect = require('chai').expect
 const assert = require('chai').assert
 const Solicitude = require('./page-object/solicitude')
+const Fixtures = require('./fixtures')
 
 describe('Solicitude', () => {
+  beforeEach(function(){
+    fixtures = new Fixtures()
+    fixtures.clean()
+  })
 
   it ("can be created", () => {
     const solicitude = new Solicitude()
