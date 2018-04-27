@@ -5,7 +5,7 @@ require 'rack/test'
 require "date"
 
 require_relative '../asesora.rb'
-require_relative './page_object/solicitudes.rb'
+# require_relative './page_object/solicitudes.rb'
 
 describe 'Solicitude Api' do
 
@@ -168,5 +168,41 @@ describe 'Solicitude Api' do
       expect(solicitude['data']['email']).to eq(created_solicitude['email'])
       expect(solicitude['data']['phonenumber']).to eq(created_solicitude['phonenumber'])
     end
+  end
+
+  def in_microseconds
+    return "%Q"
+  end
+
+  def in_english_format
+    return "%Y-%m-%d"
+  end
+
+  def post_create_solicitude(body_created)
+    post '/api/create-solicitude', body_created
+  end
+
+  def retrieve_date(information)
+    return information['date']
+  end
+
+  def retrieve_first_date(response)
+    retrieve_date(response['data'][0])
+  end
+
+  def retrieve_second_date(response)
+    retrieve_date(response['data'][1])
+  end
+
+  def retrieve_creation_moment(information)
+    return information['creation_moment']
+  end
+
+  def retrieve_first_creation_moment(response)
+    retrieve_creation_moment(response['data'][0])
+  end
+
+  def retrieve_second_creation_moment(response)
+    retrieve_creation_moment(response['data'][1])
   end
 end
