@@ -24,8 +24,11 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif'],
 
-  data: {
-    validContact: false
+  data() {
+    return {
+      validContact: false,
+      validCompanyIdentity: true
+    }
   },
 
   components: {
@@ -50,10 +53,15 @@ export default {
       this.setButtonStatus()
     },
 
+    setCompanyIdentityStatus(status){
+      this.validCompanyIdentity = status
+      this.setButtonStatus()
+    },
+
     setButtonStatus(){
       this.disableButton(true)
 
-      if (!this.textIsEmpty() && this.validContact) {
+      if (!this.textIsEmpty() && this.validContact && this.validCompanyIdentity) {
         this.disableButton(false)
       }
     },
