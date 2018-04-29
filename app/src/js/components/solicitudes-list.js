@@ -70,14 +70,12 @@ export default class SolicitudesList {
                 "company": "XXXXX",
                 "topics": "xxxxxxxxxx",
                 "listTitle": "XXXXXXXX",
-                "notApply": "xxxxxxx",
+                "notApply": "xxxxxxx"
               },
       solicitudes: [
         {
-          applicant:"qwerty",
-          creation_moment:"1523991256366",
-          date:"2018-12-31",
-          text:"qwertyu"
+          creation_moment:"",
+          date:""
         },
       ],
       fullfilled: false,
