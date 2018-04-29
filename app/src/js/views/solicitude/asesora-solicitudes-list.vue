@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Tus asesoramientos</h3>
+    <h3>{{ labels.listTitle }}</h3>
     <table>
       <thead>
         <tr>
@@ -14,14 +14,14 @@
       <tbody>
         <tr v-on:click="solicitudeEdit(item.creation_moment)"
             v-for="item in solicitudes">
-          <td>n/a</td>
+          <td>{{ labels.notApply }}</td>
           <td>{{ item.date | es }}</td>
           <td>
-          <template v-if=" item.name =='' && item.surname =='' ">n/a</template>
+          <template v-if=" item.name =='' && item.surname =='' ">{{ labels.notApply }}</template>
           <template v-else>{{ item.name }} {{ item.surname }}</template>
           </td>
-          <td>n/a</td>
-          <td>n/a</td>
+          <td>{{ labels.notApply }}</td>
+          <td>{{ labels.notApply }}</td>
         </tr>
       </tbody>
     </table>

@@ -163,7 +163,9 @@ export default class SolicitudesEdition {
                 "submitting" : "xxxxxxxxxx",
                 "submit" : "xxxxxxxxxx",
                 "discard" : "xxxxxxx",
-                "discarding" : "xxxxxxxxxx"
+                "discarding" : "xxxxxxxxxx",
+                "edited" : "xxxxxx",
+                "alertBackgroundDanger" : "xxxxxxxxx"
                },
       values: { "text": "",
                 "date": "",

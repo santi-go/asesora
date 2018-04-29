@@ -7,7 +7,7 @@
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
-      Todo Ok! Enviando!
+      {{ labels.sent }}
     </div>
   </div>
 </template>

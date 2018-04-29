@@ -68,7 +68,10 @@ export default class SolicitudesList {
                 "date": "XXXXX",
                 "applicant": "XXXXX",
                 "company": "XXXXX",
-                "topics": "xxxxxxxxxx" },
+                "topics": "xxxxxxxxxx",
+                "listTitle": "XXXXXXXX",
+                "notApply": "xxxxxxx",
+              },
       solicitudes: [
         {
           applicant:"qwerty",

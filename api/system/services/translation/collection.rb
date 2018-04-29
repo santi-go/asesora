@@ -51,15 +51,18 @@ module Translation
                 "companyEmployees": "Número trabajadoras y trabajadores",
                 "companyCnae": "CNAE",
                 "submit": "Solicitar",
-                "submitting": "Solicitando"
+                "submitting": "Solicitando",
+                "sent": "Todo Ok! Enviado!"
               },
 
               "solicitudes-list": {
+                "listTitle": "Tus asesoramientos",
                 "code": "Código de registro",
                 "date": "Fecha de solicitud",
                 "applicant": "Nombre completo del solicitante",
                 "company": "Nombre de empresa",
-                "topics": "Temas del caso"
+                "topics": "Temas del caso",
+                "notApply": "n/a"
               },
 
               "solicitudes-edition": {
@@ -82,7 +85,9 @@ module Translation
                 "submit": "Guardar cambios",
                 "submitting": "Guardando",
                 "discard": "Descartar",
-                "discarding": "Descartando"
+                "discarding": "Descartando",
+                "edited": "Todo Ok! Guardado!",
+                "alertBackgroundDanger": "Lo sentimos, ha habido un error"
               }
             },
 

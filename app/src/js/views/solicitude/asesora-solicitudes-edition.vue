@@ -7,15 +7,14 @@
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <asesora-button-discard :labels="labels"></asesora-button-discard>
 
-
     <div class="message-sent alert background-success">
       <em class="fa fa-thumbs-up"></em>
-      Todo Ok! Guardado!
+      {{ labels.edited }}
     </div>
 
     <div class="message-error alert background-danger">
       <em class="fa fa-times-circle"></em>
-      Lo sentimos, ha habido un error
+      {{ labels.alertBackgroundDanger }}
     </div>
   </div>
 </template>
