@@ -1,20 +1,18 @@
 import Vue from 'vue'
 import AsesoraAbout from '../views/asesora-about'
+import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
-export default class About {
+export default class About extends Component{
 
   constructor(){
-    this.element = 'about'
-    this.data = this.model()
-    this.subscribe()
+    super('about')
     this.retrieve()
-    this.initializeViews()
   }
 
   subscribe(){
     Bus.subscribe("got.information", this.setInfo.bind(this))
-    Bus.subscribe("got.information", this.askTranslations.bind(this))
+    Bus.subscribe("got.information", this.askTranslationsFor.bind(this))
     Bus.subscribe("translation.for.about", this.translate.bind(this))
   }
 
@@ -24,7 +22,7 @@ export default class About {
     this.data.translate(key,label)
   }
 
-  askTranslations(payload) {
+  askTranslationsFor(payload) {
     let data = {  for: this.element,
                   key: payload.description }
     Bus.publish('ask.translation', data)

@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import SolicitudesEditionView from '../views/solicitude/asesora-solicitudes-edition'
+import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
-export default class SolicitudesEdition {
+export default class SolicitudesEdition extends Component{
 
   constructor(){
-    this.element = 'solicitudes-edition'
-    this.data = this.model()
-    this.subscribe()
-    this.askTranslations()
-    this.initializeViews()
-    this.watchActions()
+    super('solicitudes-edition')
     this.load()
   }
 

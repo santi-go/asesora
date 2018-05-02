@@ -1,15 +1,11 @@
 import Vue from 'vue'
-import AsesoraSidebar from '../views/asesora-sidebar'
 import {Bus} from '../bus'
-
-export default class Sidebar {
+import Component from '../infrastructure/component'
+import AsesoraSidebar from '../views/asesora-sidebar'
+export default class Sidebar extends Component {
 
   constructor(){
-    this.element = 'sidebar'
-    this.data = this.model()
-    this.subscribe()
-    this.askTranslations()
-    this.initializeViews()
+    super('sidebar')
   }
 
   subscribe(){
