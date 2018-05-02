@@ -50,6 +50,15 @@ describe('Solicitude', () => {
 
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
+  
+  it ("hides contact info when is not needed", () => {
+    const solicitude = new Solicitude()
+
+    solicitude.focusPhone()
+    solicitude.focusEmail()
+
+    expect(solicitude.isContactInfoHiden()).to.eq(true)
+  })
 
   it ("form valid if required data, company name and cif are present", () => {
     const solicitude = new Solicitude()

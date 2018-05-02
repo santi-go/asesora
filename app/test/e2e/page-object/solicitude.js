@@ -22,6 +22,16 @@ class Solicitude{
     applicantPhonenumber.setValue(value)
   }
 
+  focusPhone(){
+    let phone = $('#phonenumber')
+    this.lostFocus()
+  }
+
+  focusEmail(){
+    let phone = $('#email')
+    this.lostFocus()
+  }
+
   fillApplicantEmail(value){
     value = value || "a@a.com"
     let applicantEmail =  $('#email')
@@ -69,6 +79,12 @@ class Solicitude{
   isDateInfoHiden(){
     let dateInfo = $("#date-info")
     let isHiden = dateInfo.getAttribute("class")
+    return isHiden == "hide"
+  }
+
+  isContactInfoHiden(){
+    let contactInfo = $("#contact-info")
+    let isHiden = contactInfo.getAttribute("class")
     return isHiden == "hide"
   }
 
