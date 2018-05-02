@@ -4,6 +4,7 @@ require_relative 'create_solicitude'
 require_relative 'update_solicitude'
 require_relative 'retrieve_solicitudes'
 require_relative 'retrieve_solicitude'
+require_relative 'retrieve_cnae'
 
 
 module Actions
@@ -16,6 +17,10 @@ module Actions
     context = ActionContext.new(Actions::RetrieveDictionary)
     context.add(:locale, locale)
     context
+  end
+
+  def self.retrieve_cnae_catalog()
+    ActionContext.new(Actions::RetrieveCnae)
   end
 
   def self.create_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae)
