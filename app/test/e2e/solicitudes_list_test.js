@@ -45,4 +45,21 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existNotApplicant(solicitudeDate, notApplicant)).to.be.true
   })
 
+  it ('can be populated with company name', () => {
+    const solicitude = new Solicitude()
+    const solicitudeApplicantName = 'John'
+    const solicitudeCompanyName = 'John Inc.'
+    const solicitudeCompanyCif = 'A01316637'
+
+    solicitude.fill()
+    solicitude.withApplicantName(solicitudeApplicantName)
+    solicitude.withCompanyName(solicitudeCompanyName)
+    solicitude.withCompanyCif(solicitudeCompanyCif)
+    solicitude.submit()
+
+    const solicitudesList = new SolicitudesList()
+
+    expect(solicitudesList.existCompanyName(solicitudeCompanyName)).to.be.true
+  })
+
 })

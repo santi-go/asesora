@@ -1,5 +1,6 @@
 const APPLICANT_COLUMN = '3'
 const DATE_COLUMN = '2'
+const COMPANY_NAME_COLUMN = '4'
 
 class SolicitudesList{
 
@@ -12,6 +13,15 @@ class SolicitudesList{
     const applicants = data.$$(`tr td:nth-child(${APPLICANT_COLUMN})`)
     for (let applicant of applicants){
       if(applicant.getText() == name) return true
+    }
+    return false
+  }
+
+  existCompanyName(name){
+    const data = $('#solicitudes-list tbody')
+    const companies = data.$$(`tr td:nth-child(${COMPANY_NAME_COLUMN})`)
+    for (let company of companies){
+      if(company.getText() == name) return true
     }
     return false
   }
