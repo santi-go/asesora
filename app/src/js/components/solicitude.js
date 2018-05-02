@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import SolicitudeView from '../views/solicitude/asesora-solicitude'
 import ValidationCif from '../library/validation-cif'
 import Component from '../infrastructure/component'
@@ -51,13 +50,11 @@ export default class Solicitude extends Component {
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-solicitude': SolicitudeView
-      },
-      mounted: function() {
+    let listView = {
+      'asesora-solicitude': SolicitudeView
+    }
+
+    let mounted =function() {
         this.$on('moveCard', function(){
           let element = this.$el
           window.setTimeout(function(){
@@ -68,7 +65,8 @@ export default class Solicitude extends Component {
           }, 1000)
         }.bind(this))
       }
-    })
+
+    super.initializeViews(listView, mounted)
   }
 
   createdSolicitude(){

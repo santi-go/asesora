@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import AsesoraAbout from '../views/asesora-about'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
@@ -37,13 +36,11 @@ export default class About extends Component{
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
+    let listView =  {
         'asesora-about': AsesoraAbout
       }
-    })
+    super.initializeViews(listView)
+
   }
 
   model(){

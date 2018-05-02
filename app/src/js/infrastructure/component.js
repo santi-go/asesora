@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export default class Component {
 
   constructor(elementName){
@@ -9,11 +11,23 @@ export default class Component {
     this.watchActions()
   }
 
-  subscribe(){}
+  subscribe(){
+    console.log('subscribe must be overwritten')
+  }
+
+
+
+  initializeViews(viewList, mountedFunction){
+    new Vue({
+      el: '#' + this.element,
+      data: this.data,
+      components: viewList,
+      mounted: mountedFunction
+    })
+  }
 
   askTranslations() {}
 
-  initializeViews(){}
 
   watchActions(){}
 

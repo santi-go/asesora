@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import SolicitudesListView from '../views/solicitude/asesora-solicitudes-list'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
@@ -26,13 +25,10 @@ export default class SolicitudesList extends Component {
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-solicitudes-list': SolicitudesListView
-      }
-    })
+    let listView = {
+      'asesora-solicitudes-list': SolicitudesListView
+    }
+    super.initializeViews(listView)
   }
 
   retrieve(){

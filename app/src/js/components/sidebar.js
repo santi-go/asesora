@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import {Bus} from '../bus'
 import Component from '../infrastructure/component'
 import AsesoraSidebar from '../views/asesora-sidebar'
@@ -28,13 +27,10 @@ export default class Sidebar extends Component {
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-sidebar': AsesoraSidebar
-      }
-    })
+    let listView = {
+      'asesora-sidebar': AsesoraSidebar
+    }
+    super.initializeViews(listView)
   }
 
   model(){
