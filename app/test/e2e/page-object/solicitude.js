@@ -88,6 +88,12 @@ class Solicitude{
     return isHiden == "hide"
   }
 
+  isContactInfoNotHiden(){
+    let contactInfo = $("#contact-info")
+    let isHiden = contactInfo.getAttribute("class")
+    return isHiden == "hide"
+  }
+
   isCompanyIdentityInfoHidden(){
     let companyInfo = $("#company-identity-info")
     let isHidden = companyInfo.getAttribute("class")
