@@ -91,6 +91,11 @@ class Asesora < Sinatra::Base
 
   end
 
+  post '/api/cnae' do
+    cnae_catalog = Actions.retrieve_cnae_catalog.do()
+    cnae_catalog.to_json
+  end
+
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
