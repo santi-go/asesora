@@ -5,6 +5,8 @@ export default class Solicitudes {
   constructor() {
     this.client = APIClient
     this.subscribe()
+    this.retrieveCnae()
+    this.cnaeCatalog = []
   }
 
   subscribe() {
@@ -12,6 +14,20 @@ export default class Solicitudes {
     Bus.subscribe("get.solicitude", this.getSolicitude.bind(this))
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
     Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
+  }
+
+  retrieveCnae() {
+    let callback = this.store()
+    let body = {}
+    let url = 'cnae'
+    this.client.hit(url, body, callback)
+  }
+
+  store() {
+    return function(response) {
+      this.cnaeCatalog = response.data
+      console.log(this.cnaeCatalog);
+    }
   }
 
   getSolicitudesList() {

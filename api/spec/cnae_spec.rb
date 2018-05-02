@@ -13,6 +13,6 @@ describe 'Cnae' do
     post '/api/cnae', {}
     catalog = JSON.parse(last_response.body)
 
-    expect(catalog.size).to be 346
+    expect(catalog['data'].size).to be 346
   end
 end

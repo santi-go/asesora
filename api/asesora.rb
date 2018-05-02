@@ -93,7 +93,7 @@ class Asesora < Sinatra::Base
 
   post '/api/cnae' do
     cnae_catalog = Actions.retrieve_cnae_catalog.do()
-    cnae_catalog.to_json
+    {data: cnae_catalog}.to_json
   end
 
   options "*" do
