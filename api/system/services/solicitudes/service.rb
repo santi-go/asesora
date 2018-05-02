@@ -6,7 +6,7 @@ module Solicitudes
     def self.create(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae)
       solicitude = Domain::Solicitude.with(name, surname, email, phonenumber, date, text, company_name, company_cif, company_employees, company_cnae)
 
-      Collection.create(solicitude)
+      Collection.create(solicitude).serialize
     end
 
     def self.retrieve(id)
@@ -22,7 +22,7 @@ module Solicitudes
     end
 
     def self.all
-      Collection.all
+      Collection.all.serialize
     end
   end
 end
