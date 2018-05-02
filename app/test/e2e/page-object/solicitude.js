@@ -103,7 +103,9 @@ class Solicitude{
   submit(){
     this.lostFocus()
     $('#submit').click()
-    browser.waitForVisible('.message-sent', 2000)
+    browser.waitUntil(function(){
+      return browser.isVisible('.message-sent')}
+      , 2000, 'expected text to be different after 2s')
   }
 
   fill(){
