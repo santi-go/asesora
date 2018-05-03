@@ -18,15 +18,15 @@ export default {
 
   methods: {
     onKeyUp(event){
-      event.target.className = ""
+      event.target.classList.remove("error")
       if (event.target.value == "") {
-        event.target.className = "error"
+        event.target.classList.add("error")
       }
       this.$parent.setButtonStatus()
     },
 
     onFocus(event){
-      event.target.className = ""
+      event.target.classList.remove("error")
     }
   }
 }

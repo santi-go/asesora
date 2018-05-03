@@ -24,7 +24,7 @@ export default {
 
   methods: {
     onFocus(event){
-      event.target.className = ""
+      event.target.classList.remove("error")
     },
 
     keydown(event){
@@ -79,11 +79,11 @@ export default {
       let field = this.$el.querySelector('#phonenumber')
       let phoneNumber = this.phoneNumberfilter(field.value)
 
-      field.className = ""
+      field.classList.remove("error")
       if(phoneNumber == ""){
         return false
       }else if(phoneNumber.length != 9 ){
-        field.className = "error"
+        field.classList.add("error")
         return false
       }
       field.value = phoneNumber

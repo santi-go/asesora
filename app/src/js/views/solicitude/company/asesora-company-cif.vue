@@ -23,8 +23,8 @@ export default {
       validatedcif: function(event) {
         let inputCif = this.inputCif()
         this.isValidIfIsEmpty(inputCif)
-        if (this.validatedcif != false) inputCif.className = ""
-        if (this.validatedcif == false) inputCif.className = "error"
+        if (this.validatedcif == true) inputCif.classList.remove("error")
+        if (this.validatedcif == false) inputCif.classList.add("error")
       }
   },
 
@@ -39,12 +39,12 @@ export default {
 
     onKeyUp(event){
       let inputCif = this.inputCif()
-      inputCif.className = ""
+      inputCif.classList.remove("error")
       this.isValidIfIsEmpty(inputCif)
     },
 
     onFocus(event){
-      event.target.className = ""
+      event.target.classList.remove("error")
     },
 
     keydown(event){

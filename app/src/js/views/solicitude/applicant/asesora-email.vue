@@ -25,7 +25,7 @@ export default {
     },
 
     focus(event){
-      event.target.className = ""
+      event.target.classList.remove("error")
     },
 
     keyDown(event){
@@ -37,13 +37,13 @@ export default {
 
     emailValidation(){
       let field = this.$el.querySelector('#email')
-      field.className = ""
+      field.classList.remove("error")
       const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
       let email = field.value
       if(email == ""){
         return false
       }else if(!EMAIL_PATTERN.test(email)){
-        field.className = "error"
+        field.classList.add("error")
         return false
       }
       return true
