@@ -51,7 +51,7 @@ class Solicitude{
   }
 
   fillCompanyCif(value){
-    value = value || "A01316637"
+    value = value || "xyz"
     let cif = $("#company-cif")
     cif.addValue(value)
   }

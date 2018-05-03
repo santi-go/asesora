@@ -45,12 +45,10 @@ export default {
     },
 
     setValidInfo(){
-        if(this.isNameEmpty && this.isCifEmpty){
+        if(this.isNameEmpty == this.isCifEmpty){
             this.validIdentity = true
-        } else if(this.isNameEmpty || this.isCifEmpty){
-            this.validIdentity = false
         } else {
-            this.validIdentity = true
+            this.validIdentity = false
         }
         this.$parent.$parent.setCompanyIdentityStatus(this.validIdentity)
     }
