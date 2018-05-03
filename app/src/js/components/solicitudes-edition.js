@@ -28,7 +28,10 @@ export default class SolicitudesEdition extends Component{
   }
 
   hasChanges(){
-    return this.data.values.name != this.initialValues.name || this.data.values.date != this.initialValues.date || this.data.values.text != this.initialValues.text
+    for(let key in this.data.values){
+      if (this.data.values[key] != this.initialValues[key]) return true
+    }
+    return false
   }
 
   leaving(event){
@@ -69,7 +72,6 @@ export default class SolicitudesEdition extends Component{
     }
   }
   updateModel(payload) {
-    this.initialValues = payload.data
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
     this.data.setValues('name', payload.data.name)
@@ -81,6 +83,8 @@ export default class SolicitudesEdition extends Component{
     this.data.setValues('companyCif',payload.data.company_cif)
     this.data.setValues('companyEmployees',payload.data.company_employees)
     this.data.setValues('companyCnae',payload.data.company_cnae)
+    this.initialValues = this.data.cloneValues()
+
   }
 
   initializeViews(){
@@ -175,6 +179,10 @@ export default class SolicitudesEdition extends Component{
       },
       setValues:function(key, value){
         this.values[key] = value
+      },
+      cloneValues:function(){
+        let clone = Object.assign({}, this.values)
+        return clone
       }
     }
   }
