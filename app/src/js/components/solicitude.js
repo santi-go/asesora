@@ -1,17 +1,12 @@
-import Vue from 'vue'
 import SolicitudeView from '../views/solicitude/asesora-solicitude'
 import ValidationCif from '../library/validation-cif'
+import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
-export default class Solicitude {
+export default class Solicitude extends Component {
 
   constructor(){
-    this.element = 'solicitude'
-    this.data = this.model()
-    this.subscribe()
-    this.askTranslations()
-    this.initializeViews()
-    this.watchActions()
+    super('solicitude')
   }
 
   subscribe(){
@@ -55,13 +50,11 @@ export default class Solicitude {
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-solicitude': SolicitudeView
-      },
-      mounted: function() {
+    let listView = {
+      'asesora-solicitude': SolicitudeView
+    }
+
+    let mounted =function() {
         this.$on('moveCard', function(){
           let element = this.$el
           window.setTimeout(function(){
@@ -72,7 +65,8 @@ export default class Solicitude {
           }, 1000)
         }.bind(this))
       }
-    })
+
+    super.initializeViews(listView, mounted)
   }
 
   createdSolicitude(){

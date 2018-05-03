@@ -22,6 +22,16 @@ class Solicitude{
     applicantPhonenumber.setValue(value)
   }
 
+  focusPhone(){
+    let phone = $('#phonenumber')
+    this.lostFocus()
+  }
+
+  focusEmail(){
+    let phone = $('#email')
+    this.lostFocus()
+  }
+
   fillApplicantEmail(value){
     value = value || "a@a.com"
     let applicantEmail =  $('#email')
@@ -74,6 +84,18 @@ class Solicitude{
     return isHiden == "hide"
   }
 
+  isContactInfoHiden(){
+    let contactInfo = $("#contact-info")
+    let isHiden = contactInfo.getAttribute("class")
+    return isHiden == "hide"
+  }
+
+  isContactInfoNotHiden(){
+    let contactInfo = $("#contact-info")
+    let isHiden = contactInfo.getAttribute("class")
+    return isHiden == "hide"
+  }
+
   isCompanyIdentityInfoHidden(){
     let companyInfo = $("#company-identity-info")
     let isHidden = companyInfo.getAttribute("class")
@@ -83,7 +105,9 @@ class Solicitude{
   submit(){
     this.lostFocus()
     $('#submit').click()
-    browser.waitForVisible('.message-sent', 2000)
+    browser.waitUntil(function(){
+      return browser.isVisible('.message-sent')}
+      , 2000, 'expected text to be different after 2s')
   }
 
   fill(){

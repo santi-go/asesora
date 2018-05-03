@@ -47,7 +47,7 @@ class Asesora < Sinatra::Base
     company_cnae = params['companyCnae']
 
     created = Actions.create_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae).do()
-    created.serialize.to_json
+    created.to_json
   end
 
   post '/api/update-solicitude' do
@@ -74,7 +74,7 @@ class Asesora < Sinatra::Base
   post '/api/retrieve-solicitudes' do
     retrieve_solicitudes = Actions.retrieve_solicitudes().do()
 
-    list_solicitudes = retrieve_solicitudes.serialize
+    list_solicitudes = retrieve_solicitudes
 
     {data: list_solicitudes}.to_json
 
@@ -89,6 +89,11 @@ class Asesora < Sinatra::Base
 
     {data: solicitude}.to_json
 
+  end
+
+  post '/api/cnae' do
+    cnae_catalog = Actions.retrieve_cnae_catalog.do()
+    {data: cnae_catalog}.to_json
   end
 
   options "*" do

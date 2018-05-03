@@ -1,16 +1,11 @@
-import Vue from 'vue'
 import SolicitudesEditionView from '../views/solicitude/asesora-solicitudes-edition'
+import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
-export default class SolicitudesEdition {
+export default class SolicitudesEdition extends Component{
 
   constructor(){
-    this.element = 'solicitudes-edition'
-    this.data = this.model()
-    this.subscribe()
-    this.askTranslations()
-    this.initializeViews()
-    this.watchActions()
+    super('solicitudes-edition')
     this.load()
   }
 
@@ -89,46 +84,43 @@ export default class SolicitudesEdition {
   }
 
   initializeViews(){
-    new Vue({
-      el: '#' + this.element,
-      data: this.data,
-      components: {
-        'asesora-solicitudes-edition': SolicitudesEditionView
-      },
+    let listView ={
+      'asesora-solicitudes-edition': SolicitudesEditionView
+    }
 
-      mounted: function() {
-        this.$on('moveCard', function(){
-          let element = this.$el
+    let mounted = function() {
+      this.$on('moveCard', function(){
+        let element = this.$el
+        window.setTimeout(function(){
+          element.style.marginTop = '-1000px'
           window.setTimeout(function(){
-            element.style.marginTop = '-1000px'
-            window.setTimeout(function(){
-              window.location = "/solicitudes-list.html"
-            }, 1000)
+            window.location = "/solicitudes-list.html"
           }, 1000)
-        }.bind(this)),
+        }, 1000)
+      }.bind(this)),
 
-        this.$on('moveErrorCard', function(){
-          let element = this.$el
+      this.$on('moveErrorCard', function(){
+        let element = this.$el
+        window.setTimeout(function(){
+          element.style.marginTop = '-1000px'
           window.setTimeout(function(){
-            element.style.marginTop = '-1000px'
-            window.setTimeout(function(){
-              location.reload()
-            }, 1000)
+            location.reload()
           }, 1000)
-        }.bind(this)),
+        }, 1000)
+      }.bind(this)),
 
-        this.$on('discardCard', function(){
-          this.$data.showAlert = false
-          let element = this.$el
+      this.$on('discardCard', function(){
+        this.$data.showAlert = false
+        let element = this.$el
+        window.setTimeout(function(){
+          element.style.marginTop = '1000px'
           window.setTimeout(function(){
-            element.style.marginTop = '1000px'
-            window.setTimeout(function(){
-              window.location = "/solicitudes-list.html"
-            }, 1000)
+            window.location = "/solicitudes-list.html"
           }, 1000)
-        }.bind(this))
-      }
-    })
+        }, 1000)
+      }.bind(this))
+    }
+    super.initializeViews(listView, mounted)
   }
 
   updatedSolicitude(response){
