@@ -8,11 +8,8 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
 
     solicitude.fillApplicantName()
-
     solicitude.fillApplicantPhonenumber()
-
     solicitude.fillText()
-
     solicitude.lostFocus()
 
     expect(solicitude.isSubmitEnabled()).to.eq(true)
@@ -71,13 +68,17 @@ describe('Solicitude', () => {
 
   it ("form valid if required data, company name and cif are present", () => {
     const solicitude = new Solicitude()
+    const solicitudeCompanyValidCif = "A01316637"
 
     solicitude.fill()
     solicitude.fillCompanyName()
-    solicitude.fillCompanyCif()
     solicitude.lostFocus()
+    expect(solicitude.isSubmitEnabled()).to.eq(false)
 
+    solicitude.fillCompanyCif(solicitudeCompanyValidCif)
+    solicitude.lostFocus()
     expect(solicitude.isSubmitEnabled()).to.eq(true)
+
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(true)
   })
 

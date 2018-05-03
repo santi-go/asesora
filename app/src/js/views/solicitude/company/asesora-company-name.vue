@@ -20,7 +20,7 @@ export default {
 
   methods: {
     onKeyUp(event){
-      this.$parent.$parent.setButtonStatus()
+      this.$parent.$parent.$parent.setButtonStatus()
     },
 
     keydown(event){

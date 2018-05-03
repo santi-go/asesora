@@ -54,14 +54,16 @@ class Solicitude{
     date.addValue("02/31/2018")
   }
 
-  fillCompanyName(){
+  fillCompanyName(value){
+    value = value || "a Company Name"
     let name = $("#company-name")
-    name.addValue("a Company Name")
+    name.addValue(value)
   }
 
-  fillCompanyCif(){
+  fillCompanyCif(value){
+    value = value || "xyz"
     let cif = $("#company-cif")
-    cif.addValue("123456789")
+    cif.addValue(value)
   }
 
   lostFocus(){
@@ -123,5 +125,16 @@ class Solicitude{
     this.fillApplicantSurname(text)
     return this
   }
+
+  withCompanyName(text){
+    this.fillCompanyName(text)
+    return this
+  }
+
+  withCompanyCif(text){
+    this.fillCompanyCif(text)
+    return this
+  }
+
 }
 module.exports = Solicitude
