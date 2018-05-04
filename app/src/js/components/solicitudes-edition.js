@@ -13,6 +13,7 @@ export default class SolicitudesEdition extends Component{
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
     Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
     Bus.subscribe("translation.for.solicitudes-edition", this.translate.bind(this))
+    Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
   }
 
   watchActions(){
@@ -71,6 +72,11 @@ export default class SolicitudesEdition extends Component{
       Bus.publish('ask.translation', data)
     }
   }
+
+  gotCnaeCatalog(payload) {
+    this.data.cnaecatalog = payload
+  }
+  
   updateModel(payload) {
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
@@ -142,6 +148,7 @@ export default class SolicitudesEdition extends Component{
       showAlert: true,
       fullfilled: false,
       errors: false,
+      cnaecatalog: [],
       labels: { "name": "XXXXX",
                 "surname": "XXXXX",
                 "email": "XXXXX",

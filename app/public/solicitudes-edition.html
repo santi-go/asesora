@@ -41,7 +41,14 @@
                     <div  class="large-card" id="solicitudes-edition">
                         <form class="solucitude-form">
                             <fieldset>
-                                <asesora-solicitudes-edition :values='values' :labels='labels' :fullfilled='fullfilled' :errors='errors' :editionmode='editionmode'></asesora-solicitudes-edition>
+                                <asesora-solicitudes-edition
+                                  :values='values'
+                                  :labels='labels'
+                                  :fullfilled='fullfilled'
+                                  :errors='errors'
+                                  :editionmode='editionmode'
+                                  :cnaecatalog='cnaecatalog'>
+                                </asesora-solicitudes-edition>
                             </fieldset>
                         </form>
                     </div>

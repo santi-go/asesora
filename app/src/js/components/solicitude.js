@@ -12,6 +12,7 @@ export default class Solicitude extends Component {
   subscribe(){
     Bus.subscribe("translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
+    Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
   }
 
   watchActions(){
@@ -55,6 +56,10 @@ export default class Solicitude extends Component {
                     key: labelKey }
       Bus.publish('ask.translation', data)
     }
+  }
+
+  gotCnaeCatalog(payload) {
+    this.data.cnaecatalog = payload
   }
 
   initializeViews(){
@@ -115,6 +120,7 @@ export default class Solicitude extends Component {
               },
       fullfilled: false,
       validatedcif: true,
+      cnaecatalog:[],
       translate:function(key,value) {
         this.labels[key] = value
       }
