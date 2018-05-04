@@ -29,8 +29,16 @@ export default class Solicitude extends Component {
     Bus.publish('create.solicitude', this.data.values)
   }
 
+  isCifEmpty(){
+    return this.data.values.companyCif == ""
+  }
+
   validateCif(){
     let validationCif = new ValidationCif()
+    if(this.isCifEmpty()) {
+      this.data.validatedcif = true
+      return
+    }
     this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
   }
 
