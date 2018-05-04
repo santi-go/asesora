@@ -3,7 +3,7 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
-    <asesora-company :values="values" :labels="labels"></asesora-company>
+    <asesora-company :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <asesora-button-discard :labels="labels"></asesora-button-discard>
 
@@ -31,7 +31,7 @@ import ButtonDiscardView from './asesora-button-discard'
 export default {
   name: 'asesora-solicitudes-edition',
 
-  props: ['labels', 'values', 'fullfilled', 'errors', 'editionmode'],
+  props: ['labels', 'values', 'fullfilled', 'errors', 'editionmode', 'cnaecatalog'],
 
   data() {
     return {

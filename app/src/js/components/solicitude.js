@@ -60,7 +60,6 @@ export default class Solicitude extends Component {
 
   gotCnaeCatalog(payload) {
     this.data.cnaecatalog = payload
-    console.log(this.data.cnaecatalog);
   }
 
   initializeViews(){

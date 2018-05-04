@@ -6,12 +6,12 @@
             type="text"
             list="cnae-catalog"
             v-on:keydown="keydown"
-            v-on:blur="onBlur"
+            v-on:blur="cnaeValidation"
             v-model="values.companyCnae"
             >
         <datalist id="cnae-catalog">
             <option v-for="item in cnaecatalog">
-              {{ item.id + " - " + item.name}}
+              {{ fullCnaeName(item) }}
             </option>
         </datalist>
   </div>
@@ -23,16 +23,35 @@ export default {
 
   props: ['labels', 'values', 'cnaecatalog'],
 
+  data(){
+    return {
+      separator: ' - '
+    }
+  },
+
   methods: {
+    fullCnaeName(cnaeCode){
+      return cnaeCode.id + this.separator + cnaeCode.name
+    },
+
     keydown(event){
       if (event.keyCode == 13){
         event.preventDefault()
       }
     },
 
-    onBlur(event){
+    cnaeValidation(event){
       let value = event.target.value
-      return value
+      let id = value.split(this.separator)[0]
+
+      let validCnae = this.cnaecatalog.find(function(cnaeCode){
+        return cnaeCode.id === id
+      })
+      if(!validCnae){
+          event.target.value = ""
+      } else {
+          event.target.value = this.fullCnaeName(validCnae)
+      }
     }
   }
 }
