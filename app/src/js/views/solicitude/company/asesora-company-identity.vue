@@ -20,6 +20,12 @@ export default {
 
   props: ['labels', 'values', 'validatedcif'],
 
+  watch: {
+    validatedcif: function(){
+      this.setValidInfo()
+    }
+  },
+
   data(){
     return {
       isNameEmpty: true,
@@ -45,12 +51,15 @@ export default {
     },
 
     setValidInfo(){
-        if(this.isNameEmpty == this.isCifEmpty){
-            this.validIdentity = true
-        } else {
-            this.validIdentity = false
-        }
-        this.$parent.$parent.setCompanyIdentityStatus(this.validIdentity)
+      this.validIdentity = false
+
+      if(this.isNameEmpty && this.isCifEmpty){
+        this.validIdentity = true
+      }
+      if(!this.isNameEmpty && !this.isCifEmpty && this.validatedcif){
+        this.validIdentity = true
+      }
+      this.$parent.$parent.setCompanyIdentityStatus(this.validIdentity)
     }
   }
 }
