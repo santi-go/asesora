@@ -5,7 +5,7 @@
 		</div>
     <asesora-company-identity :values="values" :labels="labels" :validatedcif="validatedcif"></asesora-company-identity>
     <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
-    <asesora-company-cnae :values="values" :labels="labels"></asesora-company-cnae>
+    <asesora-company-cnae :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company-cnae>
 
   </div>
 </template>
@@ -18,7 +18,7 @@ import CompanyCnaeView from './company/asesora-company-cnae'
 export default {
   name: 'asesora-company',
 
-  props: ['labels', 'values', 'validatedcif'],
+  props: ['labels', 'values', 'validatedcif', 'cnaecatalog'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,
