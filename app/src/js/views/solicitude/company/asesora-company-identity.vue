@@ -28,8 +28,8 @@ export default {
 
   data(){
     return {
-      isNameEmpty: true,
-      isCifEmpty: true,
+      isNameEmpty: this.values.companyName === "" ,
+      isCifEmpty: this.values.companyCif === "" ,
       validIdentity: true
     }
   },

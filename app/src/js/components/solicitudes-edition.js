@@ -1,4 +1,5 @@
 import SolicitudesEditionView from '../views/solicitude/asesora-solicitudes-edition'
+import ValidationCif from '../library/validation-cif'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
@@ -25,6 +26,10 @@ export default class SolicitudesEdition extends Component{
       'edit.solicitude',
       this.update.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'validate.cif',
+      this.validateCif.bind(this)
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -33,6 +38,19 @@ export default class SolicitudesEdition extends Component{
       if (this.data.values[key] != this.initialValues[key]) return true
     }
     return false
+  }
+
+  validateCif(){
+    let validationCif = new ValidationCif()
+    if(this.isCifEmpty()) {
+      this.data.validatedcif = true
+      return
+    }
+    this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
+  }
+
+  isCifEmpty(){
+    return this.data.values.companyCif == ""
   }
 
   leaving(event){
@@ -76,7 +94,7 @@ export default class SolicitudesEdition extends Component{
   gotCnaeCatalog(payload) {
     this.data.cnaecatalog = payload
   }
-  
+
   updateModel(payload) {
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
@@ -144,6 +162,7 @@ export default class SolicitudesEdition extends Component{
 
   model(){
     return {
+      validatedcif: true,
       editionmode: true,
       showAlert: true,
       fullfilled: false,
