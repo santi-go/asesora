@@ -4,11 +4,10 @@
     <input  id="company-cif"
             name="company-cif"
             type="text"
-            v-on:keyup="onKeyUp"
-            v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-on:blur="checker"
             v-model="values.companyCif"
+            v-bind:class="{ error: !validatedcif}"
             >
   </div>
 </template>
@@ -19,34 +18,7 @@ export default {
 
   props: ['labels', 'values', 'validatedcif'],
 
-  watch: {
-      validatedcif: function(event) {
-        let inputCif = this.inputCif()
-        this.isValidIfIsEmpty(inputCif)
-        if (this.validatedcif == true) inputCif.classList.remove("error")
-        if (this.validatedcif == false) inputCif.classList.add("error")
-      }
-  },
-
   methods: {
-    inputCif(){
-      return this.$el.querySelector("input[name=company-cif]")
-    },
-
-    isValidIfIsEmpty(inputCif){
-      if (inputCif.value == "") this.validatedcif = true
-    },
-
-    onKeyUp(event){
-      let inputCif = this.inputCif()
-      inputCif.classList.remove("error")
-      this.isValidIfIsEmpty(inputCif)
-    },
-
-    onFocus(event){
-      event.target.classList.remove("error")
-    },
-
     keydown(event){
       let isReturnKey = (event.keyCode == 13)
       if (isReturnKey) event.preventDefault()
