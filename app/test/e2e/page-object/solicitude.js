@@ -135,6 +135,21 @@ class Solicitude{
     this.fillCompanyCif(text)
     return this
   }
+  fillCNAE(value){
+    let cnae =  $('#company-cnae')
+    cnae.setValue(value)
+  }
+
+  includesCNAEID(id){
+    let cnae =  $('#company-cnae')
+    let input = cnae.getValue()
+    return input.includes(id)
+  }
+  cnaeIsEmpty(id){
+    let cnae =  $('#company-cnae')
+    let input = cnae.getValue()
+    return "" == input.includes(id)
+  }
 
 }
 module.exports = Solicitude

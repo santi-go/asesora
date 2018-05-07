@@ -47,7 +47,7 @@ describe('Solicitude', () => {
 
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
-  
+
   it ("hides contact info when is not needed", () => {
     const solicitude = new Solicitude()
 
@@ -102,4 +102,18 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
   })
 
+  it("uses CNAE catalog",()=> {
+    const solicitude = new Solicitude()
+    const cnaeID = "200"
+    solicitude.fillCNAE(cnaeID)
+    solicitude.lostFocus()
+
+    expect(solicitude.includesCNAEID(cnaeID)).to.eq(true)
+
+    const incorrectID = "9-9-9"
+    solicitude.fillCNAE(incorrectID)
+    solicitude.lostFocus()
+
+    expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)
+  })
 })
