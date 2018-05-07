@@ -97,9 +97,7 @@ class Solicitude{
   }
 
   isCompanyIdentityInfoHidden(){
-    let companyInfo = $("#company-identity-info")
-    let isHidden = companyInfo.getAttribute("class")
-    return isHidden == "hide"
+    return !browser.isVisible('#company-identity-info')
   }
 
   submit(){
