@@ -2,7 +2,12 @@ require 'sinatra/base'
 require 'sinatra/cross_origin'
 require 'json'
 
-require_relative 'system/actions/factory'
+require_relative 'system/actions/create_solicitude'
+require_relative 'system/actions/retrieve_solicitudes'
+require_relative 'system/actions/retrieve_about'
+require_relative 'system/actions/retrieve_dictionary'
+require_relative 'system/actions/retrieve_cnae'
+require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/domain/solicitude'
 
 class Asesora < Sinatra::Base
@@ -20,33 +25,34 @@ class Asesora < Sinatra::Base
 
   post '/api/translations' do
     params = JSON.parse(request.body.read)
-    locale = params['locale']
 
-    translations = Actions.retrieve_dictionary_for(locale).do()
+    translations = Actions::RetrieveDictionary.do(locale: params['locale'])
 
     {data: translations}.to_json
   end
 
   post '/api/about' do
-    application_information = Actions.retrieve_about().do()
+    application_information = Actions::RetrieveAbout.do()
 
     application_information.to_json
   end
 
   post '/api/create-solicitude' do
     params = JSON.parse(request.body.read)
-    text = params['text']
-    name = params['name']
-    surname = params['surname']
-    email = params['email']
-    phonenumber = params['phonenumber']
-    date = params['date']
-    company_name = params['companyName']
-    company_cif = params['companyCif']
-    company_employees = params['companyEmployees']
-    company_cnae = params['companyCnae']
+    data = {
+      text:params['text'],
+      name:params['name'],
+      surname:params['surname'],
+      email:params['email'],
+      phonenumber:params['phonenumber'],
+      date:params['date'],
+      company_name:params['companyName'],
+      company_cif:params['companyCif'],
+      company_employees:params['companyEmployees'],
+      company_cnae:params['companyCnae']
+    }
 
-    created = Actions.create_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae).do()
+    created = Actions::CreateSolicitude.do(data)
     created.to_json
   end
 
@@ -72,7 +78,7 @@ class Asesora < Sinatra::Base
   end
 
   post '/api/retrieve-solicitudes' do
-    retrieve_solicitudes = Actions.retrieve_solicitudes().do()
+    retrieve_solicitudes = Actions::RetrieveSolicitudes.do()
 
     list_solicitudes = retrieve_solicitudes
 
@@ -82,17 +88,15 @@ class Asesora < Sinatra::Base
 
   post '/api/retrieve-solicitude' do
     params = JSON.parse(request.body.read)
-
-    id = params['id']
-
-    solicitude = Actions.retrieve_solicitude(id).do()
+    
+    solicitude = Actions::RetrieveSolicitude.do(id: params['id'])
 
     {data: solicitude}.to_json
 
   end
 
   post '/api/cnae' do
-    cnae_catalog = Actions.retrieve_cnae_catalog.do()
+    cnae_catalog = Actions::RetrieveCnae.do()
     {data: cnae_catalog}.to_json
   end
 
