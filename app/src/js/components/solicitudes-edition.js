@@ -117,35 +117,32 @@ export default class SolicitudesEdition extends Component{
     }
 
     let mounted = function() {
+      let submitAnimationDelay = 1500
+      let discardAnimationDelay = 1500
+
       this.$on('moveCard', function(){
         let element = this.$el
+        element.classList.add('submitCard')
         window.setTimeout(function(){
-          element.style.marginTop = '-1000px'
-          window.setTimeout(function(){
-            window.location = "/solicitudes-list.html"
-          }, 1000)
-        }, 1000)
+          window.location = "/solicitudes-list.html"
+        }, submitAnimationDelay)
       }.bind(this)),
 
       this.$on('moveErrorCard', function(){
         let element = this.$el
+        element.classList.add('discardCard')
         window.setTimeout(function(){
-          element.style.marginTop = '-1000px'
-          window.setTimeout(function(){
-            location.reload()
-          }, 1000)
-        }, 1000)
+          location.reload()
+        }, discardAnimationDelay)
       }.bind(this)),
 
       this.$on('discardCard', function(){
         this.$data.showAlert = false
         let element = this.$el
+        element.classList.add('discardCard')
         window.setTimeout(function(){
-          element.style.marginTop = '1000px'
-          window.setTimeout(function(){
-            window.location = "/solicitudes-list.html"
-          }, 1000)
-        }, 1000)
+          window.location = "/solicitudes-list.html"
+        }, discardAnimationDelay)
       }.bind(this))
     }
     super.initializeViews(listView, mounted)

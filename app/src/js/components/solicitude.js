@@ -68,17 +68,16 @@ export default class Solicitude extends Component {
     }
 
     let mounted =function() {
-        this.$on('moveCard', function(){
-          let element = this.$el
-          window.setTimeout(function(){
-            element.style.marginTop = '-1000px'
-            window.setTimeout(function(){
-              location.reload()
-            }, 1000)
-          }, 1000)
-        }.bind(this))
-      }
+      let submitAnimationDelay = 1500
 
+      this.$on('moveCard', function(){
+        let element = this.$el
+        element.classList.add('submitCard')
+        window.setTimeout(function(){
+          location.reload()
+        }, submitAnimationDelay )
+      }.bind(this))
+    }
     super.initializeViews(listView, mounted)
   }
 
