@@ -11,6 +11,31 @@
 *{
   transition: all 1s ease-in-out;
 }
+
 #solicitude .solucitude-form, fieldset {
   margin-bottom: 0;
+}
+
+.discardCard {
+  animation-name: discardCard;
+  animation-duration: 1.5s;
+}
+
+@keyframes discardCard {
+  to {
+    margin-left: 2500px;
+    margin-right: -2500px;
+  }
+}
+
+.submitCard {
+  animation-name: submitCard;
+  animation-delay: 1s;
+  animation-duration: 1.5s;
+}
+
+@keyframes submitCard {
+  to {
+    margin-top: -2500px;
+  }
 }
