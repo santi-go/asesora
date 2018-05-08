@@ -94,21 +94,15 @@ class Solicitude{
   }
 
   isDateInfoHiden(){
-    let dateInfo = $("#date-info")
-    let isHiden = dateInfo.getAttribute("class")
-    return isHiden == "hide"
+    return !browser.isVisible("#date-info")
   }
 
   isContactInfoHiden(){
-    let contactInfo = $("#contact-info")
-    let isHiden = contactInfo.getAttribute("class")
-    return isHiden == "hide"
+    return !browser.isVisible("#contact-info")
   }
 
   isContactInfoNotHiden(){
-    let contactInfo = $("#contact-info")
-    let isHiden = contactInfo.getAttribute("class")
-    return isHiden == "hide"
+    return !browser.isVisible("#contact-info")
   }
 
   isCompanyIdentityInfoHidden(){
