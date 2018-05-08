@@ -5,7 +5,7 @@
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values" :labels="labels" :validatedcif="validatedcif" :cnaecatalog="cnaecatalog"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
-    <div class="message-sent alert background-success">
+    <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
       {{ labels.sent }}
     </div>
@@ -88,8 +88,9 @@ export default {
     },
 
     show() {
-      let message = document.querySelector(".message-sent")
-      message.style.display = 'block'
+      let message = document.querySelector(".background-success")
+      message.classList.remove("message-hidden")
+      message.classList.add("messageSent")
     }
   }
 }
@@ -118,9 +119,5 @@ export default {
     font-size: 32px;
     color: var(--error-color);
   }
-  .message-sent {
-    margin-bottom: 0;
-    margin-top: 1em;
-    display: none;
-  }
+
 </style>

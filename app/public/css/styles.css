@@ -332,7 +332,8 @@ select:focus {
   margin-bottom: 20px;
   color: #fff;
   background-color: #888; }
-  .alert .fa {
+
+.alert .fa {
     margin-right: 5px; }
 
 .badge {
