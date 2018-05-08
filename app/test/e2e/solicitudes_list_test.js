@@ -9,8 +9,9 @@ describe('Solicitude List', () => {
     const applicantName = 'John'
     const applicant = applicantName
 
-    solicitude.withApplicantName(applicantName)
-    solicitude.fill().submit()
+    solicitude.fill().required()
+                     .applicantName(applicantName)
+    solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
 
@@ -23,9 +24,10 @@ describe('Solicitude List', () => {
     const applicantSurname = 'Doe'
     const applicant = applicantName + " " + applicantSurname
 
-    solicitude.withApplicantName(applicantName)
-    solicitude.withApplicantSurname(applicantSurname)
-    solicitude.fill().submit()
+    solicitude.fill().required()
+                     .applicantName(applicantName)
+                     .applicantSurname(applicantSurname)
+    solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
 
@@ -37,8 +39,9 @@ describe('Solicitude List', () => {
     const notApplicant = "n/a"
     const solicitudeDate = "01/01/2018"
 
-    solicitude.fillDate(solicitudeDate)
-    solicitude.fill().submit()
+    solicitude.fill().required()
+                     .date(solicitudeDate)
+    solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
 
@@ -51,10 +54,10 @@ describe('Solicitude List', () => {
     const solicitudeCompanyName = 'John Inc.'
     const solicitudeCompanyCif = 'A01316637'
 
-    solicitude.fill()
-    solicitude.withApplicantName(solicitudeApplicantName)
-    solicitude.withCompanyName(solicitudeCompanyName)
-    solicitude.withCompanyCif(solicitudeCompanyCif)
+    solicitude.fill().required()
+                     .applicantName(solicitudeApplicantName)
+                     .companyName(solicitudeCompanyName)
+                     .companyCif(solicitudeCompanyCif)
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
