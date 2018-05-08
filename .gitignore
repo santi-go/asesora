@@ -5,5 +5,7 @@ api/Gemfile.lock
 app/dist/
 dist/
 
+staging/
+
 .Spotlight-V100
 .DS_Store
