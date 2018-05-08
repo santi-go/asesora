@@ -7,9 +7,9 @@ describe('Solicitude', () => {
   it ("can be created", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillApplicantName()
-    solicitude.fillApplicantPhonenumber()
-    solicitude.fillText()
+    solicitude.fill().applicantName()
+                     .applicantPhonenumber()
+                     .description()
     solicitude.lostFocus()
 
     expect(solicitude.isSubmitEnabled()).to.eq(true)
@@ -18,7 +18,7 @@ describe('Solicitude', () => {
   it ("hides date info when is not needed", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillDate()
+    solicitude.fill().date()
     solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(true)
@@ -26,11 +26,11 @@ describe('Solicitude', () => {
 
   it ("knows when the date is invalid", () => {
     const solicitude = new Solicitude()
-    solicitude.fillDate()
+    solicitude.fill().date()
     assert(solicitude.isDateInfoHiden(), true)
     solicitude.lostFocus()
 
-    solicitude.fillWrongDate()
+    solicitude.fill().wrongDate()
     solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(false)
@@ -39,9 +39,9 @@ describe('Solicitude', () => {
   it ("can be created with phone number and email", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillApplicantPhonenumber()
-    solicitude.fillApplicantEmail()
-    solicitude.fillText()
+    solicitude.fill().applicantPhonenumber()
+                     .applicantEmail()
+                     .description()
 
     solicitude.lostFocus()
 
@@ -52,7 +52,7 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
 
     solicitude.focusPhone()
-    solicitude.focusEmail()
+              .focusEmail()
 
     expect(solicitude.isContactInfoHiden()).to.eq(true)
   })
@@ -60,7 +60,7 @@ describe('Solicitude', () => {
   it ("not hides contact info when is not needed", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillApplicantEmail()
+    solicitude.fill().applicantEmail()
     solicitude.lostFocus()
 
     expect(solicitude.isContactInfoNotHiden()).to.eq(true)
@@ -70,12 +70,12 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
     const solicitudeCompanyValidCif = "A01316637"
 
-    solicitude.fill()
-    solicitude.fillCompanyName()
+    solicitude.fill().required()
+                     .companyName()
     solicitude.lostFocus()
     expect(solicitude.isSubmitEnabled()).to.eq(false)
 
-    solicitude.fillCompanyCif(solicitudeCompanyValidCif)
+    solicitude.fill().companyCif(solicitudeCompanyValidCif)
     solicitude.lostFocus()
     expect(solicitude.isSubmitEnabled()).to.eq(true)
 
@@ -85,7 +85,7 @@ describe('Solicitude', () => {
   it ("form invalid when company name is present and cif is not", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillCompanyName()
+    solicitude.fill().companyName()
     solicitude.lostFocus()
 
     expect(solicitude.isSubmitEnabled()).to.eq(false)
@@ -95,7 +95,7 @@ describe('Solicitude', () => {
   it ("form invalid when cif is present and company name is not", () => {
     const solicitude = new Solicitude()
 
-    solicitude.fillCompanyCif()
+    solicitude.fill().companyCif()
     solicitude.lostFocus()
 
     expect(solicitude.isSubmitEnabled()).to.eq(false)
@@ -105,13 +105,13 @@ describe('Solicitude', () => {
   it("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
     const cnaeID = "200"
-    solicitude.fillCNAE(cnaeID)
+    solicitude.fill().CNAE(cnaeID)
     solicitude.lostFocus()
 
     expect(solicitude.includesCNAEID(cnaeID)).to.eq(true)
 
     const incorrectID = "9-9-9"
-    solicitude.fillCNAE(incorrectID)
+    solicitude.fill().CNAE(incorrectID)
     solicitude.lostFocus()
 
     expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)

@@ -4,25 +4,33 @@ class SolicitudesEdition{
     browser.url('/solicitudes-edition.html')
   }
 
-  fillApplicantName(value){
+  fill(){
+    return this
+  }
+
+  applicantName(value){
     value = value || "applicant name"
     let applicantName =  $('#name')
     applicantName.setValue(value)
+    return this
   }
 
-  fillText(){
+  description(){
     let text =  $('#solicitude-text')
     text.setValue("sample text")
+    return this
   }
 
-  fillDate(){
+  date(){
     let date = $("#date")
     date.addValue("01/01/2018")
+    return this
   }
 
-  fillWrongDate(){
+  wrongDate(){
     let date = $("#date")
     date.addValue("02/31/2018")
+    return this
   }
 
   lostFocus(){

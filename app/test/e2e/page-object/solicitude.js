@@ -4,66 +4,81 @@ class Solicitude{
     browser.url('/')
   }
 
-  fillApplicantName(value){
+  fill(){
+    return this
+  }
+
+  applicantName(value){
     value = value || "applicant name"
     let applicantName =  $('#name')
     applicantName.setValue(value)
+    return this
   }
 
-  fillApplicantSurname(value){
+  applicantSurname(value){
     value = value || "applicant surname"
     let applicantSurname =  $('#surname')
     applicantSurname.setValue(value)
+    return this
   }
 
-  fillApplicantPhonenumber(value){
+  applicantPhonenumber(value){
     value = value || "666666666"
-    let applicantPhonenumber =  $('#phonenumber')
-    applicantPhonenumber.setValue(value)
+    let phonenumber =  $('#phonenumber')
+    phonenumber.setValue(value)
+    return this
   }
 
   focusPhone(){
     let phone = $('#phonenumber')
     this.lostFocus()
+    return this
   }
 
   focusEmail(){
     let phone = $('#email')
     this.lostFocus()
+    return this
   }
 
-  fillApplicantEmail(value){
+  applicantEmail(value){
     value = value || "a@a.com"
     let applicantEmail =  $('#email')
     applicantEmail.setValue(value)
+    return this
   }
 
-  fillText(){
+  description(){
     let text =  $('#solicitude-text')
     text.setValue("sample text")
+    return this
   }
 
-  fillDate(value){
+  date(value){
     value = value || "01/01/2018"
     let date = $("#date")
     date.addValue(value)
+    return this
   }
 
-  fillWrongDate(){
+  wrongDate(){
     let date = $("#date")
     date.addValue("02/31/2018")
+    return this
   }
 
-  fillCompanyName(value){
+  companyName(value){
     value = value || "a Company Name"
     let name = $("#company-name")
     name.addValue(value)
+    return this
   }
 
-  fillCompanyCif(value){
+  companyCif(value){
     value = value || "xyz"
     let cif = $("#company-cif")
     cif.addValue(value)
+    return this
   }
 
   lostFocus(){
@@ -108,34 +123,16 @@ class Solicitude{
       , 2000, 'expected text to be different after 2s')
   }
 
-  fill(){
-    this.fillApplicantPhonenumber()
-    this.fillText()
+  required(){
+    this.applicantPhonenumber()
+    this.description()
     return this
   }
 
-  withApplicantName(text){
-    this.fillApplicantName(text)
-    return this
-  }
-
-  withApplicantSurname(text){
-    this.fillApplicantSurname(text)
-    return this
-  }
-
-  withCompanyName(text){
-    this.fillCompanyName(text)
-    return this
-  }
-
-  withCompanyCif(text){
-    this.fillCompanyCif(text)
-    return this
-  }
-  fillCNAE(value){
+  CNAE(value){
     let cnae =  $('#company-cnae')
     cnae.setValue(value)
+    return this
   }
 
   includesCNAEID(id){
@@ -148,6 +145,5 @@ class Solicitude{
     let input = cnae.getValue()
     return "" == input.includes(id)
   }
-
 }
 module.exports = Solicitude
