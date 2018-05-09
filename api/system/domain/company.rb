@@ -32,6 +32,10 @@ module Domain
 
     end
 
+    def identify
+      @cif
+    end
+
     def serialize
       {
         "name" => @name,

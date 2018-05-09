@@ -12,6 +12,11 @@ module Companies
         Domain::Company.from_document(document)
       end
 
+      def retrieve(id)
+        document = MongoClient.retrieve(id)
+        company= Domain::Company.from_document(document)
+        company
+      end
       private
 
       class MongoClient
@@ -20,6 +25,11 @@ module Companies
           def create(descriptor)
             client[:companies].insert_one(descriptor)
             descriptor
+          end
+
+          def retrieve(id)
+            documents = client[:companies].find({"cif": id})
+            documents.first
           end
 
           private

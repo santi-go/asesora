@@ -1,9 +1,29 @@
 require_relative '../services/solicitudes/service'
+require_relative '../services/companies/service'
 
 module Actions
   class RetrieveSolicitude
     def self.do(id:)
-      ::Solicitudes::Service.retrieve(id)
+      solicitude = ::Solicitudes::Service.retrieve(id)
+      company = ::Companies::Service.retrieve(solicitude['company'])
+      add_with_prefix(solicitude,company,'company')
+    end
+
+    def self.add_with_prefix(base, added, prefix)
+        prefixed = prefix(added,prefix)
+        add(base,prefixed)
+    end
+
+    def self.prefix(base, prefix)
+        prefixed = {}
+        base.each {|key,value|
+          prefixed[prefix+'_'+key] = value
+        }
+        prefixed
+    end
+
+    def self.add(base,added)
+      base.merge(added)
     end
   end
 end

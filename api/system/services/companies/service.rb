@@ -5,7 +5,11 @@ module Companies
   class Service
     def self.create(name, cif, employees, cnae)
       company = Domain::Company.with(name, cif, employees, cnae)
-      Collection.create(company).serialize
+      Collection.create(company)
+    end
+
+    def self.retrieve(id)
+      Collection.retrieve(id).serialize
     end
   end
 end

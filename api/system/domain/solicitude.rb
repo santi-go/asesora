@@ -11,10 +11,7 @@ module Domain
         document['email'],
         document['phonenumber'],
         document['date'],
-        document['company_name'],
-        document['company_cif'],
-        document['company_employees'],
-        document['company_cnae'],
+        document['company'],
         document['creation_moment']
       )
       solicitude.text = document['text']
@@ -22,17 +19,14 @@ module Domain
       solicitude
     end
 
-    def self.with(name, surname, email, phonenumber, date, text, company_name, company_cif, company_employees, company_cnae, creation_moment = nil)
+    def self.with(name, surname, email, phonenumber, date, text, company, creation_moment = nil)
       solicitude = new(
         name,
         surname,
         email,
         phonenumber,
         date,
-        company_name,
-        company_cif,
-        company_employees,
-        company_cnae,
+        company,
         creation_moment
       )
       solicitude.text = text
@@ -40,16 +34,13 @@ module Domain
       solicitude
     end
 
-    def initialize(name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae, creation_moment = nil)
+    def initialize(name, surname, email, phonenumber, date, company, creation_moment = nil)
       @name = name
       @surname = surname
       @email = email
       @phonenumber = phonenumber
       @date = parse(date)
-      @company_name = company_name
-      @company_cif = company_cif
-      @company_employees = company_employees
-      @company_cnae = company_cnae
+      @company=company
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
     end
 
@@ -62,10 +53,7 @@ module Domain
         "text" => @text,
         "date" => @date.to_s,
         "creation_moment" => @creation_moment,
-        "company_name" => @company_name,
-        "company_cif" => @company_cif,
-        "company_employees" => @company_employees,
-        "company_cnae" => @company_cnae
+        "company" => @company
       }
     end
 
