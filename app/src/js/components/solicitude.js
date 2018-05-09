@@ -53,8 +53,12 @@ export default class Solicitude extends Component {
   }
 
   verifyDuplicated() {
-    let cif = this.data.values.companyCif
-    Bus.publish('verify.company.duplicate', cif)
+    let validationCif = new ValidationCif()
+    let validation = validationCif.validate(this.data.values.companyCif)
+    if(validation){
+      let cif = this.data.values.companyCif
+      Bus.publish('verify.company.duplicate', cif)
+    }
   }
 
   translate(payload) {

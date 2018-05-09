@@ -14,7 +14,7 @@ export default class Solicitudes {
     Bus.subscribe("get.solicitude", this.getSolicitude.bind(this))
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
     Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
-    Bus.subscribe("verify.company.duplicate", this.getVerifyCif.bind(this))
+    Bus.subscribe("verify.company.duplicate", this.verifyCif.bind(this))
   }
 
   retrieveCnae() {
@@ -59,7 +59,7 @@ export default class Solicitudes {
     this.client.hit(url, body, callback)
   }
 
-  getVerifyCif(payload) {
+  verifyCif(payload) {
     let callback = this.buildCallback('verified.company.duplicate')
     let body = payload
     let url = 'retrieve-company'
