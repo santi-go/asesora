@@ -48,22 +48,17 @@ describe('Solicitude', () => {
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
 
-  it ("hides contact info when is not needed", () => {
+  it ("knows when contacting info is correctly entered", () => {
     const solicitude = new Solicitude()
-
-    solicitude.focusPhone()
-              .focusEmail()
-
-    expect(solicitude.isContactInfoHiden()).to.eq(true)
-  })
-
-  it ("not hides contact info when is not needed", () => {
-    const solicitude = new Solicitude()
+    const wrongText = "x"
+    solicitude.fill().applicantPhonenumber(wrongText)
+              .applicantEmail(wrongText)
+    solicitude.lostFocus()
+    assert(solicitude.isContactInfoVisible(), true)
 
     solicitude.fill().applicantEmail()
     solicitude.lostFocus()
-
-    expect(solicitude.isContactInfoNotHiden()).to.eq(true)
+    expect(solicitude.isContactInfoHiden()).to.eq(true)
   })
 
   it ("form valid if required data, company name and cif are present", () => {

@@ -29,18 +29,6 @@ class Solicitude{
     return this
   }
 
-  focusPhone(){
-    let phone = $('#phonenumber')
-    this.lostFocus()
-    return this
-  }
-
-  focusEmail(){
-    let phone = $('#email')
-    this.lostFocus()
-    return this
-  }
-
   applicantEmail(value){
     value = value || "a@a.com"
     let applicantEmail =  $('#email')
@@ -98,11 +86,11 @@ class Solicitude{
   }
 
   isContactInfoHiden(){
-    return !browser.isVisible("#contact-info")
+    return !this.isContactInfoVisible()
   }
 
-  isContactInfoNotHiden(){
-    return !browser.isVisible("#contact-info")
+  isContactInfoVisible(){
+    return browser.isVisible("#contact-info")
   }
 
   isCompanyIdentityInfoHidden(){
