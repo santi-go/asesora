@@ -16,6 +16,12 @@
   margin-bottom: 0;
 }
 
+.message-hidden {
+  opacity: 0;
+  padding: 0px 0px;
+  margin-bottom: 0px;
+}
+
 .discardCard {
   animation-name: discardCard;
   animation-duration: 1.5s;
@@ -30,12 +36,27 @@
 
 .submitCard {
   animation-name: submitCard;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
   animation-duration: 1.5s;
 }
 
 @keyframes submitCard {
   to {
     margin-top: -2500px;
+  }
+}
+
+.messageSent {
+  animation-name: messageSent;
+  animation-duration: 0.5s;
+}
+
+@keyframes messageSent {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
