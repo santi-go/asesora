@@ -32,10 +32,18 @@ export default {
     checker(event){
       this.cifValidation(event)
       this.setStatusIfEmpty(event)
+      this.verifyDuplicate(event)
     },
 
     cifValidation(event){
       let signal = new CustomEvent('validate.cif',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
+
+    verifyDuplicate(event){
+      let signal = new CustomEvent('verify.duplicate',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

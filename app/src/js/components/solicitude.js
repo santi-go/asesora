@@ -24,6 +24,10 @@ export default class Solicitude extends Component {
       'validate.cif',
       this.validateCif.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'verify.duplicate',
+      this.verifyDuplicated.bind(this)
+    )
   }
 
   submit(){
@@ -41,6 +45,11 @@ export default class Solicitude extends Component {
       return
     }
     this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
+  }
+
+  verifyDuplicated() {
+    let cif = this.data.values.companyCif
+    Bus.publish('verify.company.duplicate', cif)
   }
 
   translate(payload) {
