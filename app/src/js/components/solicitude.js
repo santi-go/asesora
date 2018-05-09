@@ -13,6 +13,11 @@ export default class Solicitude extends Component {
     Bus.subscribe("translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
+    Bus.subscribe("verified.company.duplicate", this.showDuplicateStatus.bind(this))
+  }
+
+  showDuplicateStatus(payload) {
+    this.data.duplicatedcompany = (payload != {})
   }
 
   watchActions(){
@@ -120,6 +125,7 @@ export default class Solicitude extends Component {
       fullfilled: false,
       validatedcif: true,
       cnaecatalog:[],
+      duplicatedcompany: false,
       translate:function(key,value) {
         this.labels[key] = value
       }
