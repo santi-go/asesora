@@ -1,0 +1,33 @@
+version: '2'
+services:
+  asesora:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - './staging/public:/usr/share/nginx/html'
+      - './staging/conf/nginx.conf:/etc/nginx/nginx.conf'
+
+  api:
+    image: ruby:2.5-stretch
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/db
+    working_dir: '/staging'
+    volumes:
+      - './staging/:/staging'
+    ports:
+      - '4567:4567'
+    links:
+      - mongo
+    command: sh -c 'gem install bundler && bundle install && bundle exec rake staging'
+
+  mongo:
+    image: mongo
+    environment:
+      - AUTH=no
+    ports:
+      - 27017:27017
+
+volumes:
+  bundle:
+    driver: local
