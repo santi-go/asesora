@@ -3,7 +3,7 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
-    <asesora-company :values="values" :labels="labels" :validatedcif="validatedcif"
+    <asesora-company :values="values" :labels="labels" :suggestedcompanies="suggestedcompanies" :validatedcif="validatedcif"
                      :cnaecatalog="cnaecatalog" :duplicatedcompany ="duplicatedcompany"></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="alert background-success message-hidden ">
@@ -23,7 +23,7 @@ import CompanyView from './asesora-company'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif', 'cnaecatalog', 'duplicatedcompany'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif', 'cnaecatalog', 'duplicatedcompany', 'suggestedcompanies'],
 
   data() {
     return {

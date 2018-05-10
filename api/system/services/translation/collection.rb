@@ -52,6 +52,7 @@ module Translation
                 "companyCnae": "CNAE",
                 "submit": "Solicitar",
                 "submitting": "Solicitando",
+                "suggestions": "Sugerencias",
                 "sent": "Todo Ok! Enviado!"
               },
 
