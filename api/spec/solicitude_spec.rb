@@ -5,7 +5,6 @@ require 'rack/test'
 require "date"
 
 require_relative '../asesora.rb'
-# require_relative './page_object/solicitudes.rb'
 
 describe 'Solicitude Api' do
 
@@ -28,7 +27,6 @@ describe 'Solicitude Api' do
       post_create_solicitude(body)
 
       created_solicitude = JSON.parse(last_response.body)
-
       expect(created_solicitude["name"]).to eq("an applicant")
       expect(created_solicitude["surname"]).to eq("Dou")
       expect(created_solicitude["email"]).to eq("applicant@dou.com")

@@ -61,8 +61,8 @@ export default class Solicitudes {
 
   verifyCif(payload) {
     let callback = this.buildCallback('verified.company.duplicate')
-    let body = payload
-    let url = 'retrieve-company'
+    let body = {id: payload}
+    let url = 'duplicated-company'
     this.client.hit(url, body, callback)
   }
 

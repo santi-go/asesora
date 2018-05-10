@@ -14,10 +14,15 @@ export default class Solicitude extends Component {
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicateStatus.bind(this))
+    Bus.subscribe("matched.companies", this.populateSuggestedCompanies.bind(this))
   }
 
   showDuplicateStatus(payload) {
-    this.data.duplicatedcompany = (payload != {})
+    this.data.duplicatedcompany = this.isObjectEmpty(payload)
+  }
+
+  isObjectEmpty(object){
+    return Object.keys(object).length != 0
   }
 
   watchActions(){
@@ -59,6 +64,22 @@ export default class Solicitude extends Component {
       let cif = this.data.values.companyCif
       Bus.publish('verify.company.duplicate', cif)
     }
+  }
+
+  populateSuggestedCompanies(payload){
+    payload = {data: [
+              {"name": "Mam sl",
+              "cif": "7----V",
+              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
+              "employees": "1"},
+
+              {"name": "Mam sa",
+              "cif": "7----V",
+              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
+              "employees": "1"}
+            ]}
+
+    this.data.suggestedcompanies = payload.data
   }
 
   translate(payload) {
@@ -122,6 +143,7 @@ export default class Solicitude extends Component {
                 "noContact": "XXXXX",
                 "incompleteCompanyIdentity": "XXXXXXX",
                 "submitting" : "xxxxxxxxxx",
+                "suggestions" : "xxxxxx",
                 "submit" : "xxxxxxxxxx",
                 "sent" : "XXXX"},
       values: { "text": "",
@@ -133,8 +155,10 @@ export default class Solicitude extends Component {
                 "companyName": "",
                 "companyCif": "",
                 "companyEmployees": "",
-                "companyCnae": ""
+                "companyCnae": "",
+                "suggestions" : ""
               },
+      suggestedcompanies: [],
       fullfilled: false,
       validatedcif: true,
       cnaecatalog:[],
