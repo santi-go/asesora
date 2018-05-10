@@ -77,16 +77,16 @@ export default {
 
     phoneValidation(){
       let field = this.$el.querySelector('#phonenumber')
-      let phoneNumber = this.phoneNumberfilter(field.value)
+      let filteredPhoneNumber = this.phoneNumberfilter(field.value)
 
       field.classList.remove("error")
-      if(phoneNumber == ""){
+      if(filteredPhoneNumber == ""){
         return false
-      }else if(phoneNumber.length != 9 ){
+      }else if(filteredPhoneNumber.length != 9 ){
         field.classList.add("error")
         return false
       }
-      field.value = phoneNumber
+      this.values.phonenumber = filteredPhoneNumber
       return true
     },
 
