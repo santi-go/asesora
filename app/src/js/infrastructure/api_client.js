@@ -2,7 +2,7 @@ import aja from 'aja'
 
 export let APIClient = {
 
-  BASE_URL : 'http://' + process.env.API_HOST + ':4567/api/',
+  BASE_URL : 'http://' + process.env.API_HOST + ':80/api/',
 
   hit: function (endpoint, data, action){
     aja()

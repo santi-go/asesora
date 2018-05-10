@@ -25,6 +25,10 @@ class Asesora < Sinatra::Base
      content_type 'application/json'
   end
 
+  get '/' do
+    redirect '/index.html'
+  end
+
   post '/api/translations' do
     params = JSON.parse(request.body.read)
 
