@@ -9,24 +9,17 @@ services:
       - './staging/conf/nginx.conf:/etc/nginx/nginx.conf'
 
   api:
-    image: ruby:2.5-stretch
+    build:
+      context: .
+      dockerfile: Dockerfile.staging
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/db
+      - MONGODB_URI=mongodb://127.0.0.1:27017/data/db
     working_dir: '/staging'
     volumes:
       - './staging/:/staging'
     ports:
       - '4567:4567'
-    links:
-      - mongo
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake staging'
-
-  mongo:
-    image: mongo
-    environment:
-      - AUTH=no
-    ports:
-      - 27017:27017
+    command: sh -c 'service mongodb start && gem install bundler && bundle install && bundle exec rake staging'
 
 volumes:
   bundle:
