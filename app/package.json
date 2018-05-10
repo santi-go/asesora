@@ -34,7 +34,8 @@
     "build-watch": "webpack --config conf/webpack.config.js --watch",
     "test-all": "npm run builde2e -s && wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
     "test-e2e": "npm run builde2e -s && wdio ./conf/wdio.conf.js",
-    "builde2e": "API_HOST=api webpack --config ./conf/webpack.config.js",
+    "builde2e": "API_HOST=api API_PORT=4567 webpack --config ./conf/webpack.config.js",
+    "build-staging": "API_HOST=localhost API_PORT=80 webpack --config conf/webpack.config.js",
     "test-unit": "mocha test/unit --compilers js:babel-core/register"
   },
   "babel": {
