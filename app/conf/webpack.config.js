@@ -42,7 +42,10 @@ module.exports = {
       },
       sourceMap: true
     }),
-    new webpack.EnvironmentPlugin({'API_HOST': 'localhost'}),
+    new webpack.EnvironmentPlugin({
+      'API_HOST': 'localhost',
+      'API_PORT': '4567'
+    }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
