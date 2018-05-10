@@ -17,7 +17,11 @@ export default class Solicitude extends Component {
   }
 
   showDuplicateStatus(payload) {
-    this.data.duplicatedcompany = (payload != {})
+    this.data.duplicatedcompany = this.isObjectEmpty(payload)
+  }
+
+  isObjectEmpty(object){
+    return Object.keys(object).length != 0
   }
 
   watchActions(){

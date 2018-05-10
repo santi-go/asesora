@@ -9,6 +9,8 @@ require_relative 'system/actions/retrieve_dictionary'
 require_relative 'system/actions/retrieve_cnae'
 require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/domain/solicitude'
+require_relative 'system/actions/retrieve_company'
+
 
 class Asesora < Sinatra::Base
 
@@ -88,7 +90,7 @@ class Asesora < Sinatra::Base
 
   post '/api/retrieve-solicitude' do
     params = JSON.parse(request.body.read)
-    
+
     solicitude = Actions::RetrieveSolicitude.do(id: params['id'])
 
     {data: solicitude}.to_json
@@ -98,6 +100,12 @@ class Asesora < Sinatra::Base
   post '/api/cnae' do
     cnae_catalog = Actions::RetrieveCnae.do()
     {data: cnae_catalog}.to_json
+  end
+
+  post '/api/duplicated-company' do
+    params = JSON.parse(request.body.read)
+    company = Actions::RetrieveCompany.do(id: params['id'])
+    company.to_json
   end
 
   options "*" do

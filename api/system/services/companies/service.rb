@@ -9,7 +9,9 @@ module Companies
     end
 
     def self.retrieve(id)
-      Collection.retrieve(id).serialize
+      result = Collection.retrieve(id)
+      return result.serialize if(result != false)
+      return {}
     end
   end
 end
