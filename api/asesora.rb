@@ -23,6 +23,10 @@ class Asesora < Sinatra::Base
      content_type 'application/json'
   end
 
+  get '/' do
+    redirect '/index.html'
+  end
+
   post '/api/translations' do
     params = JSON.parse(request.body.read)
 
@@ -88,7 +92,7 @@ class Asesora < Sinatra::Base
 
   post '/api/retrieve-solicitude' do
     params = JSON.parse(request.body.read)
-    
+
     solicitude = Actions::RetrieveSolicitude.do(id: params['id'])
 
     {data: solicitude}.to_json
