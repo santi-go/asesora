@@ -37,16 +37,21 @@ print_message
 
 
 printf "${TITLE}\nRunning tests:\n\n${RESET}"
-printf " · launching tests app...\n"
-docker-compose run --rm app npm run test-all 2>/dev/null
+printf " · up test environment: \n"
+docker-compose up --build -d 2>/dev/null
 VALUE=$?
-printf "\n · tests app: "
 print_message
 
-printf "\n · launching tests api...\n"
-docker-compose run --rm api sh -c "gem install bundler && bundle install && bundle exec rake test" 2>/dev/null
+printf " · launching tests api...\n"
+docker-compose exec -T api sh -c "gem install bundler && bundle install && bundle exec rake test" 2>/dev/null
 VALUE=$?
 printf " · tests api: "
+print_message
+
+printf "\n · launching tests app...\n"
+docker-compose run --rm app sh -c 'npm install && npm run test-all' 2>/dev/null
+VALUE=$?
+printf "\n · tests app: "
 print_message
 
 printf " · down docker tests: "
@@ -61,7 +66,7 @@ VALUE=$?
 printf "\n · build app: "
 print_message
 
-printf " · remove container app: "
+printf " · downing containers: "
 docker-compose down 2>/dev/null
 VALUE=$?
 print_message

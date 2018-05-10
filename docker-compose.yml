@@ -26,11 +26,12 @@ services:
       - './app/:/test'
     depends_on:
       - asesora
+      - api
       - selenium
     command: sh -c 'npm install && npm run build -s'
 
   api:
-    image: ruby:2.5.0
+    build: ./api
     environment:
       - MONGODB_URI=mongodb://mongo:27017/db
     working_dir: '/api'
