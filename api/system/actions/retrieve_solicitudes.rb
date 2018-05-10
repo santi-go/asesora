@@ -10,6 +10,10 @@ module Actions
       end
     end
 
+    def self.do_companies(companies)
+      ::Companies::Service.all(companies)
+    end
+
     def self.add_with_prefix(base, added, prefix)
         prefixed = prefix(added,prefix)
         add(base,prefixed)

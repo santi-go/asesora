@@ -107,6 +107,18 @@ class Asesora < Sinatra::Base
     company = Actions::RetrieveCompany.do(id: params['id'])
     company.to_json
   end
+  
+  post '/api/company-matches' do
+    params = JSON.parse(request.body.read)
+
+    criteria = {
+      name: params['name'],
+      cnae: params['cnae']
+    }
+    companies = Actions::RetrieveSolicitudes.do_companies(criteria)
+
+    {data: companies}.to_json
+  end
 
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"

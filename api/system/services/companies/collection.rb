@@ -18,6 +18,26 @@ module Companies
         company= Domain::Company.from_document(document)
         company
       end
+
+      def all(criteria)
+        return [] if criteria[:name].length < 3
+        
+        name = criteria[:name]
+        cnae = criteria[:cnae]
+
+        name_regex = /#{name}/
+        list = MongoClient.all(name_regex)
+        
+        if cnae != ""
+          list = list.select{|company| cnae == company["cnae"]} 
+        end
+
+        companies = list.map do |company|
+          Domain::Company.from_document(company)
+        end
+        companies
+      end
+
       private
 
       class MongoClient
@@ -31,6 +51,11 @@ module Companies
           def retrieve(id)
             documents = client[:companies].find({"cif": id})
             documents.first
+          end
+
+          def all(regex)
+            documents = client[:companies].find({"name":{ "$regex": regex}})
+            documents
           end
 
           private

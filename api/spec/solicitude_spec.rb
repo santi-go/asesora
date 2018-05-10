@@ -5,7 +5,6 @@ require 'rack/test'
 require "date"
 
 require_relative '../asesora.rb'
-# require_relative './page_object/solicitudes.rb'
 
 describe 'Solicitude Api' do
 
