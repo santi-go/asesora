@@ -99,16 +99,6 @@ else
 fi
 
 printf "${GREEN}\nCopy public architecture to staging:\n${RESET}"
-printf " · copy NGINX conf: "
-cp app/conf/nginx.conf staging/conf/nginx.conf 2>/dev/null
-COPY_NGINX=$?
-if [ $COPY_NGINX -eq 0 ];then
-   printf "${GREEN}Ok${RESET}\n"
-else
-   printf "\n${RED}Error ${COPY_NGINX}${RESET}\n"
-   pause
-fi
-
 printf " · copy public folder: "
 cp app/public staging/public/ -r 2>/dev/null
 COPY_PUBLIC_FOLDER=$?
