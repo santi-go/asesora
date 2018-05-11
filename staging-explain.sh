@@ -16,6 +16,7 @@ This script guide you to create and learn the process
 of creation a 'staging' in a server.
 It build the application and copy only needed files to folder 'staging'
 and up this in an simulated server.
+Then, if you continue, it copy the 'staging' into droplet.
 \n"
 }
 
@@ -67,6 +68,21 @@ ${RESET}
    This docker simulates the droplet in one service.
    The application run in localhost, where port is the default (80).
    No more services, this service contain all.
+2. Accept down the service for continue the process copying to a droplet.
 \n"
 read -p "Press enter to run four chapter" key
+}
+
+five_copy_to_droplet() {
+printf "${TITLE}\n\n
+Five chapter: copy the application to droplet
+${RESET}
+1. You need input your ssh-private-key file, enter this with complete location,
+   example: '~/.ssh/my_ssh'
+2. Create a folder '/var/www' in the droplet. This is not destructive.
+3. For prevent destruct the older web, move this using the ssh connection.
+   If the folder exist you read an error.
+4. Copy folder 'staging' to droplet directly to folder 'asesora'.
+\n"
+read -p "Press enter to run five chapter" key
 }

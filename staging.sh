@@ -136,3 +136,36 @@ printf "${TEXT}\n · launched staging in local environment: ${RESET}"
 print_message
 
 echo "${GREEN}\n\nVisit localhost/ to view the staging running!${RESET}"
+
+printf "${TITLE}\n\nYou would down staging from local environment?\n${RESET}"
+read -p "(enter to continue)" key
+docker-compose -f docker-compose_staging.yml down 2>/dev/null
+VALUE=$?
+printf "${TEXT}\n · down staging from local environment: ${RESET}"
+print_message
+
+
+five_copy_to_droplet
+
+printf "${TITLE}\nYou need identify in ssh connections:\n\n${RESET}"
+read -p "Input your ssh-private-key file with complete location: " SSHKEY
+echo "\n"
+
+printf "${TITLE}\nCreate folder 'www' in droplet:\n\n${RESET}"
+ssh -i $SSHKEY root@206.189.1.31 'mkdir /var/www/ -p' 2>/dev/null
+VALUE=$?
+printf "${TEXT}\n · create: ${RESET}"
+print_message
+
+printf "${TITLE}\nMove folder 'asesora' to 'asesora_backup' in droplet for save:\n\n${RESET}"
+ssh -i $SSHKEY root@206.189.1.31 'mkdir /var/www/asesora_backup -p' 2>/dev/null
+ssh -i $SSHKEY root@206.189.1.31 'mv /var/www/asesora /var/www/asesora_backup' 2>/dev/null
+VALUE=$?
+printf "${TEXT}\n · create: ${RESET}"
+print_message
+
+printf "${TITLE}\nCopy folder 'staging' to droplet:\n\n${RESET}"
+scp -i $SSHKEY -rC staging/ root@206.189.1.31:/var/www/asesora/ 2>/dev/null
+VALUE=$?
+printf "${TEXT}\n · copy: ${RESET}"
+print_message
