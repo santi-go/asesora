@@ -111,4 +111,71 @@ describe('Solicitude', () => {
 
     expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)
   })
+
+  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+    const firstSolicitude = new Solicitude()
+    const firstCompanyName = "Samuel & Santi"
+    const firstCIF = "B91735456"
+    firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
+    firstSolicitude.submit()
+
+    const secondSolicitude = new Solicitude()
+    const secondCompanyName = "Samuel & Mikel"
+    const secondCIF = "G98128218"
+    const CNAE = "931 - Actividades deportivas"
+    secondSolicitude.fill().required().companyName(secondCompanyName).CNAE(CNAE).companyCif(secondCIF)
+    secondSolicitude.submit()
+
+    const thirdSolicitude = new Solicitude()
+    thirdSolicitude.fill().companyName("Sam")
+    let numberOfMatches = thirdSolicitude.numberOfCompanyMatches()
+
+    expect(numberOfMatches).to.be.gt(1)
+
+    const fourthSolicitude = new Solicitude()
+    fourthSolicitude.fill().companyName("###@@@@")
+    numberOfMatches = fourthSolicitude.numberOfCompanyMatches()
+
+    expect(numberOfMatches).to.eq(0)
+  })
+
+  it ("company allows filled with matches", () => {
+    const solicitude = new Solicitude()
+    let name = 'Devscola'
+    let cif = '26751998P'
+    solicitude.fill().required()
+                     .companyName(name)
+                     .companyCif(cif)
+                     .submit()
+    
+    const second_solicitude = new Solicitude()
+    second_solicitude.companyName(name)
+    second_solicitude.clickOnCompanyMatches()
+    expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
+  })
+  
+  it("narrow the company matches when given a cnae",()=> {
+    const firstSolicitude = new Solicitude()
+    const firstCompanyName = "Samuel & Santi"
+    const firstCIF = "B91735456"
+    firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
+    firstSolicitude.submit()
+
+    const secondSolicitude = new Solicitude()
+    const secondCompanyName = "Samuel & Mikel"
+    const secondCIF = "G98128218"
+    const CNAE = "931 - Actividades deportivas"
+    secondSolicitude.fill().required().companyName(secondCompanyName).CNAE(CNAE).companyCif(secondCIF)
+    secondSolicitude.submit()
+
+    const thirdSolicitude = new Solicitude()
+    thirdSolicitude.fill().companyName("Sam")
+    let numberOfMatchesInicial = thirdSolicitude.numberOfCompanyMatches()
+
+    thirdSolicitude.fill().CNAE("931").lostFocus()
+    thirdSolicitude.fill().companyName("Sam")
+    let numberOfMatchesFinal = thirdSolicitude.numberOfCompanyMatches()
+
+    expect(numberOfMatchesInicial).to.be.gt(numberOfMatchesFinal)
+  })
 })

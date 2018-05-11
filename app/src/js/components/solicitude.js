@@ -7,6 +7,7 @@ export default class Solicitude extends Component {
 
   constructor(){
     super('solicitude')
+    this.populateSuggestedCompanies()
   }
 
   subscribe(){
@@ -14,7 +15,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicateStatus.bind(this))
-    Bus.subscribe("matched.companies", this.populateSuggestedCompanies.bind(this))
+    Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
   }
 
   showDuplicateStatus(payload) {
@@ -37,6 +38,14 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'verify.duplicate',
       this.verifyDuplicated.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'search.companies',
+      this.searchCompanies.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'fill.company',
+      this.fillCompany.bind(this)
     )
   }
 
@@ -66,20 +75,20 @@ export default class Solicitude extends Component {
     }
   }
 
+  searchCompanies(event){
+    Bus.publish('search.company.matches', event.detail)
+  }
+
   populateSuggestedCompanies(payload){
-    payload = {data: [
-              {"name": "Mam sl",
-              "cif": "7----V",
-              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
-              "employees": "1"},
-
-              {"name": "Mam sa",
-              "cif": "7----V",
-              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
-              "employees": "1"}
-            ]}
-
+    if (payload == null) return
     this.data.suggestedcompanies = payload.data
+  }
+
+  fillCompany(item){
+    this.data.setValues('companyName', item.detail.name)
+    this.data.setValues('companyCif', item.detail.cif)
+    this.data.setValues('companyEmployees', item.detail.employees)
+    this.data.setValues('companyCnae', item.detail.cnae)
   }
 
   translate(payload) {
@@ -165,6 +174,9 @@ export default class Solicitude extends Component {
       duplicatedcompany: false,
       translate:function(key,value) {
         this.labels[key] = value
+      },
+      setValues:function(key, value) {
+        this.values[key] = value
       }
     }
   }
