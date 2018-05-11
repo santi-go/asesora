@@ -1,4 +1,7 @@
 #!/bin/sh
+THIS_DIRECTORY=$(dirname "$0")/
+. $THIS_DIRECTORY/staging-explain.sh
+
 BLINK='\033[5m'
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -13,31 +16,21 @@ print_message() {
      pause
   fi
 }
-pause() {
-   printf "\n${BLINK} → Press enter to continue\n${RESET}"
-   read -p " " key
-}
+
+explain_title
+
+explain_abstract
+
+first_running_test
 
 echo "\n"
 
-printf "${TITLE}Clean staging\n${RESET}"
-printf "${TEXT} · downing old staging containers: ${RESET}"
-docker-compose -f docker-compose_staging.yml down 2>/dev/null
-VALUE=$?
-print_message
-
-printf "${TEXT} · remove folder staging: ${RESET}"
-rm -rf staging 2>/dev/null
-VALUE=$?
-print_message
-
-printf "${TEXT} · create staging folder: ${RESET}"
-mkdir staging/conf -p 2>/dev/null
-VALUE=$?
-print_message
-
-
 printf "${TITLE}\nRunning tests:\n${RESET}"
+printf "${TEXT} · downing old test containers: ${RESET}"
+docker-compose down 2>/dev/null
+VALUE=$?
+print_message
+
 printf "${TEXT}Upping test environment...\n\n${RESET}"
 docker-compose up --build -d 2>/dev/null
 VALUE=$?
@@ -60,6 +53,30 @@ printf "${TEXT} · down docker tests: ${RESET}"
 docker-compose down 2>/dev/null
 VALUE=$?
 print_message
+
+
+second_clean_staging
+
+echo "\n"
+
+printf "${TITLE}Clean staging\n${RESET}"
+printf "${TEXT} · downing old staging containers: ${RESET}"
+docker-compose -f docker-compose_staging.yml down 2>/dev/null
+VALUE=$?
+print_message
+
+printf "${TEXT} · remove folder staging: ${RESET}"
+rm -rf staging 2>/dev/null
+VALUE=$?
+print_message
+
+printf "${TEXT} · create staging folder: ${RESET}"
+mkdir staging/conf -p 2>/dev/null
+VALUE=$?
+print_message
+
+
+third_build_architecture
 
 
 printf "${TITLE}\nBuild public architecture:\n\n${RESET}"
@@ -107,6 +124,10 @@ printf "${TEXT} · copy api system folder: ${RESET}"
 cp api/system staging/system/ -r 2>/dev/null
 VALUE=$?
 print_message
+
+
+four_launch_local
+
 
 printf "${TITLE}\nLaunching staging in local environment:\n\n${RESET}"
 docker-compose -f docker-compose_staging.yml up --build -d 2>/dev/null
