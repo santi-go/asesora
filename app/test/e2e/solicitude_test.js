@@ -139,6 +139,21 @@ describe('Solicitude', () => {
     expect(numberOfMatches).to.eq(0)
   })
 
+  it ("company allows filled with matches", () => {
+    const solicitude = new Solicitude()
+    let name = 'Devscola'
+    let cif = '26751998P'
+    solicitude.fill().required()
+                     .companyName(name)
+                     .companyCif(cif)
+                     .submit()
+    
+    const second_solicitude = new Solicitude()
+    second_solicitude.companyName(name)
+    second_solicitude.clickOnCompanyMatches()
+    expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
+  })
+  
   it("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
