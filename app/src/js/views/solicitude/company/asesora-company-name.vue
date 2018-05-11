@@ -20,7 +20,29 @@ export default {
 
   methods: {
     onKeyUp(event){
+      if(this.hasRequiredLength()){
+        this.searchCompaniesMatch()
+      }
+
       this.$parent.$parent.$parent.setButtonStatus()
+    },
+
+    hasRequiredLength(){
+      let minNumberOfChars = 3
+      if(this.values.companyName.length >= minNumberOfChars){
+        return true
+      }
+      return false
+    },
+
+    searchCompaniesMatch() {
+      let signal = new CustomEvent('search.companies',
+                                      {'detail': {
+                                          'name': this.values.companyName,
+                                          'cnae': this.values.companyCnae
+                                      },
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     keydown(event){
