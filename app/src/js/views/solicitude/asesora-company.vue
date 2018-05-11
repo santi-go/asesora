@@ -10,7 +10,7 @@
         <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
         <asesora-company-cnae :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company-cnae>
       </div>
-      <div class="column column-50">
+      <div class="column column-50" id="company-matches">
         <asesora-company-matches :labels="labels" :suggestedcompanies='suggestedcompanies'></asesora-company-matches>
       </div>
     </div>

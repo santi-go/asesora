@@ -97,6 +97,11 @@ class Solicitude{
     return !browser.isVisible('#company-identity-info')
   }
 
+  numberOfCompanyMatches(){
+    const data = $('#company-matches tbody')
+    return data.$$(`tr td:nth-child(${1})`).length
+  }
+
   submit(){
     this.lostFocus()
     $('#submit').click()

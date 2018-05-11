@@ -111,4 +111,32 @@ describe('Solicitude', () => {
 
     expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)
   })
+
+  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+    const firstSolicitude = new Solicitude()
+    const firstCompanyName = "Samuel & Santi"
+    const firstCIF = "B91735456"
+    firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
+    firstSolicitude.submit()
+
+    const secondSolicitude = new Solicitude()
+    const secondCompanyName = "Samuel & Mikel"
+    const secondCIF = "G98128218"
+    const CNAE = "931 - Actividades deportivas"
+    secondSolicitude.fill().required().companyName(secondCompanyName).CNAE(CNAE).companyCif(secondCIF)
+    secondSolicitude.submit()
+
+
+    const thirdSolicitude = new Solicitude()
+    thirdSolicitude.fill().companyName("Sam")
+    let numberOfMatches = thirdSolicitude.numberOfCompanyMatches()
+
+    expect(numberOfMatches).to.be.gt(1)
+
+    const fourthSolicitude = new Solicitude()
+    fourthSolicitude.fill().companyName("###@@@@")
+    numberOfMatches = fourthSolicitude.numberOfCompanyMatches()
+
+    expect(numberOfMatches).to.eq(0)
+  })
 })
