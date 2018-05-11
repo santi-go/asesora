@@ -167,5 +167,5 @@ print_message
 printf "${TITLE}\nCopy folder 'staging' to droplet:\n\n${RESET}"
 scp -i $SSHKEY -rC staging/ root@206.189.1.31:/var/www/asesora/ 2>/dev/null
 VALUE=$?
-printf "${TEXT}\n · copy: ${RESET}"
+printf "${TEXT}\n · copying with scp (Secure Copy): ${RESET}"
 print_message

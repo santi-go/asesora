@@ -82,7 +82,7 @@ ${RESET}
 2. Create a folder '/var/www' in the droplet. This is not destructive.
 3. For prevent destruct the older web, move this using the ssh connection.
    If the folder exist you read an error.
-4. Copy folder 'staging' to droplet directly to folder 'asesora'.
+4. Copy folder 'staging' directly to folder 'asesora' into droplet.
 \n"
 read -p "Press enter to run five chapter" key
 }
