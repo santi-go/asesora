@@ -47,7 +47,7 @@ read -p "Press enter to run second chapter" key
 
 third_build_architecture() {
 printf "${TITLE}\n\n
-Third chapter: build public architecture to local staging
+Third chapter: build public architecture staging
 ${RESET}
 1. Run 'docker-compose run' with 'build-staging'
    for build app with staging environment.
@@ -73,9 +73,9 @@ ${RESET}
 read -p "Press enter to run four chapter" key
 }
 
-five_copy_to_droplet() {
+four_copy_to_droplet() {
 printf "${TITLE}\n\n
-Five chapter: copy the application to droplet
+Four chapter: copy the application to droplet
 ${RESET}
 1. You need input your ssh-private-key file, enter this with complete location,
    example: '~/.ssh/my_ssh'

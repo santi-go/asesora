@@ -95,3 +95,116 @@ In this moment we urge you to indicate the root password of root in droplet.
 ~~~
 ssh -i ~/.ssh/your_key root@ip.droplet
 ~~~
+
+
+# The server
+
+## Script for testing in local
+
+For test the application configured for run without docker, view or run the script:
+
+~~~
+sh staging_local.sh
+~~~
+
+This script create a simulated service (in one docker) that reunifies all services into a machine Debian 9.4.
+
+
+## Script for copy to a server
+
+For copy the applicative to a server, view or run the script:
+
+~~~
+sh staging.sh
+~~~
+
+
+## The droplet in Digital Ocean
+
+### Installation
+
+You need first prepare the server, install Mongodb. With a root user:
+
+~~~
+apt-get update
+apt-get upgrade
+apt-get install mongodb-server curl
+~~~
+
+Rvm, ruby and bundler:
+
+~~~
+curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
+\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
+gpg --verify rvm-installer.asc
+bash rvm-installer stable
+rvm install 2.5.0
+rvm gemset use global && gem install bundler
+~~~
+
+### Some configurations
+
+~~~
+mkdir -p /data/db
+~~~
+
+Edit ```/etc/mongodb.conf``` and configure:
+
+~~~
+bind_ip = 127.0.0.1
+port = 27017
+dbpath=/data/db
+~~~
+
+/etc/profile
+export PATH=$PATH:/opt/rvm/bin:/opt/rvm/sbin
+
+Update .bashrc to use rvm and create variable environment adding to ```~/.bashrc``` this:
+
+~~~
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export MONGODB_URI=mongodb://127.0.0.1:27017/data/db
+~~~
+
+And launch:
+
+~~~
+source ~/.bashrc
+~~~
+
+### Launch the application
+
+Create a script that prepare ruby environment, launch mongodb and application:
+
+~~~
+nano ~/bin/launch_asesora.sh
+~~~
+
+and copy in:
+
+~~~
+#!/bin/bash --login
+service mongodb stop
+mongod -f /etc/mongodb.conf --fork --logpath /var/log/mongodb.log
+cd /var/www/asesora
+rvm use 2.5.0
+bundle exec rake digitalocean
+~~~
+
+Set script executable:
+
+~~~
+chmod 755 ~/bin/launch_asesora.sh
+~~~
+
+Run the script:
+
+~~~
+sh ~/bin/launch_asesora.sh
+~~~
+
+
+## Ok. That's all!
+
+When you have configured the droplet and launched the first ```staging.sh``` you only need enter with ssh in droplet and reboot it.

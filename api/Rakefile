@@ -10,6 +10,10 @@ task :staging do
   sh "rerun --background -- rackup --port 80 -o 0.0.0.0"
 end
 
+task :digitalocean do
+  sh "rerun --background -- rackup --port 80 -o 206.189.1.31"
+end
+
 task :tdd do
   sh 'rspec'
 end
