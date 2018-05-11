@@ -44,7 +44,7 @@ Before launch the test you have to build the application with `docker-compose ru
 Demo template available at the project in folder `/app/demo-template`
 
 
-# Stagging
+# Staging
 
 If you are not sure if you have a public key into droplet of Digital Ocean, try to enter:
 
