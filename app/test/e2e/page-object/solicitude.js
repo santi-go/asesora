@@ -102,6 +102,11 @@ class Solicitude{
     return data.$$(`tr td:nth-child(${1})`).length
   }
 
+  clickOnCompanyMatches(){
+    const data = $('#company-matches tbody')
+    data.click()
+  }
+
   submit(){
     this.lostFocus()
     $('#submit').click()
@@ -131,6 +136,11 @@ class Solicitude{
     let cnae =  $('#company-cnae')
     let input = cnae.getValue()
     return "" == input.includes(id)
+  }
+  includesCompanyCif(cif){
+    let company_cif =  $('#company-cif')
+    let input = company_cif.getValue()
+    return input.includes(cif)
   }
 }
 module.exports = Solicitude
