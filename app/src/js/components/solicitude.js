@@ -7,6 +7,7 @@ export default class Solicitude extends Component {
 
   constructor(){
     super('solicitude')
+    this.populateSuggestedCompanies()
   }
 
   subscribe(){
@@ -38,6 +39,10 @@ export default class Solicitude extends Component {
       'verify.duplicate',
       this.verifyDuplicated.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'fill.company',
+      this.fillCompany.bind(this)
+    )
   }
 
   submit(){
@@ -67,19 +72,14 @@ export default class Solicitude extends Component {
   }
 
   populateSuggestedCompanies(payload){
-    payload = {data: [
-              {"name": "Mam sl",
-              "cif": "7----V",
-              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
-              "employees": "1"},
-
-              {"name": "Mam sa",
-              "cif": "7----V",
-              "cnae": "101 - Procesado y conservación de carne y elaboración de productos cárnicos",
-              "employees": "1"}
-            ]}
-
     this.data.suggestedcompanies = payload.data
+  }
+
+  fillCompany(item){
+    this.data.setValues('companyName', item.detail.name)
+    this.data.setValues('companyCif', item.detail.cif)
+    this.data.setValues('companyEmployees', item.detail.employees)
+    this.data.setValues('companyCnae', item.detail.cnae)
   }
 
   translate(payload) {
@@ -165,6 +165,9 @@ export default class Solicitude extends Component {
       duplicatedcompany: false,
       translate:function(key,value) {
         this.labels[key] = value
+      },
+      setValues:function(key, value) {
+        this.values[key] = value
       }
     }
   }
