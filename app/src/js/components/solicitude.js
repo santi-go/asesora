@@ -15,7 +15,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicateStatus.bind(this))
-    Bus.subscribe("matched.companies", this.populateSuggestedCompanies.bind(this))
+    Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
   }
 
   showDuplicateStatus(payload) {
@@ -38,6 +38,10 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'verify.duplicate',
       this.verifyDuplicated.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'search.companies',
+      this.searchCompanies.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'fill.company',
@@ -71,7 +75,12 @@ export default class Solicitude extends Component {
     }
   }
 
+  searchCompanies(event){
+    Bus.publish('search.company.matches', event.detail)
+  }
+
   populateSuggestedCompanies(payload){
+    if (payload == null) return
     this.data.suggestedcompanies = payload.data
   }
 
