@@ -21,15 +21,15 @@ module Companies
 
       def all(criteria)
         return [] if criteria[:name].length < 3
-        
+
         name = criteria[:name]
         cnae = criteria[:cnae]
 
-        name_regex = /#{name}/
+        name_regex = /#{name}/i
         list = MongoClient.all(name_regex)
-        
+
         if cnae != ""
-          list = list.select{|company| cnae == company["cnae"]} 
+          list = list.select{|company| cnae == company["cnae"]}
         end
 
         companies = list.map do |company|
