@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div v-if="duplicatedcompany">
-      <div class="alert background-danger">
-        <em class="fa fa-times-circle"></em>
-         Hay un duplicado
-      </div>
-    </div>
     <asesora-company-name :values="values" :labels="labels"></asesora-company-name>
     <asesora-company-cif :values="values" :labels="labels" :validatedcif="validatedcif"></asesora-company-cif>
     <div id="company-identity-info" v-bind:class="{hide: validIdentity}">
@@ -24,7 +18,7 @@ import CompanyCifView from './asesora-company-cif'
 export default {
   name: 'asesora-company-identity',
 
-  props: ['labels', 'values', 'validatedcif', 'duplicatedcompany'],
+  props: ['labels', 'values', 'validatedcif'],
 
   watch: {
     validatedcif: function(){
