@@ -141,24 +141,11 @@ gpg --verify rvm-installer.asc
 bash rvm-installer stable
 rvm install 2.5.0
 rvm gemset use global && gem install bundler
+rm rvm-installer
+rm rvm-installer.asc
 ~~~
 
 ### Some configurations
-
-~~~
-mkdir -p /data/db
-~~~
-
-Edit ```/etc/mongodb.conf``` and configure:
-
-~~~
-bind_ip = 127.0.0.1
-port = 27017
-dbpath=/data/db
-~~~
-
-/etc/profile
-export PATH=$PATH:/opt/rvm/bin:/opt/rvm/sbin
 
 Update .bashrc to use rvm and create variable environment adding to ```~/.bashrc``` this:
 
@@ -173,9 +160,33 @@ And launch:
 source ~/.bashrc
 ~~~
 
+### Prepare Mongodb
+
+Create directory for databases:
+
+~~~
+mkdir -p /data/db
+chown -R mongodb:mongodb /data/db
+~~~
+
+Edit ```/etc/mongodb.conf``` and configure:
+
+~~~
+bind_ip = 127.0.0.1
+port = 27017
+dbpath=/data/db
+~~~
+
+Reboot system:
+
+~~~
+reboot
+~~~
+
+
 ### Launch the application
 
-Create a script that prepare ruby environment, launch mongodb and application:
+Create a script that prepare ruby environment and launch application:
 
 ~~~
 nano ~/bin/launch_asesora.sh
@@ -185,8 +196,6 @@ and copy in:
 
 ~~~
 #!/bin/bash --login
-service mongodb stop
-mongod -f /etc/mongodb.conf --fork --logpath /var/log/mongodb.log
 cd /var/www/asesora
 rvm use 2.5.0
 bundle exec rake digitalocean
@@ -198,13 +207,19 @@ Set script executable:
 chmod 755 ~/bin/launch_asesora.sh
 ~~~
 
-Run the script:
+Add to crontab:
 
 ~~~
-sh ~/bin/launch_asesora.sh
+crontab -e
+~~~
+
+Add to end the next line:
+
+~~~
+@reboot /root/bin/launch_asesora.sh
 ~~~
 
 
 ## Ok. That's all!
 
-When you have configured the droplet and launched the first ```staging.sh``` you only need enter with ssh in droplet and reboot it.
+When you have configured the droplet and launched the first ```staging.sh```.
