@@ -22,19 +22,20 @@ describe 'Company Api' do
       "text" => "a text",
       "date" => "2018-12-25",
       "companyName": "Elena",
-      "companyCif": "B91045948",
+      "companyCif": "23801250E",
       "companyEmployees": "10",
       "companyCnae": "101"
     }.to_json
 
     post '/api/create-solicitude', solicitude
 
-    post '/api/duplicated-company', {"id": "B91045948"}.to_json
-    pepe = JSON.parse(last_response.body)
-    expect(pepe["name"]).to eq("Elena")
-    expect(pepe["cif"]).to eq("B91045948")
-    expect(pepe["employees"]).to eq("10")
-    expect(pepe["cnae"]).to eq("101")
+    post '/api/duplicated-company', {"id": "23801250E"}.to_json
+    company = JSON.parse(last_response.body)
+
+    expect(company["name"]).to eq("Elena")
+    expect(company["cif"]).to eq("23801250E")
+    expect(company["employees"]).to eq("10")
+    expect(company["cnae"]).to eq("101")
   end
 
   it "knows when company is not registered yet" do
@@ -43,4 +44,40 @@ describe 'Company Api' do
     expect(pepe).to eq({})
   end
 
+  it "don't saves a duplicated company" do
+    first_solicitude = {
+      "name": "an applicant",
+      "surname": "Dou",
+      "email": "applicant@dou.com",
+      "phonenumber": "123456789",
+      "text" => "a text",
+      "date" => "2018-12-25",
+      "companyName": "Elena",
+      "companyCif": "D68795749",
+      "companyEmployees": "10",
+      "companyCnae": "101"
+    }.to_json
+
+    post '/api/create-solicitude', first_solicitude
+
+    second_solicitude = {
+      "name": "an applicant",
+      "surname": "Dou",
+      "email": "applicant@dou.com",
+      "phonenumber": "123456789",
+      "text" => "a text",
+      "date" => "2018-12-25",
+      "companyName": "Santi",
+      "companyCif": "D68795749",
+      "companyEmployees": "10",
+      "companyCnae": "101"
+    }.to_json
+
+    post '/api/create-solicitude', second_solicitude
+
+    post '/api/duplicated-company', {"id": "D68795749"}.to_json
+    company = JSON.parse(last_response.body)
+
+    expect(company["name"]).to eq("Elena")
+  end
 end

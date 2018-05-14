@@ -47,11 +47,18 @@ export default {
       let validCnae = this.cnaecatalog.find(function(cnaeCode){
         return cnaeCode.id === id
       })
-      if(!validCnae){
-          event.target.value = ""
-      } else {
-          event.target.value = this.fullCnaeName(validCnae)
-      }
+      event.target.value = ""
+
+      if(validCnae){
+        event.target.value = this.fullCnaeName(validCnae)
+        let signal = new CustomEvent('search.companies',
+                                    {'detail': {
+                                      'name': this.values.companyName,
+                                      'cnae': this.values.companyCnae
+                                    },
+                                    'bubbles': true})
+        this.$el.dispatchEvent(signal)
+      } 
     }
   }
 }
