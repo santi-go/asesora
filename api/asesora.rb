@@ -13,9 +13,11 @@ require_relative 'system/actions/retrieve_company'
 
 
 class Asesora < Sinatra::Base
+  ENV.fetch('API_HOST')
 
   configure do
-    enable :cross_origin
+    enable :cross_origin if API_HOST == 'localhost'
+    set :bind, API_HOST
     set :raise_errors, true
     set :show_exceptions, false
   end
@@ -111,7 +113,7 @@ class Asesora < Sinatra::Base
     company = Actions::RetrieveCompany.do(id: params['id'])
     company.to_json
   end
-  
+
   post '/api/company-matches' do
     params = JSON.parse(request.body.read)
 

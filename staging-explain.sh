@@ -1,4 +1,19 @@
 #!/bin/sh
+BLINK='\033[5m'
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+TITLE='\033[1;35m'
+TEXT='\033[1;34m'
+RESET='\033[0m'
+print_message() {
+  if [ $VALUE -eq 0 ];then
+     printf "${GREEN}Ok${RESET}\n"
+  else
+     printf "${RED}Error ${VALUE}${RESET}\n"
+     pause
+  fi
+}
+
 pause() {
    printf "\n${BLINK} → I read an error, press enter to continue\n${RESET}"
    read -p " " key

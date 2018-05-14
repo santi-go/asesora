@@ -2,21 +2,6 @@
 THIS_DIRECTORY=$(dirname "$0")/
 . $THIS_DIRECTORY/staging-explain.sh
 
-BLINK='\033[5m'
-RED='\033[1;31m'
-GREEN='\033[1;32m'
-TITLE='\033[1;35m'
-TEXT='\033[1;34m'
-RESET='\033[0m'
-print_message() {
-  if [ $VALUE -eq 0 ];then
-     printf "${GREEN}Ok${RESET}\n"
-  else
-     printf "${RED}Error ${VALUE}${RESET}\n"
-     pause
-  fi
-}
-
 explain_title
 
 explain_abstract
