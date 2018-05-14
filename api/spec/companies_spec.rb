@@ -11,7 +11,7 @@ describe 'Companies' do
   def app
     Asesora
   end
- 
+
 	it 'returns a list filtered by criteria' do
 		solicitude = {
 			"phonenumber": "123456789",
@@ -28,7 +28,7 @@ describe 'Companies' do
 			"name" => "an a",
 			"cnae" => "931 - Actividades deportivas"
 		}.to_json
-		
+
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
@@ -52,7 +52,7 @@ describe 'Companies' do
 			"text" => "a text",
 			"date" => "2018-12-25",
 			"companyName" => "an applicant",
-			"companyCif" => "",
+			"companyCif" => "A01316637",
 			"companyCnae" => "870 - Asistencia en establecimientos residenciales"
 		}.to_json
 
@@ -62,7 +62,7 @@ describe 'Companies' do
 			"name" => "an a",
 			"cnae" => ""
 		}.to_json
-		
+
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
