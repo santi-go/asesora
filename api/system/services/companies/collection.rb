@@ -7,14 +7,15 @@ module Companies
       def create(company)
         serialized = company.serialize()
         id = serialized["cif"]
-        company = retrieve(id) 
+        company = retrieve(id)
         return company if company
-        
+
         document = MongoClient.create(serialized)
         Domain::Company.from_document(document)
       end
 
       def retrieve(id)
+        id = /#{id}/i
         document = MongoClient.retrieve(id)
         return false if document.nil?
         company= Domain::Company.from_document(document)
