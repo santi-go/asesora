@@ -135,7 +135,6 @@ describe('Solicitude', () => {
     const fourthSolicitude = new Solicitude()
     fourthSolicitude.fill().companyName("###@@@@")
     numberOfMatches = fourthSolicitude.numberOfCompanyMatches()
-
     expect(numberOfMatches).to.eq(0)
   })
 
@@ -147,13 +146,13 @@ describe('Solicitude', () => {
                      .companyName(name)
                      .companyCif(cif)
                      .submit()
-    
+
     const second_solicitude = new Solicitude()
     second_solicitude.companyName(name)
     second_solicitude.clickOnCompanyMatches()
     expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
   })
-  
+
   it("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
