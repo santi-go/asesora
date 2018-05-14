@@ -33,6 +33,7 @@ services:
   api:
     build: ./api
     environment:
+      - API_HOST=localhost
       - MONGODB_URI=mongodb://mongo:27017/db
     ports:
       - '4567:4567'
