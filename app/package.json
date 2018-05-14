@@ -35,7 +35,6 @@
     "test-all": "npm run builde2e -s && wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
     "test-e2e": "npm run builde2e -s && wdio ./conf/wdio.conf.js",
     "builde2e": "API_HOST=api API_PORT=4567 webpack --config ./conf/webpack.config.js",
-    "build-staging": "API_HOST=localhost API_PORT=80 webpack --config conf/webpack.config.js",
     "build-digitalocean": "API_HOST=206.189.1.31 API_PORT=80 webpack --config conf/webpack.config.js",
     "test-unit": "mocha test/unit --compilers js:babel-core/register"
   },
