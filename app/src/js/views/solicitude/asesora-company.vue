@@ -5,8 +5,10 @@
 		</div>
     <div class="row grid-responsive">
       <div class="column column-50">
-        <asesora-company-identity :values="values" :labels="labels" :validatedcif="validatedcif"
-                                  :duplicatedcompany ="duplicatedcompany"></asesora-company-identity>
+        <asesora-company-identity :values="values"
+                                  :labels="labels"
+                                  :validatedcif="validatedcif"
+                                  ></asesora-company-identity>
         <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
         <asesora-company-cnae :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company-cnae>
       </div>
@@ -26,7 +28,7 @@ import CompanyMatchesView from './company/asesora-company-matches'
 export default {
   name: 'asesora-company',
 
-  props: ['labels', 'values', 'validatedcif', 'cnaecatalog', 'duplicatedcompany', 'suggestedcompanies'],
+  props: ['labels', 'values', 'validatedcif', 'cnaecatalog', 'suggestedcompanies'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,

@@ -31,10 +31,10 @@ describe 'Company Api' do
 
     post '/api/duplicated-company', {"id": "B91045948"}.to_json
     pepe = JSON.parse(last_response.body)
-    expect(pepe["company_name"]).to eq("Elena")
-    expect(pepe["company_cif"]).to eq("B91045948")
-    expect(pepe["company_employees"]).to eq("10")
-    expect(pepe["company_cnae"]).to eq("101")
+    expect(pepe["name"]).to eq("Elena")
+    expect(pepe["cif"]).to eq("B91045948")
+    expect(pepe["employees"]).to eq("10")
+    expect(pepe["cnae"]).to eq("101")
   end
 
   it "knows when company is not registered yet" do
