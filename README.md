@@ -99,18 +99,7 @@ ssh -i ~/.ssh/your_key root@ip.droplet
 
 # The server
 
-## Script for testing in local
-
-For test the application configured for run without docker, view or run the script:
-
-~~~
-sh staging_local.sh
-~~~
-
-This script create a simulated service (in one docker) that reunifies all services into a machine Debian 9.4.
-
-
-## Script for copy to a server
+## Script for deploy to a server
 
 For copy the applicative to a server, view or run the script:
 
@@ -223,4 +212,4 @@ Add to end the next line:
 
 ## Ok. That's all!
 
-When you have configured the droplet and launched the first ```staging.sh```.
+... when you have configured the droplet and launched the first ```staging.sh```.
