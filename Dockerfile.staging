@@ -1,6 +1,0 @@
-FROM ruby:2.5-stretch
-
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install mongodb-server -yq
-RUN mkdir /data/db -p
