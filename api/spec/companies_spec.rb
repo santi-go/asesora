@@ -18,7 +18,7 @@ describe 'Companies' do
 			"text" => "a text",
 			"date" => "2018-12-25",
 			"companyName" => "an applicant",
-			"companyCif" => "26751998P",
+			"companyCif" => "A98005978",
 			"companyCnae" => "931 - Actividades deportivas"
 		}.to_json
 
@@ -41,7 +41,7 @@ describe 'Companies' do
 			"text" => "a text",
 			"date" => "2018-12-25",
 			"companyName" => "an applicant",
-			"companyCif" => "26751998P",
+			"companyCif" => "B18290346",
 			"companyCnae" => "931 - Actividades deportivas"
 		}.to_json
 
@@ -52,7 +52,7 @@ describe 'Companies' do
 			"text" => "a text",
 			"date" => "2018-12-25",
 			"companyName" => "an applicant",
-			"companyCif" => "26751998P",
+			"companyCif" => "",
 			"companyCnae" => "870 - Asistencia en establecimientos residenciales"
 		}.to_json
 

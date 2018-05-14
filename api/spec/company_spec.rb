@@ -22,17 +22,17 @@ describe 'Company Api' do
       "text" => "a text",
       "date" => "2018-12-25",
       "companyName": "Elena",
-      "companyCif": "B91045948",
+      "companyCif": "23801250E",
       "companyEmployees": "10",
       "companyCnae": "101"
     }.to_json
 
     post '/api/create-solicitude', solicitude
 
-    post '/api/duplicated-company', {"id": "B91045948"}.to_json
+    post '/api/duplicated-company', {"id": "23801250E"}.to_json
     pepe = JSON.parse(last_response.body)
     expect(pepe["company_name"]).to eq("Elena")
-    expect(pepe["company_cif"]).to eq("B91045948")
+    expect(pepe["company_cif"]).to eq("23801250E")
     expect(pepe["company_employees"]).to eq("10")
     expect(pepe["company_cnae"]).to eq("101")
   end
