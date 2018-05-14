@@ -13,7 +13,7 @@ require_relative 'system/actions/retrieve_company'
 
 
 class Asesora < Sinatra::Base
-  ENV.fetch('API_HOST')
+  API_HOST=ENV['API_HOST']
 
   configure do
     enable :cross_origin if API_HOST == 'localhost'

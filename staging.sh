@@ -45,11 +45,6 @@ second_clean_staging
 echo "\n"
 
 printf "${TITLE}Clean staging\n${RESET}"
-printf "${TEXT} · downing old staging containers: ${RESET}"
-docker-compose -f docker-compose_staging.yml down 2>/dev/null
-VALUE=$?
-print_message
-
 printf "${TEXT} · remove folder staging: ${RESET}"
 rm -rf staging 2>/dev/null
 VALUE=$?

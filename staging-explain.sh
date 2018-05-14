@@ -52,10 +52,8 @@ second_clean_staging() {
 printf "${TITLE}\n\n
 Second chapter: clean staging for new process
 ${RESET}
-1. Run 'docker-compose down' with '-f' to use the staging yml file
-   for clean staging environment.
-2. Remove folder 'staging'.
-3. Create folder 'staging'.
+1. Remove folder 'staging'.
+2. Create folder 'staging'.
 \n"
 read -p "Press enter to run second chapter" key
 }
