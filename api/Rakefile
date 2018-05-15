@@ -9,7 +9,7 @@ task :start do
 end
 
 task :digitalocean do
-  sh "rackup --port 80 -o #{API_HOST}"
+  sh "rackup --port 80 -o #{API_HOST} -D"
 end
 
 task :tdd do
