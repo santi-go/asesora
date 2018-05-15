@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>{{ labels.suggestions }}</label>
-    <table>
+    <table v-if="suggestedcompanies.length > 0">
       <thead>
         <tr>
           <th>{{ labels.companyName }}</th>
@@ -37,7 +37,14 @@
   }
 
 </script>
-<style>
+<style scoped>
+  table{
+    width: 100%;
+    height: 335px;
+    overflow: auto;
+    display: block;
+  }
+
   td{
     cursor: pointer;
   }

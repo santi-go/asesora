@@ -99,7 +99,13 @@ class Solicitude{
 
   numberOfCompanyMatches(){
     const data = $('#company-matches tbody')
-    return data.$$(`tr td:nth-child(${1})`).length
+
+    let matches = 0
+    if (data.value==null) {matches = 0}
+    else {
+      matches = data.$$(`tr td:nth-child(${1})`).length
+    }
+    return matches
   }
 
   clickOnCompanyMatches(){
