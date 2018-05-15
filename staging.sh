@@ -16,7 +16,7 @@ docker-compose down 2>/dev/null
 VALUE=$?
 print_message
 
-printf "${TEXT}Upping test environment...\n\n${RESET}"
+printf "${TEXT}\nUpping test environment...\n\n${RESET}"
 docker-compose up --build -d 2>/dev/null
 VALUE=$?
 printf "${TEXT}\n · up test environment: ${RESET}"
