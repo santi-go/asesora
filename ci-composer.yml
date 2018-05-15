@@ -20,6 +20,7 @@ services:
     user: node
     environment:
       - API_HOST=localhost
+      - API_PORT=4567
     working_dir: '/test'
     volumes:
       - './app/:/test'
@@ -32,6 +33,7 @@ services:
   api:
     build: ./api
     environment:
+      - API_HOST=localhost
       - MONGODB_URI=mongodb://mongo:27017/db
     ports:
       - '4567:4567'
