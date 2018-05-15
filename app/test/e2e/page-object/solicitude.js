@@ -101,9 +101,9 @@ class Solicitude{
     const data = $('#company-matches tbody')
 
     let matches = 0
-    if (data.value==null) {matches = 0}
-    else {
-      matches = data.$$(`tr td:nth-child(${1})`).length
+
+    if (data.value!=null) {
+      matches = data.$$(`tr td:nth-child(1)`).length
     }
     return matches
   }
