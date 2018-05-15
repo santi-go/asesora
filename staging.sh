@@ -131,3 +131,9 @@ scp -i $SSHKEY -rC staging/ root@206.189.1.31:/var/www/asesora/ 2>/dev/null
 VALUE=$?
 printf "${TEXT}\n · copying with scp (Secure Copy): ${RESET}"
 print_message
+
+printf "${TITLE}\nClean staging\n${RESET}"
+printf "${TEXT} · remove folder staging: ${RESET}"
+rm -rf staging 2>/dev/null
+VALUE=$?
+print_message
