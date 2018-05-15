@@ -5,7 +5,7 @@
             name="company-name"
             type="text"
             v-on:keyup="onKeyUp"
-            v-on:blur="checkIfEmpty"
+            v-on:blur="validateCompanyIdentity"
             v-on:keydown="keydown"
             v-model="values.companyName"
             >
@@ -40,9 +40,11 @@ export default {
       }
     },
 
-    checkIfEmpty(event){
-      let isEmpty = event.target.value == ""
-      this.$parent.setNameEmptyStatus(isEmpty)
+    validateCompanyIdentity(event){
+      let signal = new CustomEvent('validate.company.identity',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     }
   }
 }

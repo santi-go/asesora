@@ -3,8 +3,13 @@
     <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
-    <asesora-company :values="values" :labels="labels" :suggestedcompanies="suggestedcompanies" :validatedcif="validatedcif"
-                     :cnaecatalog="cnaecatalog"></asesora-company>
+    <asesora-company :values="values"
+                     :labels="labels"
+                     :suggestedcompanies="suggestedcompanies"
+                     :validatedcif="validatedcif"
+                     :cnaecatalog="cnaecatalog"
+                     :validcompanyidentity='validcompanyidentity'
+                     ></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
     <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
@@ -23,12 +28,12 @@ import CompanyView from './asesora-company'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif', 'cnaecatalog', 'suggestedcompanies'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif',
+          'cnaecatalog', 'suggestedcompanies', 'validcompanyidentity'],
 
   data() {
     return {
       validContact: false,
-      validCompanyIdentity: true
     }
   },
 
@@ -55,14 +60,14 @@ export default {
     },
 
     setCompanyIdentityStatus(status){
-      this.validCompanyIdentity = status
+      this.validcompanyidentity = status
       this.setButtonStatus()
     },
 
     setButtonStatus(){
       this.disableButton(true)
 
-      if (!this.textIsEmpty() && this.validContact && this.validCompanyIdentity) {
+      if (!this.textIsEmpty() && this.validContact && this.validcompanyidentity) {
         this.disableButton(false)
       }
     },

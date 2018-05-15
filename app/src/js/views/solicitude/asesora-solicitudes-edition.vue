@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       validContact: true,
-      validCompanyIdentity: true
+      validcompanyidentity: true
     }
   },
 
@@ -78,14 +78,14 @@ export default {
     },
 
     setCompanyIdentityStatus(status){
-      this.validCompanyIdentity = status
+      this.validcompanyidentity = status
       this.setButtonStatus()
     },
 
     setButtonStatus(){
       this.disableButton(true)
 
-      if (!this.textIsEmpty() && !this.dateIsEmpty() && this.validContact && this.validCompanyIdentity) {
+      if (!this.textIsEmpty() && !this.dateIsEmpty() && this.validContact && this.validcompanyidentity) {
         this.disableButton(false)
       }
     },

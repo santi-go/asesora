@@ -38,6 +38,10 @@ export default class Solicitude extends Component {
       'fill.company',
       this.fillCompany.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'validate.company.identity',
+      this.toggleCompanyIdentityMessage.bind(this)
+    )
   }
 
   submit(){
@@ -103,6 +107,26 @@ export default class Solicitude extends Component {
     this.data.setValues('companyCif', item.detail.cif)
     this.data.setValues('companyEmployees', item.detail.employees)
     this.data.setValues('companyCnae', item.detail.cnae)
+  }
+
+  toggleCompanyIdentityMessage(){
+
+    this.data.validcompanyidentity = false
+    if(this.isNameEmpty() && this.isCifEmpty()){
+      this.data.validcompanyidentity = true
+    }
+    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.validatedcif){
+      this.data.validcompanyidentity = true
+    }
+
+  }
+
+  isNameEmpty(){
+      return this.data.values.companyName === ""
+  }
+
+  isCifEmpty() {
+      return this.data.values.companyCif === ""
   }
 
   translate(payload) {
@@ -185,6 +209,7 @@ export default class Solicitude extends Component {
       fullfilled: false,
       validatedcif: true,
       cnaecatalog:[],
+      validcompanyidentity: true,
       translate:function(key,value) {
         this.labels[key] = value
       },

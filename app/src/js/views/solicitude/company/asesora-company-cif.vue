@@ -31,8 +31,15 @@ export default {
 
     checker(event){
       this.cifValidation(event)
-      this.setStatusIfEmpty(event)
       this.verifyDuplicate(event)
+      this.validateCompanyIdentity()
+    },
+
+    validateCompanyIdentity(){
+      let signal = new CustomEvent('validate.company.identity',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     cifValidation(event){
@@ -47,11 +54,6 @@ export default {
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
-    },
-
-    setStatusIfEmpty(event){
-      let onEmpty = event.target.value == ""
-      this.$parent.setCifEmptyStatus(onEmpty)
     }
   }
 }

@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-on:click="selectCompany(item)"
+        <tr v-on:click="onClick(item)"
             v-for="item in suggestedcompanies">
             <td>{{ item.name }}</td>
             <td>{{ item.cif }}</td>
@@ -24,15 +24,29 @@
 <script>
   export default {
     name: 'asesora-company-matches',
-    props: ['labels', 'suggestedcompanies'],
+    props: ['labels', 'suggestedcompanies','validatedcif'],
 
     methods: {
+
+      onClick(item){
+          this.selectCompany(item)
+          this.validateCompanyIdentity()
+      },
+
       selectCompany(item){
         let signal = new CustomEvent('fill.company',
                                     {'detail': item,
                                     'bubbles': true})
         this.$el.dispatchEvent(signal)
-      }
+        this.validatedcif = true
+      },
+
+      validateCompanyIdentity(){
+        let signal = new CustomEvent('validate.company.identity',
+                                        {'detail': {},
+                                        'bubbles': true})
+        this.$el.dispatchEvent(signal)
+      },
     }
   }
 

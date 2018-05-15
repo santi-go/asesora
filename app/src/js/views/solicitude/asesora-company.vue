@@ -8,6 +8,7 @@
         <asesora-company-identity :values="values"
                                   :labels="labels"
                                   :validatedcif="validatedcif"
+                                  :validcompanyidentity='validcompanyidentity'
                                   ></asesora-company-identity>
         <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
         <asesora-company-cnae :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company-cnae>
@@ -28,7 +29,8 @@ import CompanyMatchesView from './company/asesora-company-matches'
 export default {
   name: 'asesora-company',
 
-  props: ['labels', 'values', 'validatedcif', 'cnaecatalog', 'suggestedcompanies'],
+  props: ['labels', 'values', 'validatedcif', 'cnaecatalog', 'suggestedcompanies',
+          'validcompanyidentity'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,
