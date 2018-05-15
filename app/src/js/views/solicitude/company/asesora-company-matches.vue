@@ -2,11 +2,19 @@
   <div>
     <label>{{ labels.suggestions }}</label>
     <table>
+      <thead>
+        <tr>
+          <th>{{ labels.companyName }}</th>
+          <th>{{ labels.companyCif }}</th>
+          <th>{{ labels.companyCnae }}</th>
+        </tr>
+      </thead>
       <tbody>
         <tr v-on:click="selectCompany(item)"
             v-for="item in suggestedcompanies">
-            <td>{{item.name }} ({{ item.cif}}), {{item.employees}}, {{item.cnae}}
-            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.cif }}</td>
+            <td>{{ item.cnae }}</td>
         </tr>
       </tbody>
     </table>
