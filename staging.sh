@@ -16,7 +16,7 @@ docker-compose down 2>/dev/null
 VALUE=$?
 print_message
 
-printf "${TEXT}\nUpping test environment...\n\n${RESET}"
+printf "${TEXT}\nRising test environment...\n\n${RESET}"
 docker-compose up --build -d 2>/dev/null
 VALUE=$?
 printf "${TEXT}\n · up test environment: ${RESET}"
@@ -34,7 +34,7 @@ VALUE=$?
 printf "${TEXT}\n · tests app: ${RESET}"
 print_message
 
-printf "${TEXT} · down docker tests: ${RESET}"
+printf "${TEXT} · down test environment: ${RESET}"
 docker-compose down 2>/dev/null
 VALUE=$?
 print_message
@@ -66,20 +66,20 @@ VALUE=$?
 printf "${TEXT}\n · build app: ${RESET}"
 print_message
 
-printf "${TEXT} · downing containers: ${RESET}"
+printf "${TEXT} · containers down: ${RESET}"
 docker-compose down 2>/dev/null
 VALUE=$?
 print_message
 
 
-printf "${TITLE}\nCopy public architecture to staging:\n${RESET}"
+printf "${TITLE}\nCopy public architecture for staging:\n${RESET}"
 
 printf "${TEXT} · copy public folder: ${RESET}"
 cp app/public staging/public/ -r 2>/dev/null
 VALUE=$?
 print_message
 
-printf "${TITLE}\nCopy api architecture to staging:\n${RESET}"
+printf "${TITLE}\nCopy api architecture for staging:\n${RESET}"
 printf "${TEXT} · copy config.ru: ${RESET}"
 cp api/config.ru staging/config.ru 2>/dev/null
 VALUE=$?
@@ -109,7 +109,7 @@ print_message
 
 four_copy_to_droplet
 
-printf "${TITLE}\nYou need identify in ssh connections:\n\n${RESET}"
+printf "${TITLE}\nYou need to identify in ssh connections:\n\n${RESET}"
 read -p "Input your ssh-private-key file with complete location: " SSHKEY
 echo "\n"
 
@@ -119,11 +119,11 @@ VALUE=$?
 printf "${TEXT}\n · create: ${RESET}"
 print_message
 
-printf "${TITLE}\nMove folder 'asesora' to 'asesora_backup' in droplet for save:\n\n${RESET}"
+printf "${TITLE}\nMove folder 'asesora' to 'asesora_backup' in droplet for saveing:\n\n${RESET}"
 ssh -i $SSHKEY root@206.189.1.31 "mkdir /var/www/asesora_backup -p" 2>/dev/null
 ssh -i $SSHKEY root@206.189.1.31 "mv /var/www/asesora /var/www/asesora_backup/$(date '+%Y-%m-%d_%H:%M:%S')" 2>/dev/null
 VALUE=$?
-printf "${TEXT}\n · create: ${RESET}"
+printf "${TEXT}\n · backup created: ${RESET}"
 print_message
 
 printf "${TITLE}\nCopy folder 'staging' to droplet:\n\n${RESET}"

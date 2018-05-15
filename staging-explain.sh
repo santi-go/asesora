@@ -15,87 +15,74 @@ print_message() {
 }
 
 pause() {
-   printf "\n${BLINK} → I read an error, press enter to continue\n${RESET}"
+   printf "\n${BLINK} → An error appeared, press enter to continue or cancel with 'Ctrl + c'\n${RESET}"
    read -p " " key
 }
 
 explain_title() {
 printf "${TITLE}\n
-Process to creation a 'staging' in a server
+Process of the creation of the 'staging' in the server
 ${RESET}"
 }
 
 explain_abstract() {
 printf "\n
-This script guide you to create and learn the process
-of creation a 'staging' in a server.
-It build the application and copy only needed files to folder 'staging'
-and up this in an simulated server.
-Then, if you continue, it copy the 'staging' into droplet.
+This script will guide you in the creation and learning of the process
+of the creation of the 'staging' in the server.
+We will build the application and copy only the needed files to the folder 'staging'.
+Then we will copy the 'staging' into the droplet.
 \n"
 }
 
 first_running_test() {
 printf "${TITLE}\n
-First chapter: running test
+First chapter: running tests
 ${RESET}
-1. Use 'docker-compose down' to clean development environment.
-2. Up the environment with 'docker-compose up --build -d'.
-3. Launch api test with docker-compose exec.
-4. Launch app test with docker-compose run.
-5. And clean environment with 'docker-compose down'.
+1. Use the 'docker-compose down' command to clean the development environment.
+2. Rise the environment with 'docker-compose up --build -d'.
+3. Launch api test with 'docker-compose exec'.
+4. Launch app test with 'docker-compose run'.
+5. Then clean the environment with 'docker-compose down'.
 \n"
-read -p "Press enter to run first chapter" key
+read -p "Press enter to run the first chapter" key
 }
 
 second_clean_staging() {
 printf "${TITLE}\n\n
-Second chapter: clean staging for new process
+Second chapter: clean staging for a new process
 ${RESET}
-1. Remove folder 'staging'.
-2. Create folder 'staging'.
+1. Remove the folder 'staging'.
+2. Create a folder 'staging'.
 \n"
-read -p "Press enter to run second chapter" key
+read -p "Press enter to run the second chapter" key
 }
 
 third_build_architecture() {
 printf "${TITLE}\n\n
-Third chapter: build public architecture staging
+Third chapter: build a public architecture staging
 ${RESET}
-1. Run 'docker-compose run' with 'build-staging'
-   for build app with staging environment.
-2. Clean environment with 'docker-compose down'.
-3. Copy folder 'app/public' to staging.
-4. Copy files 'config.ru', 'Rakefile', 'asesora.rb', 'Gemfile'
-   and folder 'api/system' to staging.
+1. Run the command 'docker-compose run' with 'build-staging'
+   to build the app.
+2. Clean the environment with 'docker-compose down'.
+3. Copy the folder 'app/public' to 'staging'.
+4. Copy the files 'config.ru', 'Rakefile', 'asesora.rb', 'Gemfile'
+   and folder 'api/system' to 'staging'.
 \n"
-read -p "Press enter to run third chapter" key
-}
-
-four_launch_local() {
-printf "${TITLE}\n\n
-Four chapter: launching staging in local environment
-${RESET}
-1. Launch with docker-compose a simulation of a server
-   running Debian9.4 & Ruby & Mongodb.
-   This docker simulates the droplet in one service.
-   The application run in localhost, where port is the default (80).
-   No more services, this service contain all.
-2. Accept down the service for continue the process copying to a droplet.
-\n"
-read -p "Press enter to run four chapter" key
+read -p "Press enter to run the third chapter" key
 }
 
 four_copy_to_droplet() {
 printf "${TITLE}\n\n
-Four chapter: copy the application to droplet
+Fourth chapter: copy the application to the droplet
 ${RESET}
-1. You need input your ssh-private-key file, enter this with complete location,
+1. You need to input your ssh-private-key file
+   (enter the key with its complete location).
    example: '~/.ssh/my_ssh'
-2. Create a folder '/var/www' in the droplet. This is not destructive.
-3. For prevent destruct the older web, move this using the ssh connection.
-   If the folder exist you read an error.
-4. Copy folder 'staging' directly to folder 'asesora' into droplet.
+2. Create a folder '/var/www' in the droplet.
+   This will not destruct any other files or folders.
+3. We will create a backup of the older application
+   using the ssh connection.
+4. Copy the folder 'staging' directly to the folder 'asesora' in the droplet.
 \n"
-read -p "Press enter to run five chapter" key
+read -p "Press enter to run the fourth chapter" key
 }
