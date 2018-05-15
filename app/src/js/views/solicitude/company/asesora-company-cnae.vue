@@ -49,16 +49,17 @@ export default {
       })
       event.target.value = ""
 
-      if(validCnae){
+      if (validCnae) {
         event.target.value = this.fullCnaeName(validCnae)
-        let signal = new CustomEvent('search.companies',
-                                    {'detail': {
-                                      'name': this.values.companyName,
-                                      'cnae': this.values.companyCnae
-                                    },
-                                    'bubbles': true})
-        this.$el.dispatchEvent(signal)
-      } 
+        }
+
+      let signal = new CustomEvent('search.companies',
+                                  {'detail': {
+                                    'name': this.values.companyName,
+                                    'cnae': this.values.companyCnae
+                                  },
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
     }
   }
 }
