@@ -20,19 +20,8 @@ export default {
 
   methods: {
     onKeyUp(event){
-      if(this.hasRequiredLength()){
-        this.searchCompaniesMatch()
-      }
-
+      this.searchCompaniesMatch()
       this.$parent.$parent.$parent.setButtonStatus()
-    },
-
-    hasRequiredLength(){
-      let minNumberOfChars = 3
-      if(this.values.companyName.length >= minNumberOfChars){
-        return true
-      }
-      return false
     },
 
     searchCompaniesMatch() {

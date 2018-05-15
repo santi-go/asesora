@@ -67,8 +67,20 @@ export default class Solicitude extends Component {
   }
 
   searchCompanies(event){
-    Bus.publish('search.company.matches', event.detail)
+    this.data.suggestedcompanies = []
+    if(this.hasRequiredLength()){
+      Bus.publish('search.company.matches', event.detail)
+    }
   }
+
+  hasRequiredLength(){
+    let minNumberOfChars = 3
+    if(this.data.values.companyName.length >= minNumberOfChars){
+      return true
+    }
+    return false
+  }
+
 
   populateSuggestedCompanies(payload){
     this.data.suggestedcompanies = payload.data
@@ -76,7 +88,6 @@ export default class Solicitude extends Component {
 
   showDuplicate(payload) {
     let duplicatedCompany =[]
-
     if ( !this.isObjectEmpty(payload) ) {
       duplicatedCompany.push(payload)
     }

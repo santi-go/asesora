@@ -32,7 +32,7 @@ module Companies
         list = MongoClient.all(name_regex)
 
         if cnae != ""
-          list = list.select{|company| cnae == company["cnae"]}
+          list = list.select{|company| company["cnae"].include?(cnae)}
         end
 
         companies = list.map do |company|
