@@ -52,7 +52,7 @@ describe('Solicitude List', () => {
     const solicitude = new Solicitude()
     const solicitudeApplicantName = 'John'
     const solicitudeCompanyName = 'John Inc.'
-    const solicitudeCompanyCif = 'A01316637'
+    const solicitudeCompanyCif = '12345678Z'
 
     solicitude.fill().required()
                      .applicantName(solicitudeApplicantName)

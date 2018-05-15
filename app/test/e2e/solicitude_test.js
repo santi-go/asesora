@@ -115,13 +115,13 @@ describe('Solicitude', () => {
   it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
-    const firstCIF = "B91735456"
+    const firstCIF = "N2902211H"
     firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
     firstSolicitude.submit()
 
     const secondSolicitude = new Solicitude()
     const secondCompanyName = "Samuel & Mikel"
-    const secondCIF = "G98128218"
+    const secondCIF = "F0956154I"
     const CNAE = "931 - Actividades deportivas"
     secondSolicitude.fill().required().companyName(secondCompanyName).CNAE(CNAE).companyCif(secondCIF)
     secondSolicitude.submit()
@@ -141,7 +141,7 @@ describe('Solicitude', () => {
   it ("company allows filled with matches", () => {
     const solicitude = new Solicitude()
     let name = 'Devscola'
-    let cif = '26751998P'
+    let cif = 'G53910758'
     solicitude.fill().required()
                      .companyName(name)
                      .companyCif(cif)
@@ -156,13 +156,13 @@ describe('Solicitude', () => {
   it("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
-    const firstCIF = "B91735456"
+    const firstCIF = "F8819575E"
     firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
     firstSolicitude.submit()
 
     const secondSolicitude = new Solicitude()
     const secondCompanyName = "Samuel & Mikel"
-    const secondCIF = "G98128218"
+    const secondCIF = "R1568912H"
     const CNAE = "931 - Actividades deportivas"
     secondSolicitude.fill().required().companyName(secondCompanyName).CNAE(CNAE).companyCif(secondCIF)
     secondSolicitude.submit()
