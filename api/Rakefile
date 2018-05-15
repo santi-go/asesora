@@ -1,5 +1,7 @@
 require 'rspec/core/rake_task'
 
+API_HOST=ENV['API_HOST']
+
 task :default => :start
 
 task :start do
@@ -7,7 +9,7 @@ task :start do
 end
 
 task :digitalocean do
-  sh "rerun --background -- rackup --port 80 -o 206.189.1.31"
+  sh "rackup --port 80 -o #{API_HOST}"
 end
 
 task :tdd do
