@@ -73,6 +73,9 @@ export default class SolicitudesEdition extends Component{
     let url = document.URL
     let index = url.indexOf("=")
     let id = url.slice(index + 1)
+    if (index != -1){
+      return window.location = "/"
+    }
     Bus.publish('get.solicitude', {id: id})
   }
 
