@@ -5,7 +5,6 @@
             name="surname"
             type="text"
             v-on:keydown="keydown"
-            v-on:blur="blur"
             v-model="values.surname"
             >
     </div>
@@ -22,9 +21,6 @@ export default {
       if (event.keyCode == 13){
         event.preventDefault()
       }
-    },
-    blur(event){
-      this.$parent.$parent.setButtonStatus()
     }
   }
 }
