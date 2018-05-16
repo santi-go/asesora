@@ -7,7 +7,7 @@ You need to install docker and docker-compose.
 
 ## Project URL
 
-To acces the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
+To access the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
 
 
 ### Up docker
@@ -208,8 +208,3 @@ Add to end the next line:
 ~~~
 @reboot /root/bin/launch_asesora.sh
 ~~~
-
-
-## Ok. That's all!
-
-... when you have configured the droplet and launched the first ```staging.sh```.
