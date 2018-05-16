@@ -4,7 +4,7 @@
             type="button"
             name="submit"
             class="submitbutton"
-            disabled="true"
+            :disabled="!submittable"
             v-on:click="submit()">
       {{ labels.submit }}
     </button>
@@ -15,7 +15,7 @@
 export default {
   name: 'asesora-button',
 
-  props: ['labels', 'values', 'editionmode'],
+  props: ['labels', 'values', 'editionmode', 'submittable'],
 
   methods: {
 

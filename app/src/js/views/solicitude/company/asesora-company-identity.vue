@@ -20,34 +20,9 @@ export default {
 
   props: ['labels', 'values', 'validatedcif','validcompanyidentity'],
 
-  watch: {
-    validatedcif: function(){
-      this.setValidInfo()
-    },
-
-    validcompanyidentity: function(){
-        this.setValidInfo()
-    }
-
-  },
-
-  data(){
-    return {
-      isNameEmpty: this.values.companyName === "" ,
-      isCifEmpty: this.values.companyCif === ""
-    }
-  },
-
   components: {
     "asesora-company-name" : CompanyNameView,
     "asesora-company-cif" : CompanyCifView,
-  },
-
-  methods: {
-
-    setValidInfo(){
-      this.$parent.$parent.setCompanyIdentityStatus(this.validcompanyidentity)
-    }
   }
 }
 </script>

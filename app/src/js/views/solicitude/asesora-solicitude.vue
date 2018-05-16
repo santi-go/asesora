@@ -1,6 +1,6 @@
 <template>
   <div>
-    <asesora-applicant :values="values" :labels="labels"></asesora-applicant>
+    <asesora-applicant :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values"
@@ -10,7 +10,7 @@
                      :cnaecatalog="cnaecatalog"
                      :validcompanyidentity='validcompanyidentity'
                      ></asesora-company>
-    <asesora-button :values="values" :labels="labels" :editionmode="editionmode"></asesora-button>
+    <asesora-button :values="values" :labels="labels" :editionmode="editionmode" :submittable="submittable"></asesora-button>
     <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
       {{ labels.sent }}
@@ -29,7 +29,7 @@ export default {
   name: 'asesora-solicitude',
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif',
-          'cnaecatalog', 'suggestedcompanies', 'validcompanyidentity'],
+          'cnaecatalog', 'suggestedcompanies', 'validcompanyidentity', 'submittable', 'validcontact'],
 
   data() {
     return {
@@ -85,7 +85,12 @@ export default {
     },
 
     disableButton(toggle){
-      document.querySelector(".submitbutton").disabled = toggle
+      let signal = new CustomEvent('check.submittable',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+
+      // document.querySelector(".submitbutton").disabled = toggle
     },
 
     animateCard() {

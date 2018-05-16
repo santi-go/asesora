@@ -4,7 +4,6 @@
     <input  id="company-cif"
             name="company-cif"
             type="text"
-            v-on:keyup="onKeyUp"
             v-on:keydown="keydown"
             v-on:blur="checker"
             v-model="values.companyCif"
@@ -20,10 +19,6 @@ export default {
   props: ['labels', 'values', 'validatedcif'],
 
   methods: {
-    onKeyUp(event){
-      this.$parent.$parent.$parent.setButtonStatus()
-    },
-
     keydown(event){
       let isReturnKey = (event.keyCode == 13)
       if (isReturnKey) event.preventDefault()

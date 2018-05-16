@@ -22,7 +22,11 @@ export default {
       if (event.target.value == "") {
         event.target.classList.add("error")
       }
-      this.$parent.setButtonStatus()
+
+      let signal = new CustomEvent('text.change',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     onFocus(event){

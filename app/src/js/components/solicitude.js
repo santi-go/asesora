@@ -7,6 +7,8 @@ export default class Solicitude extends Component {
 
   constructor(){
     super('solicitude')
+    this.validEmail = false
+    this.validPhonenumber = false
   }
 
   subscribe(){
@@ -41,6 +43,22 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'validate.company.identity',
       this.toggleCompanyIdentityMessage.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'check.submittable',
+      this.setButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'status.email',
+      this.setValidEmail.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'status.phone',
+      this.setValidPhone.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'text.change',
+      this.setButtonStatus.bind(this)
     )
   }
 
@@ -118,6 +136,7 @@ export default class Solicitude extends Component {
     if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.validatedcif){
       this.data.validcompanyidentity = true
     }
+    this.setButtonStatus()
 
   }
 
@@ -171,6 +190,33 @@ export default class Solicitude extends Component {
     this.data.fullfilled = true
   }
 
+  textIsEmpty(){
+    return (this.data.values.text == "")
+  }
+
+  validateContact(){
+    this.data.validcontact = this.validEmail || this.validPhonenumber
+  }
+
+  setButtonStatus(){
+    this.data.submittable = false
+    if (!this.textIsEmpty() && this.data.validcontact && this.data.validcompanyidentity) {
+      this.data.submittable = true
+    }
+  }
+
+  setValidEmail(event){
+    this.validEmail = event.detail.valid
+    this.validateContact()
+  }
+
+  setValidPhone(event){
+    this.validPhonenumber = event.detail.valid
+    this.validateContact()
+  }
+
+
+
   model(){
     return {
       editionmode: false,
@@ -210,6 +256,8 @@ export default class Solicitude extends Component {
       validatedcif: true,
       cnaecatalog:[],
       validcompanyidentity: true,
+      validcontact: true,
+      submittable: false,
       translate:function(key,value) {
         this.labels[key] = value
       },

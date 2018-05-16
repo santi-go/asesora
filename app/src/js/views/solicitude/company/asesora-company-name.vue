@@ -21,7 +21,6 @@ export default {
   methods: {
     onKeyUp(event){
       this.searchCompaniesMatch()
-      this.$parent.$parent.$parent.setButtonStatus()
     },
 
     searchCompaniesMatch() {

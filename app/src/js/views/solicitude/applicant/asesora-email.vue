@@ -21,7 +21,10 @@ export default {
   methods: {
     blur(event){
       let valid = this.emailValidation()
-      this.$parent.setValidEmail(valid)
+      let signal = new CustomEvent('status.email',
+                                      {'detail': {"valid":valid},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     focus(event){

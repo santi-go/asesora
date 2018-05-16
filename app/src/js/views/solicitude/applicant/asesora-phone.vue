@@ -44,7 +44,11 @@ export default {
 
     blur(event){
       let valid = this.phoneValidation()
-      this.$parent.setValidPhonenumber(valid)
+      
+      let signal = new CustomEvent('status.phone',
+                                      {'detail': {"valid":valid},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     isArrowKeyCode(keycode){
