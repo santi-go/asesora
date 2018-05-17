@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pre>CIF identity {{ isValidCif }}</pre>
+    <pre>Identity </pre>
     <asesora-company-name :values="values" :labels="labels"></asesora-company-name>
     <asesora-company-cif :values="values" :labels="labels" :is-valid-cif="isValidCif"></asesora-company-cif>
     <div id="company-identity-info" v-bind:class="{hide: validcompanyidentity}">

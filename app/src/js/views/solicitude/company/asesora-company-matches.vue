@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>{{ labels.suggestions }}</label>
-    <table v-if="suggestedcompanies.length > 0">
+    <table v-if="suggestedCompanies.length > 0">
       <thead>
         <tr>
           <th>{{ labels.companyName }}</th>
@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-on:click="onClick(item)"
-            v-for="item in suggestedcompanies">
+            v-for="item in suggestedCompanies">
             <td>{{ item.name }}</td>
             <td>{{ item.cif }}</td>
             <td>{{ item.cnae }}</td>
@@ -24,7 +24,7 @@
 <script>
   export default {
     name: 'asesora-company-matches',
-    props: ['labels', 'suggestedcompanies','validatedcif'],
+    props: ['labels', 'suggestedCompanies','validatedcif'],
 
     methods: {
 

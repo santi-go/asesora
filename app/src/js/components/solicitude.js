@@ -89,7 +89,7 @@ export default class Solicitude extends Component {
   }
 
   searchCompanies(event){
-    this.data.suggestedcompanies = []
+    this.data.suggestedCompanies = []
     if(this.hasRequiredLength()){
       Bus.publish('search.company.matches', event.detail)
     }
@@ -104,7 +104,7 @@ export default class Solicitude extends Component {
   }
 
   populateSuggestedCompanies(payload){
-    this.data.suggestedcompanies = payload.data
+    this.data.suggestedCompanies = payload.data
   }
 
   showDuplicate(payload) {
@@ -112,7 +112,7 @@ export default class Solicitude extends Component {
     if ( !this.isObjectEmpty(payload) ) {
       duplicatedCompany.push(payload)
     }
-    this.data.suggestedcompanies = duplicatedCompany
+    this.data.suggestedCompanies = duplicatedCompany
   }
 
   isObjectEmpty(object){
@@ -248,7 +248,7 @@ export default class Solicitude extends Component {
                 "companyCnae": "",
                 "suggestions" : ""
               },
-      suggestedcompanies: [],
+      suggestedCompanies: [],
       fullfilled: false,
       isValidCif: true,
       cnaecatalog:[],
