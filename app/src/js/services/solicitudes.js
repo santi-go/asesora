@@ -27,8 +27,8 @@ export default class Solicitudes {
 
   store() {
     return function(response) {
-      this.cnaecatalog = response.data
-      Bus.publish("got.cnae-catalog", this.cnaecatalog)
+      this.cnaeCatalog = response.data
+      Bus.publish("got.cnae-catalog", this.cnaeCatalog)
     }
   }
 

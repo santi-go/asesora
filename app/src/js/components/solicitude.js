@@ -163,7 +163,7 @@ export default class Solicitude extends Component {
   }
 
   gotCnaeCatalog(payload) {
-    this.data.cnaecatalog = payload
+    this.data.cnaeCatalog = payload
   }
 
   initializeViews(){
@@ -251,7 +251,7 @@ export default class Solicitude extends Component {
       suggestedCompanies: [],
       fullfilled: false,
       isValidCif: true,
-      cnaecatalog:[],
+      cnaeCatalog:[],
       isValidCompanyIdentity: true,
       isValidContact: true,
       submittable: false,

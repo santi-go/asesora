@@ -7,7 +7,7 @@
                      :labels="labels"
                      :suggested-companies="suggestedCompanies"
                      :is-valid-cif="isValidCif"
-                     :cnaecatalog="cnaecatalog"
+                     :cnae-catalog="cnaeCatalog"
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode" :submittable="submittable"></asesora-button>
@@ -29,7 +29,7 @@ export default {
   name: 'asesora-solicitude',
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
-          'cnaecatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'isValidContact'],
+          'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'isValidContact'],
 
   data() {
     return {

@@ -10,7 +10,7 @@
             v-model="values.companyCnae"
             >
         <datalist id="cnae-catalog">
-            <option v-for="item in cnaecatalog">
+            <option v-for="item in cnaeCatalog">
               {{ fullCnaeName(item) }}
             </option>
         </datalist>
@@ -21,7 +21,7 @@
 export default {
   name: 'asesora-company-cnae',
 
-  props: ['labels', 'values', 'cnaecatalog'],
+  props: ['labels', 'values', 'cnaeCatalog'],
 
   data(){
     return {
@@ -44,7 +44,7 @@ export default {
       let value = event.target.value
       let id = value.split(this.separator)[0]
 
-      let validCnae = this.cnaecatalog.find(function(cnaeCode){
+      let validCnae = this.cnaeCatalog.find(function(cnaeCode){
         return cnaeCode.id === id
       })
       event.target.value = ""
