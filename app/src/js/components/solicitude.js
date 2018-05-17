@@ -194,12 +194,12 @@ export default class Solicitude extends Component {
   }
 
   validateContact(){
-    this.data.validcontact = this.validEmail || this.validPhonenumber
+    this.data.isValidContact = this.validEmail || this.validPhonenumber
   }
 
   setButtonStatus(){
     this.data.submittable = false
-    if (!this.textIsEmpty() && this.data.validcontact && this.data.isValidCompanyIdentity) {
+    if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
       this.data.submittable = true
     }
   }
@@ -253,7 +253,7 @@ export default class Solicitude extends Component {
       isValidCif: true,
       cnaecatalog:[],
       isValidCompanyIdentity: true,
-      validcontact: true,
+      isValidContact: true,
       submittable: false,
       translate:function(key,value) {
         this.labels[key] = value

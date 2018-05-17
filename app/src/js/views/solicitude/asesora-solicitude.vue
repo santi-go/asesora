@@ -1,7 +1,6 @@
 <template>
   <div>
-    <pre>Solicitude {{isValidCompanyIdentity }}</pre>
-    <asesora-applicant :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant>
+    <asesora-applicant :values="values" :labels="labels" :is-valid-contact="isValidContact"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values"
@@ -30,7 +29,7 @@ export default {
   name: 'asesora-solicitude',
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
-          'cnaecatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'validcontact'],
+          'cnaecatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'isValidContact'],
 
   data() {
     return {

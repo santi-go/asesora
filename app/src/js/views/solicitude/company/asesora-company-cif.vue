@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>CIF </pre>
     <label>{{ labels.companyCif }}</label>
     <input  id="company-cif"
             name="company-cif"

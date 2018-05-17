@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>Company {{ isValidCompanyIdentity }}</pre>
     <div class="card-title">
 			<label>{{ labels.company }}</label>
 		</div>

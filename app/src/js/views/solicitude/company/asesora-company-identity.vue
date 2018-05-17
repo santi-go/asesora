@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>Identity {{ isValidCompanyIdentity }}</pre>
     <asesora-company-name :values="values" :labels="labels"></asesora-company-name>
     <asesora-company-cif :values="values" :labels="labels" :is-valid-cif="isValidCif"></asesora-company-cif>
     <div id="company-identity-info" v-bind:class="{hide: isValidCompanyIdentity}">
