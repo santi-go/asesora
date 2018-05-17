@@ -1,12 +1,13 @@
 <template>
   <div>
+    <pre>CIF Solicitude {{ isValidCif }}</pre>
     <asesora-applicant :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values"
                      :labels="labels"
                      :suggestedcompanies="suggestedcompanies"
-                     :validatedcif="validatedcif"
+                     :is-valid-cif="isValidCif"
                      :cnaecatalog="cnaecatalog"
                      :validcompanyidentity='validcompanyidentity'
                      ></asesora-company>
@@ -28,7 +29,7 @@ import CompanyView from './asesora-company'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif',
+  props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaecatalog', 'suggestedcompanies', 'validcompanyidentity', 'submittable', 'validcontact'],
 
   data() {

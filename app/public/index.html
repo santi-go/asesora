@@ -39,6 +39,7 @@
             <div class="row grid-responsive">
                 <div class="column page-heading">
                     <div  class="card large-card" id="solicitude">
+                      <pre>CIF {{ isValidCif }}</pre>
                         <form class="solucitude-form">
                             <fieldset>
                                 <asesora-solicitude
@@ -47,7 +48,7 @@
                                   :suggestedcompanies='suggestedcompanies'
                                   :editionmode='editionmode'
                                   :fullfilled='fullfilled'
-                                  :validatedcif='validatedcif'
+                                  :is-valid-cif='isValidCif'
                                   :cnaecatalog='cnaecatalog'
                                   :validcompanyidentity='validcompanyidentity'
                                   :validcontact='validcontact'

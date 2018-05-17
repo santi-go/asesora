@@ -73,10 +73,10 @@ export default class Solicitude extends Component {
   validateCif(){
     let validationCif = new ValidationCif()
     if(this.isCifEmpty()) {
-      this.data.validatedcif = true
+      this.data.isValidCif = true
       return
     }
-    this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
+    this.data.isValidCif = validationCif.validate(this.data.values.companyCif)
   }
 
   verifyDuplicated() {
@@ -102,7 +102,6 @@ export default class Solicitude extends Component {
     }
     return false
   }
-
 
   populateSuggestedCompanies(payload){
     this.data.suggestedcompanies = payload.data
@@ -133,7 +132,7 @@ export default class Solicitude extends Component {
     if(this.isNameEmpty() && this.isCifEmpty()){
       this.data.validcompanyidentity = true
     }
-    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.validatedcif){
+    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.isValidCif){
       this.data.validcompanyidentity = true
     }
     this.setButtonStatus()
@@ -215,8 +214,6 @@ export default class Solicitude extends Component {
     this.validateContact()
   }
 
-
-
   model(){
     return {
       editionmode: false,
@@ -253,7 +250,7 @@ export default class Solicitude extends Component {
               },
       suggestedcompanies: [],
       fullfilled: false,
-      validatedcif: true,
+      isValidCif: true,
       cnaecatalog:[],
       validcompanyidentity: true,
       validcontact: true,

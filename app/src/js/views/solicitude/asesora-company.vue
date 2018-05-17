@@ -1,5 +1,6 @@
 <template>
   <div>
+    <pre>CIF Company {{ isValidCif }}</pre>
     <div class="card-title">
 			<label>{{ labels.company }}</label>
 		</div>
@@ -7,7 +8,7 @@
       <div class="column column-50">
         <asesora-company-identity :values="values"
                                   :labels="labels"
-                                  :validatedcif="validatedcif"
+                                  :isValidCif="isValidCif"
                                   :validcompanyidentity='validcompanyidentity'
                                   ></asesora-company-identity>
         <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
@@ -29,7 +30,7 @@ import CompanyMatchesView from './company/asesora-company-matches'
 export default {
   name: 'asesora-company',
 
-  props: ['labels', 'values', 'validatedcif', 'cnaecatalog', 'suggestedcompanies',
+  props: ['labels', 'values', 'isValidCif', 'cnaecatalog', 'suggestedcompanies',
           'validcompanyidentity'],
 
   components: {
