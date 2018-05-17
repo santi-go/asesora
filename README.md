@@ -7,7 +7,7 @@ You need to install docker and docker-compose.
 
 ## Project URL
 
-To acces the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
+To access the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
 
 
 ### Up docker
@@ -210,6 +210,16 @@ Add to end the next line:
 ~~~
 
 
-## Ok. That's all!
+# Proof environment
 
-... when you have configured the droplet and launched the first ```staging.sh```.
+If you will prepare a proof environment before install, remove or update programs in the droplet server, run this:
+
+~~~
+sh staging-local.sh
+~~~
+
+it creates a staging docker in local for proof and testing.
+
+By this you have a 'Dockerfile.local-staging' for yours proofs. You run manually with a "docker-compose -f docker-compose.local-staging.yml up --build".
+
+When the script finish, it remove testing environment and all created files.

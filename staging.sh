@@ -137,3 +137,6 @@ printf "${TEXT} · remove folder staging: ${RESET}"
 rm -rf staging 2>/dev/null
 VALUE=$?
 print_message
+
+ssh -i $SSHKEY root@206.189.1.31 'reboot' 2>/dev/null
+printf "${TITLE}\nDroplet restarted.\n\n${RESET}"
