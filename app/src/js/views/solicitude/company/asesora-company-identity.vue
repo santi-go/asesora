@@ -1,9 +1,9 @@
 <template>
   <div>
-    <pre>Identity </pre>
+    <pre>Identity {{ isValidCompanyIdentity }}</pre>
     <asesora-company-name :values="values" :labels="labels"></asesora-company-name>
     <asesora-company-cif :values="values" :labels="labels" :is-valid-cif="isValidCif"></asesora-company-cif>
-    <div id="company-identity-info" v-bind:class="{hide: validcompanyidentity}">
+    <div id="company-identity-info" v-bind:class="{hide: isValidCompanyIdentity}">
       <div class="alert background-danger">
         <em class="fa fa-times-circle"></em>
          {{ labels.incompleteCompanyIdentity }}
@@ -19,7 +19,7 @@ import CompanyCifView from './asesora-company-cif'
 export default {
   name: 'asesora-company-identity',
 
-  props: ['labels', 'values', 'isValidCif','validcompanyidentity'],
+  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity'],
 
   components: {
     "asesora-company-name" : CompanyNameView,

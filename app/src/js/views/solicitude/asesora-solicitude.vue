@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pre>Solicitude </pre>
+    <pre>Solicitude {{isValidCompanyIdentity }}</pre>
     <asesora-applicant :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
@@ -9,7 +9,7 @@
                      :suggested-companies="suggestedCompanies"
                      :is-valid-cif="isValidCif"
                      :cnaecatalog="cnaecatalog"
-                     :validcompanyidentity='validcompanyidentity'
+                     :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode" :submittable="submittable"></asesora-button>
     <div class="alert background-success message-hidden ">
@@ -30,7 +30,7 @@ export default {
   name: 'asesora-solicitude',
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
-          'cnaecatalog', 'suggestedCompanies', 'validcompanyidentity', 'submittable', 'validcontact'],
+          'cnaecatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'validcontact'],
 
   data() {
     return {

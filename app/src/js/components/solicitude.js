@@ -128,12 +128,12 @@ export default class Solicitude extends Component {
 
   toggleCompanyIdentityMessage(){
 
-    this.data.validcompanyidentity = false
+    this.data.isValidCompanyIdentity = false
     if(this.isNameEmpty() && this.isCifEmpty()){
-      this.data.validcompanyidentity = true
+      this.data.isValidCompanyIdentity = true
     }
     if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.isValidCif){
-      this.data.validcompanyidentity = true
+      this.data.isValidCompanyIdentity = true
     }
     this.setButtonStatus()
 
@@ -199,7 +199,7 @@ export default class Solicitude extends Component {
 
   setButtonStatus(){
     this.data.submittable = false
-    if (!this.textIsEmpty() && this.data.validcontact && this.data.validcompanyidentity) {
+    if (!this.textIsEmpty() && this.data.validcontact && this.data.isValidCompanyIdentity) {
       this.data.submittable = true
     }
   }
@@ -252,7 +252,7 @@ export default class Solicitude extends Component {
       fullfilled: false,
       isValidCif: true,
       cnaecatalog:[],
-      validcompanyidentity: true,
+      isValidCompanyIdentity: true,
       validcontact: true,
       submittable: false,
       translate:function(key,value) {

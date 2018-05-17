@@ -1,6 +1,6 @@
 <template>
   <div>
-    <pre>Company </pre>
+    <pre>Company {{ isValidCompanyIdentity }}</pre>
     <div class="card-title">
 			<label>{{ labels.company }}</label>
 		</div>
@@ -9,7 +9,7 @@
         <asesora-company-identity :values="values"
                                   :labels="labels"
                                   :isValidCif="isValidCif"
-                                  :validcompanyidentity='validcompanyidentity'
+                                  :is-valid-company-identity="isValidCompanyIdentity"
                                   ></asesora-company-identity>
         <asesora-company-employees :values="values" :labels="labels"></asesora-company-employees>
         <asesora-company-cnae :values="values" :labels="labels" :cnaecatalog="cnaecatalog"></asesora-company-cnae>
@@ -31,7 +31,7 @@ export default {
   name: 'asesora-company',
 
   props: ['labels', 'values', 'isValidCif', 'cnaecatalog', 'suggestedCompanies',
-          'validcompanyidentity'],
+          'isValidCompanyIdentity'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,
