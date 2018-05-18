@@ -18,10 +18,10 @@ export default {
   props: ['labels', 'values', 'isValidCif'],
 
   methods: {
-    
-    checker(event){
-      this.cifValidation(event)
-      this.verifyDuplicate(event)
+
+    checker(){
+      this.cifValidation()
+      this.verifyDuplicate()
       this.validateCompanyIdentity()
     },
 
@@ -32,14 +32,14 @@ export default {
       this.$el.dispatchEvent(signal)
     },
 
-    cifValidation(event){
+    cifValidation(){
       let signal = new CustomEvent('validate.cif',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     },
 
-    verifyDuplicate(event){
+    verifyDuplicate(){
       let signal = new CustomEvent('verify.duplicate',
                                   {'detail': {},
                                   'bubbles': true})
