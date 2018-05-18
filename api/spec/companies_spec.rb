@@ -2,64 +2,68 @@ require 'rspec'
 require 'json'
 require 'rack/test'
 
-require_relative '../asesora.rb'
+require_relative './fixtures/fixtures'
 
 describe 'Companies' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
+  end
+
+  before(:each) do
+	post 'fixtures/pristine'
   end
 
 	it 'returns a list filtered by criteria' do
 		solicitude = {
-			"phonenumber": "123456789",
-			"text" => "a text",
-			"date" => "2018-12-25",
-			"companyName" => "an applicant",
-			"companyCif" => "A98005978",
-			"companyCnae" => "931 - Actividades deportivas"
+			"phonenumber": Fixtures::PHONENUMBER,
+			"text" => Fixtures::TEXT,
+			"date" => Fixtures::DATE,
+			"companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF,
+			"companyCnae" => Fixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(solicitude)
 
 		body = {
-			"name" => "an a",
+			"name" => "Com",
 			"cnae" => "931 - Actividades deportivas"
 		}.to_json
 
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
-		expect(filtered_companies_list["data"][0]["name"]).to eq("an applicant")
+		expect(filtered_companies_list["data"][0]['name']).to eq(Fixtures::COMPANY_NAME)
 	end
 
 	it 'searches by name when cnae is empty' do
 		first_solicitude = {
-			"phonenumber": "123456789",
-			"text" => "a text",
-			"date" => "2018-12-25",
-			"companyName" => "an applicant",
-			"companyCif" => "B18290346",
-			"companyCnae" => "931 - Actividades deportivas"
+			"phonenumber": Fixtures::PHONENUMBER,
+			"text" => Fixtures::TEXT,
+			"date" => Fixtures::DATE,
+			"companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF_2,
+			"companyCnae" => Fixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(first_solicitude)
 
 		second_solicitude = {
-			"phonenumber": "123456789",
-			"text" => "a text",
-			"date" => "2018-12-25",
-			"companyName" => "an applicant",
-			"companyCif" => "A01316637",
-			"companyCnae" => "870 - Asistencia en establecimientos residenciales"
+			"phonenumber": Fixtures::PHONENUMBER,
+			"text" => Fixtures::TEXT,
+			"date" => Fixtures::DATE,
+			"companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF_3,
+			"companyCnae" => Fixtures::COMPANY_CNAE_2
 		}.to_json
 
 		post_create_solicitude(second_solicitude)
 
 		body = {
-			"name" => "an a",
+			"name" => "Com",
 			"cnae" => ""
 		}.to_json
 
@@ -72,7 +76,7 @@ describe 'Companies' do
 	private
 
 	def post_create_solicitude(body_created)
-    post '/api/create-solicitude', body_created
+    	post '/api/create-solicitude', body_created
 	end
 
 	def post_company_matches(filtered)

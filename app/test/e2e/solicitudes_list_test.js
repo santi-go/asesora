@@ -1,10 +1,16 @@
 const expect = require('chai').expect
 const Solicitude = require('./page-object/solicitude')
 const SolicitudesList = require('./page-object/solicitudes-list')
+const Fixtures = require('./fixtures')
+
 
 describe('Solicitude List', () => {
+  beforeEach(() => {
+    this.fixtures = new Fixtures()
+    this.fixtures.clean()
+  })
 
-  it ('can be populated', () => {
+ it ('can be populated', () => {
     const solicitude = new Solicitude()
     const applicantName = 'John'
     const applicant = applicantName
@@ -18,7 +24,7 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existApplicant(applicant)).to.be.true
   })
 
-  it ('can be populated with complete name', () => {
+ it ('can be populated with complete name', () => {
     const solicitude = new Solicitude()
     const applicantName = 'John'
     const applicantSurname = 'Doe'
@@ -34,7 +40,7 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existApplicant(applicant)).to.be.true
   })
 
-  it ('can be populated without complete name', () => {
+ it ('can be populated without complete name', () => {
     const solicitude = new Solicitude()
     const notApplicant = "n/a"
     const solicitudeDate = "01/01/2018"
@@ -48,7 +54,7 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existNotApplicant(solicitudeDate, notApplicant)).to.be.true
   })
 
-  it ('can be populated with company name', () => {
+ it ('can be populated with company name', () => {
     const solicitude = new Solicitude()
     const solicitudeApplicantName = 'John'
     const solicitudeCompanyName = 'John Inc.'

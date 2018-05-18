@@ -12,6 +12,10 @@ task :digitalocean do
   sh "rackup --port 80 -o #{API_HOST} -D"
 end
 
+task :start_dev do
+  sh "rerun --background -- rackup config.dev.ru --port 4567 -o 0.0.0.0"
+end
+
 task :tdd do
   sh 'rspec'
 end
@@ -22,6 +26,7 @@ end
 task :tag, [:tag] do |t, arg|
   sh "rspec --tag #{arg.tag}"
 end
+
 
 desc 'Run labeled tests'
 RSpec::Core::RakeTask.new do |test, args|

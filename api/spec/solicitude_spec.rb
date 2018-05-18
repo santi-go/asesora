@@ -4,45 +4,52 @@ require 'json'
 require 'rack/test'
 require "date"
 
-require_relative '../asesora.rb'
+require_relative './fixtures/fixtures'
+
 
 describe 'Solicitude Api' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
   end
 
   context 'create solicitude' do
+
+    before(:each) do
+      post 'fixtures/clean'
+    end
+
     it 'returns the brand new solicitude' do
       body = {
-        "name": "an applicant",
-        "surname": "Dou",
-        "email": "applicant@dou.com",
-        "phonenumber": "123456789",
-        "text" => "a text",
-        "date" => "2018-12-25"
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
+        "date" => Fixtures::DATE
       }.to_json
+
       post_create_solicitude(body)
 
       created_solicitude = JSON.parse(last_response.body)
-      expect(created_solicitude["name"]).to eq("an applicant")
-      expect(created_solicitude["surname"]).to eq("Dou")
-      expect(created_solicitude["email"]).to eq("applicant@dou.com")
-      expect(created_solicitude["phonenumber"]).to eq("123456789")
-      expect(created_solicitude["text"]).to eq("a text")
-      expect(created_solicitude["date"]).to eq("2018-12-25")
+      expect(created_solicitude["name"]).to eq(Fixtures::NAME)
+      expect(created_solicitude["surname"]).to eq(Fixtures::SURNAME)
+      expect(created_solicitude["email"]).to eq(Fixtures::EMAIL)
+      expect(created_solicitude["phonenumber"]).to eq(Fixtures::PHONENUMBER)
+      expect(created_solicitude["text"]).to eq(Fixtures::TEXT)
+      expect(created_solicitude["date"]).to eq(Fixtures::DATE)
       expect(created_solicitude["creation_moment"]).not_to be_nil
     end
 
     it 'generate creation moment in milliseconds' do
       body = {
-        "name" => "an",
-        "surname" => "applicant",
-        "email" => "an@applicant.com",
-        "phonenumber" => "987654321",
-        "text" => "a text",
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
         "date" => ""
       }.to_json
       previous_moment = DateTime.now.strftime(in_microseconds)
@@ -57,11 +64,11 @@ describe 'Solicitude Api' do
 
     it 'new solicitude has today date' do
       body = {
-        "name": "an applicant",
-        "surname": "Dou",
-        "email": "applicant@dou.com",
-        "phonenumber": "123456789",
-        "text" => "a text",
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
         "date" => ""
       }.to_json
       post_create_solicitude(body)
@@ -69,23 +76,27 @@ describe 'Solicitude Api' do
 
       created_solicitude = JSON.parse(last_response.body)
 
-      expect(created_solicitude["name"]).to eq("an applicant")
-      expect(created_solicitude["surname"]).to eq("Dou")
-      expect(created_solicitude["email"]).to eq("applicant@dou.com")
-      expect(created_solicitude["phonenumber"]).to eq("123456789")
-      expect(created_solicitude["text"]).to eq("a text")
+      expect(created_solicitude["name"]).to eq(Fixtures::NAME)
+      expect(created_solicitude["surname"]).to eq(Fixtures::SURNAME)
+      expect(created_solicitude["email"]).to eq(Fixtures::EMAIL)
+      expect(created_solicitude["phonenumber"]).to eq(Fixtures::PHONENUMBER)
+      expect(created_solicitude["text"]).to eq(Fixtures::TEXT)
       expect(created_solicitude["date"]).to eq(today)
     end
   end
 
   context 'retrieve solicitude' do
+    before(:each) do
+      post 'fixtures/pristine'
+    end
+
     it 'returns all solicitudes' do
       body = {
-        "name" => "an",
-        "surname" => "applicant",
-        "email" => "an@applicant.com",
-        "phonenumber" => "987654321",
-        "text" => "a text",
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
         "date" => ""
       }.to_json
 
@@ -108,21 +119,21 @@ describe 'Solicitude Api' do
 
     it 'returns solicitudes in descendent order' do
       first_body = {
-          "name" => "an",
-          "surname" => "applicant",
-          "email" => "an@applicant.com",
-          "phonenumber" => "987654321",
-          "text" => "a text",
-          "date" => "2050-03-20"
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
+        "date" => Fixtures::DATE
         }.to_json
       retrieve_first_information = post_create_solicitude(first_body)
       second_body = {
-          "name" => "an",
-          "surname" => "applicant",
-          "email" => "an@applicant.com",
-          "phonenumber" => "987654321",
-          "text" => "a text",
-          "date" => "2050-03-20"
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
+        "date" => Fixtures::DATE
         }.to_json
       retrieve_second_information = post_create_solicitude(second_body)
 
@@ -134,21 +145,27 @@ describe 'Solicitude Api' do
       second_creation_moment = retrieve_second_creation_moment(response)
 
       creation_moment = first_creation_moment > second_creation_moment
-      expect(first_solicitude).to eq("2050-03-20")
-      expect(second_solicitude).to eq("2050-03-20")
+      expect(first_solicitude).to eq(Fixtures::DATE)
+      expect(second_solicitude).to eq(Fixtures::DATE)
       expect(creation_moment).to eq(true)
     end
   end
   context 'retrieve solicitude' do
+
+    before(:each) do
+      post 'fixtures/clean'
+    end
+
     it 'returns one solicitude' do
       body = {
-        "name": "an applicant",
-        "surname": "Dou",
-        "email": "applicant@dou.com",
-        "phonenumber": "123456789",
-        "text" => "a text",
-        "date" => "2018-12-25"
+        "name": Fixtures::NAME,
+        "surname": Fixtures::SURNAME,
+        "email": Fixtures::EMAIL,
+        "phonenumber": Fixtures::PHONENUMBER,
+        "text" => Fixtures::TEXT,
+        "date" => Fixtures::DATE
       }.to_json
+
       post_create_solicitude(body)
 
       created_solicitude = JSON.parse(last_response.body)
@@ -159,12 +176,12 @@ describe 'Solicitude Api' do
 
       solicitude = JSON.parse(last_response.body)
 
-      expect(solicitude['data']['text']).to eq(created_solicitude['text'])
-      expect(solicitude['data']['date']).to eq(created_solicitude['date'])
-      expect(solicitude['data']['name']).to eq(created_solicitude['name'])
-      expect(solicitude['data']['surname']).to eq(created_solicitude['surname'])
-      expect(solicitude['data']['email']).to eq(created_solicitude['email'])
-      expect(solicitude['data']['phonenumber']).to eq(created_solicitude['phonenumber'])
+      expect(solicitude['data'][Fixtures::TEXT]).to eq(created_solicitude[Fixtures::TEXT])
+      expect(solicitude['data'][Fixtures::DATE]).to eq(created_solicitude[Fixtures::DATE])
+      expect(solicitude['data'][Fixtures::NAME]).to eq(created_solicitude[Fixtures::NAME])
+      expect(solicitude['data'][Fixtures::SURNAME]).to eq(created_solicitude[Fixtures::SURNAME])
+      expect(solicitude['data'][Fixtures::EMAIL]).to eq(created_solicitude[Fixtures::EMAIL])
+      expect(solicitude['data'][Fixtures::PHONENUMBER]).to eq(created_solicitude[Fixtures::PHONENUMBER])
     end
   end
 

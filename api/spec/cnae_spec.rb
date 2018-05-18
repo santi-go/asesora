@@ -1,12 +1,15 @@
 require 'json'
 require 'rack/test'
 
+require_relative './fixtures/fixtures'
+
+
 describe 'Cnae' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
   end
 
   it 'retrieves complete catalog' do

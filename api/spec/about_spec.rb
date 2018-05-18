@@ -3,14 +3,14 @@ require 'rspec'
 require 'json'
 require 'rack/test'
 
-require_relative '../asesora.rb'
+require_relative './fixtures/fixtures'
 
 describe 'About Api' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
   end
 
   context 'retieves the about information' do
