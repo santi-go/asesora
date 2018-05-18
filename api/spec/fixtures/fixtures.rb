@@ -17,33 +17,32 @@ class Fixtures < Asesora
   SOLICITUDES_COUNT = 1
   COMPANY_NAME = 'Company'
   COMPANY_NAME_2 = 'Company2'
-  COMPANY_CIF = "A98005978"
-  COMPANY_CIF_2 = "F7575797A"
-  COMPANY_CIF_3 = "U7053991A"
-  COMPANY_EMPLOYEES = "34"
-  COMPANY_CNAE = "931 - Actividades deportivas"
-  COMPANY_CNAE_2 = "870 - Asistencia en establecimientos residenciales"
-  
+  COMPANY_CIF = 'A98005978'
+  COMPANY_CIF_2 = 'F7575797A'
+  COMPANY_CIF_3 = 'U7053991A'
+  COMPANY_EMPLOYEES = '34'
+  COMPANY_CNAE = '931 - Actividades deportivas'
+  COMPANY_CNAE_2 = '870 - Asistencia en establecimientos residenciales'
 
   def self.locale
     Translation::Collection::DEFAULT_LOCALE
-  end  
-  
+  end
+
   post '/fixtures/pristine' do
     clean_collections
     fixtures = insert_solicitudes
-    
+
     { 'fixtures' => fixtures }.to_json
   end
-  
+
   post '/fixtures/clean' do
     clean_collections
-    
+
     { 'fixtures': [] }.to_json
   end
-  
+
   private
-  
+
   def insert_solicitudes()
     company = create_company
     solicitude = create_solicitude(company)
