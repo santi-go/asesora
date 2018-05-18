@@ -10,7 +10,7 @@ export default class SolicitudesList extends Component {
 
   subscribe(){
     Bus.subscribe("got.solicitudes-list", this.populateSolicitudeList.bind(this))
-    Bus.subscribe("translation.for.solicitudes-list", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.solicitudes-list", this.translate.bind(this))
   }
 
   watchActions(){

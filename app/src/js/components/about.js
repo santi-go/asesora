@@ -12,7 +12,7 @@ export default class About extends Component{
   subscribe(){
     Bus.subscribe("got.information", this.setInfo.bind(this))
     Bus.subscribe("got.information", this.askTranslationsFor.bind(this))
-    Bus.subscribe("translation.for.about", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.about", this.translate.bind(this))
   }
 
   translate(payload) {

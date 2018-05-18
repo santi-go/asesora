@@ -24,7 +24,7 @@ export default class Translations {
     let key = payload.key
     let component= payload.for
     let data = this.buildTranslation(component, key)
-    Bus.publish('translation.for.'+ component, data)
+    Bus.publish('got.translation.for.'+ component, data)
   }
 
   buildTranslation(component, key) {
