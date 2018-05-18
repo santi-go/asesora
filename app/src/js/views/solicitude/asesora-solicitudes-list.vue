@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3>{{ labels.listTitle }}</h3>
+    <div class="card-title">
+      <h3>{{ labels.listTitle }}</h3>
+    </div>
     <table>
       <thead>
         <tr>
@@ -17,11 +19,14 @@
           <td>{{ labels.notApply }}</td>
           <td>{{ item.date | es }}</td>
           <td>
-          <template v-if=" item.name =='' && item.surname =='' ">{{ labels.notApply }}</template>
-          <template v-else>{{ item.name }} {{ item.surname }}</template>
+            <template v-if=" item.name =='' && item.surname =='' ">{{ labels.notApply }}</template>
+            <template v-else>{{ item.name }} {{ item.surname }}</template>
+          </td>
+          <td>
+            <template v-if=" item.company_name =='' ">{{ labels.notApply }}</template>
+            <template v-else>{{ item.company_name }}</template>
           </td>
           <td>{{ labels.notApply }}</td>
-          <td>{{ item.company_name }}{{ labels.notApply }}</td>
         </tr>
       </tbody>
     </table>
@@ -49,9 +54,14 @@
 
     }
   </script>
-  <style>
+  <style scoped>
+
     td{
       cursor: pointer;
+    }
+
+    .card .card-title {
+      padding: 15px 0px;
     }
 
   </style>

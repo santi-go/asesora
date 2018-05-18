@@ -18,7 +18,7 @@ describe('Translations Service', () => {
 
     it('sends translation', ()=> {
       const element = 'any.element'
-      Bus.subscribe('translation.for.' + element, (payload) => {
+      Bus.subscribe('got.translation.for.' + element, (payload) => {
         expect(payload['label']).to.eq('the translation')
       })
 
@@ -42,7 +42,7 @@ describe('Translations Service', () => {
     it('sends asked key', ()=> {
       const label = 'any.label'
       const element = 'any.element'
-      Bus.subscribe('translation.for.' + element, (payload) => {
+      Bus.subscribe('got.translation.for.' + element, (payload) => {
         expect(payload['label']).to.eq(label)
       })
 

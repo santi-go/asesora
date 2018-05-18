@@ -8,7 +8,7 @@ export default class Sidebar extends Component {
   }
 
   subscribe(){
-    Bus.subscribe("translation.for.sidebar", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.sidebar", this.translate.bind(this))
   }
 
   translate(payload) {

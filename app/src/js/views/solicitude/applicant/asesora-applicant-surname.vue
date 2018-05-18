@@ -4,6 +4,7 @@
     <input  id="surname"
             name="surname"
             type="text"
+            :disabled="editionmode"
             v-model="values.surname"
             >
     </div>
@@ -13,7 +14,7 @@
 export default {
   name: 'asesora-applicant-surname',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'editionmode'],
 }
 </script>
 

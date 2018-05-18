@@ -8,6 +8,7 @@ require_relative 'system/actions/retrieve_about'
 require_relative 'system/actions/retrieve_dictionary'
 require_relative 'system/actions/retrieve_cnae'
 require_relative 'system/actions/retrieve_solicitude'
+require_relative 'system/actions/update_solicitude'
 require_relative 'system/domain/solicitude'
 require_relative 'system/actions/retrieve_company'
 
@@ -66,23 +67,23 @@ class Asesora < Sinatra::Base
 
   post '/api/update-solicitude' do
     params = JSON.parse(request.body.read)
-    text = params['text']
-    name = params['name']
-    surname = params['surname']
-    email = params['email']
-    phonenumber = params['phonenumber']
-    date = params['date']
-    creation_moment = params['creation_moment']
-    company_name = params['companyName']
-    company_cif = params['companyCif']
-    company_employees = params['companyEmployees']
-    company_cnae = params['companyCnae']
+    data = {
+      text:params['text'],
+      name:params['name'],
+      surname:params['surname'],
+      email:params['email'],
+      phonenumber:params['phonenumber'],
+      date:params['date'],
+      company_name:params['companyName'],
+      company_cif:params['companyCif'],
+      company_employees:params['companyEmployees'],
+      company_cnae:params['companyCnae'],
+      creation_moment:params['creation_moment']
+    }
 
-    updated = Actions.update_solicitude(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae, creation_moment).do()
-
+    updated = Actions::UpdateSolicitude.do(data)
     return {}.to_json if updated.nil?
-
-    updated.serialize.to_json
+    updated.to_json
   end
 
   post '/api/retrieve-solicitudes' do

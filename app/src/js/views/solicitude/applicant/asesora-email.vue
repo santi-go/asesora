@@ -6,6 +6,7 @@
             type="text"
             v-on:blur="blur"
             v-on:focus="focus"
+            :disabled="editionmode"
             v-model="values.email"
             >
   </div>
@@ -15,7 +16,7 @@
 export default {
   name: 'asesora-email',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'editionmode'],
 
   methods: {
     blur(event){

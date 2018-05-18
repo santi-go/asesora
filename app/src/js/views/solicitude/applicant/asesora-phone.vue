@@ -7,6 +7,7 @@
             v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-on:blur="blur"
+            :disabled="editionmode"
             v-model="values.phonenumber"
             >
   </div>
@@ -16,7 +17,7 @@
 export default {
   name: 'asesora-phone',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'editionmode'],
   data: { function () {
       commandKey: false
     }
@@ -44,7 +45,7 @@ export default {
 
     blur(event){
       let valid = this.phoneValidation()
-      
+
       let signal = new CustomEvent('status.phone',
                                       {'detail': {"valid":valid},
                                       'bubbles': true})

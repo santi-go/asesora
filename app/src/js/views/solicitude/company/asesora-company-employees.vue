@@ -7,6 +7,7 @@
             min="1"
             v-on:keydown="keydown"
             v-on:blur="checkNumber"
+            :disabled="editionmode"
             v-model="values.companyEmployees"
             >
     </div>
@@ -16,8 +17,8 @@
 export default {
   name: 'asesora-company-employees',
 
-  props: ['labels', 'values'],
-  
+  props: ['labels', 'values', 'editionmode'],
+
   data: { function () {
       commandKey: false
     }
@@ -38,7 +39,7 @@ export default {
         this.commandKey = false
       }
     },
-    
+
     isArrowKeyCode(keycode){
       let isLeftArrow = keycode == 37
       let isArrowUp = keycode == 38

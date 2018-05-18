@@ -6,6 +6,7 @@
             type="text"
             list="cnae-catalog"
             v-on:blur="cnaeValidation"
+            :disabled="editionmode"
             v-model="values.companyCnae"
             >
         <datalist id="cnae-catalog">
@@ -20,7 +21,7 @@
 export default {
   name: 'asesora-company-cnae',
 
-  props: ['labels', 'values', 'cnaeCatalog'],
+  props: ['labels', 'values', 'cnaeCatalog', 'editionmode'],
 
   data(){
     return {
