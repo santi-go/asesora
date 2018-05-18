@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3>{{ labels.listTitle }}</h3>
+    <div class="card-title">
+      <h3>{{ labels.listTitle }}</h3>
+    </div>
     <table>
       <thead>
         <tr>
@@ -49,9 +51,14 @@
 
     }
   </script>
-  <style>
+  <style scoped>
+  
     td{
       cursor: pointer;
+    }
+
+    .card .card-title {
+      padding: 15px 0px;
     }
 
   </style>
