@@ -1,20 +1,19 @@
 require 'json'
 require 'rack/test'
 
-require_relative '../asesora.rb'
-require_relative './fixtures'
+require_relative './fixtures/fixtures'
 
 describe 'Translations' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
   end
 
   it 'retrieve all translations for a locale' do
     body = {
-      "locale" => Fixture.locale
+      "locale" => Fixtures.locale
     }.to_json
 
     post '/api/translations', body

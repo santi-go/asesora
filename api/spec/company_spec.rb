@@ -4,38 +4,43 @@ require 'json'
 require 'rack/test'
 require "date"
 
-require_relative '../asesora.rb'
+require_relative './fixtures/fixtures'
+
 describe 'Company Api' do
 
   include Rack::Test::Methods
 
   def app
-    Asesora
+    Fixtures
   end
+
+  before(:each) do
+    post 'fixtures/clean'
+    end
 
   it 'retrieves company if exists' do
     solicitude = {
-      "name": "an applicant",
-      "surname": "Dou",
-      "email": "applicant@dou.com",
-      "phonenumber": "123456789",
-      "text" => "a text",
-      "date" => "2018-12-25",
-      "companyName": "Elena",
-      "companyCif": "23801250E",
-      "companyEmployees": "10",
-      "companyCnae": "101"
+      "name": Fixtures::NAME,
+      "surname": Fixtures::SURNAME,
+      "email": Fixtures::EMAIL,
+      "phonenumber": Fixtures::PHONENUMBER,
+      "text" => Fixtures::TEXT,
+      "date" => Fixtures::DATE,
+      "companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', solicitude
 
-    post '/api/duplicated-company', {"id": "23801250E"}.to_json
+    post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF}.to_json
     company = JSON.parse(last_response.body)
 
-    expect(company["name"]).to eq("Elena")
-    expect(company["cif"]).to eq("23801250E")
-    expect(company["employees"]).to eq("10")
-    expect(company["cnae"]).to eq("101")
+    expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
+    expect(company["cif"]).to eq(Fixtures::COMPANY_CIF)
+    expect(company["employees"]).to eq(Fixtures::COMPANY_EMPLOYEES)
+    expect(company["cnae"]).to eq(Fixtures::COMPANY_CNAE)
   end
 
   it "knows when company is not registered yet" do
@@ -46,38 +51,38 @@ describe 'Company Api' do
 
   it "don't saves a duplicated company" do
     first_solicitude = {
-      "name": "an applicant",
-      "surname": "Dou",
-      "email": "applicant@dou.com",
-      "phonenumber": "123456789",
-      "text" => "a text",
-      "date" => "2018-12-25",
-      "companyName": "Elena",
-      "companyCif": "D68795749",
-      "companyEmployees": "10",
-      "companyCnae": "101"
+      "name": Fixtures::NAME,
+      "surname": Fixtures::SURNAME,
+      "email": Fixtures::EMAIL,
+      "phonenumber": Fixtures::PHONENUMBER,
+      "text" => Fixtures::TEXT,
+      "date" => Fixtures::DATE,
+      "companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
 
     second_solicitude = {
-      "name": "an applicant",
-      "surname": "Dou",
-      "email": "applicant@dou.com",
-      "phonenumber": "123456789",
-      "text" => "a text",
-      "date" => "2018-12-25",
-      "companyName": "Santi",
-      "companyCif": "D68795749",
-      "companyEmployees": "10",
-      "companyCnae": "101"
+      "name": Fixtures::NAME,
+      "surname": Fixtures::SURNAME,
+      "email": Fixtures::EMAIL,
+      "phonenumber": Fixtures::PHONENUMBER,
+      "text" => Fixtures::TEXT,
+      "date" => Fixtures::DATE,
+      "companyName" => Fixtures::COMPANY_NAME_2,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', second_solicitude
 
-    post '/api/duplicated-company', {"id": "D68795749"}.to_json
+    post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF}.to_json
     company = JSON.parse(last_response.body)
 
-    expect(company["name"]).to eq("Elena")
+    expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
   end
 end
