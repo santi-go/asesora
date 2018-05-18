@@ -73,10 +73,10 @@ export default class Solicitude extends Component {
   validateCif(){
     let validationCif = new ValidationCif()
     if(this.isCifEmpty()) {
-      this.data.validatedcif = true
+      this.data.isValidCif = true
       return
     }
-    this.data.validatedcif = validationCif.validate(this.data.values.companyCif)
+    this.data.isValidCif = validationCif.validate(this.data.values.companyCif)
   }
 
   verifyDuplicated() {
@@ -89,7 +89,7 @@ export default class Solicitude extends Component {
   }
 
   searchCompanies(event){
-    this.data.suggestedcompanies = []
+    this.data.suggestedCompanies = []
     if(this.hasRequiredLength()){
       Bus.publish('search.company.matches', event.detail)
     }
@@ -103,9 +103,8 @@ export default class Solicitude extends Component {
     return false
   }
 
-
   populateSuggestedCompanies(payload){
-    this.data.suggestedcompanies = payload.data
+    this.data.suggestedCompanies = payload.data
   }
 
   showDuplicate(payload) {
@@ -113,7 +112,7 @@ export default class Solicitude extends Component {
     if ( !this.isObjectEmpty(payload) ) {
       duplicatedCompany.push(payload)
     }
-    this.data.suggestedcompanies = duplicatedCompany
+    this.data.suggestedCompanies = duplicatedCompany
   }
 
   isObjectEmpty(object){
@@ -129,12 +128,12 @@ export default class Solicitude extends Component {
 
   toggleCompanyIdentityMessage(){
 
-    this.data.validcompanyidentity = false
+    this.data.isValidCompanyIdentity = false
     if(this.isNameEmpty() && this.isCifEmpty()){
-      this.data.validcompanyidentity = true
+      this.data.isValidCompanyIdentity = true
     }
-    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.validatedcif){
-      this.data.validcompanyidentity = true
+    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.isValidCif){
+      this.data.isValidCompanyIdentity = true
     }
     this.setButtonStatus()
 
@@ -164,7 +163,7 @@ export default class Solicitude extends Component {
   }
 
   gotCnaeCatalog(payload) {
-    this.data.cnaecatalog = payload
+    this.data.cnaeCatalog = payload
   }
 
   initializeViews(){
@@ -195,12 +194,12 @@ export default class Solicitude extends Component {
   }
 
   validateContact(){
-    this.data.validcontact = this.validEmail || this.validPhonenumber
+    this.data.isValidContact = this.validEmail || this.validPhonenumber
   }
 
   setButtonStatus(){
     this.data.submittable = false
-    if (!this.textIsEmpty() && this.data.validcontact && this.data.validcompanyidentity) {
+    if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
       this.data.submittable = true
     }
   }
@@ -214,8 +213,6 @@ export default class Solicitude extends Component {
     this.validPhonenumber = event.detail.valid
     this.validateContact()
   }
-
-
 
   model(){
     return {
@@ -251,12 +248,12 @@ export default class Solicitude extends Component {
                 "companyCnae": "",
                 "suggestions" : ""
               },
-      suggestedcompanies: [],
+      suggestedCompanies: [],
       fullfilled: false,
-      validatedcif: true,
-      cnaecatalog:[],
-      validcompanyidentity: true,
-      validcontact: true,
+      isValidCif: true,
+      cnaeCatalog:[],
+      isValidCompanyIdentity: true,
+      isValidContact: true,
       submittable: false,
       translate:function(key,value) {
         this.labels[key] = value

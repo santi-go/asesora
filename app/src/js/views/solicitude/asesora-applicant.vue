@@ -5,7 +5,8 @@
 		</div>
     <asesora-applicant-name :values="values" :labels="labels"></asesora-applicant-name>
     <asesora-applicant-surname :values="values" :labels="labels"></asesora-applicant-surname>
-    <asesora-applicant-contact :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant-contact>
+    <asesora-applicant-contact :values="values" :labels="labels"
+                               :is-valid-contact="isValidContact"></asesora-applicant-contact>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ import ApplicantContactView from './applicant/asesora-applicant-contact'
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'validcontact'],
+  props: ['labels', 'values', 'isValidContact'],
 
   components: {
     "asesora-applicant-name" : ApplicantNameView,

@@ -1,14 +1,14 @@
 <template>
   <div>
-    <asesora-applicant :values="values" :labels="labels" :validcontact="validcontact"></asesora-applicant>
+    <asesora-applicant :values="values" :labels="labels" :is-valid-contact="isValidContact"></asesora-applicant>
     <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
     <asesora-text :values="values" :labels="labels"></asesora-text>
     <asesora-company :values="values"
                      :labels="labels"
-                     :suggestedcompanies="suggestedcompanies"
-                     :validatedcif="validatedcif"
-                     :cnaecatalog="cnaecatalog"
-                     :validcompanyidentity='validcompanyidentity'
+                     :suggested-companies="suggestedCompanies"
+                     :is-valid-cif="isValidCif"
+                     :cnae-catalog="cnaeCatalog"
+                     :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
     <asesora-button :values="values" :labels="labels" :editionmode="editionmode" :submittable="submittable"></asesora-button>
     <div class="alert background-success message-hidden ">
@@ -28,8 +28,8 @@ import CompanyView from './asesora-company'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode', 'validatedcif',
-          'cnaecatalog', 'suggestedcompanies', 'validcompanyidentity', 'submittable', 'validcontact'],
+  props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
+          'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'submittable', 'isValidContact'],
 
   data() {
     return {

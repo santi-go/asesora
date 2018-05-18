@@ -7,7 +7,7 @@
             v-on:keydown="keydown"
             v-on:blur="checker"
             v-model="values.companyCif"
-            v-bind:class="{ error: !validatedcif}"
+            v-bind:class="{ error: !isValidCif}"
             >
   </div>
 </template>
@@ -16,7 +16,7 @@
 export default {
   name: 'asesora-company-cif',
 
-  props: ['labels', 'values', 'validatedcif'],
+  props: ['labels', 'values', 'isValidCif'],
 
   methods: {
     keydown(event){

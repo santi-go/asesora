@@ -2,7 +2,7 @@
   <div>
     <asesora-phone :values="values" :labels="labels"></asesora-phone>
     <asesora-email :values="values" :labels="labels"></asesora-email>
-    <div  id="contact-info" v-bind:class="{hide: validcontact}">
+    <div  id="contact-info" v-bind:class="{hide: isValidContact}">
       <div class="alert background-danger">
         <em class="fa fa-times-circle"></em>
          {{ labels.noContact }}
@@ -18,7 +18,7 @@ import PhoneView from './asesora-phone'
 export default {
   name: 'asesora-applicant-contact',
 
-  props: ['labels', 'values', 'validcontact'],
+  props: ['labels', 'values', 'isValidContact'],
 
   components: {
     "asesora-email" : EmailView,
