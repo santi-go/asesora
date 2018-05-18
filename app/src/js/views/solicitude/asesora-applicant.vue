@@ -25,14 +25,6 @@ export default {
     "asesora-applicant-surname" : ApplicantSurnameView,
     "asesora-applicant-contact" : ApplicantContactView
   },
-
-  methods: {
-    keydown(event){
-      if (event.keyCode == 13){
-        event.preventDefault()
-      }
-    }
-  }
 }
 </script>
 

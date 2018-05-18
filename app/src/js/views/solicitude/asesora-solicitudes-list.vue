@@ -22,8 +22,8 @@
           <template v-if=" item.name =='' && item.surname =='' ">{{ labels.notApply }}</template>
           <template v-else>{{ item.name }} {{ item.surname }}</template>
           </td>
-          <td>{{ item.company_name }}</td>
           <td>{{ labels.notApply }}</td>
+          <td>{{ item.company_name }}{{ labels.notApply }}</td>
         </tr>
       </tbody>
     </table>
