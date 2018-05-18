@@ -1,13 +1,26 @@
 <template>
   <div>
-    <asesora-applicant :values="values" :labels="labels" :is-valid-contact="isValidContact"></asesora-applicant>
-    <asesora-date :values="values" :labels="labels" :editionmode="editionmode"></asesora-date>
-    <asesora-text :values="values" :labels="labels"></asesora-text>
+
+    <asesora-applicant :values="values"
+                       :labels="labels"
+                       :editionmode="editionmode"
+                       :is-valid-contact="isValidContact"
+                       ></asesora-applicant>
+
+    <asesora-date :values="values"
+                  :labels="labels"
+                  :editionmode="editionmode"
+                  ></asesora-date>
+    <asesora-text :values="values"
+                  :labels="labels"
+                  ></asesora-text>
+
     <asesora-company :values="values"
                      :labels="labels"
                      :suggested-companies="suggestedCompanies"
                      :is-valid-cif="isValidCif"
                      :cnae-catalog="cnaeCatalog"
+                     :editionmode="editionmode"
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
 

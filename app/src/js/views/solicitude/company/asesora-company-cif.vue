@@ -6,6 +6,7 @@
             type="text"
             v-on:blur="checker"
             v-model="values.companyCif"
+            :disabled="editionmode"
             v-bind:class="{ error: !isValidCif}"
             >
   </div>
@@ -15,10 +16,10 @@
 export default {
   name: 'asesora-company-cif',
 
-  props: ['labels', 'values', 'isValidCif'],
+  props: ['labels', 'values', 'isValidCif', 'editionmode'],
 
   methods: {
-    
+
     checker(event){
       this.cifValidation(event)
       this.verifyDuplicate(event)

@@ -3,10 +3,19 @@
     <div class="card-title">
 			<h3>{{ labels.applicant }}</h3>
 		</div>
-    <asesora-applicant-name :values="values" :labels="labels"></asesora-applicant-name>
-    <asesora-applicant-surname :values="values" :labels="labels"></asesora-applicant-surname>
-    <asesora-applicant-contact :values="values" :labels="labels"
-                               :is-valid-contact="isValidContact"></asesora-applicant-contact>
+    <asesora-applicant-name :values="values"
+                            :labels="labels"
+                            :editionmode="editionmode"
+                            ></asesora-applicant-name>
+    <asesora-applicant-surname :values="values"
+                               :labels="labels"
+                               :editionmode="editionmode"
+                               ></asesora-applicant-surname>
+    <asesora-applicant-contact :values="values"
+                               :labels="labels"
+                               :editionmode="editionmode"
+                               :is-valid-contact="isValidContact"
+                               ></asesora-applicant-contact>
   </div>
 </template>
 
@@ -18,7 +27,7 @@ import ApplicantContactView from './applicant/asesora-applicant-contact'
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'isValidContact'],
+  props: ['labels', 'values', 'isValidContact', 'editionmode'],
 
   components: {
     "asesora-applicant-name" : ApplicantNameView,
