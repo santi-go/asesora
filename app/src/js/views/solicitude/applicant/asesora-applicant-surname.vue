@@ -4,7 +4,6 @@
     <input  id="surname"
             name="surname"
             type="text"
-            v-on:keydown="keydown"
             v-model="values.surname"
             >
     </div>
@@ -15,14 +14,6 @@ export default {
   name: 'asesora-applicant-surname',
 
   props: ['labels', 'values'],
-
-  methods: {
-    keydown(event){
-      if (event.keyCode == 13){
-        event.preventDefault()
-      }
-    }
-  }
 }
 </script>
 

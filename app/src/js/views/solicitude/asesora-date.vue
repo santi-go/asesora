@@ -7,7 +7,7 @@
                 v-bind:required="editionmode"
                 v-bind:class="{editionmode: editionmode}">
         <div    id="date-info"
-                v-bind:class="{hide: mustBeHidden}">
+                v-if="!mustBeHidden">
           <div class="alert">
             <em class="fa fa-calendar"></em>
              {{ labels.noDate }}
@@ -42,9 +42,6 @@ export default {
   }
   input:focus {
       border: 1px solid var(--main-color);
-  }
-  .hide {
-    display: none;
   }
   .editionmode::after {
     content: '*';
