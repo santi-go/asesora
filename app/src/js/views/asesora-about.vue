@@ -1,7 +1,7 @@
 <template>
   <div class="about-header">
     <div class="about-title">
-      <a href="#" class="site-title float-left">{{title}}</a>
+      <a href="index.html" class="site-title float-left">{{title}}</a>
       <p class="about-version">{{ version }}</p>
     </div>
     <p class="about-description">{{ labels.description }}</p>
