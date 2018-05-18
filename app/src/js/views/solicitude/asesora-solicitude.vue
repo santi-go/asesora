@@ -10,11 +10,31 @@
                      :cnae-catalog="cnaeCatalog"
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
-    <asesora-button :values="values" :labels="labels" :editionmode="editionmode" :submittable="submittable"></asesora-button>
+
+    <asesora-button :values="values"
+                    :labels="labels"
+                    :editionmode="editionmode"
+                    :submittable="submittable"
+                    ></asesora-button>
+
     <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
       {{ labels.sent }}
     </div>
+
+    <template v-if="editionmode">
+      <asesora-button-discard :labels="labels"></asesora-button-discard>
+    </template>
+
+      <div class="message-sent alert background-success">
+        <em class="fa fa-thumbs-up"></em>
+        {{ labels.edited }}
+      </div>
+      <div class="message-error alert background-danger">
+        <em class="fa fa-times-circle"></em>
+        {{ labels.alertBackgroundDanger }}
+      </div>
+
   </div>
 </template>
 
@@ -22,8 +42,9 @@
 import DateView from './asesora-date'
 import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
-import ButtonView from './asesora-button'
 import CompanyView from './asesora-company'
+import ButtonView from './asesora-button'
+import ButtonDiscardView from './asesora-button-discard'
 
 export default {
   name: 'asesora-solicitude',
@@ -42,7 +63,8 @@ export default {
     "asesora-applicant" : ApplicantView,
     "asesora-text" : TextView,
     "asesora-company" : CompanyView,
-    "asesora-button" : ButtonView
+    "asesora-button" : ButtonView,
+    "asesora-button-discard" : ButtonDiscardView
   },
 
   watch: {
@@ -89,13 +111,14 @@ export default {
                                       {'detail': {},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)
-
-      // document.querySelector(".submitbutton").disabled = toggle
     },
 
     animateCard() {
       this.show()
-      this.$parent.$emit('moveCard');
+      let signal = new CustomEvent('movecard.animation',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
 
     show() {
@@ -129,6 +152,16 @@ export default {
     text-align: right;
     font-size: 32px;
     color: var(--error-color);
+  }
+
+  .message-sent, .message-error {
+    margin-bottom: 0;
+    margin-top: 1em;
+    display: none;
+  }
+  .button-inline {
+    display: inline-block;
+    margin-right: 1em;
   }
 
 </style>

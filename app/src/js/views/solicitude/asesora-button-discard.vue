@@ -5,7 +5,7 @@
             name="discard"
             class="discardbutton button-clear"
             v-on:click="onclick()">
-      {{ labels.discard }}
+      {{ labels.editiondiscard }}
     </button>
   </div>
 </template>
@@ -19,7 +19,10 @@ export default {
 
   methods: {
     onclick() {
-      this.$parent.$emit('discardCard');
+      let signal = new CustomEvent('discard.animation',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
     },
   }
 }

@@ -2,13 +2,16 @@ import SolicitudeView from '../views/solicitude/asesora-solicitude'
 import ValidationCif from '../library/validation-cif'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
+import {APIClient} from '../infrastructure/api_client'
 
 export default class Solicitude extends Component {
 
   constructor(){
     super('solicitude')
+    this.client = APIClient
     this.validEmail = false
     this.validPhonenumber = false
+    this.load()
   }
 
   subscribe(){
@@ -17,6 +20,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
+    Bus.subscribe('got.solicitude', this.updateModel.bind(this))
   }
 
   watchActions(){
@@ -60,10 +64,81 @@ export default class Solicitude extends Component {
       'text.change',
       this.setButtonStatus.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'edit.solicitude',
+      this.update.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'discard.animation',
+      this.discardAnimation.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'movecard.animation',
+      this.moveCardAnimation.bind(this)
+    )
+  }
+
+discardAnimation(){
+  this.data.showAlert = false
+  let element = document.querySelector('#solicitude')
+  element.classList.add('discardCard')
+  window.setTimeout(function(){
+    window.location = "/solicitudes-list.html"
+  }, 1250)
+}
+
+moveCardAnimation(){
+  let element = document.querySelector('#solicitude')
+  element.classList.add('submitCard')
+  window.setTimeout(function(){
+    window.location = "/solicitudes-list.html"
+  }, 1250)
+}
+
+updatedSolicitude(response){
+  this.data.showAlert = false
+  if (Object.keys(response).length === 0){
+    this.data.errors = true
+  }else{
+    this.data.fullfilled = true
+  }
+}
+
+
+
+  load(){
+    let url = document.URL
+    let index = url.indexOf("=")
+    let id = url.slice(index + 1)
+    if (index == -1){
+      id = ""
+      this.data.editionmode = false
+    } else {
+      this.data.editionmode = true
+      Bus.publish('get.solicitude', {id: id})
+    }
+  }
+
+  updateModel(payload) {
+    this.data.setValues('text', payload.data.text)
+    this.data.setValues('date', payload.data.date)
+    this.data.setValues('name', payload.data.name)
+    this.data.setValues('surname', payload.data.surname)
+    this.data.setValues('email', payload.data.email)
+    this.data.setValues('phonenumber', payload.data.phonenumber)
+    this.data.setValues('creation_moment',payload.data.creation_moment)
+    this.data.setValues('companyName',payload.data.company_name)
+    this.data.setValues('companyCif',payload.data.company_cif)
+    this.data.setValues('companyEmployees',payload.data.company_employees)
+    this.data.setValues('companyCnae',payload.data.company_cnae)
   }
 
   submit(){
     Bus.publish('create.solicitude', this.data.values)
+  }
+
+  update(){
+    Bus.publish('update.solicitude', this.data.values )
   }
 
   isCifEmpty(){
@@ -216,7 +291,6 @@ export default class Solicitude extends Component {
 
   model(){
     return {
-      editionmode: false,
       labels: { "applicant": "XXXXXXXX",
                 "date": "XXXXX",
                 "email": "XXX",
@@ -232,9 +306,12 @@ export default class Solicitude extends Component {
                 "companyCnae": "XXXXXXXX",
                 "noContact": "XXXXX",
                 "incompleteCompanyIdentity": "XXXXXXX",
-                "submitting" : "xxxxxxxxxx",
                 "suggestions" : "xxxxxx",
                 "submit" : "xxxxxxxxxx",
+                "submitting" : "xxxxxxxxxx",
+                "editiondiscard" : "xxxxxxxxxx",
+                "editionsubmit" : "xxxxxx",
+                "editionsubmitting" : "xxxxxx",
                 "sent" : "XXXX"},
       values: { "text": "",
                 "date": "",
@@ -255,6 +332,8 @@ export default class Solicitude extends Component {
       isValidCompanyIdentity: true,
       isValidContact: true,
       submittable: false,
+      showAlert: true,
+      editionmode: false,
       translate:function(key,value) {
         this.labels[key] = value
       },

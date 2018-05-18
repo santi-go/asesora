@@ -6,7 +6,8 @@
             class="submitbutton"
             :disabled="!submittable"
             v-on:click="submit()">
-      {{ labels.submit }}
+    <template v-if="!editionmode">{{ labels.submit }}</template>
+    <template v-else>{{ labels.editionsubmit }}</template>
     </button>
   </div>
 </template>
@@ -17,8 +18,16 @@ export default {
 
   props: ['labels', 'values', 'editionmode', 'submittable'],
 
-  methods: {
+  watch: {
+    editionmode: function(val, oldVal){
+      let button = this.$el.querySelector('button')
+      if (val == true){
+        button.disabled = false
+      }
+    }
+  },
 
+  methods: {
     submit(){
       let event = 'submit.solicitude'
       if (this.editionmode) {
@@ -30,7 +39,7 @@ export default {
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
       let button = this.$el.querySelector('button')
-      button.innerText = this.labels.submitting
+      button.innerText = this.labels.editionsubmitting
       button.disabled = true
     }
   }

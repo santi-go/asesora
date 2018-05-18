@@ -52,6 +52,11 @@ module Translation
                 "companyCnae": "CNAE",
                 "submit": "Solicitar",
                 "submitting": "Solicitando",
+                "editionsubmit": "Guardar cambios",
+                "editionsubmitting": "Guardando",
+                "editiondiscard": "Descartar",
+                "edited": "Todo Ok! Guardado!",
+                "alertBackgroundDanger": "Lo sentimos, ha habido un error",
                 "suggestions": "Sugerencias",
                 "sent": "Todo Ok! Enviado!"
               },

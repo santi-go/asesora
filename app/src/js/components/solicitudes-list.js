@@ -21,7 +21,7 @@ export default class SolicitudesList extends Component {
   }
 
   load(event){
-    window.location.href = "/solicitudes-edition.html?id=" + event.detail
+    window.location.href = "/index.html?id=" + event.detail
   }
 
   initializeViews(){
