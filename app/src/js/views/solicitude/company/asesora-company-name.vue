@@ -6,7 +6,6 @@
             type="text"
             v-on:keyup="onKeyUp"
             v-on:blur="validateCompanyIdentity"
-            v-on:keydown="keydown"
             v-model="values.companyName"
             >
     </div>
@@ -31,12 +30,6 @@ export default {
                                       },
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)
-    },
-
-    keydown(event){
-      if (event.keyCode == 13){
-        event.preventDefault()
-      }
     },
 
     validateCompanyIdentity(event){

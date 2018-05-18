@@ -4,7 +4,6 @@
     <input  id="company-cif"
             name="company-cif"
             type="text"
-            v-on:keydown="keydown"
             v-on:blur="checker"
             v-model="values.companyCif"
             v-bind:class="{ error: !isValidCif}"
@@ -19,11 +18,7 @@ export default {
   props: ['labels', 'values', 'isValidCif'],
 
   methods: {
-    keydown(event){
-      let isReturnKey = (event.keyCode == 13)
-      if (isReturnKey) event.preventDefault()
-    },
-
+    
     checker(event){
       this.cifValidation(event)
       this.verifyDuplicate(event)

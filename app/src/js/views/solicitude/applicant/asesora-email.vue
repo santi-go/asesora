@@ -6,7 +6,6 @@
             type="text"
             v-on:blur="blur"
             v-on:focus="focus"
-            v-on:keydown="keyDown"
             v-model="values.email"
             >
   </div>
@@ -29,13 +28,6 @@ export default {
 
     focus(event){
       event.target.classList.remove("error")
-    },
-
-    keyDown(event){
-      let enter = 13
-      if (event.keyCode == enter){
-        event.preventDefault()
-      }
     },
 
     emailValidation(){

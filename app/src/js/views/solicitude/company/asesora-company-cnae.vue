@@ -5,7 +5,6 @@
             name="company-cnae"
             type="text"
             list="cnae-catalog"
-            v-on:keydown="keydown"
             v-on:blur="cnaeValidation"
             v-model="values.companyCnae"
             >
@@ -32,12 +31,6 @@ export default {
   methods: {
     fullCnaeName(cnaeCode){
       return cnaeCode.id + this.separator + cnaeCode.name
-    },
-
-    keydown(event){
-      if (event.keyCode == 13){
-        event.preventDefault()
-      }
     },
 
     cnaeValidation(event){
