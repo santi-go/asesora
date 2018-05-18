@@ -17,6 +17,7 @@ export default class Solicitude extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
+    Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
@@ -78,33 +79,13 @@ export default class Solicitude extends Component {
     )
   }
 
-discardAnimation(){
-  this.data.showAlert = false
-  let element = document.querySelector('#solicitude')
-  element.classList.add('discardCard')
-  window.setTimeout(function(){
-    window.location = "/solicitudes-list.html"
-  }, 1250)
-}
-
-moveCardAnimation(){
-  let element = document.querySelector('#solicitude')
-  element.classList.add('submitCard')
-  window.setTimeout(function(){
-    window.location = "/solicitudes-list.html"
-  }, 1250)
-}
-
-updatedSolicitude(response){
-  this.data.showAlert = false
-  if (Object.keys(response).length === 0){
-    this.data.errors = true
-  }else{
-    this.data.fullfilled = true
+  initializeViews(){
+    let listView = {
+      'asesora-solicitude': SolicitudeView
+    }
+    let mounted =function() {}
+    super.initializeViews(listView, mounted)
   }
-}
-
-
 
   load(){
     let url = document.URL
@@ -116,6 +97,23 @@ updatedSolicitude(response){
     } else {
       this.data.editionmode = true
       Bus.publish('get.solicitude', {id: id})
+    }
+  }
+
+  submit(){
+    Bus.publish('create.solicitude', this.data.values)
+  }
+
+  update(){
+    Bus.publish('update.solicitude', this.data.values )
+  }
+
+  updatedSolicitude(response){
+    this.data.showAlert = false
+    if (Object.keys(response).length === 0){
+      this.data.errors = true
+    }else{
+      this.data.fullfilled = true
     }
   }
 
@@ -131,14 +129,6 @@ updatedSolicitude(response){
     this.data.setValues('companyCif',payload.data.company_cif)
     this.data.setValues('companyEmployees',payload.data.company_employees)
     this.data.setValues('companyCnae',payload.data.company_cnae)
-  }
-
-  submit(){
-    Bus.publish('create.solicitude', this.data.values)
-  }
-
-  update(){
-    Bus.publish('update.solicitude', this.data.values )
   }
 
   isCifEmpty(){
@@ -215,11 +205,11 @@ updatedSolicitude(response){
   }
 
   isNameEmpty(){
-      return this.data.values.companyName === ""
+    return this.data.values.companyName === ""
   }
 
   isCifEmpty() {
-      return this.data.values.companyCif === ""
+    return this.data.values.companyCif === ""
   }
 
   translate(payload) {
@@ -232,99 +222,97 @@ updatedSolicitude(response){
     let labelKeys = Object.keys(this.model().labels)
     for (const labelKey of labelKeys) {
       let data = {  for: this.element,
-                    key: labelKey }
-      Bus.publish('ask.translation', data)
-    }
-  }
-
-  gotCnaeCatalog(payload) {
-    this.data.cnaeCatalog = payload
-  }
-
-  initializeViews(){
-    let listView = {
-      'asesora-solicitude': SolicitudeView
+        key: labelKey }
+        Bus.publish('ask.translation', data)
+      }
     }
 
-    let mounted =function() {
-      let submitAnimationDelay = 1500
-
-      this.$on('moveCard', function(){
-        let element = this.$el
-        element.classList.add('submitCard')
-        window.setTimeout(function(){
-          location.reload()
-        }, submitAnimationDelay )
-      }.bind(this))
+    gotCnaeCatalog(payload) {
+      this.data.cnaeCatalog = payload
     }
-    super.initializeViews(listView, mounted)
-  }
 
-  createdSolicitude(){
-    this.data.fullfilled = true
-  }
-
-  textIsEmpty(){
-    return (this.data.values.text == "")
-  }
-
-  validateContact(){
-    this.data.isValidContact = this.validEmail || this.validPhonenumber
-  }
-
-  setButtonStatus(){
-    this.data.submittable = false
-    if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
-      this.data.submittable = true
+    discardAnimation(){
+      this.data.showAlert = false
+      let element = document.querySelector('#solicitude')
+      element.classList.add('discardCard')
+      window.setTimeout(function(){
+        window.location = "/solicitudes-list.html"
+      }, 1250)
     }
-  }
 
-  setValidEmail(event){
-    this.validEmail = event.detail.valid
-    this.validateContact()
-  }
+    moveCardAnimation(){
+      let element = document.querySelector('#solicitude')
+      element.classList.add('submitCard')
+      window.setTimeout(function(){
+        window.location = "/solicitudes-list.html"
+      }, 1250)
+    }
 
-  setValidPhone(event){
-    this.validPhonenumber = event.detail.valid
-    this.validateContact()
-  }
+    createdSolicitude(){
+      this.data.fullfilled = true
+    }
 
-  model(){
-    return {
-      labels: { "applicant": "XXXXXXXX",
-                "date": "XXXXX",
-                "email": "XXX",
-                "phonenumber": "XXXXXXXXX",
-                "name": "XXXX",
-                "surname": "XXXXXXXXX",
-                "text": "XXXXX",
-                "noDate": "XXXXX",
-                "company": "XXXXXXX",
-                "companyName": "XXXXXXXX",
-                "companyCif": "XXXXXX",
-                "companyEmployees": "XXXXXX",
-                "companyCnae": "XXXXXXXX",
-                "noContact": "XXXXX",
-                "incompleteCompanyIdentity": "XXXXXXX",
-                "suggestions" : "xxxxxx",
-                "submit" : "xxxxxxxxxx",
-                "submitting" : "xxxxxxxxxx",
-                "editiondiscard" : "xxxxxxxxxx",
-                "editionsubmit" : "xxxxxx",
-                "editionsubmitting" : "xxxxxx",
-                "sent" : "XXXX"},
-      values: { "text": "",
-                "date": "",
-                "name": "",
-                "surname": "",
-                "email": "",
-                "phonenumber": "",
-                "companyName": "",
-                "companyCif": "",
-                "companyEmployees": "",
-                "companyCnae": "",
-                "suggestions" : ""
-              },
+    textIsEmpty(){
+      return (this.data.values.text == "")
+    }
+
+    validateContact(){
+      this.data.isValidContact = this.validEmail || this.validPhonenumber
+    }
+
+    setButtonStatus(){
+      this.data.submittable = false
+      if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
+        this.data.submittable = true
+      }
+    }
+
+    setValidEmail(event){
+      this.validEmail = event.detail.valid
+      this.validateContact()
+    }
+
+    setValidPhone(event){
+      this.validPhonenumber = event.detail.valid
+      this.validateContact()
+    }
+
+    model(){
+      return {
+        labels: { "applicant": "XXXXXXXX",
+        "date": "XXXXX",
+        "email": "XXX",
+        "phonenumber": "XXXXXXXXX",
+        "name": "XXXX",
+        "surname": "XXXXXXXXX",
+        "text": "XXXXX",
+        "noDate": "XXXXX",
+        "company": "XXXXXXX",
+        "companyName": "XXXXXXXX",
+        "companyCif": "XXXXXX",
+        "companyEmployees": "XXXXXX",
+        "companyCnae": "XXXXXXXX",
+        "noContact": "XXXXX",
+        "incompleteCompanyIdentity": "XXXXXXX",
+        "suggestions" : "xxxxxx",
+        "submit" : "xxxxxxxxxx",
+        "submitting" : "xxxxxxxxxx",
+        "editiondiscard" : "xxxxxxxxxx",
+        "editionsubmit" : "xxxxxx",
+        "editionsubmitting" : "xxxxxx",
+        "sent" : "XXXX"},
+        values: { "text": "",
+        "date": "",
+        "name": "",
+        "surname": "",
+        "email": "",
+        "phonenumber": "",
+        "companyName": "",
+        "companyCif": "",
+        "companyEmployees": "",
+        "companyCnae": "",
+        "suggestions" : ""
+      },
       suggestedCompanies: [],
       fullfilled: false,
       isValidCif: true,

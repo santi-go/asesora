@@ -15,10 +15,10 @@ module Solicitudes
       solicitude.serialize
     end
 
-    def self.update(text, name, surname, email, phonenumber, date, company_name, company_cif, company_employees, company_cnae, creation_moment)
-      solicitude = Domain::Solicitude.with(name, surname, email, phonenumber, date, text, company_name, company_cif, company_employees, company_cnae, creation_moment)
+    def self.update(text, name, surname, email, phonenumber, date, company, creation_moment)
+      solicitude = Domain::Solicitude.with(name, surname, email, phonenumber, date, text, company, creation_moment)
 
-      Collection.update(creation_moment, solicitude)
+      Collection.update(creation_moment, solicitude).serialize
     end
 
     def self.all
