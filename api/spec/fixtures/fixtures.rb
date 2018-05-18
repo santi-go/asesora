@@ -18,11 +18,11 @@ class Fixtures < Asesora
   COMPANY_NAME = 'Company'
   COMPANY_NAME_2 = 'Company2'
   COMPANY_CIF = "A98005978"
+  COMPANY_CIF_2 = "F7575797A"
+  COMPANY_CIF_3 = "U7053991A"
   COMPANY_EMPLOYEES = "34"
   COMPANY_CNAE = "931 - Actividades deportivas"
   COMPANY_CNAE_2 = "870 - Asistencia en establecimientos residenciales"
-  COMPANY_CIF_3 = "26751998P"
-  COMPANY_CIF_4 = "22674411E"
   
 
   def self.locale

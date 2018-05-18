@@ -45,7 +45,7 @@ describe 'Companies' do
 			"text" => Fixtures::TEXT,
 			"date" => Fixtures::DATE,
 			"companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF_3,
+			"companyCif" => Fixtures::COMPANY_CIF_2,
 			"companyCnae" => Fixtures::COMPANY_CNAE
 		}.to_json
 
@@ -56,7 +56,7 @@ describe 'Companies' do
 			"text" => Fixtures::TEXT,
 			"date" => Fixtures::DATE,
 			"companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF_4,
+			"companyCif" => Fixtures::COMPANY_CIF_3,
 			"companyCnae" => Fixtures::COMPANY_CNAE_2
 		}.to_json
 

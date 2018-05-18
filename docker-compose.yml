@@ -42,7 +42,7 @@ services:
       - '4567:4567'
     links:
       - mongo
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake'
+    command: sh -c 'gem install bundler && bundle install && bundle exec rake start_dev'
 
   mongo:
     image: mongo

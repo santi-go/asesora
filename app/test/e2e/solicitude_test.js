@@ -1,8 +1,14 @@
 const expect = require('chai').expect
 const assert = require('chai').assert
 const Solicitude = require('./page-object/solicitude')
+const Fixtures = require('./fixtures')
+
 
 describe('Solicitude', () => {
+  beforeEach(function(){
+    fixtures = new Fixtures()
+    fixtures.clean()
+  })
 
   it ("can be created", () => {
     const solicitude = new Solicitude()
@@ -97,7 +103,7 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
   })
 
-  it("uses CNAE catalog",()=> {
+ it("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
@@ -112,7 +118,7 @@ describe('Solicitude', () => {
     expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)
   })
 
-  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+ it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "N2902211H"
@@ -138,7 +144,7 @@ describe('Solicitude', () => {
     expect(numberOfMatches).to.eq(0)
   })
 
-  it ("company allows filled with matches", () => {
+ it ("company allows filled with matches", () => {
     const solicitude = new Solicitude()
     let name = 'Devscola'
     let cif = 'G53910758'
@@ -153,7 +159,7 @@ describe('Solicitude', () => {
     expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
   })
 
-  it("narrow the company matches when given a cnae",()=> {
+ it("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "F8819575E"

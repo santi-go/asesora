@@ -1,3 +1,3 @@
-require_relative 'fixtures/fixtures'
+require_relative './spec/fixtures/fixtures'
 
 run Fixtures
