@@ -77,6 +77,7 @@ export default class Solicitude extends Component {
       'movecard.animation',
       this.moveCardAnimation.bind(this)
     )
+    window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
   initializeViews(){
@@ -98,6 +99,26 @@ export default class Solicitude extends Component {
       this.data.editionmode = true
       Bus.publish('get.solicitude', {id: id})
     }
+  }
+
+  leaving(event){
+    if(!this.data.showAlert){
+      return
+    }
+    if(this.hasChanges()){
+      const confirmationMessage = "\o/"
+
+      event.returnValue = confirmationMessage
+      return confirmationMessage
+    }
+  }
+
+
+  hasChanges(){
+    for(let key in this.data.values){
+      if (this.data.values[key] != this.initialValues[key]) return true
+    }
+    return false
   }
 
   submit(){
@@ -129,6 +150,7 @@ export default class Solicitude extends Component {
     this.data.setValues('companyCif',payload.data.company_cif)
     this.data.setValues('companyEmployees',payload.data.company_employees)
     this.data.setValues('companyCnae',payload.data.company_cnae)
+    this.initialValues = this.data.cloneValues()
   }
 
   isCifEmpty(){
@@ -327,6 +349,10 @@ export default class Solicitude extends Component {
       },
       setValues:function(key, value) {
         this.values[key] = value
+      },
+      cloneValues:function(){
+        let clone = Object.assign({}, this.values)
+        return clone
       }
     }
   }
