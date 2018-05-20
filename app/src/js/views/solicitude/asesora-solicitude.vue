@@ -30,14 +30,14 @@
                     :submittable="submittable"
                     ></asesora-button>
 
+    <template v-if="editionmode">
+      <asesora-button-discard :labels="labels"></asesora-button-discard>
+    </template>
+
     <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
       {{ labels.sent }}
     </div>
-
-    <template v-if="editionmode">
-      <asesora-button-discard :labels="labels"></asesora-button-discard>
-    </template>
 
       <div class="message-sent alert background-success">
         <em class="fa fa-thumbs-up"></em>
