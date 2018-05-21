@@ -4,6 +4,8 @@
     <input  id="name"
             name="name"
             type="text"
+            v-on:keyup="refreshSuggestion"
+            :editionmode="editionmode"
             :disabled="editionmode"
             v-model="values.name"
             >
@@ -15,6 +17,15 @@ export default {
   name: 'asesora-applicant-name',
 
   props: ['labels', 'values', 'editionmode'],
+
+  methods: {
+    refreshSuggestion() {
+      let signal = new CustomEvent('changed.applicant.fields',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    }
+  }
 }
 </script>
 

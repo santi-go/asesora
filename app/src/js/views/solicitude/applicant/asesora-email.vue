@@ -6,6 +6,7 @@
             type="text"
             v-on:blur="blur"
             v-on:focus="focus"
+            v-on:keyup="refreshSuggestion"
             :disabled="editionmode"
             v-model="values.email"
             >
@@ -19,6 +20,13 @@ export default {
   props: ['labels', 'values', 'editionmode'],
 
   methods: {
+    refreshSuggestion() {
+      let signal = new CustomEvent('changed.applicant.fields',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
+
     blur(event){
       let valid = this.emailValidation()
       let signal = new CustomEvent('status.email',

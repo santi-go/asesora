@@ -75,6 +75,10 @@ export default class Solicitude extends Component {
       'movecard.animation',
       this.moveCardAnimation.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'changed.applicant.fields',
+      this.searchForApplicants.bind(this)
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -110,7 +114,6 @@ export default class Solicitude extends Component {
       return confirmationMessage
     }
   }
-
 
   hasChanges(){
     for(let key in this.data.values){
@@ -212,7 +215,6 @@ export default class Solicitude extends Component {
   }
 
   toggleCompanyIdentityMessage(){
-
     this.data.isValidCompanyIdentity = false
     if(this.isNameEmpty() && this.isCifEmpty()){
       this.data.isValidCompanyIdentity = true
@@ -296,6 +298,38 @@ export default class Solicitude extends Component {
     setValidPhone(event){
       this.validPhonenumber = event.detail.valid
       this.validateContact()
+    }
+
+    searchForApplicants(){
+      let criteria = []
+      let minimunLength = 3
+      let nameLength = (this.data.values.name.length >= minimunLength )
+      if (nameLength){
+        criteria.push(
+          {'name': this.data.values.name}
+        )
+      }
+      let surnameLength = (this.data.values.surname.length >= minimunLength )
+      if (surnameLength){
+        criteria.push(
+          {'surname': this.data.values.surname}
+        )
+      }
+      let phonenumberLength = (this.data.values.phonenumber.length >= minimunLength )
+      if (phonenumberLength){
+        criteria.push(
+          {'phonenumber': this.data.values.phonenumber}
+        )
+      }
+      let emailLength = (this.data.values.email.length >= minimunLength )
+      if (emailLength){
+        criteria.push(
+          {'email': this.data.values.email}
+        )
+      }
+      if ( nameLength || surnameLength || phonenumberLength || emailLength){
+        Bus.publish('ask.suggested.applicants', criteria)
+      }
     }
 
     model(){

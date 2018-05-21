@@ -7,6 +7,7 @@
             v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-on:blur="blur"
+            v-on:keyup="refreshSuggestion"
             :disabled="editionmode"
             v-model="values.phonenumber"
             >
@@ -24,6 +25,13 @@ export default {
   },
 
   methods: {
+    refreshSuggestion() {
+      let signal = new CustomEvent('changed.applicant.fields',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
+
     onFocus(event){
       event.target.classList.remove("error")
     },
