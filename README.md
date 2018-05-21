@@ -39,6 +39,17 @@ Before launch the test you have to build the application with `docker-compose ru
 `docker-compose run --rm app npm run test-all`
 
 
+## After performing the tests
+
+When you launch the test your system link looks to `api` container, so your 'api' is not launched in localhost.
+
+If you need view the application in a web navigator run the build again:
+
+~~~
+docker-compose run --rm app npm run build
+~~~
+
+
 # Templates
 
 ## Styles
