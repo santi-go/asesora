@@ -1,5 +1,5 @@
 import SolicitudeView from '../views/solicitude/asesora-solicitude'
-import ValidationCif from '../library/validation-cif'
+import {ValidationCif} from '../library/validation-cif'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
@@ -8,9 +8,11 @@ export default class Solicitude extends Component {
 
   constructor(){
     super('solicitude')
+    this.validationCif = ValidationCif
     this.client = APIClient
     this.validEmail = false
     this.validPhonenumber = false
+    this.initialValues = this.data.cloneValues()
     this.load()
   }
 
@@ -30,12 +32,8 @@ export default class Solicitude extends Component {
       this.submit.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'validate.cif',
-      this.validateCif.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'verify.duplicate',
-      this.verifyDuplicated.bind(this)
+      'ensure.cif',
+      this.ensureCif.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'search.companies',
@@ -157,22 +155,22 @@ export default class Solicitude extends Component {
     return this.data.values.companyCif == ""
   }
 
-  validateCif(){
-    let validationCif = new ValidationCif()
+  ensureCif(){
     if(this.isCifEmpty()) {
       this.data.isValidCif = true
       return
     }
-    this.data.isValidCif = validationCif.validate(this.data.values.companyCif)
+    this.data.isValidCif = this.validateCif()
+    if(this.data.isValidCif){ this.verifyDuplicatedCif() }
   }
 
-  verifyDuplicated() {
-    let validationCif = new ValidationCif()
-    let validation = validationCif.validate(this.data.values.companyCif)
-    if(validation){
-      let cif = this.data.values.companyCif
-      Bus.publish('verify.company.duplicate', cif)
-    }
+  validateCif(){
+    return this.validationCif.validate(this.data.values.companyCif)
+  }
+
+  verifyDuplicatedCif() {
+    let cif = this.data.values.companyCif
+    Bus.publish('verify.company.duplicate', cif)
   }
 
   searchCompanies(event){
@@ -263,6 +261,7 @@ export default class Solicitude extends Component {
     }
 
     moveCardAnimation(){
+      this.initialValues = this.data.cloneValues()
       let element = document.querySelector('#solicitude')
       element.classList.add('submitCard')
       window.setTimeout(function(){

@@ -1,5 +1,5 @@
-export default class ValidationCif {
-  validate(nif) {
+export let ValidationCif = {
+  validate: function(nif){
     nif = nif.toUpperCase().replace(/[\s\-]+/g,'');
     if(/^(\d|[XYZ])\d{7}[A-Z]$/.test(nif)) {
       var num = nif.match(/\d+/);

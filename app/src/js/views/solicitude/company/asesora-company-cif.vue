@@ -21,8 +21,7 @@ export default {
   methods: {
 
     checker(){
-      this.cifValidation()
-      this.verifyDuplicate()
+      this.ensureCif()
       this.validateCompanyIdentity()
     },
 
@@ -33,15 +32,8 @@ export default {
       this.$el.dispatchEvent(signal)
     },
 
-    cifValidation(){
-      let signal = new CustomEvent('validate.cif',
-                                  {'detail': {},
-                                  'bubbles': true})
-      this.$el.dispatchEvent(signal)
-    },
-
-    verifyDuplicate(){
-      let signal = new CustomEvent('verify.duplicate',
+    ensureCif(){
+      let signal = new CustomEvent('ensure.cif',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
