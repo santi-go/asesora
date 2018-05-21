@@ -1,11 +1,9 @@
-require 'json'
+require_relative 'collection'
 
 module Cnae
   class Service
     def self.all
-      catalog = File.read("system/services/cnae/collection.json", encoding: 'UTF-8')
-
-      JSON.parse(catalog)
+      catalog = cnae
     end
   end
 end
