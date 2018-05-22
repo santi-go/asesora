@@ -3,7 +3,7 @@
     <label>{{ labels.text }}</label>
     <textarea id="solicitude-text"
               placeholder="*"
-              v-on:keyup="onKeyUp"
+              v-on:keyup="onKeyup"
               v-on:focus="onFocus"
               v-model="values.text">
     </textarea>
@@ -17,7 +17,7 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    onKeyUp(event){
+    onKeyup(event){
       event.target.classList.remove("error")
       if (event.target.value == "") {
         event.target.classList.add("error")

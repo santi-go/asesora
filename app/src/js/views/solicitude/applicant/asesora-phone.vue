@@ -6,8 +6,7 @@
             type="text"
             v-on:focus="onFocus"
             v-on:keydown="keydown"
-            v-on:blur="blur"
-            v-on:keyup="refreshSuggestion"
+            v-on:keyup="onKeyup"
             :disabled="editionmode"
             v-model="values.phonenumber"
             >
@@ -25,6 +24,17 @@ export default {
   },
 
   methods: {
+
+    onKeyup(){
+      let valid = this.phoneValidation()
+
+      let signal = new CustomEvent('changed.phone',
+      {'detail': {"valid":valid},
+      'bubbles': true})
+
+      this.$el.dispatchEvent(signal)
+    },
+
     refreshSuggestion() {
       let signal = new CustomEvent('changed.applicant.fields',
                                       {'detail': {},
@@ -51,14 +61,6 @@ export default {
       }
     },
 
-    blur(event){
-      let valid = this.phoneValidation()
-
-      let signal = new CustomEvent('changed.phone',
-                                      {'detail': {"valid":valid},
-                                      'bubbles': true})
-      this.$el.dispatchEvent(signal)
-    },
 
     isArrowKeyCode(keycode){
       let isLeftArrow = keycode == 37

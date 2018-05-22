@@ -4,8 +4,7 @@
     <input  id="company-name"
             name="company-name"
             type="text"
-            v-on:keyup="onKeyUp"
-            v-on:blur="validateCompanyIdentity"
+            v-on:keyup="onKeyup"
             :disabled="editionmode"
             v-model="values.companyName"
             >
@@ -19,8 +18,9 @@ export default {
   props: ['labels', 'values', 'editionmode'],
 
   methods: {
-    onKeyUp(event){
+    onKeyup(){
       this.searchCompaniesMatch()
+      this.validateCompanyIdentity()
     },
 
     searchCompaniesMatch() {
@@ -33,7 +33,7 @@ export default {
       this.$el.dispatchEvent(signal)
     },
 
-    validateCompanyIdentity(event){
+    validateCompanyIdentity(){
       let signal = new CustomEvent('validate.company.identity',
                                       {'detail': {},
                                       'bubbles': true})
