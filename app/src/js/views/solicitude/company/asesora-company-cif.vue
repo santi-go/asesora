@@ -4,7 +4,7 @@
     <input  id="company-cif"
             name="company-cif"
             type="text"
-            v-on:blur="checker"
+            v-on:keyup="checker"
             v-model="values.companyCif"
             :disabled="editionmode"
             v-bind:class="{ error: !isValidCif}"

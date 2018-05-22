@@ -6,7 +6,7 @@
             type="number"
             min="1"
             v-on:keydown="keydown"
-            v-on:blur="checkNumber"
+            v-on:keyup="checkNumber"
             :disabled="editionmode"
             v-model="values.companyEmployees"
             >

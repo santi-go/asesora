@@ -24,7 +24,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
-    Bus.subscribe("got.suggested-applicants", this.populateSuggestedApplicants.bind(this))
+    Bus.subscribe("got.applicant.matches", this.populateSuggestedApplicants.bind(this))
   }
 
   watchActions(){
@@ -309,7 +309,7 @@ export default class Solicitude extends Component {
         'email': this.data.values.email
       }
       if (this.evaluateCriterion(criteria)){
-        Bus.publish('ask.suggested.applicants', criteria)
+        Bus.publish('get.applicant.matches', criteria)
       }
     }
 
