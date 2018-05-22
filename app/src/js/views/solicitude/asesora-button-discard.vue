@@ -19,7 +19,7 @@ export default {
 
   methods: {
     onclick() {
-      let signal = new CustomEvent('discard.animation',
+      let signal = new CustomEvent('clicked.discard.button',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

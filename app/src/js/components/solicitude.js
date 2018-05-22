@@ -40,7 +40,7 @@ export default class Solicitude extends Component {
       this.searchCompanies.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'fill.company',
+      'clicked.company',
       this.fillCompany.bind(this)
     )
     document.getElementById(this.element).addEventListener(
@@ -52,15 +52,15 @@ export default class Solicitude extends Component {
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'status.email',
+      'changed.email',
       this.setValidEmail.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'status.phone',
+      'changed.phone',
       this.setValidPhone.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'text.change',
+      'changed.text',
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
@@ -68,11 +68,11 @@ export default class Solicitude extends Component {
       this.update.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'discard.animation',
+      'clicked.discard.button',
       this.discardAnimation.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'movecard.animation',
+      'fullfilled.solicitude',
       this.moveCardAnimation.bind(this)
     )
     document.getElementById(this.element).addEventListener(
@@ -179,7 +179,7 @@ export default class Solicitude extends Component {
   searchCompanies(event){
     this.data.suggestedCompanies = []
     if(this.hasRequiredLength()){
-      Bus.publish('search.company.matches', event.detail)
+      Bus.publish('get.company.matches', event.detail)
     }
   }
 
@@ -328,7 +328,7 @@ export default class Solicitude extends Component {
         )
       }
       if ( nameLength || surnameLength || phonenumberLength || emailLength){
-        Bus.publish('ask.suggested.applicants', criteria)
+        Bus.publish('get.applicant.matches', criteria)
       }
     }
 

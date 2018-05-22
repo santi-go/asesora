@@ -34,7 +34,7 @@
       },
 
       selectCompany(item){
-        let signal = new CustomEvent('fill.company',
+        let signal = new CustomEvent('clicked.company',
                                     {'detail': item,
                                     'bubbles': true})
         this.$el.dispatchEvent(signal)
