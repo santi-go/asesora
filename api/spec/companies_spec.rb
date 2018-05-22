@@ -20,6 +20,7 @@ describe 'Companies' do
 		solicitude = {
 			"phonenumber": Fixtures::PHONENUMBER,
 			"text" => Fixtures::TEXT,
+			"email" => Fixtures::EMAIL,
 			"date" => Fixtures::DATE,
 			"companyName" => Fixtures::COMPANY_NAME,
 			"companyCif" => Fixtures::COMPANY_CIF,
@@ -44,6 +45,7 @@ describe 'Companies' do
 			"phonenumber": Fixtures::PHONENUMBER,
 			"text" => Fixtures::TEXT,
 			"date" => Fixtures::DATE,
+			"email" => Fixtures::EMAIL,
 			"companyName" => Fixtures::COMPANY_NAME,
 			"companyCif" => Fixtures::COMPANY_CIF_2,
 			"companyCnae" => Fixtures::COMPANY_CNAE
@@ -55,6 +57,7 @@ describe 'Companies' do
 			"phonenumber": Fixtures::PHONENUMBER,
 			"text" => Fixtures::TEXT,
 			"date" => Fixtures::DATE,
+			"email" => Fixtures::EMAIL,
 			"companyName" => Fixtures::COMPANY_NAME,
 			"companyCif" => Fixtures::COMPANY_CIF_3,
 			"companyCnae" => Fixtures::COMPANY_CNAE_2

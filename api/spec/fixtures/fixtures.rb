@@ -45,13 +45,18 @@ class Fixtures < Asesora
 
   def insert_solicitudes()
     company = create_company
-    solicitude = create_solicitude(company)
+    applicant = create_applicant
+    solicitude = create_solicitude(applicant, company)
 
     [solicitude]
   end
 
-  def create_solicitude(company)
-    ::Solicitudes::Service.create(TEXT, NAME, SURNAME, EMAIL, PHONENUMBER, DATE, company.identify())
+  def create_applicant
+    ::Applicant::Service.create(NAME, SURNAME, EMAIL, PHONENUMBER)
+  end
+
+  def create_solicitude(applicant, company)
+    ::Solicitudes::Service.create(DATE, TEXT, applicant.identify(), company.identify())
   end
 
   def create_company
@@ -61,6 +66,7 @@ class Fixtures < Asesora
   def clean_collections
     client['solicitudes'].drop()
     client['companies'].drop()
+    client['applicant'].drop()
   end
 
   def client

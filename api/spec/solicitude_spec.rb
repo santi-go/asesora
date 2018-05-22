@@ -21,21 +21,19 @@ describe 'Solicitude Api' do
 
     it 'returns the brand new solicitude' do
       body = {
-        name: Fixtures::NAME,
-        surname: Fixtures::SURNAME,
-        email: Fixtures::EMAIL,
-        phonenumber: Fixtures::PHONENUMBER,
-        text: Fixtures::TEXT,
-        date: Fixtures::DATE
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
+        'text'=> Fixtures::TEXT,
+        'date'=> Fixtures::DATE
       }.to_json
 
       post_create_solicitude(body)
 
       created_solicitude = JSON.parse(last_response.body)
-      expect(created_solicitude['name']).to eq(Fixtures::NAME)
-      expect(created_solicitude['surname']).to eq(Fixtures::SURNAME)
-      expect(created_solicitude['email']).to eq(Fixtures::EMAIL)
-      expect(created_solicitude['phonenumber']).to eq(Fixtures::PHONENUMBER)
+      
+      expect(created_solicitude['applicant']).to eq(Fixtures::EMAIL + Fixtures::PHONENUMBER)
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
       expect(created_solicitude['date']).to eq(Fixtures::DATE)
       expect(created_solicitude['creation_moment']).not_to be_nil
@@ -43,10 +41,10 @@ describe 'Solicitude Api' do
 
     it 'generate creation moment in milliseconds' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => ''
       }.to_json
@@ -62,10 +60,10 @@ describe 'Solicitude Api' do
 
     it 'new solicitude has today date' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => ''
       }.to_json
@@ -74,10 +72,7 @@ describe 'Solicitude Api' do
 
       created_solicitude = JSON.parse(last_response.body)
 
-      expect(created_solicitude['name']).to eq(Fixtures::NAME)
-      expect(created_solicitude['surname']).to eq(Fixtures::SURNAME)
-      expect(created_solicitude['email']).to eq(Fixtures::EMAIL)
-      expect(created_solicitude['phonenumber']).to eq(Fixtures::PHONENUMBER)
+      expect(created_solicitude['applicant']).to eq(Fixtures::EMAIL + Fixtures::PHONENUMBER)
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
       expect(created_solicitude['date']).to eq(today)
     end
@@ -90,9 +85,9 @@ describe 'Solicitude Api' do
 
     it 'returns all solicitudes' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
         'phonenumber': Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => ''
@@ -117,19 +112,19 @@ describe 'Solicitude Api' do
 
     it 'returns solicitudes in descendent order' do
       first_body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email'=> Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => Fixtures::DATE
         }.to_json
@@ -155,10 +150,10 @@ describe 'Solicitude Api' do
 
     it 'returns one solicitude' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'name'=> Fixtures::NAME,
+        'surname'=> Fixtures::SURNAME,
+        'email' => Fixtures::EMAIL,
+        'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
         'date' => Fixtures::DATE
       }.to_json
