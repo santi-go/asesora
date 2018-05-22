@@ -107,7 +107,7 @@ printf "${TITLE}\n\n
 Fourth chapter: launch the app in the local staging environment
 ${RESET}
 1. Rising the local staging with the docker environment.
-   Wait a moment and type 'localhost/' in the browser.
+   Wait a moment and type 'localhost:80' in the browser.
    At this time you can use the app.
    When you have finished trying the app you have two options:
    - Use 'Ctrl+c' and break the process. So you can make corrections
@@ -156,7 +156,7 @@ EOF
 cat > docker-compose.local-staging.yml <<EOF
 version: '2'
 services:
-  api:
+  asesora:
     build:
       context: .
       dockerfile: Dockerfile.local-staging
