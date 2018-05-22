@@ -16,6 +16,12 @@
                                :editionmode="editionmode"
                                :is-valid-contact="isValidContact"
                                ></asesora-applicant-contact>
+   <div class="column column-50" id="applicant-matches">
+     <asesora-applicant-matches :values="values"
+                              :labels="labels"
+                              :suggested-applicants='suggestedApplicants'
+                              ></asesora-applicant-matches>
+   </div>
   </div>
 </template>
 
@@ -23,16 +29,18 @@
 import ApplicantNameView from './applicant/asesora-applicant-name'
 import ApplicantSurnameView from './applicant/asesora-applicant-surname'
 import ApplicantContactView from './applicant/asesora-applicant-contact'
+import ApplicantMatchesView from './applicant/asesora-applicant-matches'
 
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'isValidContact', 'editionmode'],
+  props: ['labels', 'values', 'isValidContact', 'editionmode', 'suggestedApplicants'],
 
   components: {
     "asesora-applicant-name" : ApplicantNameView,
     "asesora-applicant-surname" : ApplicantSurnameView,
-    "asesora-applicant-contact" : ApplicantContactView
+    "asesora-applicant-contact" : ApplicantContactView,
+    "asesora-applicant-matches" : ApplicantMatchesView
   },
 }
 </script>
@@ -40,5 +48,9 @@ export default {
 <style scoped>
   .card-title {
     padding: 15px 0px;
+  }
+
+  label {
+    margin-top: 1em;
   }
 </style>

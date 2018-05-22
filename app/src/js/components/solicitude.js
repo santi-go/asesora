@@ -328,7 +328,7 @@ export default class Solicitude extends Component {
     }
 
     populateSuggestedApplicants(payload){
-      console.log(payload.data)
+      this.data.suggestedApplicants = payload.data
     }
 
     model(){
@@ -368,6 +368,7 @@ export default class Solicitude extends Component {
         "suggestions" : ""
       },
       suggestedCompanies: [],
+      suggestedApplicants: ['name'],
       fullfilled: false,
       isValidCif: true,
       cnaeCatalog:[],
