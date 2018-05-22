@@ -23,7 +23,7 @@ export default {
         event.target.classList.add("error")
       }
 
-      let signal = new CustomEvent('text.change',
+      let signal = new CustomEvent('changed.text',
                                       {'detail': {},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)

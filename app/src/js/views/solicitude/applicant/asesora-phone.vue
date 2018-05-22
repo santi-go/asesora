@@ -54,7 +54,7 @@ export default {
     blur(event){
       let valid = this.phoneValidation()
 
-      let signal = new CustomEvent('status.phone',
+      let signal = new CustomEvent('changed.phone',
                                       {'detail': {"valid":valid},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)

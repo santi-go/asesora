@@ -128,7 +128,7 @@ export default {
 
     animateCard() {
       this.show()
-      let signal = new CustomEvent('movecard.animation',
+      let signal = new CustomEvent('fullfilled.solicitude',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
