@@ -182,6 +182,52 @@ describe 'Solicitude Api' do
     end
   end
 
+  context 'of the applicant' do
+    before(:each) do
+      post 'fixtures/clean'
+    end
+
+    it 'search matches by filter' do
+      first_body = {
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text' => Fixtures::TEXT,
+        'date' => Fixtures::DATE
+        }.to_json
+      post_create_solicitude(first_body)
+      second_body = {
+        'name': Fixtures::NAME_2,
+        'surname': Fixtures::SURNAME_2,
+        'email': Fixtures::EMAIL_2,
+        'phonenumber': Fixtures::PHONENUMBER_2,
+        'text' => Fixtures::TEXT,
+        'date' => Fixtures::DATE
+        }.to_json
+      post_create_solicitude(second_body)
+
+      matches_body = {
+        'name': '',
+        'surname': Fixtures::SURNAME_2,
+        'email': '',
+        'phonenumber': ''
+      }.to_json
+      post '/api/applicant-matches', matches_body
+      response = JSON.parse(last_response.body)
+      expect(response['data'][0]['phonenumber']).to eq(Fixtures::PHONENUMBER_2)
+
+      matches_body = {
+        'name': Fixtures::NAME,
+        'surname': '',
+        'email': '',
+        'phonenumber': ''
+      }.to_json
+      post '/api/applicant-matches', matches_body
+      response = JSON.parse(last_response.body)
+      expect(response['data'].length).to be >= 2
+    end
+  end
   private
 
   def in_microseconds

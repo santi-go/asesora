@@ -29,7 +29,7 @@ export default {
 
     blur(event){
       let valid = this.emailValidation()
-      let signal = new CustomEvent('status.email',
+      let signal = new CustomEvent('changed.email',
                                       {'detail': {"valid":valid},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)
