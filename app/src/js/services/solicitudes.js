@@ -78,7 +78,7 @@ export default class Solicitudes {
   getSuggestedApplicants(criteria){
     let callback = this.buildCallback('got.suggested-applicants')
     let body = criteria
-    let url = 'suggested-applicants'
+    let url = 'applicants-matches'
     this.client.hit(url, body, callback)
   }
 

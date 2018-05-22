@@ -127,6 +127,20 @@ class Asesora < Sinatra::Base
     {data: companies}.to_json
   end
 
+  post '/api/applicant-matches' do
+    params = JSON.parse(request.body.read)
+
+    criteria = {
+      name: params['name'],
+      surname: params['surname'],
+      phonenumber: params['phonenumber'],
+      email: params['email']
+    }
+
+    applicants = Actions::RetrieveSolicitudes.do_applicants(criteria)
+    {data: applicants}.to_json
+  end
+
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"

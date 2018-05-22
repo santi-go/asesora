@@ -24,5 +24,9 @@ module Solicitudes
     def self.all
       Collection.all.serialize
     end
+
+    def self.all_by(criteria)
+      Collection.all_by(criteria).serialize
+    end
   end
 end

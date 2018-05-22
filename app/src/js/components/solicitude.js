@@ -24,6 +24,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
+    Bus.subscribe("got.suggested-applicants", this.populateSuggestedApplicants.bind(this))
   }
 
   watchActions(){
@@ -301,35 +302,33 @@ export default class Solicitude extends Component {
     }
 
     searchForApplicants(){
-      let criteria = []
-      let minimunLength = 3
-      let nameLength = (this.data.values.name.length >= minimunLength )
-      if (nameLength){
-        criteria.push(
-          {'name': this.data.values.name}
-        )
+      let criteria = {
+        'name': this.data.values.name,
+        'surname': this.data.values.surname,
+        'phonenumber': this.data.values.phonenumber,
+        'email': this.data.values.email
       }
-      let surnameLength = (this.data.values.surname.length >= minimunLength )
-      if (surnameLength){
-        criteria.push(
-          {'surname': this.data.values.surname}
-        )
-      }
-      let phonenumberLength = (this.data.values.phonenumber.length >= minimunLength )
-      if (phonenumberLength){
-        criteria.push(
-          {'phonenumber': this.data.values.phonenumber}
-        )
-      }
-      let emailLength = (this.data.values.email.length >= minimunLength )
-      if (emailLength){
-        criteria.push(
-          {'email': this.data.values.email}
-        )
-      }
-      if ( nameLength || surnameLength || phonenumberLength || emailLength){
+      if (this.evaluateCriterion(criteria)){
         Bus.publish('ask.suggested.applicants', criteria)
       }
+    }
+
+    evaluateCriterion(criteria){
+      for (let field in criteria) {
+        if (this.checkMinimunCriteria(criteria[field])){
+          return true
+        }
+      }
+      return false
+    }
+
+    checkMinimunCriteria(field){
+      let minimunLength = 3
+      return (field.length >= minimunLength)
+    }
+
+    populateSuggestedApplicants(payload){
+      console.log(payload.data)
     }
 
     model(){
