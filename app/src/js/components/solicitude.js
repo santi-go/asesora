@@ -24,6 +24,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
+    Bus.subscribe("got.applicant.matches", this.populateSuggestedApplicants.bind(this))
   }
 
   watchActions(){
@@ -40,7 +41,7 @@ export default class Solicitude extends Component {
       this.searchCompanies.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'fill.company',
+      'clicked.company',
       this.fillCompany.bind(this)
     )
     document.getElementById(this.element).addEventListener(
@@ -52,15 +53,15 @@ export default class Solicitude extends Component {
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'status.email',
+      'changed.email',
       this.setValidEmail.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'status.phone',
+      'changed.phone',
       this.setValidPhone.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'text.change',
+      'changed.text',
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
@@ -68,12 +69,16 @@ export default class Solicitude extends Component {
       this.update.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'discard.animation',
+      'clicked.discard.button',
       this.discardAnimation.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'movecard.animation',
+      'fullfilled.solicitude',
       this.moveCardAnimation.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.applicant.fields',
+      this.searchForApplicants.bind(this)
     )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -110,7 +115,6 @@ export default class Solicitude extends Component {
       return confirmationMessage
     }
   }
-
 
   hasChanges(){
     for(let key in this.data.values){
@@ -176,7 +180,7 @@ export default class Solicitude extends Component {
   searchCompanies(event){
     this.data.suggestedCompanies = []
     if(this.hasRequiredLength()){
-      Bus.publish('search.company.matches', event.detail)
+      Bus.publish('get.company.matches', event.detail)
     }
   }
 
@@ -212,7 +216,6 @@ export default class Solicitude extends Component {
   }
 
   toggleCompanyIdentityMessage(){
-
     this.data.isValidCompanyIdentity = false
     if(this.isNameEmpty() && this.isCifEmpty()){
       this.data.isValidCompanyIdentity = true
@@ -296,6 +299,36 @@ export default class Solicitude extends Component {
     setValidPhone(event){
       this.validPhonenumber = event.detail.valid
       this.validateContact()
+    }
+
+    searchForApplicants(){
+      let criteria = {
+        'name': this.data.values.name,
+        'surname': this.data.values.surname,
+        'phonenumber': this.data.values.phonenumber,
+        'email': this.data.values.email
+      }
+      if (this.evaluateCriterion(criteria)){
+        Bus.publish('get.applicant.matches', criteria)
+      }
+    }
+
+    evaluateCriterion(criteria){
+      for (let field in criteria) {
+        if (this.checkMinimunCriteria(criteria[field])){
+          return true
+        }
+      }
+      return false
+    }
+
+    checkMinimunCriteria(field){
+      let minimunLength = 3
+      return (field.length >= minimunLength)
+    }
+
+    populateSuggestedApplicants(payload){
+      console.log(payload.data)
     }
 
     model(){

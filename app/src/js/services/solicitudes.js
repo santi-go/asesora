@@ -15,7 +15,8 @@ export default class Solicitudes {
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
     Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
     Bus.subscribe("verify.company.duplicate", this.duplicatedCif.bind(this))
-    Bus.subscribe("search.company.matches", this.getCompanyMatches.bind(this))
+    Bus.subscribe("get.company.matches", this.getCompanyMatches.bind(this))
+    Bus.subscribe("get.applicant.matches", this.getSuggestedApplicants.bind(this))
   }
 
   retrieveCnae() {
@@ -71,6 +72,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('verified.company.duplicate')
     let body = {id: payload}
     let url = 'duplicated-company'
+    this.client.hit(url, body, callback)
+  }
+
+  getSuggestedApplicants(criteria){
+    let callback = this.buildCallback('got.applicant.matches')
+    let body = criteria
+    let url = 'applicant-matches'
     this.client.hit(url, body, callback)
   }
 

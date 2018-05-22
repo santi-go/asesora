@@ -5,7 +5,7 @@
             name="company-cnae"
             type="text"
             list="cnae-catalog"
-            v-on:blur="cnaeValidation"
+            v-on:keyup="cnaeValidation"
             :disabled="editionmode"
             v-model="values.companyCnae"
             >
@@ -41,7 +41,6 @@ export default {
       let validCnae = this.cnaeCatalog.find(function(cnaeCode){
         return cnaeCode.id === id
       })
-      event.target.value = ""
 
       if (validCnae) {
         event.target.value = this.fullCnaeName(validCnae)
@@ -60,6 +59,7 @@ export default {
 </script>
 
 <style scoped>
+
   label {
     margin-top: 1em;
   }

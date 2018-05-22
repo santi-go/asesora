@@ -23,19 +23,19 @@ module Solicitudes
 
         Domain::Solicitude.from_document(document)
       end
-
-      def all
-        solicitudes = MongoClient.all
-
-        Domain::ListSolicitudes.from_document(solicitudes)
-      end
-
+      
       def retrieve(id)
         document = MongoClient.retrieve(id)
 
         solicitude = Domain::Solicitude.from_document(document)
 
         solicitude
+      end
+
+      def all
+        solicitudes = MongoClient.all
+
+        Domain::ListSolicitudes.from_document(solicitudes)
       end
 
       private

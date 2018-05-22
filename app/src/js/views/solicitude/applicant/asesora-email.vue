@@ -4,8 +4,9 @@
     <input  id="email"
             name="email"
             type="text"
-            v-on:blur="blur"
             v-on:focus="focus"
+            v-on:keyup="onKeyup"
+            v-on:blur="onKeyup"
             :disabled="editionmode"
             v-model="values.email"
             >
@@ -19,10 +20,19 @@ export default {
   props: ['labels', 'values', 'editionmode'],
 
   methods: {
-    blur(event){
+
+    onKeyup(){
+      this.refreshSuggestion()
       let valid = this.emailValidation()
-      let signal = new CustomEvent('status.email',
+      let signal = new CustomEvent('changed.email',
                                       {'detail': {"valid":valid},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
+
+    refreshSuggestion() {
+      let signal = new CustomEvent('changed.applicant.fields',
+                                      {'detail': {},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)
     },
@@ -34,7 +44,7 @@ export default {
     emailValidation(){
       let field = this.$el.querySelector('#email')
       field.classList.remove("error")
-      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)+(.[a-z]{2,4})$/
       let email = field.value
       if(email == ""){
         return false

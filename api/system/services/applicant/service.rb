@@ -17,8 +17,8 @@ module Applicant
       return {}
     end
 
-    def self.all(criteria)
-      applicants = Collection.all(criteria)
+    def self.all_by(criteria)
+      applicants = Collection.all_by(criteria)
       applicants.map do |applicant|
         applicant.serialize
       end

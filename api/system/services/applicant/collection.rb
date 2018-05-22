@@ -1,4 +1,5 @@
 require_relative '../../domain/applicant'
+
 require 'mongo'
 
 module Applicant
@@ -17,7 +18,19 @@ module Applicant
         applicant = Domain::Applicant.from_document(document)
         applicant
       end
+
+      def all_by(criteria)
+        minimun_length = 3
+        list = criteria.select{ |field, value| value.length >= minimun_length }
+
+        result = MongoClient.all_by(list)
+
+        applicants = result.map do |applicant|
+          Domain::Applicant.from_document(applicant)
+        end
+        applicants
     end
+  end
 
       private
 
@@ -31,6 +44,16 @@ module Applicant
         def retrieve(id)
           documents = client[:applicant].find({"id": id})
           documents.first
+        end
+
+        def all_by(criteria)
+          list = {}
+          criteria.each do |key, value|
+            regex = /#{value}/i
+            chain = { key => {"$regex": regex}}
+            list.merge!(chain)
+          end
+          documents = client[:applicant].find(list)
         end
         
         private

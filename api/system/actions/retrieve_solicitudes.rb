@@ -16,8 +16,8 @@ module Actions
       ::Companies::Service.all(companies)
     end
 
-    def self.do_applicants(applicants)
-      ::Applicant::Service.all(applicants)
+    def self.do_applicants(criteria)
+      ::Applicant::Service.all_by(criteria)
     end
 
     def self.add_with_prefix(base, added, prefix)
@@ -36,6 +36,5 @@ module Actions
     def self.add(base,added)
       base.merge(added)
     end
-
   end
 end
