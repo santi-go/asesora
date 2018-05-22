@@ -1,0 +1,51 @@
+<template>
+  <div>
+    <label>{{ labels.suggestions }}</label>
+    <table v-if="suggestedApplicants.length > 0">
+      <thead>
+        <tr>
+          <th>{{ labels.name }}</th>
+          <th>{{ labels.surname }}</th>
+          <th>{{ labels.email }}</th>
+          <th>{{ labels.phonenumber }}</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-on:click="onClick(item)"
+            v-for="item in suggestedApplicants">
+            <td>{{ item.name }}</td>
+            <td>{{ item.surname }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phonenumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'asesora-applicant-matches',
+    props: ['labels', 'suggestedApplicants'],
+
+    methods: {
+    }
+  }
+
+</script>
+<style scoped>
+  table{
+    width: 100%;
+    height: 335px;
+    overflow: auto;
+    display: block;
+  }
+
+  td{
+    cursor: pointer;
+  }
+  label{
+    margin-top: 1em;
+  }
+</style>

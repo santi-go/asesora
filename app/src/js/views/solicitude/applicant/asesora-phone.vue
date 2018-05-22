@@ -29,10 +29,10 @@ export default {
       let valid = this.phoneValidation()
 
       let signal = new CustomEvent('changed.phone',
-      {'detail': {"valid":valid},
-      'bubbles': true})
-
+                                    {'detail': {"valid":valid},
+                                    'bubbles': true})
       this.$el.dispatchEvent(signal)
+      this.refreshSuggestion()
     },
 
     refreshSuggestion() {
@@ -63,16 +63,16 @@ export default {
 
 
     isArrowKeyCode(keycode){
-      let isLeftArrow = keycode == 37
-      let isArrowUp = keycode == 38
-      let isRightArrow = keycode == 39
-      let isArrowDown = keycode == 40
+      let isLeftArrow = (keycode == 37)
+      let isArrowUp = (keycode == 38)
+      let isRightArrow = (keycode == 39)
+      let isArrowDown = (keycode == 40)
 
       return isLeftArrow || isRightArrow || isArrowDown || isArrowUp
     },
 
     isSeparatorKeyCode(keycode){
-      let isSpaceBar = keycode == 32
+      let isSpaceBar = (keycode == 32)
       let isPeriod = keycode == 190 || keycode == 110
       let isHyphen = keycode == 189 || keycode == 109
 
