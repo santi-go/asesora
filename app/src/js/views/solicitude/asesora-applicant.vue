@@ -3,25 +3,32 @@
     <div class="card-title">
 			<h3>{{ labels.applicant }}</h3>
 		</div>
-    <asesora-applicant-name :values="values"
-                            :labels="labels"
-                            :editionmode="editionmode"
-                            ></asesora-applicant-name>
-    <asesora-applicant-surname :values="values"
-                               :labels="labels"
-                               :editionmode="editionmode"
-                               ></asesora-applicant-surname>
-    <asesora-applicant-contact :values="values"
-                               :labels="labels"
-                               :editionmode="editionmode"
-                               :is-valid-contact="isValidContact"
-                               ></asesora-applicant-contact>
-   <div class="column column-50" id="applicant-matches">
-     <asesora-applicant-matches :values="values"
-                              :labels="labels"
-                              :suggested-applicants='suggestedApplicants'
-                              ></asesora-applicant-matches>
-   </div>
+    <div class="row grid-responsive">
+      <div class="column column-50">
+        <asesora-applicant-name :values="values"
+                                :labels="labels"
+                                :editionmode="editionmode">
+        </asesora-applicant-name>
+
+        <asesora-applicant-surname :values="values"
+                                   :labels="labels"
+                                   :editionmode="editionmode">
+        </asesora-applicant-surname>
+
+        <asesora-applicant-contact :values="values"
+                                   :labels="labels"
+                                   :editionmode="editionmode"
+                                   :is-valid-contact="isValidContact">
+        </asesora-applicant-contact>
+      </div>
+
+      <div class="column column-50" id="applicant-matches">
+        <asesora-applicant-matches :values="values"
+                                   :labels="labels"
+                                   :suggested-applicants='suggestedApplicants'>
+        </asesora-applicant-matches>
+      </div>  
+    </div>
   </div>
 </template>
 

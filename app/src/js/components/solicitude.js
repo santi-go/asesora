@@ -45,6 +45,10 @@ export default class Solicitude extends Component {
       this.fillCompany.bind(this)
     )
     document.getElementById(this.element).addEventListener(
+      'clicked.applicant',
+      this.fillApplicant.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
       'validate.company.identity',
       this.toggleCompanyIdentityMessage.bind(this)
     )
@@ -215,6 +219,13 @@ export default class Solicitude extends Component {
     this.data.setValues('companyCnae', item.detail.cnae)
   }
 
+  fillApplicant(item){
+    this.data.setValues('name', item.detail.name)
+    this.data.setValues('surname', item.detail.surname)
+    this.data.setValues('email', item.detail.email)
+    this.data.setValues('phonenumber', item.detail.phonenumber)
+  }
+
   toggleCompanyIdentityMessage(){
     this.data.isValidCompanyIdentity = false
     if(this.isNameEmpty() && this.isCifEmpty()){
@@ -302,6 +313,7 @@ export default class Solicitude extends Component {
     }
 
     searchForApplicants(){
+      this.data.suggestedApplicants = []
       let criteria = {
         'name': this.data.values.name,
         'surname': this.data.values.surname,
