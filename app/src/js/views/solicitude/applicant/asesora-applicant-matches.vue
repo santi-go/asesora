@@ -30,6 +30,17 @@
     props: ['labels', 'suggestedApplicants'],
 
     methods: {
+
+      onClick(item){
+          this.selectApplicant(item)
+      },
+
+      selectApplicant(item){
+        let signal = new CustomEvent('clicked.applicant',
+                                    {'detail': item,
+                                    'bubbles': true})
+        this.$el.dispatchEvent(signal)
+      }
     }
   }
 
