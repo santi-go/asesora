@@ -1,10 +1,12 @@
+require 'securerandom'
+
 require_relative '../../domain/applicant'
 require_relative 'collection'
 
 module Applicant
   class Service
     def self.create(name, surname, email, phonenumber)
-      id = create_id(email, phonenumber)
+      id = create_id
 
       applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
       
@@ -24,8 +26,8 @@ module Applicant
       end
     end
 
-    def self.create_id(email, phonenumber)
-      id = email + phonenumber
+    def self.create_id
+      id = SecureRandom.uuid
     end
   end
 end

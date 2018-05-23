@@ -33,7 +33,7 @@ describe 'Solicitude Api' do
 
       created_solicitude = JSON.parse(last_response.body)
       
-      expect(created_solicitude['applicant']).to eq(Fixtures::EMAIL + Fixtures::PHONENUMBER)
+      expect(created_solicitude['applicant']).not_to be_empty
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
       expect(created_solicitude['date']).to eq(Fixtures::DATE)
       expect(created_solicitude['creation_moment']).not_to be_nil
@@ -71,8 +71,8 @@ describe 'Solicitude Api' do
       today = Date.today.strftime(in_english_format)
 
       created_solicitude = JSON.parse(last_response.body)
-
-      expect(created_solicitude['applicant']).to eq(Fixtures::EMAIL + Fixtures::PHONENUMBER)
+      
+      expect(created_solicitude['applicant']).not_to be_empty
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
       expect(created_solicitude['date']).to eq(today)
     end

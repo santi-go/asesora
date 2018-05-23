@@ -72,6 +72,7 @@ class Asesora < Sinatra::Base
       name:params['name'],
       surname:params['surname'],
       email:params['email'],
+      id:params['id'],
       phonenumber:params['phonenumber'],
       date:params['date'],
       company_name:params['companyName'],

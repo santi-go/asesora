@@ -16,6 +16,7 @@ module Solicitudes
     end
 
     def self.update(date, text, applicant, company, creation_moment)
+      return nil if applicant.nil?
       solicitude = Domain::Solicitude.with(date, text, applicant, company, creation_moment)
 
       Collection.update(creation_moment, solicitude).serialize
