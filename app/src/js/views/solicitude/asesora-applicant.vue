@@ -27,7 +27,7 @@
                                    :labels="labels"
                                    :suggested-applicants='suggestedApplicants'>
         </asesora-applicant-matches>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
