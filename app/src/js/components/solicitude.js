@@ -380,7 +380,7 @@ export default class Solicitude extends Component {
         "suggestions" : ""
       },
       suggestedCompanies: [],
-      suggestedApplicants: ['name'],
+      suggestedApplicants: [],
       fullfilled: false,
       isValidCif: true,
       cnaeCatalog:[],
