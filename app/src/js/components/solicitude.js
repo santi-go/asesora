@@ -225,6 +225,7 @@ export default class Solicitude extends Component {
     this.data.setValues('email', item.detail.email)
     this.data.setValues('phonenumber', item.detail.phonenumber)
     this.data.setValues('applicantId', item.detail.id)
+    this.data.isValidContact = true
   }
 
   toggleCompanyIdentityMessage(){
@@ -292,15 +293,15 @@ export default class Solicitude extends Component {
       return (this.data.values.text == "")
     }
 
-    validateContact(){
-      this.data.isValidContact = this.validEmail || this.validPhonenumber
-    }
-
     setButtonStatus(){
       this.data.submittable = false
       if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
         this.data.submittable = true
       }
+    }
+
+    validateContact(){
+      this.data.isValidContact = this.validEmail || this.validPhonenumber
     }
 
     setValidEmail(event){
