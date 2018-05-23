@@ -26,7 +26,8 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text'=> Fixtures::TEXT,
-        'date'=> Fixtures::DATE
+        'date'=> Fixtures::DATE,
+        'applicantId' => ""
       }.to_json
 
       post_create_solicitude(body)
@@ -46,7 +47,8 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text'=> Fixtures::TEXT,
-        'date'=> Fixtures::DATE
+        'date'=> Fixtures::DATE,
+        'applicantId' => ""
       }.to_json
 
       post_create_solicitude(body)
@@ -61,7 +63,7 @@ describe 'Solicitude Api' do
         'phonenumber'=> Fixtures::PHONENUMBER_2,
         'text'=> Fixtures::TEXT,
         'date'=> Fixtures::DATE,
-        'id' => applicant_id
+        'applicantId' => applicant_id
       }.to_json
 
       post_create_solicitude(body_with_id)
@@ -84,7 +86,8 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
-        'date' => ''
+        'date' => '',
+        'applicantId' => ""
       }.to_json
       previous_moment = DateTime.now.strftime(in_microseconds)
       post_create_solicitude(body)
@@ -103,6 +106,7 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => ''
       }.to_json
       post_create_solicitude(body)
@@ -128,6 +132,7 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber': Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => ''
       }.to_json
 
@@ -155,6 +160,7 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
@@ -164,6 +170,7 @@ describe 'Solicitude Api' do
         'email'=> Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => Fixtures::DATE
         }.to_json
       post_create_solicitude(second_body)
@@ -193,6 +200,7 @@ describe 'Solicitude Api' do
         'email' => Fixtures::EMAIL,
         'phonenumber'=> Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => Fixtures::DATE
       }.to_json
 
@@ -227,6 +235,7 @@ describe 'Solicitude Api' do
         'email': Fixtures::EMAIL,
         'phonenumber': Fixtures::PHONENUMBER,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
@@ -236,6 +245,7 @@ describe 'Solicitude Api' do
         'email': Fixtures::EMAIL_2,
         'phonenumber': Fixtures::PHONENUMBER_2,
         'text' => Fixtures::TEXT,
+        'applicantId' => "",
         'date' => Fixtures::DATE
         }.to_json
       post_create_solicitude(second_body)

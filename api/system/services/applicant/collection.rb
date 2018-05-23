@@ -55,7 +55,7 @@ module Applicant
           end
           documents = client[:applicant].find(list)
         end
-        
+
         private
 
         def client
