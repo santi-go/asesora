@@ -9,8 +9,13 @@ module Applicant
       id = create_id
 
       applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
-      
+      puts 'create normal'
       Collection.create(applicant)
+    end
+
+    def self.create_with_id(name, surname, email, phonenumber, id)
+      puts 'le metemos un id'
+      Collection.retrieve(id)
     end
 
     def self.retrieve(id)
