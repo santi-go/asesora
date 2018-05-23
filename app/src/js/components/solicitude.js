@@ -224,6 +224,7 @@ export default class Solicitude extends Component {
     this.data.setValues('surname', item.detail.surname)
     this.data.setValues('email', item.detail.email)
     this.data.setValues('phonenumber', item.detail.phonenumber)
+    this.data.setValues('applicantId', item.detail.id)
   }
 
   toggleCompanyIdentityMessage(){
@@ -313,6 +314,7 @@ export default class Solicitude extends Component {
     }
 
     searchForApplicants(){
+      this.data.values.applicantId = ""
       this.data.suggestedApplicants = []
       let criteria = {
         'name': this.data.values.name,
@@ -373,6 +375,7 @@ export default class Solicitude extends Component {
         "surname": "",
         "email": "",
         "phonenumber": "",
+        "applicantId": "",
         "companyName": "",
         "companyCif": "",
         "companyEmployees": "",
