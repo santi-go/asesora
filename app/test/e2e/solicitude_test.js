@@ -14,8 +14,8 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
 
     solicitude.fill().applicantName()
-                     .applicantPhonenumber()
-                     .description()
+    .applicantPhonenumber()
+    .description()
     solicitude.lostFocus()
 
     expect(solicitude.isSubmitEnabled()).to.eq(true)
@@ -46,8 +46,8 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
 
     solicitude.fill().applicantPhonenumber()
-                     .applicantEmail()
-                     .description()
+    .applicantEmail()
+    .description()
 
     solicitude.lostFocus()
 
@@ -58,7 +58,7 @@ describe('Solicitude', () => {
     const solicitude = new Solicitude()
     const wrongText = "x"
     solicitude.fill().applicantPhonenumber(wrongText)
-              .applicantEmail(wrongText)
+    .applicantEmail(wrongText)
     solicitude.lostFocus()
     assert(solicitude.isContactInfoVisible(), true)
 
@@ -72,7 +72,7 @@ describe('Solicitude', () => {
     const solicitudeCompanyValidCif = "A01316637"
 
     solicitude.fill().required()
-                     .companyName()
+    .companyName()
     solicitude.lostFocus()
     expect(solicitude.isSubmitEnabled()).to.eq(false)
 
@@ -103,7 +103,7 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
   })
 
- it("uses CNAE catalog",()=> {
+  it("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
@@ -116,7 +116,12 @@ describe('Solicitude', () => {
     expect(addedCorrectly).to.eq(true)
   })
 
- it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+    const nameToMatch = "Sam"
+    const solicitudeToKnowMatches = new Solicitude()
+    solicitudeToKnowMatches.fill().companyName(nameToMatch)
+    let initialMatches = solicitudeToKnowMatches.numberOfCompanyMatches()
+
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "N2902211H"
@@ -131,25 +136,20 @@ describe('Solicitude', () => {
     secondSolicitude.submit()
 
     const thirdSolicitude = new Solicitude()
-    thirdSolicitude.fill().companyName("Sam")
+    thirdSolicitude.fill().companyName(nameToMatch)
     let numberOfMatches = thirdSolicitude.numberOfCompanyMatches()
 
-    expect(numberOfMatches).to.be.gt(1)
-
-    const fourthSolicitude = new Solicitude()
-    fourthSolicitude.fill().companyName("###@@@@")
-    numberOfMatches = fourthSolicitude.numberOfCompanyMatches()
-    expect(numberOfMatches).to.eq(0)
+    expect(initialMatches < numberOfMatches).to.be.true
   })
 
- it ("company allows filled with matches", () => {
+  it ("company allows filled with matches", () => {
     const solicitude = new Solicitude()
     let name = 'Devscola'
     let cif = 'G53910758'
     solicitude.fill().required()
-                     .companyName(name)
-                     .companyCif(cif)
-                     .submit()
+    .companyName(name)
+    .companyCif(cif)
+    .submit()
 
     const second_solicitude = new Solicitude()
     second_solicitude.companyName(name)
@@ -157,7 +157,7 @@ describe('Solicitude', () => {
     expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
   })
 
- it("narrow the company matches when given a cnae",()=> {
+  it("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "F8819575E"
