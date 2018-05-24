@@ -225,7 +225,8 @@ export default class Solicitude extends Component {
     this.data.setValues('email', item.detail.email)
     this.data.setValues('phonenumber', item.detail.phonenumber)
     this.data.setValues('applicantId', item.detail.id)
-    this.data.isValidContact = true
+
+    this.runValidations()
   }
 
   toggleCompanyIdentityMessage(){
@@ -302,6 +303,28 @@ export default class Solicitude extends Component {
 
     validateContact(){
       this.data.isValidContact = this.validEmail || this.validPhonenumber
+    }
+
+    runValidations(){
+      this.validEmail = this.validateEmail()
+      this.validPhonenumber = this.validatePhonenumber()
+
+      this.validateContact()
+    }
+
+    validateEmail(){
+      const email = this.data.values.email
+      if (email == "") { return false }
+
+      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
+      return EMAIL_PATTERN.test(email)
+    }
+
+    validatePhonenumber(){
+      const phone = this.data.values.phonenumber
+      if (phone == "") { return false }
+
+      return (phone.length == 9)
     }
 
     setValidEmail(event){
