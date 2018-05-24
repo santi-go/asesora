@@ -97,18 +97,20 @@ class Solicitude{
     return !browser.isVisible('#company-identity-info')
   }
 
+  hasCompanyMatches(){
+    return browser.isVisible('#company-matches tbody')
+  }
+
   numberOfCompanyMatches(){
+    browser.waitForVisible('#company-matches tbody', 2000)
     const data = $('#company-matches tbody')
+    let matches = data.$$(`tr td:nth-child(1)`).length
 
-    let matches = 0
-
-    if (data.value!=null) {
-      matches = data.$$(`tr td:nth-child(1)`).length
-    }
     return matches
   }
 
   clickOnCompanyMatches(){
+    browser.waitForVisible('#company-matches tbody', 2000)
     const data = $('#company-matches tbody')
     data.click()
   }

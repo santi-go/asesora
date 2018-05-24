@@ -120,7 +120,7 @@ describe('Solicitude', () => {
     const nameToMatch = "Sam"
     const solicitudeToKnowMatches = new Solicitude()
     solicitudeToKnowMatches.fill().companyName(nameToMatch)
-    let initialMatches = solicitudeToKnowMatches.numberOfCompanyMatches()
+    expect(solicitudeToKnowMatches.hasCompanyMatches()).to.be.false
 
     const firstSolicitude = new Solicitude()
     const firstCompanyName = "Samuel & Santi"
@@ -139,7 +139,7 @@ describe('Solicitude', () => {
     thirdSolicitude.fill().companyName(nameToMatch)
     let numberOfMatches = thirdSolicitude.numberOfCompanyMatches()
 
-    expect(initialMatches < numberOfMatches).to.be.true
+    expect(thirdSolicitude.numberOfCompanyMatches()).to.eq(2)
   })
 
   it ("company allows filled with matches", () => {
@@ -172,13 +172,10 @@ describe('Solicitude', () => {
     secondSolicitude.submit()
 
     const thirdSolicitude = new Solicitude()
-    thirdSolicitude.fill().companyName("Sam")
-    let numberOfMatchesInicial = thirdSolicitude.numberOfCompanyMatches()
+    thirdSolicitude.fill().companyName("Sam").lostFocus()
+    expect(thirdSolicitude.numberOfCompanyMatches()).to.eq(2)
 
     thirdSolicitude.fill().CNAE("931").lostFocus()
-    thirdSolicitude.fill().companyName("Sam")
-    let numberOfMatchesFinal = thirdSolicitude.numberOfCompanyMatches()
-
-    expect(numberOfMatchesInicial).to.be.gt(numberOfMatchesFinal)
+    expect(thirdSolicitude.numberOfCompanyMatches()).to.eq(1)
   })
 })
