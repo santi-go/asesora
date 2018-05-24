@@ -9,6 +9,7 @@ class SolicitudesList{
   }
 
   existApplicant(name){
+    browser.waitForVisible('#solicitudes-list', 2000)
     const data = $('#solicitudes-list tbody')
     const applicants = data.$$(`tr td:nth-child(${APPLICANT_COLUMN})`)
     for (let applicant of applicants){
@@ -18,6 +19,7 @@ class SolicitudesList{
   }
 
   existCompanyName(name){
+    browser.waitForVisible('#solicitudes-list', 2000)
     const data = $('#solicitudes-list tbody')
     const companies = data.$$(`tr td:nth-child(${COMPANY_NAME_COLUMN})`)
     for (let company of companies){
