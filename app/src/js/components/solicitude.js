@@ -84,7 +84,7 @@ export default class Solicitude extends Component {
       'changed.applicant.fields',
       this.searchForApplicants.bind(this)
     )
-    window.addEventListener("beforeunload", this.leaving.bind(this))
+    // window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
   initializeViews(){
