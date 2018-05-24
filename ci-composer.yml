@@ -39,7 +39,7 @@ services:
       - '4567:4567'
     links:
       - mongo
-    command: sh -c 'rackup --port 4567 -o 0.0.0.0'
+    command: sh -c 'rackup config.dev.ru --port 4567 -o 0.0.0.0'
 
   mongo:
     image: mongo
