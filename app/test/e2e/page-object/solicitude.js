@@ -133,16 +133,24 @@ class Solicitude{
     return this
   }
 
-  includesCNAEID(id){
+  CNAEIDisValid(id){
     let cnae =  $('#company-cnae')
     let input = cnae.getValue()
     return input.includes(id)
   }
+
   cnaeIsEmpty(id){
     let cnae =  $('#company-cnae')
     let input = cnae.getValue()
     return "" == input.includes(id)
   }
+
+  CNAELongFormat(id){
+    let cnae =  $('#company-cnae')
+    let input = cnae.getValue()
+    return input
+  }
+
   includesCompanyCif(cif){
     let company_cif =  $('#company-cif')
     let input = company_cif.getValue()

@@ -109,13 +109,11 @@ describe('Solicitude', () => {
     solicitude.fill().CNAE(cnaeID)
     solicitude.lostFocus()
 
-    expect(solicitude.includesCNAEID(cnaeID)).to.eq(true)
+    assert(solicitude.CNAEIDisValid(cnaeID), true)
 
-    const incorrectID = "9-9-9"
-    solicitude.fill().CNAE(incorrectID)
-    solicitude.lostFocus()
-
-    expect(solicitude.cnaeIsEmpty(incorrectID)).to.eq(true)
+    let CNAELongFormat = solicitude.CNAELongFormat(cnaeID)
+    let addedCorrectly = cnaeID.length < CNAELongFormat.length
+    expect(addedCorrectly).to.eq(true)
   })
 
  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
