@@ -4,6 +4,10 @@ class Solicitude{
     browser.url('/')
   }
 
+  acceptAlert(){
+    browser.alertAccept()
+  }
+
   fill(){
     return this
   }
@@ -136,6 +140,9 @@ class Solicitude{
   }
 
   CNAEIDisValid(id){
+    browser.waitUntil(function(){
+      return browser.isVisible('#company-cnae')}
+      , 2000, 'expected class not exist after 2s')
     let cnae =  $('#company-cnae')
     let input = cnae.getValue()
     return input.includes(id)

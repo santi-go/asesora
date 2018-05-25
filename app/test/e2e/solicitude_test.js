@@ -23,7 +23,7 @@ describe('Solicitude', () => {
 
   it ("hides date info when is not needed", () => {
     const solicitude = new Solicitude()
-
+    solicitude.acceptAlert()
     solicitude.fill().date()
     solicitude.lostFocus()
 
@@ -32,6 +32,7 @@ describe('Solicitude', () => {
 
   it ("knows when the date is invalid", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     solicitude.fill().date()
     assert(solicitude.isDateInfoHiden(), true)
     solicitude.lostFocus()
@@ -44,18 +45,17 @@ describe('Solicitude', () => {
 
   it ("can be created with phone number and email", () => {
     const solicitude = new Solicitude()
-
     solicitude.fill().applicantPhonenumber()
     .applicantEmail()
     .description()
 
     solicitude.lostFocus()
-
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
 
   it ("knows when contacting info is correctly entered", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     const wrongText = "x"
     solicitude.fill().applicantPhonenumber(wrongText)
     .applicantEmail(wrongText)
@@ -69,6 +69,7 @@ describe('Solicitude', () => {
 
   it ("form valid if required data, company name and cif are present", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     const solicitudeCompanyValidCif = "A01316637"
 
     solicitude.fill().required()
@@ -85,6 +86,7 @@ describe('Solicitude', () => {
 
   it ("form invalid when company name is present and cif is not", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
 
     solicitude.fill().companyName()
     solicitude.lostFocus()
@@ -95,6 +97,7 @@ describe('Solicitude', () => {
 
   it ("form invalid when cif is present and company name is not", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
 
     solicitude.fill().companyCif()
     solicitude.lostFocus()
@@ -103,8 +106,9 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
   })
 
-  it("uses CNAE catalog",()=> {
+  it ("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
     solicitude.lostFocus()
@@ -116,13 +120,15 @@ describe('Solicitude', () => {
     expect(addedCorrectly).to.eq(true)
   })
 
-  it("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
+  it ("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
     const nameToMatch = "Sam"
     const solicitudeToKnowMatches = new Solicitude()
+    solicitudeToKnowMatches.acceptAlert()
     solicitudeToKnowMatches.fill().companyName(nameToMatch)
     expect(solicitudeToKnowMatches.hasCompanyMatches()).to.be.false
 
     const firstSolicitude = new Solicitude()
+    firstSolicitude.acceptAlert()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "N2902211H"
     firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
@@ -144,6 +150,7 @@ describe('Solicitude', () => {
 
   it ("company allows filled with matches", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     let name = 'Devscola'
     let cif = 'G53910758'
     solicitude.fill().required()
@@ -157,8 +164,9 @@ describe('Solicitude', () => {
     expect(second_solicitude.includesCompanyCif(cif)).to.eq(true)
   })
 
-  it("narrow the company matches when given a cnae",()=> {
+  it ("narrow the company matches when given a cnae",()=> {
     const firstSolicitude = new Solicitude()
+    firstSolicitude.acceptAlert()
     const firstCompanyName = "Samuel & Santi"
     const firstCIF = "F8819575E"
     firstSolicitude.fill().required().companyName(firstCompanyName).companyCif(firstCIF)
