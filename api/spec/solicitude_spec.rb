@@ -214,12 +214,12 @@ describe 'Solicitude Api' do
 
       solicitude = JSON.parse(last_response.body)
 
-      expect(solicitude['data'][Fixtures::TEXT]).to eq(created_solicitude[Fixtures::TEXT])
-      expect(solicitude['data'][Fixtures::DATE]).to eq(created_solicitude[Fixtures::DATE])
-      expect(solicitude['data'][Fixtures::NAME]).to eq(created_solicitude[Fixtures::NAME])
-      expect(solicitude['data'][Fixtures::SURNAME]).to eq(created_solicitude[Fixtures::SURNAME])
-      expect(solicitude['data'][Fixtures::EMAIL]).to eq(created_solicitude[Fixtures::EMAIL])
-      expect(solicitude['data'][Fixtures::PHONENUMBER]).to eq(created_solicitude[Fixtures::PHONENUMBER])
+      expect(solicitude['data']['text']).to eq(Fixtures::TEXT)
+      expect(solicitude['data']['date']).to eq(Fixtures::DATE)
+      expect(solicitude['data']['name']).to eq(Fixtures::NAME)
+      expect(solicitude['data']['surname']).to eq(Fixtures::SURNAME)
+      expect(solicitude['data']['email']).to eq(Fixtures::EMAIL)
+      expect(solicitude['data']['phonenumber']).to eq(Fixtures::PHONENUMBER)
     end
   end
 
