@@ -54,7 +54,7 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existNotApplicant(solicitudeDate, notApplicant)).to.be.true
   })
 
- xit ('can be populated with company name', () => {
+ it ('can be populated with company name', () => {
     const solicitude = new Solicitude()
     const solicitudeApplicantName = 'John'
     const solicitudeCompanyName = 'John Inc.'

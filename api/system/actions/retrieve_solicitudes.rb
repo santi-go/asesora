@@ -4,11 +4,11 @@ module Actions
   class RetrieveSolicitudes
     def self.do(*_)
       solicitudes = ::Solicitudes::Service.all
-      solicitudes.map do |solicitude|
+      lista = solicitudes.map do |solicitude|
         company = ::Companies::Service.retrieve(solicitude['company'])
         applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
-        add_with_prefix(solicitude,company,'company')
-        add(solicitude, applicant)
+        prepared_solicitude = add_with_prefix(solicitude,company,'company')
+        add(prepared_solicitude, applicant)
       end
     end
 
@@ -21,16 +21,16 @@ module Actions
     end
 
     def self.add_with_prefix(base, added, prefix)
-        prefixed = prefix(added,prefix)
-        add(base,prefixed)
+      prefixed = prefix(added,prefix)
+      add(base,prefixed)
     end
 
     def self.prefix(base, prefix)
-        prefixed = {}
-        base.each {|key,value|
-          prefixed[prefix+'_'+key] = value
-        }
-        prefixed
+      prefixed = {}
+      base.each {|key,value|
+        prefixed[prefix+'_'+key] = value
+      }
+      prefixed
     end
 
     def self.add(base,added)

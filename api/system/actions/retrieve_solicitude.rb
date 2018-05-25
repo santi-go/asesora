@@ -9,8 +9,8 @@ module Actions
       solicitude = ::Solicitudes::Service.retrieve(id)
       company = ::Companies::Service.retrieve(solicitude['company'])
       applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
-      add_with_prefix(solicitude,company,'company')
-      add(solicitude, applicant)
+      prepared_solicitude = add_with_prefix(solicitude,company,'company')
+      add(prepared_solicitude, applicant)
     end
 
     def self.add_with_prefix(base, added, prefix)
