@@ -1,7 +1,8 @@
 require_relative '../services/solicitudes/service'
+require_relative './mergeable'
 
 module Actions
-  class RetrieveSolicitudes
+  class RetrieveSolicitudes extend Mergeable
     def self.do(*_)
       solicitudes = ::Solicitudes::Service.all
       lista = solicitudes.map do |solicitude|
@@ -18,23 +19,6 @@ module Actions
 
     def self.do_applicants(criteria)
       ::Applicant::Service.all_by(criteria)
-    end
-
-    def self.add_with_prefix(base, added, prefix)
-      prefixed = prefix(added,prefix)
-      add(base,prefixed)
-    end
-
-    def self.prefix(base, prefix)
-      prefixed = {}
-      base.each {|key,value|
-        prefixed[prefix+'_'+key] = value
-      }
-      prefixed
-    end
-
-    def self.add(base,added)
-      base.merge(added)
     end
   end
 end
