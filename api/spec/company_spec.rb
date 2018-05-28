@@ -24,13 +24,13 @@ describe 'Company Api' do
       "surname": Fixtures::SURNAME,
       "email": Fixtures::EMAIL,
       "phonenumber": Fixtures::PHONENUMBER,
-      "text" => Fixtures::TEXT,
-      "date" => Fixtures::DATE,
-      'applicantId' => "",
-      "companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "text": Fixtures::TEXT,
+      "date": Fixtures::DATE,
+      'applicantId': "",
+      "companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', solicitude
@@ -56,13 +56,13 @@ describe 'Company Api' do
       "surname": Fixtures::SURNAME,
       "email": Fixtures::EMAIL,
       "phonenumber": Fixtures::PHONENUMBER,
-      "text" => Fixtures::TEXT,
-      "date" => Fixtures::DATE,
-      'applicantId' => "",
-      "companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "text": Fixtures::TEXT,
+      "date": Fixtures::DATE,
+      'applicantId': "",
+      "companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
@@ -72,13 +72,13 @@ describe 'Company Api' do
       "surname": Fixtures::SURNAME,
       "email": Fixtures::EMAIL,
       "phonenumber": Fixtures::PHONENUMBER,
-      "text" => Fixtures::TEXT,
-      "date" => Fixtures::DATE,
-      'applicantId' => "",
-      "companyName" => Fixtures::COMPANY_NAME_2,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "text": Fixtures::TEXT,
+      "date": Fixtures::DATE,
+      'applicantId': "",
+      "companyName": Fixtures::COMPANY_NAME_2,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', second_solicitude
@@ -95,23 +95,23 @@ describe 'Company Api' do
       "surname": Fixtures::SURNAME,
       "email": Fixtures::EMAIL,
       "phonenumber": Fixtures::PHONENUMBER,
-      "text" => Fixtures::TEXT,
-      "date" => Fixtures::DATE,
-      'applicantId' => "",
-      "companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "text": Fixtures::TEXT,
+      "date": Fixtures::DATE,
+      'applicantId': "",
+      "companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
 
     
     update_company = {
-      "companyName" => Fixtures::COMPANY_NAME_2,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyName": Fixtures::COMPANY_NAME_2,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/update-company', update_company
@@ -127,23 +127,23 @@ describe 'Company Api' do
       "surname": Fixtures::SURNAME,
       "email": Fixtures::EMAIL,
       "phonenumber": Fixtures::PHONENUMBER,
-      "text" => Fixtures::TEXT,
-      "date" => Fixtures::DATE,
-      'applicantId' => "",
-      "companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF,
+      "text": Fixtures::TEXT,
+      "date": Fixtures::DATE,
+      'applicantId': "",
+      "companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
 
     
     update_company = {
-      "companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF_2,
+      "companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF_2,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
     post '/api/update-company', update_company
     
