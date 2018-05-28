@@ -38,6 +38,12 @@
         <asesora-company-matches :labels="labels" :suggested-companies="suggestedCompanies"></asesora-company-matches>
       </div>
     </div>
+    <div v-if="!editCompany">
+      <asesora-company-save-button :labels="labels">
+      </asesora-company-save-button>
+      <asesora-company-discard-button :labels="labels">
+      </asesora-company-discard-button>
+    </div>
   </div>
 </template>
 
@@ -47,6 +53,9 @@ import CompanyEmployeesView from './company/asesora-company-employees'
 import CompanyCnaeView from './company/asesora-company-cnae'
 import CompanyMatchesView from './company/asesora-company-matches'
 import CompanyEditButton from './company/asesora-company-edit-button'
+import CompanySaveButton from './company/asesora-company-save-button'
+import CompanyDiscardButton from './company/asesora-company-discard-button'
+
 
 
 export default {
@@ -60,7 +69,9 @@ export default {
     "asesora-company-employees" : CompanyEmployeesView,
     "asesora-company-cnae" : CompanyCnaeView,
     "asesora-company-matches" : CompanyMatchesView,
-    "asesora-company-edit-button" : CompanyEditButton
+    "asesora-company-edit-button" : CompanyEditButton,
+    "asesora-company-save-button" : CompanySaveButton,
+    "asesora-company-discard-button" : CompanyDiscardButton
   }
 }
 </script>

@@ -174,9 +174,5 @@ export default {
     margin-top: 1em;
     display: none;
   }
-  .button-inline {
-    display: inline-block;
-    margin-right: 1em;
-  }
 
 </style>
