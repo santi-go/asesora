@@ -7,7 +7,7 @@
             min="1"
             v-on:keydown="keydown"
             v-on:keyup="checkNumber"
-            :disabled="editionmode"
+            :disabled="editCompany"
             v-model="values.companyEmployees"
             >
     </div>
@@ -17,7 +17,7 @@
 export default {
   name: 'asesora-company-employees',
 
-  props: ['labels', 'values', 'editionmode'],
+  props: ['labels', 'values', 'editCompany'],
 
   data: { function () {
       commandKey: false

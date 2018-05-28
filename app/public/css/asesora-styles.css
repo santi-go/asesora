@@ -22,6 +22,16 @@
   margin-bottom: 0px;
 }
 
+.button-inline {
+  margin-top: 15px;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.alert {
+  margin-top: 15px;
+}
+
 .discardCard {
   animation-name: discardCard;
   animation-duration: 1.5s;

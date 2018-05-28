@@ -11,9 +11,12 @@
     <asesora-date :values="values"
                   :labels="labels"
                   :editionmode="editionmode"
+                  :edit-company='editCompany'
                   ></asesora-date>
     <asesora-text :values="values"
                   :labels="labels"
+                  :editionmode="editionmode"
+                  :edit-company='editCompany'
                   ></asesora-text>
     </div>
     <asesora-company :values="values"
@@ -22,18 +25,20 @@
                      :is-valid-cif="isValidCif"
                      :cnae-catalog="cnaeCatalog"
                      :editionmode="editionmode"
+                     :edit-company='editCompany'
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
-
+    <div  class="card large-card" >
     <asesora-button :values="values"
                     :labels="labels"
                     :editionmode="editionmode"
                     :submittable="submittable"
+                    :edit-company='editCompany'
                     ></asesora-button>
-
     <template v-if="editionmode">
       <asesora-button-discard :labels="labels"></asesora-button-discard>
     </template>
+    </div>
 
     <div class="alert background-success message-hidden ">
       <em class="fa fa-thumbs-up"></em>
@@ -64,7 +69,7 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
-          'submittable', 'isValidContact', 'suggestedApplicants'],
+          'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany'],
 
   components: {
     "asesora-date" : DateView,
@@ -130,10 +135,6 @@ export default {
     margin-bottom: 0;
     margin-top: 1em;
     display: none;
-  }
-  .button-inline {
-    display: inline-block;
-    margin-right: 1em;
   }
 
 </style>

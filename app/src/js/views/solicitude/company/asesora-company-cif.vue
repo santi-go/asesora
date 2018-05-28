@@ -6,7 +6,7 @@
             type="text"
             v-on:keyup="checker"
             v-model="values.companyCif"
-            :disabled="editionmode"
+            :disabled="editCompany"
             v-bind:class="{ error: !isValidCif}"
             >
   </div>
@@ -16,7 +16,7 @@
 export default {
   name: 'asesora-company-cif',
 
-  props: ['labels', 'values', 'isValidCif', 'editionmode'],
+  props: ['labels', 'values', 'isValidCif','editCompany'],
 
   methods: {
 
