@@ -50,7 +50,7 @@ module Actions
 
     def self.create_solicitude(date, text, applicant, company)
       company_id = identify(company)
-      applicant_id = identify_applicant(applicant)
+      applicant_id = identify(applicant)
 
       ::Solicitudes::Service.create(
         date,
@@ -60,13 +60,8 @@ module Actions
       )
     end
 
-    def self.identify(company)
-      company.identify()
+    def self.identify(entity)
+      entity.identify()
     end
-
-    def self.identify_applicant(applicant)
-      applicant.identify()
-    end
-
   end
 end
