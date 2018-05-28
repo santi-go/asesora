@@ -137,14 +137,14 @@ describe 'Company Api' do
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
-
     
     update_company = {
       "companyName": Fixtures::COMPANY_NAME,
 			"companyCif": Fixtures::COMPANY_CIF_2,
       "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae": Fixtures::COMPANY_CNAE
+      "companyCnae": Fixtures::COMPANY_CNAE
     }.to_json
+
     post '/api/update-company', update_company
     
     post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF_2}.to_json
