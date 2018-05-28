@@ -216,10 +216,10 @@ describe 'Solicitude Api' do
 
       expect(solicitude['data']['text']).to eq(Fixtures::TEXT)
       expect(solicitude['data']['date']).to eq(Fixtures::DATE)
-      expect(solicitude['data']['name']).to eq(Fixtures::NAME)
-      expect(solicitude['data']['surname']).to eq(Fixtures::SURNAME)
-      expect(solicitude['data']['email']).to eq(Fixtures::EMAIL)
-      expect(solicitude['data']['phonenumber']).to eq(Fixtures::PHONENUMBER)
+      expect(solicitude['data']['applicant_name']).to eq(Fixtures::NAME)
+      expect(solicitude['data']['applicant_surname']).to eq(Fixtures::SURNAME)
+      expect(solicitude['data']['applicant_email']).to eq(Fixtures::EMAIL)
+      expect(solicitude['data']['applicant_phonenumber']).to eq(Fixtures::PHONENUMBER)
     end
   end
 
