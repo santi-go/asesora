@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'asesora-email',
+  name: 'asesora-applicant-email',
 
   props: ['labels', 'values', 'editionmode'],
 

@@ -33,7 +33,7 @@ export default {
 .about-version {
   margin-top: -4px;
   font-size: 0.8em;
-  color: var(--ligth-grey-color);
+  color: var(--light-grey-color);
 }
 
 .about-description  {
