@@ -88,4 +88,69 @@ describe 'Company Api' do
 
     expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
   end
+  it 'update data in edition mode' do
+    
+    first_solicitude = {
+      "name": Fixtures::NAME,
+      "surname": Fixtures::SURNAME,
+      "email": Fixtures::EMAIL,
+      "phonenumber": Fixtures::PHONENUMBER,
+      "text" => Fixtures::TEXT,
+      "date" => Fixtures::DATE,
+      'applicantId' => "",
+      "companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
+    }.to_json
+
+    post '/api/create-solicitude', first_solicitude
+
+    
+    update_company = {
+      "companyName" => Fixtures::COMPANY_NAME_2,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
+    }.to_json
+
+    post '/api/update-company', update_company
+    company = JSON.parse(last_response.body)
+
+    expect(company["name"]).to eq(Fixtures::COMPANY_NAME_2)
+  end
+
+  it 'create company when cif is differentin edition mode' do
+    
+    first_solicitude = {
+      "name": Fixtures::NAME,
+      "surname": Fixtures::SURNAME,
+      "email": Fixtures::EMAIL,
+      "phonenumber": Fixtures::PHONENUMBER,
+      "text" => Fixtures::TEXT,
+      "date" => Fixtures::DATE,
+      'applicantId' => "",
+      "companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
+    }.to_json
+
+    post '/api/create-solicitude', first_solicitude
+
+    
+    update_company = {
+      "companyName" => Fixtures::COMPANY_NAME,
+			"companyCif" => Fixtures::COMPANY_CIF_2,
+      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
+			"companyCnae" => Fixtures::COMPANY_CNAE
+    }.to_json
+    post '/api/update-company', update_company
+    
+    post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF_2}.to_json
+    company = JSON.parse(last_response.body)
+
+    expect(company["cif"]).to eq(Fixtures::COMPANY_CIF_2)
+    expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
+  end
 end

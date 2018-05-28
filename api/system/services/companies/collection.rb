@@ -41,6 +41,17 @@ module Companies
         companies
       end
 
+      def update(cif, company)
+        serialized = company.serialize()
+
+        document = MongoClient.update(cif, serialized)
+
+        return if document.nil?
+
+        Domain::Company.from_document(document)
+        document
+      end
+
       private
 
       class MongoClient
@@ -59,6 +70,10 @@ module Companies
           def all(regex)
             documents = client[:companies].find({"name":{ "$regex": regex}})
             documents
+          end
+
+          def update(cif, company)
+            client[:companies].find_one_and_replace({ "cif": cif }, company, :return_document => :after)
           end
 
           private
