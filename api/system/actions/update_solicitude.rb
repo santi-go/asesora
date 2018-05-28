@@ -2,7 +2,7 @@ require_relative '../services/solicitudes/service'
 
 module Actions
   class UpdateSolicitude
-    def self.do(text:, name:, surname:, email:, id:, phonenumber:, date:, company_name:, company_cif:, company_employees:, company_cnae:, creation_moment:)
+    def self.do(date:, text:, id:, company_cif:, creation_moment:)
       company_id = company_cif
       applicant_id = id
       ::Solicitudes::Service.update(date, text, applicant_id, company_id, creation_moment)

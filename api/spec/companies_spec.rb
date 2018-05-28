@@ -19,20 +19,20 @@ describe 'Companies' do
 	it 'returns a list filtered by criteria' do
 		solicitude = {
 			"phonenumber": Fixtures::PHONENUMBER,
-			"text" => Fixtures::TEXT,
-			"email" => Fixtures::EMAIL,
-			"date" => Fixtures::DATE,
-      'applicantId' => "",
-			"companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"text": Fixtures::TEXT,
+			"email": Fixtures::EMAIL,
+			"date": Fixtures::DATE,
+      'applicantId': "",
+			"companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF,
+			"companyCnae": Fixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(solicitude)
 
 		body = {
-			"name" => "Com",
-			"cnae" => "931 - Actividades deportivas"
+			"name": "Com",
+			"cnae": "931 - Actividades deportivas"
 		}.to_json
 
 		post_company_matches(body)
@@ -44,33 +44,33 @@ describe 'Companies' do
 	it 'searches by name when cnae is empty' do
 		first_solicitude = {
 			"phonenumber": Fixtures::PHONENUMBER,
-			"text" => Fixtures::TEXT,
-			"date" => Fixtures::DATE,
-			"email" => Fixtures::EMAIL,
-      'applicantId' => "",
-			"companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF_2,
-			"companyCnae" => Fixtures::COMPANY_CNAE
+			"text": Fixtures::TEXT,
+			"date": Fixtures::DATE,
+			"email": Fixtures::EMAIL,
+      'applicantId': "",
+			"companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF_2,
+			"companyCnae": Fixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(first_solicitude)
 
 		second_solicitude = {
 			"phonenumber": Fixtures::PHONENUMBER,
-			"text" => Fixtures::TEXT,
-			"date" => Fixtures::DATE,
-			"email" => Fixtures::EMAIL,
-      'applicantId' => "",
-			"companyName" => Fixtures::COMPANY_NAME,
-			"companyCif" => Fixtures::COMPANY_CIF_3,
-			"companyCnae" => Fixtures::COMPANY_CNAE_2
+			"text": Fixtures::TEXT,
+			"date": Fixtures::DATE,
+			"email": Fixtures::EMAIL,
+      'applicantId': "",
+			"companyName": Fixtures::COMPANY_NAME,
+			"companyCif": Fixtures::COMPANY_CIF_3,
+			"companyCnae": Fixtures::COMPANY_CNAE_2
 		}.to_json
 
 		post_create_solicitude(second_solicitude)
 
 		body = {
-			"name" => "Com",
-			"cnae" => ""
+			"name": "Com",
+			"cnae": ""
 		}.to_json
 
 		post_company_matches(body)

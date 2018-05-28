@@ -20,5 +20,14 @@ module Companies
         company.serialize
       end
     end
+
+    def self.update(name, cif, employees, cnae)
+      company = Domain::Company.with(name, cif, employees, cnae)
+      if  Collection.retrieve(cif) == false
+          Collection.create(company)
+        else
+          Collection.update(cif, company).serialize
+      end
+    end
   end
 end

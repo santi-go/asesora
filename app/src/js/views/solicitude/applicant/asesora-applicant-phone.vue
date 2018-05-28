@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'asesora-phone',
+  name: 'asesora-applicant-phone',
 
   props: ['labels', 'values', 'editionmode'],
   data: { function () {

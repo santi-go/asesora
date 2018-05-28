@@ -9,6 +9,7 @@ require_relative 'system/actions/retrieve_dictionary'
 require_relative 'system/actions/retrieve_cnae'
 require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/actions/update_solicitude'
+require_relative 'system/actions/update_company'
 require_relative 'system/domain/solicitude'
 require_relative 'system/actions/retrieve_company'
 
@@ -69,22 +70,29 @@ class Asesora < Sinatra::Base
   post '/api/update-solicitude' do
     params = JSON.parse(request.body.read)
     data = {
-      text:params['text'],
-      name:params['name'],
-      surname:params['surname'],
-      email:params['email'],
-      id:params['applicantId'],
-      phonenumber:params['phonenumber'],
       date:params['date'],
-      company_name:params['companyName'],
+      text:params['text'],
+      id:params['applicantId'],
       company_cif:params['companyCif'],
-      company_employees:params['companyEmployees'],
-      company_cnae:params['companyCnae'],
       creation_moment:params['creation_moment']
     }
 
     updated = Actions::UpdateSolicitude.do(data)
     return {}.to_json if updated.nil?
+    updated.to_json
+  end
+
+  post '/api/update-company' do
+    params = JSON.parse(request.body.read)
+    data = {
+      company_name: params['companyName'],
+      company_cif: params['companyCif'],
+      company_employees: params['companyEmployees'],
+      company_cnae: params['companyCnae']
+    }
+    updated = Actions::UpdateCompany.do(data)
+    return {}.to_json if updated.nil?
+
     updated.to_json
   end
 
@@ -149,5 +157,4 @@ class Asesora < Sinatra::Base
     response.headers["Access-Control-Allow-Origin"] = "*"
     200
   end
-
 end

@@ -18,6 +18,7 @@ class Fixtures < Asesora
   DATE = '2018-04-25'
   CREATION_MOMENT = '1234567890'
   TEXT = 'Solicitude text'
+  TEXT_2 = '2 Solicitude text'
   SOLICITUDES_COUNT = 1
   COMPANY_NAME = 'Company'
   COMPANY_NAME_2 = 'Company2'

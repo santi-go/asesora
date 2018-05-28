@@ -122,9 +122,7 @@ class Solicitude{
   submit(){
     this.lostFocus()
     $('#submit').click()
-    browser.waitUntil(function(){
-      return browser.isVisible('.messageSent')}
-      , 2000, 'expected text to be different after 2s')
+    browser.waitForVisible('.messageSent', 2000)
   }
 
   required(){
@@ -140,9 +138,7 @@ class Solicitude{
   }
 
   CNAEIDisValid(id){
-    browser.waitUntil(function(){
-      return browser.isVisible('#company-cnae')}
-      , 2000, 'expected class not exist after 2s')
+    browser.waitForVisible('#company-cnae', 2000)
     let cnae =  $('#company-cnae')
     let input = cnae.getValue()
     return input.includes(id)

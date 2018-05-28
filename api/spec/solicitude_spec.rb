@@ -21,13 +21,13 @@ describe 'Solicitude Api' do
 
     it 'returns the brand new solicitude' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text'=> Fixtures::TEXT,
-        'date'=> Fixtures::DATE,
-        'applicantId' => ""
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': ""
       }.to_json
 
       post_create_solicitude(body)
@@ -42,13 +42,13 @@ describe 'Solicitude Api' do
 
     it 'returns the new solicitude with existent applicant id' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text'=> Fixtures::TEXT,
-        'date'=> Fixtures::DATE,
-        'applicantId' => ""
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': ""
       }.to_json
 
       post_create_solicitude(body)
@@ -57,13 +57,13 @@ describe 'Solicitude Api' do
       expect(applicant_id).not_to be_empty
 
       body_with_id = {
-        'name'=> Fixtures::NAME_2,
-        'surname'=> Fixtures::SURNAME_2,
-        'email'=> Fixtures::EMAIL_2,
-        'phonenumber'=> Fixtures::PHONENUMBER_2,
-        'text'=> Fixtures::TEXT,
-        'date'=> Fixtures::DATE,
-        'applicantId' => applicant_id
+        'name': Fixtures::NAME_2,
+        'surname': Fixtures::SURNAME_2,
+        'email': Fixtures::EMAIL_2,
+        'phonenumber': Fixtures::PHONENUMBER_2,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': applicant_id
       }.to_json
 
       post_create_solicitude(body_with_id)
@@ -81,13 +81,13 @@ describe 'Solicitude Api' do
 
     it 'generate creation moment in milliseconds' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'date' => '',
-        'applicantId' => ""
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': '',
+        'applicantId': ""
       }.to_json
       previous_moment = DateTime.now.strftime(in_microseconds)
       post_create_solicitude(body)
@@ -101,13 +101,13 @@ describe 'Solicitude Api' do
 
     it 'new solicitude has today date' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => ''
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': ''
       }.to_json
       post_create_solicitude(body)
       today = Date.today.strftime(in_english_format)
@@ -127,13 +127,13 @@ describe 'Solicitude Api' do
 
     it 'returns all solicitudes' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
         'phonenumber': Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => ''
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': ''
       }.to_json
 
       post '/api/retrieve-solicitudes'
@@ -155,23 +155,23 @@ describe 'Solicitude Api' do
 
     it 'returns solicitudes in descendent order' do
       first_body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => Fixtures::DATE
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email'=> Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => Fixtures::DATE
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(second_body)
 
@@ -195,13 +195,13 @@ describe 'Solicitude Api' do
 
     it 'returns one solicitude' do
       body = {
-        'name'=> Fixtures::NAME,
-        'surname'=> Fixtures::SURNAME,
-        'email' => Fixtures::EMAIL,
-        'phonenumber'=> Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => Fixtures::DATE
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': Fixtures::DATE
       }.to_json
 
       post_create_solicitude(body)
@@ -234,9 +234,9 @@ describe 'Solicitude Api' do
         'surname': Fixtures::SURNAME,
         'email': Fixtures::EMAIL,
         'phonenumber': Fixtures::PHONENUMBER,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => Fixtures::DATE
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
@@ -244,9 +244,9 @@ describe 'Solicitude Api' do
         'surname': Fixtures::SURNAME_2,
         'email': Fixtures::EMAIL_2,
         'phonenumber': Fixtures::PHONENUMBER_2,
-        'text' => Fixtures::TEXT,
-        'applicantId' => "",
-        'date' => Fixtures::DATE
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(second_body)
 
@@ -271,6 +271,48 @@ describe 'Solicitude Api' do
       expect(response['data'].length).to be >= 2
     end
   end
+
+  context 'update solicitude' do
+
+    before(:each) do
+      post 'fixtures/clean'
+    end
+
+    it 'endpoint update solicitude ' do
+      body = {
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        'companyName': Fixtures::COMPANY_NAME,
+  			'companyCif': Fixtures::COMPANY_CIF
+      }.to_json
+
+      post_create_solicitude(body)
+      created_solicitude = JSON.parse(last_response.body)
+      creation_moment = created_solicitude['creation_moment']
+
+
+      update_solicitude = {
+  			'phonenumber': Fixtures::PHONENUMBER,
+  			'text': Fixtures::TEXT_2,
+  			'date': Fixtures::DATE,
+  			'email': Fixtures::EMAIL,
+        'applicantId': "",
+  			'companyCif': Fixtures::COMPANY_CIF,
+        'creation_moment': creation_moment
+  		}.to_json
+
+      post '/api/update-solicitude', update_solicitude
+      response = JSON.parse(last_response.body)
+
+      expect(response['text']).to eq(Fixtures::TEXT_2)
+    end
+  end
+
   private
 
   def in_microseconds
