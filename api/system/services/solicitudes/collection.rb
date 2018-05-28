@@ -23,7 +23,7 @@ module Solicitudes
 
         Domain::Solicitude.from_document(document)
       end
-      
+
       def retrieve(id)
         document = MongoClient.retrieve(id)
 

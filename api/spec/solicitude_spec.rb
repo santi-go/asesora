@@ -271,6 +271,48 @@ describe 'Solicitude Api' do
       expect(response['data'].length).to be >= 2
     end
   end
+
+  context 'update solicitude' do
+
+    before(:each) do
+      post 'fixtures/clean'
+    end
+
+    it 'endpoint update solicitude ' do
+      body = {
+        'name': Fixtures::NAME,
+        'surname': Fixtures::SURNAME,
+        'email': Fixtures::EMAIL,
+        'phonenumber': Fixtures::PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        'companyName': Fixtures::COMPANY_NAME,
+  			'companyCif': Fixtures::COMPANY_CIF
+      }.to_json
+
+      post_create_solicitude(body)
+      created_solicitude = JSON.parse(last_response.body)
+      creation_moment = created_solicitude['creation_moment']
+
+
+      update_solicitude = {
+  			'phonenumber': Fixtures::PHONENUMBER,
+  			'text': Fixtures::TEXT_2,
+  			'date': Fixtures::DATE,
+  			'email': Fixtures::EMAIL,
+        'applicantId': "",
+  			'companyCif': Fixtures::COMPANY_CIF,
+        'creation_moment': creation_moment
+  		}.to_json
+
+      post '/api/update-solicitude', update_solicitude
+      response = JSON.parse(last_response.body)
+
+      expect(response['text']).to eq(Fixtures::TEXT_2)
+    end
+  end
+
   private
 
   def in_microseconds

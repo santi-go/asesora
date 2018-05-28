@@ -70,17 +70,10 @@ class Asesora < Sinatra::Base
   post '/api/update-solicitude' do
     params = JSON.parse(request.body.read)
     data = {
-      text:params['text'],
-      name:params['name'],
-      surname:params['surname'],
-      email:params['email'],
-      id:params['applicantId'],
-      phonenumber:params['phonenumber'],
       date:params['date'],
-      company_name:params['companyName'],
+      text:params['text'],
+      id:params['applicantId'],
       company_cif:params['companyCif'],
-      company_employees:params['companyEmployees'],
-      company_cnae:params['companyCnae'],
       creation_moment:params['creation_moment']
     }
 
