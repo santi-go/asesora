@@ -4,7 +4,7 @@
             type="button"
             name="submit"
             class="submitbutton"
-            :disabled="!submittable"
+            :disabled="!submittable && !editCompany"
             v-on:click="submit()">
     <template v-if="!editionmode">{{ labels.submit }}</template>
     <template v-else>{{ labels.editionsubmit }}</template>
@@ -16,7 +16,7 @@
 export default {
   name: 'asesora-button',
 
-  props: ['labels', 'values', 'editionmode', 'submittable'],
+  props: ['labels', 'values', 'editionmode', 'submittable', 'editCompany'],
 
   watch: {
     editionmode: function(val, oldVal){

@@ -10,9 +10,11 @@
     <asesora-date :values="values"
                   :labels="labels"
                   :editionmode="editionmode"
+                  :edit-company='editCompany'
                   ></asesora-date>
     <asesora-text :values="values"
                   :labels="labels"
+                  :edit-company='editCompany'
                   ></asesora-text>
 
     <asesora-company :values="values"
@@ -29,6 +31,7 @@
                     :labels="labels"
                     :editionmode="editionmode"
                     :submittable="submittable"
+                    :edit-company='editCompany'
                     ></asesora-button>
 
     <template v-if="editionmode">
