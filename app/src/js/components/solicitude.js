@@ -84,6 +84,11 @@ export default class Solicitude extends Component {
       'changed.applicant.fields',
       this.searchForApplicants.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.edit.company',
+      this.enableCompanyFields.bind(this)
+
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -102,8 +107,10 @@ export default class Solicitude extends Component {
     if (index == -1){
       id = ""
       this.data.editionmode = false
+      this.data.editCompany = false
     } else {
       this.data.editionmode = true
+      this.data.editCompany = true
       Bus.publish('get.solicitude', {id: id})
     }
   }
@@ -118,6 +125,10 @@ export default class Solicitude extends Component {
       event.returnValue = confirmationMessage
       return confirmationMessage
     }
+  }
+
+  enableCompanyFields(){
+    this.data.editCompany = false
   }
 
   hasChanges(){
@@ -388,6 +399,7 @@ export default class Solicitude extends Component {
         "incompleteCompanyIdentity": "XXXXXXX",
         "suggestions" : "xxxxxx",
         "submit" : "xxxxxxxxxx",
+        "editCompany":"xxxxxxxxxxx",
         "submitting" : "xxxxxxxxxx",
         "editiondiscard" : "xxxxxxxxxx",
         "editionsubmit" : "xxxxxx",
@@ -416,6 +428,7 @@ export default class Solicitude extends Component {
       submittable: false,
       showAlert: true,
       editionmode: false,
+      editCompany: false,
       translate:function(key,value) {
         this.labels[key] = value
       },

@@ -5,7 +5,7 @@
             name="company-name"
             type="text"
             v-on:keyup="onKeyup"
-            :disabled="editionmode"
+            :disabled="editCompany"
             v-model="values.companyName"
             >
     </div>
@@ -15,7 +15,7 @@
 export default {
   name: 'asesora-company-name',
 
-  props: ['labels', 'values', 'editionmode'],
+  props: ['labels', 'values', 'editCompany'],
 
   methods: {
     onKeyup(){

@@ -21,6 +21,7 @@
                      :is-valid-cif="isValidCif"
                      :cnae-catalog="cnaeCatalog"
                      :editionmode="editionmode"
+                     :edit-company='editCompany'
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
 
@@ -64,7 +65,7 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
-          'submittable', 'isValidContact', 'suggestedApplicants'],
+          'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany'],
 
   data() {
     return {
