@@ -28,7 +28,7 @@ export default {
 </script>
 <style scoped>
   input[type="date"] {
-    border: 0.1rem solid var(--ligth-grey-color);
+    border: 0.1rem solid var(--light-grey-color);
     border-radius: .4rem;
     box-shadow: none;
     height: 3.8rem;
