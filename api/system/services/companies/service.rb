@@ -26,7 +26,7 @@ module Companies
       if  Collection.retrieve(cif) == false
           Collection.create(company)
         else
-          Collection.update(cif, company)
+          Collection.update(cif, company).serialize
       end
     end
   end
