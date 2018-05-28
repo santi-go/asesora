@@ -7,6 +7,7 @@
                        :suggested-applicants='suggestedApplicants'
                        ></asesora-applicant>
 
+    <div  class="card large-card" >
     <asesora-date :values="values"
                   :labels="labels"
                   :editionmode="editionmode"
@@ -14,7 +15,7 @@
     <asesora-text :values="values"
                   :labels="labels"
                   ></asesora-text>
-
+    </div>
     <asesora-company :values="values"
                      :labels="labels"
                      :suggested-companies="suggestedCompanies"
@@ -39,15 +40,14 @@
       {{ labels.sent }}
     </div>
 
-      <div class="message-sent alert background-success">
-        <em class="fa fa-thumbs-up"></em>
-        {{ labels.edited }}
-      </div>
-      <div class="message-error alert background-danger">
-        <em class="fa fa-times-circle"></em>
-        {{ labels.alertBackgroundDanger }}
-      </div>
-
+    <div class="message-sent alert background-success">
+      <em class="fa fa-thumbs-up"></em>
+      {{ labels.edited }}
+    </div>
+    <div class="message-error alert background-danger">
+      <em class="fa fa-times-circle"></em>
+      {{ labels.alertBackgroundDanger }}
+    </div>
   </div>
 </template>
 

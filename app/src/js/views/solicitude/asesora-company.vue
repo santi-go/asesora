@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div class="card-title">
-			<label>{{ labels.company }}</label>
-		</div>
+  <div  class="card large-card" >
+    <h3>{{ labels.company }}</h3>
     <div class="row grid-responsive">
       <div class="column column-50">
         <asesora-company-identity :values="values"
