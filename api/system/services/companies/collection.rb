@@ -49,7 +49,6 @@ module Companies
         return if document.nil?
 
         Domain::Company.from_document(document)
-        document
       end
 
       private
