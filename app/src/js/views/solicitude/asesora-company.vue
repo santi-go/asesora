@@ -4,9 +4,17 @@
 			<label>{{ labels.company }}</label>
 		</div>
     <template v-if="editionmode">
-      <asesora-company-edit-button :values="values"
-                                   :labels="labels">
-      </asesora-company-edit-button>
+      <div v-if="editCompany">
+        <asesora-company-edit-button :values="values"
+          :labels="labels">
+        </asesora-company-edit-button>
+      </div>
+      <div v-if="!editCompany">
+        <div class="alert">
+          <em class="fa fa-calendar"></em>
+           {{ labels.editingCompany }}
+        </div>
+      </div>
     </template>
     <div class="row grid-responsive">
       <div class="column column-50">

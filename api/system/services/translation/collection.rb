@@ -56,10 +56,11 @@ module Translation
                 "editionsubmitting": "Guardando",
                 "editiondiscard": "Descartar",
                 "edited": "Todo Ok! Guardado!",
+                "editCompany": "Modificar Empresa",
+                "editingCompany": "Las modificaciones que introduzcas afectarán a todos los casos asociados a esta empresa",
                 "alertBackgroundDanger": "Lo sentimos, ha habido un error",
                 "suggestions": "Sugerencias",
-                "sent": "Todo Ok! Enviado!",
-                "editCompany": "Modificar Empresa"
+                "sent": "Todo Ok! Enviado!"
               },
 
               "solicitudes-list": {

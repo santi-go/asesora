@@ -400,6 +400,7 @@ export default class Solicitude extends Component {
         "suggestions" : "xxxxxx",
         "submit" : "xxxxxxxxxx",
         "editCompany":"xxxxxxxxxxx",
+        "editingCompany": "xxxxxxxxxxxxxx",
         "submitting" : "xxxxxxxxxx",
         "editiondiscard" : "xxxxxxxxxx",
         "editionsubmit" : "xxxxxx",
