@@ -5,9 +5,9 @@
                 type="date"
                 v-model="values.date"
                 v-bind:required="editionmode"
-                :disabled="!editCompany"
+                :disabled="editionmode && !editCompany"
                 v-bind:class="{editionmode: editionmode}">
-        <div    id="date-info"
+        <div id="date-info"
                 v-if="!mustBeHidden">
           <div class="alert">
             <em class="fa fa-calendar"></em>

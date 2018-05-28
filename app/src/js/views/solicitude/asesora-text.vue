@@ -5,7 +5,7 @@
               placeholder="*"
               v-on:keyup="onKeyup"
               v-on:focus="onFocus"
-              :disabled="!editCompany"
+              :disabled="editionmode && !editCompany"
               v-model="values.text">
     </textarea>
   </div>
@@ -15,7 +15,7 @@
 export default {
   name: 'asesora-text',
 
-  props: ['labels', 'values','editCompany'],
+  props: ['labels', 'values', 'editionmode','editCompany'],
 
   methods: {
     onKeyup(event){

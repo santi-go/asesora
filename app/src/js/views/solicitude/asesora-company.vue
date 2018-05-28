@@ -38,11 +38,13 @@
         <asesora-company-matches :labels="labels" :suggested-companies="suggestedCompanies"></asesora-company-matches>
       </div>
     </div>
-    <div v-if="!editCompany">
-      <asesora-company-save-button :labels="labels">
-      </asesora-company-save-button>
-      <asesora-company-discard-button :labels="labels">
-      </asesora-company-discard-button>
+    <div v-if="editionmode">
+      <div v-if="!editCompany">
+        <asesora-company-save-button :labels="labels">
+        </asesora-company-save-button>
+        <asesora-company-discard-button :labels="labels">
+        </asesora-company-discard-button>
+      </div>
     </div>
   </div>
 </template>
