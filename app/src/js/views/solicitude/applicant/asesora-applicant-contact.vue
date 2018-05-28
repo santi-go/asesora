@@ -1,13 +1,13 @@
  <template>
   <div>
-    <asesora-phone :values="values"
+    <asesora-applicant-phone :values="values"
                    :labels="labels"
                    :editionmode="editionmode"
-                   ></asesora-phone>
-    <asesora-email :values="values"
+                   ></asesora-applicant-phone>
+    <asesora-applicant-email :values="values"
                    :labels="labels"
                    :editionmode="editionmode"
-                   ></asesora-email>
+                   ></asesora-applicant-email>
     <div  id="contact-info" v-if="!isValidContact">
       <div class="alert background-danger">
         <em class="fa fa-times-circle"></em>
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import EmailView from './asesora-email'
-import PhoneView from './asesora-phone'
+import EmailView from './asesora-applicant-email'
+import PhoneView from './asesora-applicant-phone'
 
 export default {
   name: 'asesora-applicant-contact',
@@ -27,8 +27,8 @@ export default {
   props: ['labels', 'values', 'isValidContact', 'editionmode'],
 
   components: {
-    "asesora-email" : EmailView,
-    "asesora-phone" : PhoneView
+    "asesora-applicant-email" : EmailView,
+    "asesora-applicant-phone" : PhoneView
   }
 }
 </script>
