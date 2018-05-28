@@ -66,12 +66,6 @@ export default {
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
           'submittable', 'isValidContact', 'suggestedApplicants'],
 
-  data() {
-    return {
-      validContact: false,
-    }
-  },
-
   components: {
     "asesora-date" : DateView,
     "asesora-applicant" : ApplicantView,
@@ -90,42 +84,6 @@ export default {
   },
 
   methods: {
-    setContactStatus(status){
-      this.validContact = status
-      this.setButtonStatus()
-    },
-
-    setCompanyIdentityStatus(status){
-      this.validcompanyidentity = status
-      this.setButtonStatus()
-    },
-
-    setButtonStatus(){
-      this.disableButton(true)
-
-      if (!this.textIsEmpty() && this.validContact && this.validcompanyidentity) {
-        this.disableButton(false)
-      }
-    },
-
-    applicantPhonenumberIsEmpty(){
-      return (this.values.phonenumber == "")
-    },
-
-    applicantEmailIsEmpty(){
-      return (this.values.email == "")
-    },
-
-    textIsEmpty(){
-      return (this.values.text == "")
-    },
-
-    disableButton(toggle){
-      let signal = new CustomEvent('check.submittable',
-                                      {'detail': {},
-                                      'bubbles': true})
-      this.$el.dispatchEvent(signal)
-    },
 
     animateCard() {
       this.show()
