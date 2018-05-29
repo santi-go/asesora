@@ -20,10 +20,10 @@ describe 'Company Api' do
 
   it 'retrieves company if exists' do
     solicitude = {
-      "applicantName": Fixtures::NAME,
-      "applicantSurname": Fixtures::SURNAME,
-      "applicantEmail": Fixtures::EMAIL,
-      "applicantPhonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::APPLICANT_NAME,
+      "applicantSurname": Fixtures::APPLICANT_SURNAME,
+      "applicantEmail": Fixtures::APPLICANT_EMAIL,
+      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -52,10 +52,10 @@ describe 'Company Api' do
 
   it "don't saves a duplicated company" do
     first_solicitude = {
-      "applicantName": Fixtures::NAME,
-      "applicantSurname": Fixtures::SURNAME,
-      "applicantEmail": Fixtures::EMAIL,
-      "applicantPhonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::APPLICANT_NAME,
+      "applicantSurname": Fixtures::APPLICANT_SURNAME,
+      "applicantEmail": Fixtures::APPLICANT_EMAIL,
+      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -68,10 +68,10 @@ describe 'Company Api' do
     post '/api/create-solicitude', first_solicitude
 
     second_solicitude = {
-      "applicantName": Fixtures::NAME,
-      "applicantSurname": Fixtures::SURNAME,
-      "applicantEmail": Fixtures::EMAIL,
-      "applicantPhonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::APPLICANT_NAME,
+      "applicantSurname": Fixtures::APPLICANT_SURNAME,
+      "applicantEmail": Fixtures::APPLICANT_EMAIL,
+      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -91,10 +91,10 @@ describe 'Company Api' do
   it 'update data in edition mode' do
 
     first_solicitude = {
-      "applicantName": Fixtures::NAME,
-      "applicantSurname": Fixtures::SURNAME,
-      "applicantEmail": Fixtures::EMAIL,
-      "applicantPhonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::APPLICANT_NAME,
+      "applicantSurname": Fixtures::APPLICANT_SURNAME,
+      "applicantEmail": Fixtures::APPLICANT_EMAIL,
+      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -123,10 +123,10 @@ describe 'Company Api' do
   it 'create company when cif is differentin edition mode' do
 
     first_solicitude = {
-      "applicantName": Fixtures::NAME,
-      "applicantSurname": Fixtures::SURNAME,
-      "applicantEmail": Fixtures::EMAIL,
-      "applicantPhonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::APPLICANT_NAME,
+      "applicantSurname": Fixtures::APPLICANT_SURNAME,
+      "applicantEmail": Fixtures::APPLICANT_EMAIL,
+      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
