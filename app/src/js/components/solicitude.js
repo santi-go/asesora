@@ -93,6 +93,11 @@ export default class Solicitude extends Component {
       'clicked.save.company',
       this.saveCompanyInfo.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.discard.company.button',
+      this.discardCompanyInfo.bind(this)
+    )
+    
    
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -153,6 +158,16 @@ export default class Solicitude extends Component {
 
   saveCompanyInfo(event){
     Bus.publish('update.company', event.detail)
+  }
+
+  discardCompanyInfo(){
+    this.data.values.companyName = this.initialValues['companyName']
+    this.data.values.companyCif = this.initialValues['companyCif']
+    this.data.values.companyEmployees = this.initialValues['companyEmployees']
+    this.data.values.companyCnae = this.initialValues['companyCnae']
+
+    this.data.editCompany = true
+    this.data.isValidCif = true
   }
 
   updatedSolicitude(response){
