@@ -7,14 +7,14 @@ require 'json'
 
 
 class Fixtures < Asesora
-  NAME = 'John'
-  SURNAME = 'Doe'
-  EMAIL = 'john@doe.com'
-  PHONENUMBER = '987654321'
-  NAME_2 = 'John'
-  SURNAME_2 = 'Connor'
-  EMAIL_2 = 'john@doe.com'
-  PHONENUMBER_2 = '600100200'
+  APPLICANT_NAME = 'John'
+  APPLICANT_SURNAME = 'Doe'
+  APPLICANT_EMAIL = 'john@doe.com'
+  APPLICANT_PHONENUMBER = '987654321'
+  APPLICANT_NAME_2 = 'John'
+  APPLICANT_SURNAME_2 = 'Connor'
+  APPLICANT_EMAIL_2 = 'john@doe.com'
+  APPLICANT_PHONENUMBER_2 = '600100200'
   DATE = '2018-04-25'
   CREATION_MOMENT = '1234567890'
   TEXT = 'Solicitude text'
@@ -57,7 +57,7 @@ class Fixtures < Asesora
   end
 
   def create_applicant
-    ::Applicant::Service.create(NAME, SURNAME, EMAIL, PHONENUMBER)
+    ::Applicant::Service.create(APPLICANT_NAME, APPLICANT_SURNAME, APPLICANT_EMAIL, APPLICANT_PHONENUMBER)
   end
 
   def create_solicitude(applicant, company)

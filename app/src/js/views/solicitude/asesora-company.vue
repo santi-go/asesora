@@ -28,8 +28,7 @@
     </div>
     <template v-if="editionmode">
       <div v-if="editCompany">
-        <asesora-company-edit-button :values="values"
-        :labels="labels">
+        <asesora-company-edit-button :labels="labels">
       </asesora-company-edit-button>
     </div>
     <div v-if="!editCompany">
@@ -41,7 +40,7 @@
   </template>
     <div v-if="editionmode">
       <div v-if="!editCompany">
-        <asesora-company-save-button :labels="labels">
+        <asesora-company-save-button :labels="labels" :values="values">
         </asesora-company-save-button>
         <asesora-company-discard-button :labels="labels">
         </asesora-company-discard-button>

@@ -14,11 +14,19 @@
 export default {
   name: 'asesora-company-save-button',
 
-  props: ['labels'],
+  props: ['labels', 'values'],
 
   methods: {
     saveCompany(){
-      console.log("LLamada al evento de guardar empresa");
+      let signal = new CustomEvent('clicked.save.company',
+                                  {'detail': {
+                                    'companyName': this.values.companyName,
+                                    'companyCif': this.values.companyCif,
+                                    'companyEmployees': this.values.companyEmployees,
+                                    'companyCnae': this.values.companyCnae
+                                    },
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
     }
   }
 }

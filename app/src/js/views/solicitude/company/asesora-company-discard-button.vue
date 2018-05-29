@@ -19,8 +19,11 @@ export default {
 
   methods: {
     discardCompany() {
-      console.log("cambios descartados")
-    },
+      let signal = new CustomEvent('clicked.discard.company.button',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    }
   }
 }
 </script>

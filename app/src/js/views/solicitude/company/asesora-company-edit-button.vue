@@ -13,7 +13,7 @@
 export default {
   name: 'asesora-button',
 
-  props: ['labels', 'values'],
+  props: ['labels'],
 
   methods: {
     edit(){
