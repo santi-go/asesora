@@ -7,7 +7,9 @@ module Companies
       def create(company)
         serialized = company.serialize()
         id = serialized["cif"]
+
         company = retrieve(id)
+
         return company if company
 
         document = MongoClient.create(serialized)
