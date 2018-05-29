@@ -127,7 +127,56 @@ sh staging.sh
 
 ## The droplet in Digital Ocean
 
-### Installation
+### Prepare the script to launch the application
+
+Create a script that prepare ruby environment and launch application:
+
+~~~
+nano ~/bin/launch_asesora.sh
+~~~
+
+and copy in:
+
+~~~
+#!/bin/bash --login
+
+if [ -f /var/www/asesora/config.dev.ru ]; then
+  cd ~/bin
+  sh down_asesora.sh
+  cd /var/www/asesora
+  bundle exec rake prepare_demo
+  bundle exec rake test
+  cd ~/bin
+  sh down_asesora.sh
+  rm /var/www/asesora/spec/ -rf
+  rm /var/www/asesora/config.dev.ru -rf
+fi
+
+cd /var/www/asesora
+rvm use 2.5.0
+bundle exec rake digitalocean
+~~~
+
+Set script executable:
+
+~~~
+chmod 755 ~/bin/launch_asesora.sh
+~~~
+
+Edit crontab:
+
+~~~
+crontab -e
+~~~
+
+and add to end the next line:
+
+~~~
+@reboot /root/bin/launch_asesora.sh
+~~~
+
+
+### Server installation
 
 You need first prepare the server, install Mongodb. With a root user:
 
@@ -151,6 +200,7 @@ rm rvm-installer
 rm rvm-installer.asc
 ~~~
 
+
 ### Some configurations
 
 Update .bashrc to use rvm and create variable environment adding to ```~/.bashrc``` this:
@@ -166,6 +216,7 @@ And launch:
 ~~~
 source ~/.bashrc
 ~~~
+
 
 ### Prepare Mongodb
 
@@ -188,42 +239,6 @@ Reboot system:
 
 ~~~
 reboot
-~~~
-
-
-### Launch the application
-
-Create a script that prepare ruby environment and launch application:
-
-~~~
-nano ~/bin/launch_asesora.sh
-~~~
-
-and copy in:
-
-~~~
-#!/bin/bash --login
-cd /var/www/asesora
-rvm use 2.5.0
-bundle exec rake digitalocean
-~~~
-
-Set script executable:
-
-~~~
-chmod 755 ~/bin/launch_asesora.sh
-~~~
-
-Add to crontab:
-
-~~~
-crontab -e
-~~~
-
-Add to end the next line:
-
-~~~
-@reboot /root/bin/launch_asesora.sh
 ~~~
 
 

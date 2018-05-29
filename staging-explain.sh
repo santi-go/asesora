@@ -115,6 +115,8 @@ ${RESET}
      as many times as you want.
      Type 'docker-compose -f docker-compose.local-staging.yml up --build'
      to build and run again.
+     Then you must use 'docker-compose -f docker-compose.local-staging.yml exec asesora bash'
+     to enter in container.
      If you need the changes, remember to copy them to another file to apply later to the server.
    - Or continue the process of this script. By continue the process all changes are destroyed.
 2. Down the local staging environment.
