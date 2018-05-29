@@ -97,8 +97,6 @@ export default class Solicitude extends Component {
       'clicked.discard.company.button',
       this.discardCompanyInfo.bind(this)
     )
-    
-   
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -186,6 +184,7 @@ export default class Solicitude extends Component {
   updateModel(payload) {
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
+    this.data.setValues('applicantId', payload.data.applicant)
     this.data.setValues('applicantName', payload.data.applicant_name)
     this.data.setValues('applicantSurname', payload.data.applicant_surname)
     this.data.setValues('applicantEmail', payload.data.applicant_email)

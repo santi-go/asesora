@@ -69,6 +69,8 @@ class Asesora < Sinatra::Base
 
   post '/api/update-solicitude' do
     params = JSON.parse(request.body.read)
+    p "+++++++++++++++++++++++++++++++"
+    p params
     data = {
       date:params['date'],
       text:params['text'],
