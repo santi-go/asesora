@@ -18,9 +18,9 @@ describe 'Companies' do
 
 	it 'returns a list filtered by criteria' do
 		solicitude = {
-			"phonenumber": Fixtures::PHONENUMBER,
+			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
 			"text": Fixtures::TEXT,
-			"email": Fixtures::EMAIL,
+			"applicantemail": Fixtures::APPLICANT_EMAIL,
 			"date": Fixtures::DATE,
       'applicantId': "",
 			"companyName": Fixtures::COMPANY_NAME,
@@ -43,10 +43,10 @@ describe 'Companies' do
 
 	it 'searches by name when cnae is empty' do
 		first_solicitude = {
-			"phonenumber": Fixtures::PHONENUMBER,
+			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
 			"text": Fixtures::TEXT,
 			"date": Fixtures::DATE,
-			"email": Fixtures::EMAIL,
+			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
 			"companyName": Fixtures::COMPANY_NAME,
 			"companyCif": Fixtures::COMPANY_CIF_2,
@@ -56,10 +56,10 @@ describe 'Companies' do
 		post_create_solicitude(first_solicitude)
 
 		second_solicitude = {
-			"phonenumber": Fixtures::PHONENUMBER,
+			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
 			"text": Fixtures::TEXT,
 			"date": Fixtures::DATE,
-			"email": Fixtures::EMAIL,
+			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
 			"companyName": Fixtures::COMPANY_NAME,
 			"companyCif": Fixtures::COMPANY_CIF_3,
