@@ -11,10 +11,8 @@ module Actions
       else
         applicant = retrieve_applicant(name, surname, email, phonenumber, id)
       end
-
       company = create_company(company_name, company_cif, company_employees, company_cnae)
       solicitude = create_solicitude(date, text, applicant, company)
-
       solicitude
     end
 

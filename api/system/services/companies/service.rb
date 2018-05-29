@@ -4,12 +4,17 @@ require_relative 'collection'
 module Companies
   class Service
     def self.create(name, cif, employees, cnae)
+      return self.create_empty() if cif == ""
+
       company = Domain::Company.with(name, cif, employees, cnae)
       Collection.create(company)
     end
 
     def self.retrieve(id)
+      return {} if id == ""
+
       result = Collection.retrieve(id)
+
       return result.serialize if(result != false)
       return {}
     end
@@ -28,6 +33,10 @@ module Companies
         else
           Collection.update(cif, company).serialize
       end
+    end
+
+    def self.create_empty()
+      Domain::Company.with("", "", "", "")
     end
   end
 end

@@ -1,13 +1,13 @@
  <template>
   <div>
-    <label>{{ labels.name }}</label>
+    <label>{{ labels.applicantName }}</label>
     <input  id="name"
             name="name"
             type="text"
             v-on:keyup="refreshSuggestion"
             :editionmode="editionmode"
             :disabled="editionmode"
-            v-model="values.name"
+            v-model="values.applicantName"
             >
     </div>
 </template>

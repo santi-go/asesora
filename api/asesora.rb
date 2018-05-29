@@ -51,11 +51,11 @@ class Asesora < Sinatra::Base
     params = JSON.parse(request.body.read)
     data = {
       text:params['text'],
-      name:params['name'],
-      surname:params['surname'],
-      email:params['email'],
+      name:params['applicantName'],
+      surname:params['applicantSurname'],
+      email:params['applicantEmail'],
       id:params['applicantId'],
-      phonenumber:params['phonenumber'],
+      phonenumber:params['applicantPhonenumber'],
       date:params['date'],
       company_name:params['companyName'],
       company_cif:params['companyCif'],
@@ -141,10 +141,10 @@ class Asesora < Sinatra::Base
     params = JSON.parse(request.body.read)
 
     criteria = {
-      name: params['name'],
-      surname: params['surname'],
-      phonenumber: params['phonenumber'],
-      email: params['email']
+      name: params['applicantName'],
+      surname: params['applicantSurname'],
+      phonenumber: params['applicantPhonenumber'],
+      email: params['applicantEmail']
     }
 
     applicants = Actions::RetrieveSolicitudes.do_applicants(criteria)
