@@ -1,13 +1,13 @@
 <template>
   <div>
-    <label>{{ labels.email }}</label>
+    <label>{{ labels.applicantEmail }}</label>
     <input  id="email"
             name="email"
             type="text"
             v-on:focus="focus"
             v-on:keyup="onKeyup"
             :disabled="editionmode"
-            v-model="values.email"
+            v-model="values.applicantEmail"
             >
   </div>
 </template>

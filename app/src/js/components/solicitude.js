@@ -158,10 +158,10 @@ export default class Solicitude extends Component {
   updateModel(payload) {
     this.data.setValues('text', payload.data.text)
     this.data.setValues('date', payload.data.date)
-    this.data.setValues('name', payload.data.applicant_name)
-    this.data.setValues('surname', payload.data.applicant_surname)
-    this.data.setValues('email', payload.data.applicant_email)
-    this.data.setValues('phonenumber', payload.data.applicant_phonenumber)
+    this.data.setValues('applicantName', payload.data.applicant_name)
+    this.data.setValues('applicantSurname', payload.data.applicant_surname)
+    this.data.setValues('applicantEmail', payload.data.applicant_email)
+    this.data.setValues('applicantPhonenumber', payload.data.applicant_phonenumber)
     this.data.setValues('creation_moment',payload.data.creation_moment)
     this.data.setValues('companyName',payload.data.company_name)
     this.data.setValues('companyCif',payload.data.company_cif)
@@ -231,11 +231,11 @@ export default class Solicitude extends Component {
   }
 
   fillApplicant(item){
-    this.data.setValues('name', item.detail.name)
-    this.data.setValues('surname', item.detail.surname)
-    this.data.setValues('email', item.detail.email)
-    this.data.setValues('phonenumber', item.detail.phonenumber)
-    this.data.setValues('applicantId', item.detail.id)
+    this.data.setValues('applicantName', item.detail.applicant_name)
+    this.data.setValues('applicantSurname', item.detail.applicantSurname)
+    this.data.setValues('applicantEmail', item.detail.applicant_email)
+    this.data.setValues('applicantPhonenumber', item.detail.applicant_phonenumber)
+    this.data.setValues('applicantId', item.detail.applicant_id)
 
     this.runValidations()
   }
@@ -352,10 +352,10 @@ export default class Solicitude extends Component {
       this.data.values.applicantId = ""
       this.data.suggestedApplicants = []
       let criteria = {
-        'name': this.data.values.name,
-        'surname': this.data.values.surname,
-        'phonenumber': this.data.values.phonenumber,
-        'email': this.data.values.email
+        'applicantName': this.data.values.applicantName,
+        'applicantSurname': this.data.values.applicantSurname,
+        'applicantPhonenumber': this.data.values.applicantPhonenumber,
+        'applicantEmail': this.data.values.applicantEmail
       }
       if (this.evaluateCriterion(criteria)){
         Bus.publish('get.applicant.matches', criteria)
@@ -384,10 +384,10 @@ export default class Solicitude extends Component {
       return {
         labels: { "applicant": "XXXXXXXX",
         "date": "XXXXX",
-        "email": "XXX",
-        "phonenumber": "XXXXXXXXX",
-        "name": "XXXX",
-        "surname": "XXXXXXXXX",
+        "applicantEmail": "XXX",
+        "applicantPhonenumber": "XXXXXXXXX",
+        "applicantName": "XXXX",
+        "applicantSurname": "XXXXXXXXX",
         "text": "XXXXX",
         "noDate": "XXXXX",
         "company": "XXXXXXX",
@@ -408,10 +408,10 @@ export default class Solicitude extends Component {
         "sent" : "XXXX"},
         values: { "text": "",
         "date": "",
-        "name": "",
-        "surname": "",
-        "email": "",
-        "phonenumber": "",
+        "applicantName": "",
+        "applicantSurname": "",
+        "applicantEmail": "",
+        "applicantPhonenumber": "",
         "applicantId": "",
         "companyName": "",
         "companyCif": "",

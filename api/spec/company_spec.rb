@@ -20,10 +20,10 @@ describe 'Company Api' do
 
   it 'retrieves company if exists' do
     solicitude = {
-      "name": Fixtures::NAME,
-      "surname": Fixtures::SURNAME,
-      "email": Fixtures::EMAIL,
-      "phonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::NAME,
+      "applicantSurname": Fixtures::SURNAME,
+      "applicantEmail": Fixtures::EMAIL,
+      "applicantPhonenumber": Fixtures::PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -52,10 +52,10 @@ describe 'Company Api' do
 
   it "don't saves a duplicated company" do
     first_solicitude = {
-      "name": Fixtures::NAME,
-      "surname": Fixtures::SURNAME,
-      "email": Fixtures::EMAIL,
-      "phonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::NAME,
+      "applicantSurname": Fixtures::SURNAME,
+      "applicantEmail": Fixtures::EMAIL,
+      "applicantPhonenumber": Fixtures::PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -68,10 +68,10 @@ describe 'Company Api' do
     post '/api/create-solicitude', first_solicitude
 
     second_solicitude = {
-      "name": Fixtures::NAME,
-      "surname": Fixtures::SURNAME,
-      "email": Fixtures::EMAIL,
-      "phonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::NAME,
+      "applicantSurname": Fixtures::SURNAME,
+      "applicantEmail": Fixtures::EMAIL,
+      "applicantPhonenumber": Fixtures::PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -89,12 +89,12 @@ describe 'Company Api' do
     expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
   end
   it 'update data in edition mode' do
-    
+
     first_solicitude = {
-      "name": Fixtures::NAME,
-      "surname": Fixtures::SURNAME,
-      "email": Fixtures::EMAIL,
-      "phonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::NAME,
+      "applicantSurname": Fixtures::SURNAME,
+      "applicantEmail": Fixtures::EMAIL,
+      "applicantPhonenumber": Fixtures::PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -106,7 +106,7 @@ describe 'Company Api' do
 
     post '/api/create-solicitude', first_solicitude
 
-    
+
     update_company = {
       "companyName": Fixtures::COMPANY_NAME_2,
 			"companyCif": Fixtures::COMPANY_CIF,
@@ -121,12 +121,12 @@ describe 'Company Api' do
   end
 
   it 'create company when cif is differentin edition mode' do
-    
+
     first_solicitude = {
-      "name": Fixtures::NAME,
-      "surname": Fixtures::SURNAME,
-      "email": Fixtures::EMAIL,
-      "phonenumber": Fixtures::PHONENUMBER,
+      "applicantName": Fixtures::NAME,
+      "applicantSurname": Fixtures::SURNAME,
+      "applicantEmail": Fixtures::EMAIL,
+      "applicantPhonenumber": Fixtures::PHONENUMBER,
       "text": Fixtures::TEXT,
       "date": Fixtures::DATE,
       'applicantId': "",
@@ -137,7 +137,7 @@ describe 'Company Api' do
     }.to_json
 
     post '/api/create-solicitude', first_solicitude
-    
+
     update_company = {
       "companyName": Fixtures::COMPANY_NAME,
 			"companyCif": Fixtures::COMPANY_CIF_2,
@@ -146,7 +146,7 @@ describe 'Company Api' do
     }.to_json
 
     post '/api/update-company', update_company
-    
+
     post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF_2}.to_json
     company = JSON.parse(last_response.body)
 

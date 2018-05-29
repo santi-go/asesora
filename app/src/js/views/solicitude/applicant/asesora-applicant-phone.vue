@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.phonenumber }}:</label>
+    <label>{{ labels.applicantPhonenumber }}:</label>
     <input  id="phonenumber"
             name="phonenumber"
             type="text"
@@ -8,7 +8,7 @@
             v-on:keydown="keydown"
             v-on:keyup="onKeyup"
             :disabled="editionmode"
-            v-model="values.phonenumber"
+            v-model="values.applicantPhonenumber"
             >
   </div>
 </template>
