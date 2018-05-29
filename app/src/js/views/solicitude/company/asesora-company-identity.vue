@@ -2,11 +2,11 @@
   <div>
     <asesora-company-name :values="values"
                           :labels="labels"
-                          :editionmode="editionmode"
+                          :edit-company="editCompany"
                           ></asesora-company-name>
     <asesora-company-cif :values="values"
                          :labels="labels"
-                         :editionmode="editionmode"
+                         :edit-company="editCompany"
                          :is-valid-cif="isValidCif"></asesora-company-cif>
     <div id="company-identity-info" v-if="!isValidCompanyIdentity">
       <div class="alert background-danger">
@@ -24,7 +24,7 @@ import CompanyCifView from './asesora-company-cif'
 export default {
   name: 'asesora-company-identity',
 
-  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity', 'editionmode'],
+  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity', 'editCompany'],
 
   components: {
     "asesora-company-name" : CompanyNameView,
