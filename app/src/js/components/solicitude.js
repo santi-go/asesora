@@ -167,6 +167,7 @@ export default class Solicitude extends Component {
     this.data.values.companyCnae = this.initialValues['companyCnae']
 
     this.data.editCompany = true
+    this.data.isValidCompanyIdentity = true
     this.data.isValidCif = true
   }
 

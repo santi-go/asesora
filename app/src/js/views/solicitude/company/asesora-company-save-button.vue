@@ -4,6 +4,7 @@
             type="button"
             name="submit"
             class="submitbutton"
+            :disabled="!isValidCompanyIdentity"
             v-on:click="saveCompany()">
     {{ labels.editionsubmit }}
     </button>
@@ -14,7 +15,7 @@
 export default {
   name: 'asesora-company-save-button',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'isValidCompanyIdentity'],
 
   methods: {
     saveCompany(){
