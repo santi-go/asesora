@@ -25,6 +25,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
     Bus.subscribe('got.solicitude', this.updateModel.bind(this))
     Bus.subscribe("got.applicant.matches", this.populateSuggestedApplicants.bind(this))
+    Bus.subscribe("updated.company", this.updatedCompany.bind(this))
   }
 
   watchActions(){
@@ -87,8 +88,12 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'clicked.edit.company',
       this.enableCompanyFields.bind(this)
-
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.save.company',
+      this.saveCompanyInfo.bind(this)
+    )
+   
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -146,6 +151,10 @@ export default class Solicitude extends Component {
     Bus.publish('update.solicitude', this.data.values )
   }
 
+  saveCompanyInfo(event){
+    Bus.publish('update.company', event.detail)
+  }
+
   updatedSolicitude(response){
     this.data.showAlert = false
     if (Object.keys(response).length === 0){
@@ -153,6 +162,9 @@ export default class Solicitude extends Component {
     }else{
       this.data.fullfilled = true
     }
+  }
+  updatedCompany(){
+    this.data.editCompany = true
   }
 
   updateModel(payload) {
