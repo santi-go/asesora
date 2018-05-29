@@ -71,4 +71,20 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existCompanyName(solicitudeCompanyName)).to.be.true
   })
 
+  it ('can be populated without company', () => {
+     const solicitude = new Solicitude()
+     const applicantName = 'John'
+     const notCompany = "n/a"
+     const solicitudeDate = "03/03/2018"
+
+     solicitude.fill().required()
+                      .applicantName(applicantName)
+                      .date(solicitudeDate)
+     solicitude.submit()
+
+     const solicitudesList = new SolicitudesList()
+
+     expect(solicitudesList.withoutCompany(solicitudeDate, notCompany)).to.be.true
+   })
+
 })

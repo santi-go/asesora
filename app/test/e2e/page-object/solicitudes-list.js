@@ -40,6 +40,21 @@ class SolicitudesList{
     }
     return false
   }
+
+  withoutCompany(solicitudeDate, notApply){
+    const data = $('#solicitudes-list tbody')
+    const companyNames =  data.$$(`tr td:nth-child(${COMPANY_NAME_COLUMN})`)
+    const solicitudeDates = data.$$(`tr td:nth-child(${DATE_COLUMN})`)
+
+    for ( let counter = 0; counter < companyNames.length; counter++){
+      let name = companyNames[counter].getText() == notApply
+      let date = solicitudeDates[counter].getText() == solicitudeDate
+
+      if (name && date) return true
+    }
+    return false
+  }
+
 }
 
 module.exports = SolicitudesList
