@@ -16,6 +16,10 @@ task :start_dev do
   sh "rerun --background -- rackup config.dev.ru --port 4567 -o 0.0.0.0"
 end
 
+task :prepare_demo do
+  sh "rackup config.dev.ru --port 80 -o #{API_HOST} -D"
+end
+
 task :tdd do
   sh 'rspec'
 end

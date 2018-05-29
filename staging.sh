@@ -105,6 +105,26 @@ cp api/system staging/system/ -r 2>/dev/null
 VALUE=$?
 print_message
 
+printf "${TEXT}· create fixture folder: ${RESET}"
+mkdir staging/spec/fixtures/ -p 2>/dev/null
+VALUE=$?
+print_message
+
+printf "${TEXT}· copy staging fixture: ${RESET}"
+cp api/spec/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
+VALUE=$?
+print_message
+
+printf "${TEXT}· copy staging spec: ${RESET}"
+cp api/spec/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
+VALUE=$?
+print_message
+
+printf "${TEXT}· copy config.dev.ru: ${RESET}"
+cp api/config.dev.ru staging/. 2>/dev/null
+VALUE=$?
+print_message
+
 
 
 four_copy_to_droplet
