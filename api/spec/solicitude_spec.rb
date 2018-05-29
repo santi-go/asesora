@@ -21,10 +21,10 @@ describe 'Solicitude Api' do
 
     it 'returns the brand new solicitude' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': ""
@@ -42,10 +42,10 @@ describe 'Solicitude Api' do
 
     it 'returns the new solicitude with existent applicant id' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': ""
@@ -57,10 +57,10 @@ describe 'Solicitude Api' do
       expect(applicant_id).not_to be_empty
 
       body_with_id = {
-        'name': Fixtures::NAME_2,
-        'surname': Fixtures::SURNAME_2,
-        'email': Fixtures::EMAIL_2,
-        'phonenumber': Fixtures::PHONENUMBER_2,
+        'applicantName': Fixtures::NAME_2,
+        'applicantSurname': Fixtures::SURNAME_2,
+        'applicantEmail': Fixtures::EMAIL_2,
+        'applicantPhonenumber': Fixtures::PHONENUMBER_2,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': applicant_id
@@ -69,10 +69,10 @@ describe 'Solicitude Api' do
       post_create_solicitude(body_with_id)
 
       matches_body = {
-        'name': '',
-        'surname': Fixtures::SURNAME_2,
-        'email': '',
-        'phonenumber': ''
+        'applicantName': '',
+        'applicantSurname': Fixtures::SURNAME_2,
+        'applicantEmail': '',
+        'applicantPhonenumber': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
@@ -81,10 +81,10 @@ describe 'Solicitude Api' do
 
     it 'generate creation moment in milliseconds' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': '',
         'applicantId': ""
@@ -101,10 +101,10 @@ describe 'Solicitude Api' do
 
     it 'new solicitude has today date' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': ''
@@ -127,10 +127,10 @@ describe 'Solicitude Api' do
 
     it 'returns all solicitudes' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': ''
@@ -155,20 +155,20 @@ describe 'Solicitude Api' do
 
     it 'returns solicitudes in descendent order' do
       first_body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE
@@ -195,10 +195,10 @@ describe 'Solicitude Api' do
 
     it 'returns one solicitude' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE
@@ -230,20 +230,20 @@ describe 'Solicitude Api' do
 
     it 'search matches by filter' do
       first_body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
-        'name': Fixtures::NAME_2,
-        'surname': Fixtures::SURNAME_2,
-        'email': Fixtures::EMAIL_2,
-        'phonenumber': Fixtures::PHONENUMBER_2,
+        'applicantName': Fixtures::NAME_2,
+        'applicantSurname': Fixtures::SURNAME_2,
+        'applicantEmail': Fixtures::EMAIL_2,
+        'applicantPhonenumber': Fixtures::PHONENUMBER_2,
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE
@@ -251,20 +251,20 @@ describe 'Solicitude Api' do
       post_create_solicitude(second_body)
 
       matches_body = {
-        'name': '',
-        'surname': Fixtures::SURNAME_2,
-        'email': '',
-        'phonenumber': ''
+        'applicantName': '',
+        'applicantSurname': Fixtures::SURNAME_2,
+        'applicantEmail': '',
+        'applicantPhonenumber': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
       expect(response['data'][0]['phonenumber']).to eq(Fixtures::PHONENUMBER_2)
 
       matches_body = {
-        'name': Fixtures::NAME,
-        'surname': '',
-        'email': '',
-        'phonenumber': ''
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': '',
+        'applicantEmail': '',
+        'applicantPhonenumber': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
@@ -280,10 +280,10 @@ describe 'Solicitude Api' do
 
     it 'endpoint update solicitude ' do
       body = {
-        'name': Fixtures::NAME,
-        'surname': Fixtures::SURNAME,
-        'email': Fixtures::EMAIL,
-        'phonenumber': Fixtures::PHONENUMBER,
+        'applicantName': Fixtures::NAME,
+        'applicantSurname': Fixtures::SURNAME,
+        'applicantEmail': Fixtures::EMAIL,
+        'applicantPhonenumber': Fixtures::PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': "",
@@ -297,10 +297,10 @@ describe 'Solicitude Api' do
 
 
       update_solicitude = {
-  			'phonenumber': Fixtures::PHONENUMBER,
+  			'applicantPhonenumber': Fixtures::PHONENUMBER,
   			'text': Fixtures::TEXT_2,
   			'date': Fixtures::DATE,
-  			'email': Fixtures::EMAIL,
+  			'applicantEmail': Fixtures::EMAIL,
         'applicantId': "",
   			'companyCif': Fixtures::COMPANY_CIF,
         'creation_moment': creation_moment

@@ -4,20 +4,20 @@
     <table v-if="suggestedApplicants.length > 0">
       <thead>
         <tr>
-          <th>{{ labels.name }}</th>
-          <th>{{ labels.surname }}</th>
-          <th>{{ labels.email }}</th>
-          <th>{{ labels.phonenumber }}</th>
+          <th>{{ labels.applicantName }}</th>
+          <th>{{ labels.applicantSurname }}</th>
+          <th>{{ labels.applicantEmail }}</th>
+          <th>{{ labels.applicantPhonenumber }}</th>
 
         </tr>
       </thead>
       <tbody>
         <tr v-on:click="onClick(item)"
             v-for="item in suggestedApplicants">
-            <td>{{ item.name }}</td>
-            <td>{{ item.surname }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.phonenumber }}</td>
+            <td>{{ item.applicantName }}</td>
+            <td>{{ item.applicantSurname }}</td>
+            <td>{{ item.applicantEmail }}</td>
+            <td>{{ item.applicantPhonenumber }}</td>
         </tr>
       </tbody>
     </table>
