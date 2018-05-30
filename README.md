@@ -240,18 +240,3 @@ Reboot system:
 ~~~
 reboot
 ~~~
-
-
-# Proof environment
-
-If you will prepare a proof environment before install, remove or update programs in the droplet server, run this:
-
-~~~
-sh staging-local.sh
-~~~
-
-it creates a staging docker in local for proof and testing.
-
-By this you have a 'Dockerfile.local-staging' for yours proofs. You run manually with a "docker-compose -f docker-compose.local-staging.yml up --build".
-
-When the script finish, it remove testing environment and all created files.
