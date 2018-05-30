@@ -101,6 +101,10 @@ class Solicitude{
     return !browser.isVisible('#company-identity-info')
   }
 
+  isEditCompanyAlertVisible(){
+    return browser.isVisible('#alert-edit-company')
+  }
+
   hasCompanyMatches(){
     return browser.isVisible('#company-matches tbody')
   }
@@ -117,6 +121,24 @@ class Solicitude{
     browser.waitForVisible('#company-matches tbody', 2000)
     const data = $('#company-matches tbody')
     data.click()
+  }
+
+  clickOnEditCompany(){
+    const data = $('#edit-company')
+    data.click()
+    return this
+  }
+
+  clickOnSaveCompany(){
+    const data = $('#save-company')
+    data.click()
+    return this
+  }
+
+  clickOnDiscardCompany(){
+    const data = $('#discard-company')
+    data.click()
+    return this
   }
 
   submit(){

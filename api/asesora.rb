@@ -12,6 +12,7 @@ require_relative 'system/actions/update_solicitude'
 require_relative 'system/actions/update_company'
 require_relative 'system/domain/solicitude'
 require_relative 'system/actions/retrieve_company'
+require_relative 'system/actions/count_company_in_solicitudes'
 
 
 class Asesora < Sinatra::Base
@@ -69,8 +70,6 @@ class Asesora < Sinatra::Base
 
   post '/api/update-solicitude' do
     params = JSON.parse(request.body.read)
-    p "+++++++++++++++++++++++++++++++"
-    p params
     data = {
       date:params['date'],
       text:params['text'],
@@ -151,6 +150,13 @@ class Asesora < Sinatra::Base
 
     applicants = Actions::RetrieveSolicitudes.do_applicants(criteria)
     {data: applicants}.to_json
+  end
+
+  post '/api/count-company-in-solicitudes' do
+
+    params = JSON.parse(request.body.read)
+    times = Actions::CountCompanyInSolicitudes.do(cif: params['cif'])
+    times.to_json
   end
 
   options "*" do
