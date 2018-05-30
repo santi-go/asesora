@@ -32,7 +32,7 @@
       </asesora-company-edit-button>
     </div>
     <div v-if="!editCompany">
-      <div class="alert">
+      <div id="alert-edit-company" class="alert">
         <em class="fa fa-calendar"></em>
         {{ labels.editingCompany }}
       </div>

@@ -55,6 +55,11 @@ class SolicitudesList{
     return false
   }
 
+  clickOnListItem(){
+    browser.waitForVisible('#solicitudes-list', 2000)
+    const data = $('#solicitudes-list tbody')
+    data.click()
+  }
 }
 
 module.exports = SolicitudesList
