@@ -38,6 +38,10 @@ module Solicitudes
         Domain::ListSolicitudes.from_document(solicitudes)
       end
 
+      def times_company(cif)
+        MongoClient.times_company(cif)
+      end
+
       private
 
       class MongoClient
@@ -60,6 +64,10 @@ module Solicitudes
 
           def all
             client[:solicitudes].find().sort({"date": DESCENDENT, "creation_moment": DESCENDENT})
+          end
+
+          def times_company(cif)
+            client[:solicitudes].find({"company": cif}).count()
           end
 
           private
