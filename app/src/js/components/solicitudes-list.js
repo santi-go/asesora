@@ -32,7 +32,7 @@ export default class SolicitudesList extends Component {
   }
 
   retrieve(){
-    Bus.publish("get.solicitudes-list")
+    Bus.publish("get.solicitudes.list")
   }
 
   populateSolicitudeList(payload){
