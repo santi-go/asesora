@@ -67,8 +67,18 @@ ${RESET}
 3. Copy the folder 'app/public' to 'staging'.
 4. Copy the files 'config.ru', 'Rakefile', 'asesora.rb', 'Gemfile'
    and folder 'api/system' to 'staging'.
-\n"
+   \n"
 read -p "Press enter to run the third chapter" key
+}
+
+third_add_fixture() {
+printf "\n5. Copy the file 'config.dev.ru' and folder 'prepare_staging' to 'staging'.
+   We asked if you want to copy the staging fixture:
+   - If you answer ${GREEN}'y'${RESET} the fixture will be copied,
+     the data from the staging database will be deleted
+     and initialized with those of the fixture.
+   - If you answer ${GREEN}'n'${RESET} the existing data in staging will not be modified.
+\n"
 }
 
 four_copy_to_droplet() {

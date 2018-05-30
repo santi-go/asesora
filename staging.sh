@@ -105,25 +105,39 @@ cp api/system staging/system/ -r 2>/dev/null
 VALUE=$?
 print_message
 
-printf "${TEXT}· create fixture folder: ${RESET}"
-mkdir staging/spec/fixtures/ -p 2>/dev/null
-VALUE=$?
-print_message
 
-printf "${TEXT}· copy staging fixture: ${RESET}"
-cp api/spec/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
-VALUE=$?
-print_message
+third_add_fixture
 
-printf "${TEXT}· copy staging spec: ${RESET}"
-cp api/spec/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
-VALUE=$?
-print_message
 
-printf "${TEXT}· copy config.dev.ru: ${RESET}"
-cp api/config.dev.ru staging/. 2>/dev/null
-VALUE=$?
-print_message
+printf "${TITLE}\nYou want to clean the staging database? (y/n) \n${RESET}"; read INTRO
+copy_staging_fixtures(){
+  printf "${TEXT}· create fixture folder: ${RESET}"
+  mkdir staging/spec/fixtures/ -p 2>/dev/null
+  VALUE=$?
+  print_message
+
+  printf "${TEXT}· copy staging fixture: ${RESET}"
+  cp api/spec/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
+  VALUE=$?
+  print_message
+
+  printf "${TEXT}· copy staging spec: ${RESET}"
+  cp api/spec/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
+  VALUE=$?
+  print_message
+
+  printf "${TEXT}· copy config.dev.ru: ${RESET}"
+  cp api/config.dev.ru staging/. 2>/dev/null
+  VALUE=$?
+  print_message
+}
+if [ $INTRO = 'y' ]
+then
+  copy_staging_fixtures
+else
+  printf "${TEXT}The files have not been added to the staging,
+  the database will not be cleaned.${RESET}"
+fi
 
 
 
