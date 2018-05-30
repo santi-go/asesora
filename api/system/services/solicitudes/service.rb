@@ -21,6 +21,12 @@ module Solicitudes
       Collection.update(creation_moment, solicitude).serialize
     end
 
+    def self.times_company(cif)
+      cif = cif.upcase
+      result = Collection.times_company(cif)
+      {"data": result}
+    end
+
     def self.all
       Collection.all.serialize
     end

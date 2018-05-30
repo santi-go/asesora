@@ -27,7 +27,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
-        'applicantId': ""
+        'applicantId': "",
+        'companyCif': ""
       }.to_json
 
       post_create_solicitude(body)
@@ -48,7 +49,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
-        'applicantId': ""
+        'applicantId': "",
+        'companyCif': ""
       }.to_json
 
       post_create_solicitude(body)
@@ -63,7 +65,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
-        'applicantId': applicant_id
+        'applicantId': applicant_id,
+        'companyCif': ""
       }.to_json
 
       post_create_solicitude(body_with_id)
@@ -87,7 +90,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'date': '',
-        'applicantId': ""
+        'applicantId': "",
+        'companyCif': ""
       }.to_json
       previous_moment = DateTime.now.strftime(in_microseconds)
       post_create_solicitude(body)
@@ -107,7 +111,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': ''
+        'date': '',
+        'companyCif': ""
       }.to_json
       post_create_solicitude(body)
       today = Date.today.strftime(in_english_format)
@@ -133,7 +138,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': ''
+        'date': '',
+        'companyCif': ""
       }.to_json
 
       post '/api/retrieve-solicitudes'
@@ -161,7 +167,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE
+        'date': Fixtures::DATE,
+        'companyCif': ""
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
@@ -171,7 +178,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE
+        'date': Fixtures::DATE,
+        'companyCif': ""
         }.to_json
       post_create_solicitude(second_body)
 
@@ -187,6 +195,32 @@ describe 'Solicitude Api' do
       expect(second_solicitude).to eq(Fixtures::DATE)
       expect(creation_moment).to eq(true)
     end
+
+    it 'knows how many times is one company in solicitudes' do
+      post 'fixtures/clean'
+      params = {"cif": Fixtures::COMPANY_CIF}.to_json
+      post '/api/count-company-in-solicitudes', params
+
+      response = JSON.parse(last_response.body)
+      expect(response['data']).to eq(0)
+
+      solicitude = {
+        "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
+        "text": Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        "companyName": Fixtures::COMPANY_NAME,
+  			"companyCif": Fixtures::COMPANY_CIF
+      }.to_json
+
+      post '/api/create-solicitude', solicitude
+
+      params = {"cif": Fixtures::COMPANY_CIF}.to_json
+      post '/api/count-company-in-solicitudes', params
+
+      response = JSON.parse(last_response.body)
+      expect(response['data']).to eq(1)
+    end
   end
   context 'retrieve solicitude' do
     before(:each) do
@@ -201,7 +235,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE
+        'date': Fixtures::DATE,
+        'companyCif': ""
       }.to_json
 
       post_create_solicitude(body)
@@ -236,7 +271,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE
+        'date': Fixtures::DATE,
+        'companyCif': ""
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
@@ -246,7 +282,8 @@ describe 'Solicitude Api' do
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
         'text': Fixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE
+        'date': Fixtures::DATE,
+        'companyCif': ""
         }.to_json
       post_create_solicitude(second_body)
 
