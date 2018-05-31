@@ -101,7 +101,7 @@ export default {
         field.classList.add("error")
         return false
       }
-      this.values.phonenumber = filteredPhoneNumber
+      this.values.applicantPhonenumber = filteredPhoneNumber
       return true
     },
 

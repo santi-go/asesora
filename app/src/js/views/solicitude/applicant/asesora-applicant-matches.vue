@@ -14,10 +14,10 @@
       <tbody>
         <tr v-on:click="onClick(item)"
             v-for="item in suggestedApplicants">
-            <td>{{ item.applicantName }}</td>
-            <td>{{ item.applicantSurname }}</td>
-            <td>{{ item.applicantEmail }}</td>
-            <td>{{ item.applicantPhonenumber }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.surname }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phonenumber }}</td>
         </tr>
       </tbody>
     </table>

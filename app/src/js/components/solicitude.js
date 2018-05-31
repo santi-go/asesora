@@ -258,11 +258,11 @@ export default class Solicitude extends Component {
   }
 
   fillApplicant(item){
-    this.data.setValues('applicantName', item.detail.applicant_name)
-    this.data.setValues('applicantSurname', item.detail.applicantSurname)
-    this.data.setValues('applicantEmail', item.detail.applicant_email)
-    this.data.setValues('applicantPhonenumber', item.detail.applicant_phonenumber)
-    this.data.setValues('applicantId', item.detail.applicant_id)
+    this.data.setValues('applicantName', item.detail.name)
+    this.data.setValues('applicantSurname', item.detail.surname)
+    this.data.setValues('applicantEmail', item.detail.email)
+    this.data.setValues('applicantPhonenumber', item.detail.phonenumber)
+    this.data.setValues('applicantId', item.detail.id)
 
     this.runValidations()
   }
@@ -351,7 +351,7 @@ export default class Solicitude extends Component {
     }
 
     validateEmail(){
-      const email = this.data.values.email
+      const email = this.data.values.applicantEmail
       if (email == "") { return false }
 
       const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
@@ -359,9 +359,8 @@ export default class Solicitude extends Component {
     }
 
     validatePhonenumber(){
-      const phone = this.data.values.phonenumber
+      const phone = this.data.values.applicantPhonenumber
       if (phone == "") { return false }
-
       return (phone.length == 9)
     }
 
