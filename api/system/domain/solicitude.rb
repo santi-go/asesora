@@ -2,37 +2,41 @@ require 'date'
 
 module Domain
   class Solicitude
-    attr_accessor :text
-
     def self.from_document(document)
       solicitude = new(
-        document['date'],
         document['applicant'],
         document['company'],
         document['creation_moment']
       )
+      solicitude.solicited_at(document['date'])
       solicitude.text = document['text']
-
+      
       solicitude
     end
-
+    
     def self.with(date, text, applicant, company, creation_moment = nil)
       solicitude = new(
-        date,
         applicant,
         company,
         creation_moment
       )
+      solicitude.solicited_at(date)
       solicitude.text = text
-
+      
       solicitude
     end
+      
+    attr_writer :text, :date
 
-    def initialize(date, applicant, company, creation_moment = nil)
-      @date = parse(date)
+    def initialize(applicant, company, creation_moment = nil)
       @applicant = applicant
       @company=company
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
+    end
+    private_class_method :new
+
+    def solicited_at(date)
+      @date = parse(date)
     end
 
     def serialize

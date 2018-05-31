@@ -1,41 +1,35 @@
 
 module Domain
   class Company
-
     def self.from_document(document)
-      company = new(
-        document['name'],
-        document['cif'],
-        document['employees'],
-        document['cnae']
-      )
-
+      company = new(document['cif'])
+      company.name = document['name']
+      company.employees = document['employees']
+      company.cnae = document['cnae']
+      
       company
     end
-
+    
     def self.with(name, cif, employees, cnae)
-      company = new(
-        name,
-        cif,
-        employees,
-        cnae
-      )
-
+      company = new(cif)
+      company.name = name
+      company.employees = employees
+      company.cnae = cnae
+      
       company
     end
-
-    def initialize(name, cif, employees, cnae)
-      @name = name
+    
+    attr_writer :name, :employees, :cnae
+    
+    def initialize(cif)
       @cif = cif
-      @employees = employees
-      @cnae = cnae
-
     end
+    private_class_method :new
 
     def identify
       @cif
     end
-
+    
     def serialize
       {
         "name" => @name,
@@ -44,6 +38,5 @@ module Domain
         "cnae" => @cnae
       }
     end
-
   end
 end
