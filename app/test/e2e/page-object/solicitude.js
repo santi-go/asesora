@@ -40,9 +40,10 @@ class Solicitude{
     return this
   }
 
-  description(){
-    let text =  $('#solicitude-text')
-    text.setValue("sample text")
+  description(value){
+    value = value || "sample text"
+    let text = $('#solicitude-text')
+    text.addValue(value)
     return this
   }
 
@@ -70,6 +71,20 @@ class Solicitude{
     value = value || "xyz"
     let cif = $("#company-cif")
     cif.addValue(value)
+    return this
+  }
+
+  companyEmployees(value){
+    value = value || "2"
+    let employees = $("#company-employees")
+    employees.addValue(value)
+    return this
+  }
+
+  companyCnae(value){
+    value = value || "011"
+    let cnae = $("#company-cnae")
+    cnae.addValue(value)
     return this
   }
 
@@ -183,5 +198,51 @@ class Solicitude{
     let input = company_cif.getValue()
     return input.includes(cif)
   }
+
+  wait(){
+    browser.waitForVisible('#name', 2000)
+  }
+
+  applicantNameValue(){
+     // browser.waitForVisible('#name', 2000)
+     return $('#name').getValue()
+  }
+
+  applicantSurnameValue(){
+     return $('#surname').getValue()
+  }
+
+  applicantEmailValue(){
+     return $('#email').getValue()
+  }
+
+  applicantPhonenumberValue(){
+     return $('#phonenumber').getValue()
+  }
+
+  companyNameValue(){
+     return $('#company-name').getValue()
+  }
+
+  companyCifValue(){
+     return $('#company-cif').getValue()
+  }
+
+  companyEmployeesValue(){
+     return $('#company-employees').getValue()
+  }
+
+  companyCnaeValue(){
+     return $('#company-cnae').getValue()
+  }
+
+  dateValue(){
+     return $('#date').getValue()
+  }
+
+  textValue(){
+    return $('#solicitude-text').getValue()
+  }
+
 }
 module.exports = Solicitude
