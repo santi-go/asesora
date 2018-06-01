@@ -182,20 +182,29 @@ export default class Solicitude extends Component {
   }
 
   updateModel(payload) {
-    this.data.setValues('text', payload.data.text)
-    this.data.setValues('date', payload.data.date)
-    this.data.setValues('applicantId', payload.data.applicant)
-    this.data.setValues('applicantName', payload.data.applicant_name)
-    this.data.setValues('applicantSurname', payload.data.applicant_surname)
-    this.data.setValues('applicantEmail', payload.data.applicant_email)
-    this.data.setValues('applicantPhonenumber', payload.data.applicant_phonenumber)
-    this.data.setValues('creation_moment',payload.data.creation_moment)
-    this.data.setValues('companyName',payload.data.company_name)
-    this.data.setValues('companyCif',payload.data.company_cif)
-    this.data.setValues('companyEmployees',payload.data.company_employees)
-    this.data.setValues('companyCnae',payload.data.company_cnae)
-    this.initialValues = this.data.cloneValues()
-  }
+     let dictionary = this.dictionaryOfSolicitude(payload)
+     for (let [labelKey, valueKey] of Object.entries(dictionary)) {
+       this.data.setValues(labelKey, valueKey)
+     }
+     this.initialValues = this.data.cloneValues()
+   }
+
+   dictionaryOfSolicitude(payload){
+     return {
+         'text':  payload.data.text,
+         'date':  payload.data.date,
+         'applicantId':  payload.data.applicant,
+         'applicantName':  payload.data.applicant_name,
+         'applicantSurname':  payload.data.applicant_surname,
+         'applicantEmail':  payload.data.applicant_email,
+         'applicantPhonenumber':  payload.data.applicant_phonenumber,
+         'creation_moment': payload.data.creation_moment,
+         'companyName': payload.data.company_name,
+         'companyCif': payload.data.company_cif,
+         'companyEmployees': payload.data.company_employees,
+         'companyCnae': payload.data.company_cnae
+         }
+     }
 
   isCifEmpty(){
     return this.data.values.companyCif == ""
