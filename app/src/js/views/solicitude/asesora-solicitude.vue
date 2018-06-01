@@ -10,13 +10,13 @@
     <div  class="card large-card" >
     <asesora-date :values="values"
                   :labels="labels"
-                  :editionmode="editionmode"
-                  :edit-company='editCompany'
+                  :edit-solicitude='editSolicitude'
+                  :disabled-text-and-date='disabledTextAndDate'
                   ></asesora-date>
     <asesora-text :values="values"
                   :labels="labels"
-                  :editionmode="editionmode"
-                  :edit-company='editCompany'
+                  :edit-solicitude='editSolicitude'
+                  :disabled-text-and-date='disabledTextAndDate'
                   ></asesora-text>
     </div>
     <asesora-company :values="values"
@@ -26,6 +26,7 @@
                      :cnae-catalog="cnaeCatalog"
                      :editionmode="editionmode"
                      :edit-company='editCompany'
+                     :save-company='saveCompany'
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
     <div  class="card large-card" >
@@ -69,7 +70,8 @@ export default {
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
-          'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany'],
+          'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
+          'disabledTextAndDate', 'saveCompany'],
 
   components: {
     "asesora-date" : DateView,

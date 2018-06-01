@@ -1,24 +1,24 @@
 <template>
   <div class="button-inline">
     <button  id="save-company"
-            type="button"
-            name="submit"
-            class="submitbutton"
-            :disabled="!isValidCompanyIdentity"
-            v-on:click="saveCompany()">
-    {{ labels.editionsubmit }}
-    </button>
-  </div>
+              type="button"
+              name="submit"
+              class="submitbutton"
+              :disabled="!saveCompany"
+              v-on:click="save()">
+              {{ labels.editionsubmit }}
+  </button>
+</div>
 </template>
 
 <script>
 export default {
   name: 'asesora-company-save-button',
 
-  props: ['labels', 'values', 'isValidCompanyIdentity'],
+  props: ['labels', 'values', 'saveCompany'],
 
   methods: {
-    saveCompany(){
+    save(){
       let signal = new CustomEvent('clicked.save.company',
                                   {'detail': {
                                     'companyName': this.values.companyName,

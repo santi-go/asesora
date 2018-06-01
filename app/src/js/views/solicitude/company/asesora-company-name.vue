@@ -21,10 +21,11 @@ export default {
     onKeyup(){
       this.searchCompaniesMatch()
       this.validateCompanyIdentity()
+
     },
 
     searchCompaniesMatch() {
-      let signal = new CustomEvent('search.companies',
+      let signal = new CustomEvent('changed.company.name',
                                       {'detail': {
                                           'name': this.values.companyName,
                                           'cnae': this.values.companyCnae

@@ -6,6 +6,7 @@
             type="text"
             list="cnae-catalog"
             v-on:keyup="cnaeValidation"
+            v-on:blur="cnaeValidation"
             :disabled="editCompany"
             v-model="values.companyCnae"
             >
@@ -46,7 +47,7 @@ export default {
         event.target.value = this.fullCnaeName(validCnae)
         }
 
-      let signal = new CustomEvent('search.companies',
+      let signal = new CustomEvent('changed.company.cnae',
                                   {'detail': {
                                     'name': this.values.companyName,
                                     'cnae': this.values.companyCnae

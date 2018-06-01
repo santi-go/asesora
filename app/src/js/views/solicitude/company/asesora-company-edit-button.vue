@@ -21,6 +21,7 @@ export default {
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
+
     }
   }
 }

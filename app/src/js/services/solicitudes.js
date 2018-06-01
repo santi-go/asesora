@@ -18,6 +18,7 @@ export default class Solicitudes {
     Bus.subscribe("get.company.matches", this.getCompanyMatches.bind(this))
     Bus.subscribe("get.applicant.matches", this.getSuggestedApplicants.bind(this))
     Bus.subscribe("update.company", this.updateCompany.bind(this))
+    Bus.subscribe("get.company.count", this.getCompanyCount.bind(this))
   }
 
   retrieveCnae() {
@@ -86,6 +87,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('got.applicant.matches')
     let body = criteria
     let url = 'applicant-matches'
+    this.client.hit(url, body, callback)
+  }
+
+  getCompanyCount(cif){
+    let callback = this.buildCallback('got.company.count')
+    let body = {cif: cif}
+    let url = 'count-company-in-solicitudes'
     this.client.hit(url, body, callback)
   }
 

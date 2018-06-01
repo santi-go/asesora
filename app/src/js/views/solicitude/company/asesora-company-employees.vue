@@ -62,11 +62,20 @@ export default {
     },
 
     checkNumber(event){
+      this.emitSignal()
       let value = event.target.value
       if(!parseInt(value)){
         event.target.value = ""
       }
+    },
+
+    emitSignal(){
+      let signal = new CustomEvent('changed.company.employees',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
     }
+
   }
 }
 </script>

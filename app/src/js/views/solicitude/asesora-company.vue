@@ -40,7 +40,7 @@
   </template>
     <div v-if="editionmode">
       <div v-if="!editCompany">
-        <asesora-company-save-button :labels="labels" :values="values" :isValidCompanyIdentity="isValidCompanyIdentity">
+        <asesora-company-save-button :labels="labels" :values="values" :save-company='saveCompany'>
         </asesora-company-save-button>
         <asesora-company-discard-button :labels="labels">
         </asesora-company-discard-button>
@@ -64,7 +64,7 @@ export default {
   name: 'asesora-company',
 
   props: ['labels', 'values', 'isValidCif', 'cnaeCatalog', 'suggestedCompanies',
-          'isValidCompanyIdentity', 'editionmode', "editCompany"],
+          'isValidCompanyIdentity', 'editionmode', 'saveCompany', 'editCompany', 'disabledTextAndDate'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,

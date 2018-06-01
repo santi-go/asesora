@@ -23,9 +23,10 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
-    Bus.subscribe('got.solicitude', this.updateModel.bind(this))
+    Bus.subscribe("got.solicitude", this.updateModel.bind(this))
     Bus.subscribe("got.applicant.matches", this.populateSuggestedApplicants.bind(this))
     Bus.subscribe("updated.company", this.updatedCompany.bind(this))
+    Bus.subscribe("got.company.count", this.gotCompanyCount.bind(this))
   }
 
   watchActions(){
@@ -34,12 +35,8 @@ export default class Solicitude extends Component {
       this.submit.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'ensure.cif',
-      this.ensureCif.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'search.companies',
-      this.searchCompanies.bind(this)
+      'changed.company.name',
+      this.changedCompanyName.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'clicked.company',
@@ -48,10 +45,6 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'clicked.applicant',
       this.fillApplicant.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'validate.company.identity',
-      this.toggleCompanyIdentityMessage.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'check.submittable',
@@ -97,6 +90,19 @@ export default class Solicitude extends Component {
       'clicked.discard.company.button',
       this.discardCompanyInfo.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'changed.company.employees',
+      this.toggleSaveCompanyButton.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.company.cnae',
+      this.changedCompanyCnae.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.company.cif',
+      this.changedCompanyCif.bind(this)
+    )
+
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -135,8 +141,27 @@ export default class Solicitude extends Component {
     }
   }
 
+  toggleSaveCompanyButton(){
+    if(this.isCifEmpty() && this.isNameEmpty()){
+      this.data.saveCompany = false
+    } else if(this.checkForChangesInCompany() && this.data.isValidCompanyIdentity){
+      this.data.saveCompany = true
+    } else {
+      this.data.saveCompany = false
+    }
+  }
+
   enableCompanyFields(){
     this.data.editCompany = false
+    this.data.disabledTextAndDate = true
+  }
+
+  checkForChangesInCompany() {
+      if (this.data.values.companyName != this.initialValues.companyName) return true
+      if (this.data.values.companyCif != this.initialValues.companyCif) return true
+      if (this.data.values.companyEmployees != this.initialValues.companyEmployees) return true
+      if (this.data.values.companyCnae != this.initialValues.companyCnae) return true
+      return false
   }
 
   hasChanges(){
@@ -156,6 +181,10 @@ export default class Solicitude extends Component {
 
   saveCompanyInfo(event){
     Bus.publish('update.company', event.detail)
+    this.initialValues['companyName'] = this.data.values['companyName']
+    this.initialValues['companyEmployees'] = this.data.values['companyEmployees']
+    this.initialValues['companyCnae'] = this.data.values['companyCnae']
+    this.data.saveCompany = false
   }
 
   discardCompanyInfo(){
@@ -167,6 +196,12 @@ export default class Solicitude extends Component {
     this.data.editCompany = true
     this.data.isValidCompanyIdentity = true
     this.data.isValidCif = true
+  }
+
+  gotCompanyCount(count){
+    if(count.data <= 1) {
+      this.data.editCompany = false
+    }
   }
 
   updatedSolicitude(response){
@@ -187,6 +222,7 @@ export default class Solicitude extends Component {
        this.data.setValues(labelKey, valueKey)
      }
      this.initialValues = this.data.cloneValues()
+     Bus.publish('get.company.count', payload.data.company_cif)
    }
 
    dictionaryOfSolicitude(payload){
@@ -226,6 +262,24 @@ export default class Solicitude extends Component {
   verifyDuplicatedCif() {
     let cif = this.data.values.companyCif
     Bus.publish('verify.company.duplicate', cif)
+  }
+
+  changedCompanyName(event){
+    this.searchCompanies(event)
+    this.toggleCompanyIdentityMessage()
+    this.toggleSaveCompanyButton()
+  }
+
+  changedCompanyCnae(event){
+    this.searchCompanies(event)
+    this.toggleSaveCompanyButton()
+  }
+
+  changedCompanyCif(event){
+    this.ensureCif()
+    this.toggleCompanyIdentityMessage()
+    this.toggleSaveCompanyButton()
+
   }
 
   searchCompanies(event){
@@ -285,8 +339,9 @@ export default class Solicitude extends Component {
       this.data.isValidCompanyIdentity = true
     }
     this.setButtonStatus()
-
   }
+
+
 
   isNameEmpty(){
     return this.data.values.companyName === ""
@@ -465,6 +520,8 @@ export default class Solicitude extends Component {
       showAlert: true,
       editionmode: false,
       editCompany: false,
+      saveCompany: false,
+      disabledTextAndDate:false,
       translate:function(key,value) {
         this.labels[key] = value
       },

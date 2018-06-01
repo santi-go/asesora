@@ -4,7 +4,7 @@
     <input  id="company-cif"
             name="company-cif"
             type="text"
-            v-on:keyup="checker"
+            v-on:keyup="emitSignal"
             v-model="values.companyCif"
             :disabled="editCompany"
             v-bind:class="{ error: !isValidCif}"
@@ -20,22 +20,10 @@ export default {
 
   methods: {
 
-    checker(){
-      this.ensureCif()
-      this.validateCompanyIdentity()
-    },
-
-    validateCompanyIdentity(){
-      let signal = new CustomEvent('validate.company.identity',
+    emitSignal(){
+      let signal = new CustomEvent('changed.company.cif',
                                       {'detail': {},
                                       'bubbles': true})
-      this.$el.dispatchEvent(signal)
-    },
-
-    ensureCif(){
-      let signal = new CustomEvent('ensure.cif',
-                                  {'detail': {},
-                                  'bubbles': true})
       this.$el.dispatchEvent(signal)
     }
   }
