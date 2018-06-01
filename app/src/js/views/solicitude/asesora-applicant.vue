@@ -3,15 +3,26 @@
     <h3>{{ labels.applicant }}</h3>
     <div class="row grid-responsive">
       <div class="column column-50">
-        <asesora-applicant-name :values="values"
-                                :labels="labels"
-                                :editionmode="editionmode">
-        </asesora-applicant-name>
-
-        <asesora-applicant-surname :values="values"
-                                   :labels="labels"
-                                   :editionmode="editionmode">
-        </asesora-applicant-surname>
+        <div>
+          <label>{{ labels.applicantName }}</label>
+          <input  id="name"
+                  name="name"
+                  type="text"
+                  v-on:keyup="refreshSuggestion"
+                  :disabled="editionmode"
+                  v-model="values.applicantName"
+          >
+        </div>
+        <div>
+          <label>{{ labels.applicantSurname }}</label>
+          <input  id="surname"
+                  name="surname"
+                  type="text"
+                  v-on:keyup="refreshSuggestion"
+                  :disabled="editionmode"
+                  v-model="values.applicantSurname"
+          >
+        </div>
 
         <asesora-applicant-contact :values="values"
                                    :labels="labels"
@@ -31,8 +42,6 @@
 </template>
 
 <script>
-import ApplicantNameView from './applicant/asesora-applicant-name'
-import ApplicantSurnameView from './applicant/asesora-applicant-surname'
 import ApplicantContactView from './applicant/asesora-applicant-contact'
 import ApplicantMatchesView from './applicant/asesora-applicant-matches'
 
@@ -42,11 +51,17 @@ export default {
   props: ['labels', 'values', 'isValidContact', 'editionmode', 'suggestedApplicants'],
 
   components: {
-    "asesora-applicant-name" : ApplicantNameView,
-    "asesora-applicant-surname" : ApplicantSurnameView,
     "asesora-applicant-contact" : ApplicantContactView,
     "asesora-applicant-matches" : ApplicantMatchesView
   },
+  methods: {
+    refreshSuggestion() {
+      let signal = new CustomEvent('changed.applicant.fields',
+                                      {'detail': {},
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    }
+  }
 }
 </script>
 
