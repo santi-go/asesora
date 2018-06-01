@@ -208,6 +208,7 @@ Update .bashrc to use rvm and create variable environment adding to ```~/.bashrc
 ~~~
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 export API_HOST='206.189.1.31'
+export API_PORT='80'
 export MONGODB_URI=mongodb://127.0.0.1:27017/data/db
 ~~~
 
