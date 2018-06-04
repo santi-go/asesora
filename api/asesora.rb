@@ -10,6 +10,7 @@ require_relative 'system/actions/retrieve_cnae'
 require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/actions/update_solicitude'
 require_relative 'system/actions/update_company'
+require_relative 'system/actions/update_applicant'
 require_relative 'system/domain/solicitude'
 require_relative 'system/actions/retrieve_company'
 require_relative 'system/actions/count_company_in_solicitudes'
@@ -80,6 +81,22 @@ class Asesora < Sinatra::Base
 
     updated = Actions::UpdateSolicitude.do(data)
     return {}.to_json if updated.nil?
+    updated.to_json
+  end
+
+  post '/api/update-applicant' do
+    params = JSON.parse(request.body.read)
+    data = {
+      name:params['applicantName'],
+      surname:params['applicantSurname'],
+      email:params['applicantEmail'],
+      phonenumber:params['applicantPhonenumber'],
+      id:params['applicantId']
+    }
+
+    updated = Actions::UpdateApplicant.do(data)
+    return {}.to_json if updated.nil?
+
     updated.to_json
   end
 

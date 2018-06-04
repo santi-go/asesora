@@ -258,57 +258,6 @@ describe 'Solicitude Api' do
     end
   end
 
-  context 'of the applicant' do
-    before(:each) do
-      post 'fixtures/clean'
-    end
-
-    it 'search matches by filter' do
-      first_body = {
-        'applicantName': Fixtures::APPLICANT_NAME,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-        'text': Fixtures::TEXT,
-        'applicantId': "",
-        'date': Fixtures::DATE,
-        'companyCif': ""
-        }.to_json
-      post_create_solicitude(first_body)
-      second_body = {
-        'applicantName': Fixtures::APPLICANT_NAME_2,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL_2,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
-        'text': Fixtures::TEXT,
-        'applicantId': "",
-        'date': Fixtures::DATE,
-        'companyCif': ""
-        }.to_json
-      post_create_solicitude(second_body)
-
-      matches_body = {
-        'applicantName': '',
-        'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
-        'applicantEmail': '',
-        'applicantPhonenumber': ''
-      }.to_json
-      post '/api/applicant-matches', matches_body
-      response = JSON.parse(last_response.body)
-      expect(response['data'][0]['phonenumber']).to eq(Fixtures::APPLICANT_PHONENUMBER_2)
-
-      matches_body = {
-        'applicantName': Fixtures::APPLICANT_NAME,
-        'applicantSurname': '',
-        'applicantEmail': '',
-        'applicantPhonenumber': ''
-      }.to_json
-      post '/api/applicant-matches', matches_body
-      response = JSON.parse(last_response.body)
-      expect(response['data'].length).to be >= 2
-    end
-  end
-
   context 'update solicitude' do
 
     before(:each) do
