@@ -4,18 +4,21 @@ require_relative 'collection'
 module Companies
   class Service
     def self.create(name, cif, employees, cnae)
-      return self.create_empty() if cif == ""
+      return create_empty() if cif == ""
       cif.upcase!
       company = Domain::Company.with(name, cif, employees, cnae)
       Collection.create(company)
     end
 
     def self.retrieve(id)
-      return self.create_empty().serialize  if id == ""
-      id.upcase!
-      result = Collection.retrieve(id)
+      if not id
+        return create_empty().serialize
+      end
 
-      return result.serialize if(result != false)
+      if company_exists?(id)
+        return Collection.retrieve(id).serialize
+      end
+
       return {}
     end
 
@@ -27,17 +30,21 @@ module Companies
     end
 
     def self.update(name, cif, employees, cnae)
-      cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      if  Collection.retrieve(cif) == false
-          Collection.create(company)
-        else
-          Collection.update(cif, company).serialize
+      if !company_exists?(cif)
+        Collection.create(company)
+      else
+        Collection.update(cif, company).serialize
       end
     end
 
     def self.create_empty()
       Domain::Company.with("", "", "", "")
+    end
+
+    def self.company_exists?(id)
+      id = id.upcase
+      Collection.retrieve(id)
     end
   end
 end
