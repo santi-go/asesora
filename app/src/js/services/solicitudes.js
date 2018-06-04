@@ -14,6 +14,7 @@ export default class Solicitudes {
     Bus.subscribe("get.solicitude", this.getSolicitude.bind(this))
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
     Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
+    Bus.subscribe("update.applicant", this.updateApplicant.bind(this))
     Bus.subscribe("verify.company.duplicate", this.checkDuplicatedCif.bind(this))
     Bus.subscribe("get.company.matches", this.getCompanyMatches.bind(this))
     Bus.subscribe("get.applicant.matches", this.getSuggestedApplicants.bind(this))
@@ -73,6 +74,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('updated.solicitude')
     let body = payload
     let url = 'update-solicitude'
+    this.client.hit(url, body, callback)
+  }
+
+  updateApplicant(payload){
+    let callback = this.buildCallback('updated.applicant')
+    let body = payload
+    let url = 'update-applicant'
     this.client.hit(url, body, callback)
   }
 

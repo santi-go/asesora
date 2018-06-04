@@ -177,6 +177,7 @@ export default class Solicitude extends Component {
 
   update(){
     Bus.publish('update.solicitude', this.data.values )
+    Bus.publish('update.applicant', this.data.values )
   }
 
   saveCompanyInfo(event){
@@ -449,7 +450,6 @@ export default class Solicitude extends Component {
     }
 
     searchForApplicants(){
-      this.data.values.applicantId = ""
       this.data.suggestedApplicants = []
       let criteria = {
         'applicantName': this.data.values.applicantName,
