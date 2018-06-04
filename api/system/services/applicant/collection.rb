@@ -29,8 +29,18 @@ module Applicant
           Domain::Applicant.from_document(applicant)
         end
         applicants
+      end
+
+      def update(applicant, id)
+        serialized = applicant.serialize()
+        
+        document = MongoClient.update(serialized, id)
+
+        return if document.nil?
+
+        Domain::Applicant.from_document(document)
+      end
     end
-  end
 
       private
 
@@ -54,6 +64,10 @@ module Applicant
             list.merge!(chain)
           end
           documents = client[:applicant].find(list)
+        end
+
+        def update(applicant, id)
+          client[:applicant].find_one_and_replace({ "id": id }, applicant, :return_document => :after)
         end
 
         private
