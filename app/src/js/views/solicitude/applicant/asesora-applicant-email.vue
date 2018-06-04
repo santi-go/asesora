@@ -6,7 +6,6 @@
             type="text"
             v-on:focus="focus"
             v-on:keyup="onKeyup"
-            :disabled="editionmode"
             v-model="values.applicantEmail"
             >
   </div>
@@ -16,7 +15,7 @@
 export default {
   name: 'asesora-applicant-email',
 
-  props: ['labels', 'values', 'editionmode'],
+  props: ['labels', 'values'],
 
   methods: {
 

@@ -76,7 +76,7 @@ export default class Solicitude extends Component {
     )
     document.getElementById(this.element).addEventListener(
       'changed.applicant.fields',
-      this.searchForApplicants.bind(this)
+      this.changedApplicantField.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'clicked.edit.company',
@@ -177,6 +177,7 @@ export default class Solicitude extends Component {
 
   update(){
     Bus.publish('update.solicitude', this.data.values )
+    Bus.publish('update.applicant', this.data.values )
   }
 
   saveCompanyInfo(event){
@@ -398,13 +399,18 @@ export default class Solicitude extends Component {
 
     setButtonStatus(){
       this.data.submittable = false
-      if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
+      if (!this.textIsEmpty() && this.isValidContact() && this.data.isValidCompanyIdentity) {
         this.data.submittable = true
       }
     }
 
+    isValidContact(){
+      return this.validateEmail() || this.validatePhonenumber()
+      }
+
     validateContact(){
       this.data.isValidContact = this.validEmail || this.validPhonenumber
+      this.setButtonStatus()
     }
 
     runValidations(){
@@ -438,8 +444,12 @@ export default class Solicitude extends Component {
       this.validateContact()
     }
 
+    changedApplicantField(){
+      this.setButtonStatus()
+      this.searchForApplicants()
+    }
+
     searchForApplicants(){
-      this.data.values.applicantId = ""
       this.data.suggestedApplicants = []
       let criteria = {
         'applicantName': this.data.values.applicantName,
