@@ -6,95 +6,119 @@ const Fixtures = require('./fixtures')
 
 
 describe('Solicitude Edition', () => {
-  beforeEach(function(){
+  before(function(){
     fixtures = new Fixtures()
     fixtures.clean()
   })
 
-  it ("shows an alert when edit company button is clicked", () => {
+  afterEach(function(){
+    fixtures = new Fixtures()
+    fixtures.clean()
+  })
+
+  it ("edits solicitude data", () => {
+    const DATE_SPANISH = '02-11-2018'
+    const DATE_ENGLISH = '2018-02-11'
+    const TEXT = 'Solicitude text'
+    const APPLICANT_NAME = 'John'
+    const APPLICANT_SURNAME = 'Doe'
+    const APPLICANT_EMAIL = 'john@doe.com'
+    const APPLICANT_PHONENUMBER = '987654321'
+    const COMPANY_NAME = 'Company'
+    const COMPANY_CIF = 'A98005978'
+    const COMPANY_EMPLOYEES = '34'
+    const COMPANY_CNAE = '931'
     const solicitude = new Solicitude()
+
     solicitude.fill()
-              .applicantName()
-              .applicantPhonenumber()
-              .description()
+      .date(DATE_SPANISH)
+      .description(TEXT)
+      .applicantName(APPLICANT_NAME)
+      .applicantSurname(APPLICANT_SURNAME)
+      .applicantEmail(APPLICANT_EMAIL)
+      .applicantPhonenumber(APPLICANT_PHONENUMBER)
+      .companyName(COMPANY_NAME)
+      .companyCif(COMPANY_CIF)
+      .companyEmployees(COMPANY_EMPLOYEES)
+      .companyCnae(COMPANY_CNAE)
+      .lostFocus()
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
-
     solicitudesList.clickOnListItem()
-
-    solicitude.clickOnEditCompany()
-
-    assert(solicitude.isEditCompanyAlertVisible(), true)
-
-  })
-
-  it ("hides the alert when save button is clicked", () => {
-    const solicitude = new Solicitude()
-    solicitude.fill()
-              .applicantName()
-              .applicantPhonenumber()
-              .description()
-    solicitude.submit()
-
-    const solicitudesList = new SolicitudesList()
-
-    solicitudesList.clickOnListItem()
-
-    solicitude.clickOnEditCompany()
-
-    assert(solicitude.isEditCompanyAlertVisible(), true)
+    browser.waitForVisible('#name', 2000)
 
     solicitude.fill()
-              .companyName('Empresa 1')
-              .companyCif('W1626268E')
-              .clickOnSaveCompany()
+              .companyName('Other Company')
+              .lostFocus()
 
-    assert(solicitude.isEditCompanyAlertVisible(), false)
+    solicitude.clickOnSaveCompany()
+
+    expect(solicitude.applicantNameValue()).to.eq(APPLICANT_NAME)
+    expect(solicitude.applicantSurnameValue()).to.eq(APPLICANT_SURNAME)
+    expect(solicitude.applicantEmailValue()).to.eq(APPLICANT_EMAIL)
+    expect(solicitude.applicantPhonenumberValue()).to.eq(APPLICANT_PHONENUMBER)
+    expect(solicitude.companyNameValue()).to.not.eq(COMPANY_NAME)
+    expect(solicitude.companyCifValue()).to.eq(COMPANY_CIF)
+    expect(solicitude.companyEmployeesValue()).to.eq(COMPANY_EMPLOYEES)
+    expect(solicitude.companyCnaeValue()).to.eq(COMPANY_CNAE)
+    expect(solicitude.textValue()).to.eq(TEXT)
+    expect(solicitude.dateValue()).to.eq(DATE_ENGLISH)
   })
 
-  it ("retrieves all data", () => {
-     const DATE_SPANISH = '02-11-2018'
-     const DATE_ENGLISH = '2018-02-11'
-     const TEXT = 'Solicitude text'
-     const APPLICANT_NAME = 'John'
-     const APPLICANT_SURNAME = 'Doe'
-     const APPLICANT_EMAIL = 'john@doe.com'
-     const APPLICANT_PHONENUMBER = '987654321'
-     const COMPANY_NAME = 'Company'
-     const COMPANY_CIF = 'A98005978'
-     const COMPANY_EMPLOYEES = '34'
-     const COMPANY_CNAE = '931'
-     const solicitude = new Solicitude()
+  describe ("when editing a company", function() {
+    it ("shows a notification when the company is related with only ONE solicitude", () => {
 
-     solicitude.acceptAlert()
-     solicitude.fill()
-               .date(DATE_SPANISH)
-               .description(TEXT)
-               .applicantName(APPLICANT_NAME)
-               .applicantSurname(APPLICANT_SURNAME)
-               .applicantEmail(APPLICANT_EMAIL)
-               .applicantPhonenumber(APPLICANT_PHONENUMBER)
-               .companyName(COMPANY_NAME)
-               .companyCif(COMPANY_CIF)
-               .companyEmployees(COMPANY_EMPLOYEES)
-               .companyCnae(COMPANY_CNAE)
-               .lostFocus()
-     solicitude.submit()
-     const solicitudesList = new SolicitudesList()
-     solicitudesList.clickOnListItem()
-     solicitude.wait()
+      const solicitude = new Solicitude()
+      solicitude.fill()
+                .applicantName()
+                .applicantPhonenumber()
+                .description()
+      solicitude.submit()
 
-     expect(solicitude.applicantNameValue()).to.eq(APPLICANT_NAME)
-     expect(solicitude.applicantSurnameValue()).to.eq(APPLICANT_SURNAME)
-     expect(solicitude.applicantEmailValue()).to.eq(APPLICANT_EMAIL)
-     expect(solicitude.applicantPhonenumberValue()).to.eq(APPLICANT_PHONENUMBER)
-     expect(solicitude.companyNameValue()).to.eq(COMPANY_NAME)
-     expect(solicitude.companyCifValue()).to.eq(COMPANY_CIF)
-     expect(solicitude.companyEmployeesValue()).to.eq(COMPANY_EMPLOYEES)
-     expect(solicitude.companyCnaeValue()).to.eq(COMPANY_CNAE)
-     expect(solicitude.textValue()).to.eq(TEXT)
-     expect(solicitude.dateValue()).to.eq(DATE_ENGLISH)
-   })
+      const solicitudesList = new SolicitudesList()
+
+      browser.waitForVisible('#solicitudes-list', 2000)
+
+      solicitudesList.clickOnListItem()
+
+      browser.waitForVisible('#solicitude', 2000)
+
+      assert(solicitude.isEditCompanyAlertVisible(), true)
+
+    })
+
+    it ("shows edit company button when the company is related to two solicitudes", () => {
+      const firstSolicitude = new Solicitude()
+      firstSolicitude.fill()
+                .applicantName("First")
+                .applicantPhonenumber("555333111")
+                .description()
+                .companyName('Empresa 1')
+                .companyCif('W1626268E')
+      firstSolicitude.submit()
+
+      const secondSolicitude = new Solicitude()
+      secondSolicitude.fill()
+                .applicantName("Second")
+                .applicantPhonenumber("111555333")
+                .description()
+                .companyName('Empresa 1')
+                .companyCif('W1626268E')
+      secondSolicitude.submit()
+
+      const solicitudesList = new SolicitudesList()
+
+      browser.waitForVisible('#solicitudes-list', 2000)
+
+      solicitudesList.clickOnListItem()
+
+      browser.waitForVisible('#solicitude', 2000)
+
+
+      assert(secondSolicitude.isEditCompanyButtonVisible(), true)
+    })
+  })
+
 
 })

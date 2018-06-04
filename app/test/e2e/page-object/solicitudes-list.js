@@ -60,6 +60,7 @@ class SolicitudesList{
     const data = $('#solicitudes-list tbody')
     data.click()
   }
+
 }
 
 module.exports = SolicitudesList

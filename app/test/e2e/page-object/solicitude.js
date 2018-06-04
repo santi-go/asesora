@@ -120,6 +120,10 @@ class Solicitude{
     return browser.isVisible('#alert-edit-company')
   }
 
+  isEditCompanyButtonVisible(){
+    return browser.isVisible('#edit-company')
+  }
+
   hasCompanyMatches(){
     return browser.isVisible('#company-matches tbody')
   }
@@ -204,7 +208,6 @@ class Solicitude{
   }
 
   applicantNameValue(){
-     // browser.waitForVisible('#name', 2000)
      return $('#name').getValue()
   }
 
