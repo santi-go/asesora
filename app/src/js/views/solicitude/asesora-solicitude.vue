@@ -2,7 +2,6 @@
   <div>
     <asesora-applicant :values="values"
                        :labels="labels"
-                       :editionmode="editionmode"
                        :is-valid-contact="isValidContact"
                        :suggested-applicants='suggestedApplicants'
                        ></asesora-applicant>

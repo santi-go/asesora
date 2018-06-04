@@ -76,7 +76,7 @@ export default class Solicitude extends Component {
     )
     document.getElementById(this.element).addEventListener(
       'changed.applicant.fields',
-      this.searchForApplicants.bind(this)
+      this.changedApplicantField.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'clicked.edit.company',
@@ -441,6 +441,11 @@ export default class Solicitude extends Component {
     setValidPhone(event){
       this.validPhonenumber = event.detail.valid
       this.validateContact()
+    }
+
+    changedApplicantField(){
+      this.setButtonStatus()
+      this.searchForApplicants()
     }
 
     searchForApplicants(){

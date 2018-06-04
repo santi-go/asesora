@@ -7,7 +7,6 @@
             v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-on:keyup="onKeyup"
-            :disabled="editionmode"
             v-model="values.applicantPhonenumber"
             >
   </div>
@@ -17,7 +16,7 @@
 export default {
   name: 'asesora-applicant-phone',
 
-  props: ['labels', 'values', 'editionmode'],
+  props: ['labels', 'values'],
   data: { function () {
       commandKey: false
     }
