@@ -70,3 +70,30 @@
     opacity: 1;
   }
 }
+
+.error {
+  border: 1px solid var(--error-color) !important;
+}
+
+textarea{
+  min-height: 200px;
+  width: 100%;
+}
+
+textarea::placeholder {
+  text-align: right;
+  font-size: 2em;
+  color: var(--error-color);
+}
+
+.card-title {
+  padding: 15px 0px;
+}
+
+label {
+  margin-top: 1em;
+}
+
+td{
+  cursor: pointer;
+}

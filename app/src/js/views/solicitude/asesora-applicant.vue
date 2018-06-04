@@ -61,13 +61,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .card-title {
-    padding: 15px 0px;
-  }
-
-  label {
-    margin-top: 1em;
-  }
-</style>

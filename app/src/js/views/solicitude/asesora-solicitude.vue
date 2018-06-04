@@ -119,18 +119,6 @@ export default {
     position: relative;
     top: 12px;
   }
-  .error {
-    border: 1px solid var(--error-color) !important;
-  }
-  textarea{
-    min-height: 200px;
-    width: 100%;
-  }
-  textarea::placeholder {
-    text-align: right;
-    font-size: 32px;
-    color: var(--error-color);
-  }
 
   .message-sent, .message-error {
     margin-bottom: 0;

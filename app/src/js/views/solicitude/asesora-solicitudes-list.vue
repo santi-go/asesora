@@ -54,14 +54,3 @@
 
     }
   </script>
-  <style scoped>
-
-    td{
-      cursor: pointer;
-    }
-
-    .card .card-title {
-      padding: 15px 0px;
-    }
-
-  </style>
