@@ -405,6 +405,7 @@ export default class Solicitude extends Component {
 
     validateContact(){
       this.data.isValidContact = this.validEmail || this.validPhonenumber
+      // return this.data.isValidContact
     }
 
     runValidations(){

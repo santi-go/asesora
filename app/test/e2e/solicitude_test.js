@@ -10,18 +10,50 @@ describe('Solicitude', () => {
     fixtures.clean()
   })
 
-  it ("can be created", () => {
-    const solicitude = new Solicitude()
+  describe("can be created",() => {
+    it("with phone and description", () => {
+      const solicitude = new Solicitude()
 
-    solicitude.fill().applicantName()
-    .applicantPhonenumber()
-    .description()
-    solicitude.lostFocus()
+      solicitude.fill()
+        .applicantPhonenumber()
+        .description()
+      solicitude.lostFocus()
 
-    expect(solicitude.isSubmitEnabled()).to.eq(true)
+      expect(solicitude.isSubmitEnabled()).to.eq(true)
+    })
+
+    it("with email and description", () => {
+      const solicitude = new Solicitude()
+      solicitude.acceptAlert()
+      solicitude.fill()
+        .applicantEmail()
+        .description()
+      solicitude.lostFocus()
+
+      expect(solicitude.isSubmitEnabled()).to.eq(true)
+    })
   })
 
-  it ("hides date info when is not needed", () => {
+  it("can not be created without phone or email", () => {
+    const solicitude = new Solicitude()
+    solicitude.fill()
+              .description()
+    solicitude.lostFocus()
+
+    expect(solicitude.isSubmitEnabled()).to.eq(false)
+  })
+
+  it("can not be created without description", () => {
+    const solicitude = new Solicitude()
+    solicitude.acceptAlert()
+    solicitude.fill()
+              .applicantEmail()
+    solicitude.lostFocus()
+
+    expect(solicitude.isSubmitEnabled()).to.eq(false)
+  })
+
+  it("hides date info when is not needed", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     solicitude.fill().date()
@@ -30,7 +62,7 @@ describe('Solicitude', () => {
     expect(solicitude.isDateInfoHiden()).to.eq(true)
   })
 
-  it ("knows when the date is invalid", () => {
+  it("knows when the date is invalid", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     solicitude.fill().date()
@@ -43,7 +75,7 @@ describe('Solicitude', () => {
     expect(solicitude.isDateInfoHiden()).to.eq(false)
   })
 
-  it ("can be created with phone number and email", () => {
+  it("can be created with phone number and email", () => {
     const solicitude = new Solicitude()
     solicitude.fill().applicantPhonenumber()
     .applicantEmail()
@@ -53,7 +85,7 @@ describe('Solicitude', () => {
     expect(solicitude.isSubmitEnabled()).to.eq(true)
   })
 
-  it ("knows when contacting info is correctly entered", () => {
+  it("knows when contacting info is correctly entered", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     const wrongText = "x"
@@ -67,7 +99,7 @@ describe('Solicitude', () => {
     expect(solicitude.isContactInfoHiden()).to.eq(true)
   })
 
-  it ("form valid if required data, company name and cif are present", () => {
+  it("form valid if required data, company name and cif are present", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     const solicitudeCompanyValidCif = "A01316637"
@@ -84,7 +116,7 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(true)
   })
 
-  it ("form invalid when company name is present and cif is not", () => {
+  it("form invalid when company name is present and cif is not", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
 
