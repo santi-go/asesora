@@ -398,13 +398,18 @@ export default class Solicitude extends Component {
 
     setButtonStatus(){
       this.data.submittable = false
-      if (!this.textIsEmpty() && this.data.isValidContact && this.data.isValidCompanyIdentity) {
+      if (!this.textIsEmpty() && this.isValidContact() && this.data.isValidCompanyIdentity) {
         this.data.submittable = true
       }
     }
 
+    isValidContact(){
+      return this.validateEmail() || this.validatePhonenumber()
+      }
+
     validateContact(){
       this.data.isValidContact = this.validEmail || this.validPhonenumber
+      this.setButtonStatus()
     }
 
     runValidations(){
