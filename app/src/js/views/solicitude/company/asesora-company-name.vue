@@ -43,9 +43,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  label {
-    margin-top: 1em;
-  }
-</style>

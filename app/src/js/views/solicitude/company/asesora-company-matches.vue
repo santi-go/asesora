@@ -58,11 +58,4 @@
     overflow: auto;
     display: block;
   }
-
-  td{
-    cursor: pointer;
-  }
-  label{
-    margin-top: 1em;
-  }
 </style>

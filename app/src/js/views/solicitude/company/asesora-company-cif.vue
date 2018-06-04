@@ -41,11 +41,4 @@ export default {
     position: relative;
     top: 12px;
   }
-  .error {
-    border: 1px solid var(--error-color) !important;
-  }
-  label {
-    margin-top: 1em;
-  }
-
 </style>
