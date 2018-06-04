@@ -30,6 +30,11 @@ module Applicant
       end
     end
 
+    def self.update(name, surname, email, phonenumber, id)
+      applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
+      Collection.update(applicant, id).serialize
+    end
+
     def self.create_id
       id = SecureRandom.uuid
     end
