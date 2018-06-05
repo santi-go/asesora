@@ -36,7 +36,7 @@
                     :edit-company='editCompany'
                     ></asesora-button>
     <template v-if="editionmode">
-      <asesora-button-discard :labels="labels" :edit-company='editCompany' ></asesora-button-discard>
+      <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
     </template>
     </div>
 

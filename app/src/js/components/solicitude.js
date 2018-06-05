@@ -372,6 +372,7 @@ export default class Solicitude extends Component {
     }
 
     discardAnimation(){
+      this.data.submittable = true
       this.data.showAlert = false
       let element = document.querySelector('#solicitude')
       element.classList.add('discardCard')
