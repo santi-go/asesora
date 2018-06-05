@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div v-if="suggestedCompanies.length > 0">
     <label>{{ labels.suggestions }}</label>
-    <table v-if="suggestedCompanies.length > 0">
+    <table>
       <thead>
         <tr>
           <th>{{ labels.companyName }}</th>
