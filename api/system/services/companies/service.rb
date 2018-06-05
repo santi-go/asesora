@@ -11,14 +11,11 @@ module Companies
     end
 
     def self.retrieve(id)
-      if not id
-        return create_empty().serialize
-      end
+      return self.create_empty().serialize  if id == ""
+      id.upcase!
+      result = Collection.retrieve(id)
 
-      if company_exists?(id)
-        return Collection.retrieve(id).serialize
-      end
-
+      return result.serialize if(result != false)
       return {}
     end
 
@@ -30,8 +27,9 @@ module Companies
     end
 
     def self.update(name, cif, employees, cnae)
+      cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      if !company_exists?(cif)
+      if Collection.retrieve(cif) == false
         Collection.create(company)
       else
         Collection.update(cif, company).serialize
@@ -40,11 +38,6 @@ module Companies
 
     def self.create_empty()
       Domain::Company.with("", "", "", "")
-    end
-
-    def self.company_exists?(id)
-      id = id.upcase
-      Collection.retrieve(id)
     end
   end
 end
