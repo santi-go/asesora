@@ -36,19 +36,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-  textarea{
-    min-height: 200px;
-    width: 100%;
-  }
-  textarea::placeholder {
-    text-align: right;
-    font-size: 2em;
-    color: var(--error-color);
-  }
-  .error {
-    border: 1px solid var(--error-color) !important;
-  }
-</style>

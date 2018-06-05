@@ -9,7 +9,6 @@
                   name="name"
                   type="text"
                   v-on:keyup="refreshSuggestion"
-                  :disabled="editionmode"
                   v-model="values.applicantName"
           >
         </div>
@@ -19,14 +18,12 @@
                   name="surname"
                   type="text"
                   v-on:keyup="refreshSuggestion"
-                  :disabled="editionmode"
                   v-model="values.applicantSurname"
           >
         </div>
 
         <asesora-applicant-contact :values="values"
                                    :labels="labels"
-                                   :editionmode="editionmode"
                                    :is-valid-contact="isValidContact">
         </asesora-applicant-contact>
       </div>
@@ -48,7 +45,7 @@ import ApplicantMatchesView from './applicant/asesora-applicant-matches'
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'isValidContact', 'editionmode', 'suggestedApplicants'],
+  props: ['labels', 'values', 'isValidContact', 'suggestedApplicants'],
 
   components: {
     "asesora-applicant-contact" : ApplicantContactView,
@@ -64,13 +61,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .card-title {
-    padding: 15px 0px;
-  }
-
-  label {
-    margin-top: 1em;
-  }
-</style>

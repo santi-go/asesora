@@ -13,7 +13,7 @@ describe('Solicitude', () => {
   describe("can be created",() => {
     it("with phone and description", () => {
       const solicitude = new Solicitude()
-
+      solicitude.acceptAlert()
       solicitude.fill()
         .applicantPhonenumber()
         .description()
@@ -78,8 +78,8 @@ describe('Solicitude', () => {
   it("can be created with phone number and email", () => {
     const solicitude = new Solicitude()
     solicitude.fill().applicantPhonenumber()
-    .applicantEmail()
-    .description()
+                     .applicantEmail()
+                     .description()
 
     solicitude.lostFocus()
     expect(solicitude.isSubmitEnabled()).to.eq(true)

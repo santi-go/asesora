@@ -2,7 +2,6 @@
   <div>
     <asesora-applicant :values="values"
                        :labels="labels"
-                       :editionmode="editionmode"
                        :is-valid-contact="isValidContact"
                        :suggested-applicants='suggestedApplicants'
                        ></asesora-applicant>
@@ -119,18 +118,6 @@ export default {
   input::-webkit-input-placeholder {
     position: relative;
     top: 12px;
-  }
-  .error {
-    border: 1px solid var(--error-color) !important;
-  }
-  textarea{
-    min-height: 200px;
-    width: 100%;
-  }
-  textarea::placeholder {
-    text-align: right;
-    font-size: 32px;
-    color: var(--error-color);
   }
 
   .message-sent, .message-error {
