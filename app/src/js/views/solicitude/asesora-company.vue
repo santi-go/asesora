@@ -42,7 +42,7 @@
       <div v-if="!editCompany">
         <asesora-company-save-button :labels="labels" :values="values" :save-company='saveCompany'>
         </asesora-company-save-button>
-        <asesora-company-discard-button :labels="labels">
+        <asesora-company-discard-button :labels="labels" :save-company='saveCompany'>
         </asesora-company-discard-button>
       </div>
     </div>
