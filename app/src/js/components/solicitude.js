@@ -185,7 +185,9 @@ export default class Solicitude extends Component {
     this.initialValues['companyName'] = this.data.values['companyName']
     this.initialValues['companyEmployees'] = this.data.values['companyEmployees']
     this.initialValues['companyCnae'] = this.data.values['companyCnae']
+
     this.data.saveCompany = false
+    this.data.suggestedCompanies = []
   }
 
   discardCompanyInfo(){
@@ -197,6 +199,7 @@ export default class Solicitude extends Component {
     this.data.editCompany = true
     this.data.isValidCompanyIdentity = true
     this.data.isValidCif = true
+    this.data.suggestedCompanies = []
   }
 
   gotCompanyCount(count){
@@ -319,6 +322,9 @@ export default class Solicitude extends Component {
     this.data.setValues('companyCif', item.detail.cif)
     this.data.setValues('companyEmployees', item.detail.employees)
     this.data.setValues('companyCnae', item.detail.cnae)
+
+    this.data.isValidCif = true
+    this.data.isValidCompanyIdentity = true
   }
 
   fillApplicant(item){
