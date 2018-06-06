@@ -61,6 +61,10 @@ class SolicitudesList{
     data.click()
   }
 
+  wait(){
+    browser.waitForVisible('#solicitudes-list', 2000)
+  }
+
 }
 
 module.exports = SolicitudesList

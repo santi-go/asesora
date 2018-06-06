@@ -16,7 +16,7 @@ describe('Solicitude Edition', () => {
     fixtures.clean()
   })
 
-  it ("edits solicitude data", () => {
+  it("edits solicitude data", () => {
     const DATE_SPANISH = '02-11-2018'
     const DATE_ENGLISH = '2018-02-11'
     const TEXT = 'Solicitude text'
@@ -46,7 +46,8 @@ describe('Solicitude Edition', () => {
 
     const solicitudesList = new SolicitudesList()
     solicitudesList.clickOnListItem()
-    browser.waitForVisible('#name', 2000)
+
+    browser.waitForVisible('#solicitude', 2000)
 
     solicitude.fill()
               .companyName('Other Company')
@@ -85,7 +86,6 @@ describe('Solicitude Edition', () => {
       browser.waitForVisible('#solicitude', 2000)
 
       assert(solicitude.isEditCompanyAlertVisible(), true)
-
     })
 
     it ("shows edit company button when the company is related to two solicitudes", () => {
