@@ -141,15 +141,22 @@ describe('Solicitude', () => {
   it ("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
+
+
+    const invalidCnaeID = "99999"
+    solicitude.fill().CNAE(invalidCnaeID)
+    solicitude.lostFocus()
+    expect(solicitude.CNAEIDisValid(invalidCnaeID)).to.be.false
+
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
     solicitude.lostFocus()
-
     assert(solicitude.CNAEIDisValid(cnaeID), true)
 
     let CNAELongFormat = solicitude.CNAELongFormat(cnaeID)
     let addedCorrectly = cnaeID.length < CNAELongFormat.length
     expect(addedCorrectly).to.eq(true)
+
   })
 
   it ("triggers a search for a company match, when the user types 3 chars in the company name input",()=> {
