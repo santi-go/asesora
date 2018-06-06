@@ -25,6 +25,7 @@
         </div>
 
         <asesora-applicant-contact :values="values"
+                                   :editionmode="editionmode"
                                    :labels="labels"
                                    :is-valid-contact="isValidContact">
         </asesora-applicant-contact>
@@ -47,7 +48,7 @@ import ApplicantMatchesView from './applicant/asesora-applicant-matches'
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'isValidContact', 'suggestedApplicants'],
+  props: ['labels', 'values', 'editionmode', 'isValidContact', 'suggestedApplicants'],
 
   components: {
     "asesora-applicant-contact" : ApplicantContactView,
