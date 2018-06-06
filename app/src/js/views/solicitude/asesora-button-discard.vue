@@ -4,7 +4,7 @@
             type="button"
             name="discard"
             class="discardbutton button-clear"
-            :disabled="!editCompany"
+            :disabled="!editCompany && !submittable"
             v-on:click="onclick()">
       {{ labels.editiondiscard }}
     </button>
@@ -16,7 +16,7 @@ export default {
 
   name: 'asesora-button-discard',
 
-  props: ['labels', 'editCompany'],
+  props: ['labels', 'editCompany', 'submittable'],
 
   methods: {
     onclick() {

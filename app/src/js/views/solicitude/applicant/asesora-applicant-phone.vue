@@ -62,12 +62,16 @@ export default {
 
 
     isArrowKeyCode(keycode){
+      let isInitKey = (keycode == 36)
+      let isFinKey = (keycode == 35)
+      let isSuprKey = (keycode == 46)
       let isLeftArrow = (keycode == 37)
       let isArrowUp = (keycode == 38)
       let isRightArrow = (keycode == 39)
       let isArrowDown = (keycode == 40)
 
-      return isLeftArrow || isRightArrow || isArrowDown || isArrowUp
+      return isInitKey || isFinKey || isSuprKey
+             || isLeftArrow || isRightArrow || isArrowDown || isArrowUp
     },
 
     isSeparatorKeyCode(keycode){

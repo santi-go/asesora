@@ -4,6 +4,7 @@ require 'json'
 require 'rack/test'
 require 'date'
 
+require_relative  '../system/services/solicitudes/service'
 require_relative './fixtures/fixtures'
 
 describe 'Solicitude Api' do
@@ -222,6 +223,7 @@ describe 'Solicitude Api' do
       expect(response['data']).to eq(1)
     end
   end
+
   context 'retrieve solicitude' do
     before(:each) do
       post 'fixtures/clean'
@@ -298,6 +300,25 @@ describe 'Solicitude Api' do
       expect(response['text']).to eq(Fixtures::TEXT_2)
     end
   end
+
+describe "Solicitude Service" do
+  it 'knows when company hasnt solicitudes' do
+    post 'fixtures/clean'
+
+    result = Solicitudes::Service.times_company("non_existing_cif")
+
+    expect(result).to eq(0)
+  end
+
+  it 'knows how many solicitudes has one company' do
+    post 'fixtures/pristine'
+
+    result = Solicitudes::Service.times_company(Fixtures::COMPANY_CIF)
+
+    expect(result).to eq(1)
+  end
+end
+
 
   private
 

@@ -1,6 +1,6 @@
 <template>
   <div  class="card large-card" >
-    <div class="row grid-responsive">
+    <div class="card-title">
       <h3>{{ labels.company }}</h3>
     </div>
     <div class="row grid-responsive">
@@ -42,7 +42,7 @@
       <div v-if="!editCompany">
         <asesora-company-save-button :labels="labels" :values="values" :save-company='saveCompany'>
         </asesora-company-save-button>
-        <asesora-company-discard-button :labels="labels">
+        <asesora-company-discard-button :labels="labels" :save-company='saveCompany'>
         </asesora-company-discard-button>
       </div>
     </div>

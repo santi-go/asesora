@@ -23,8 +23,8 @@ module Solicitudes
 
     def self.times_company(cif)
       cif = cif.upcase
-      result = Collection.times_company(cif)
-      {"data": result}
+
+      Collection.times_company(cif)
     end
 
     def self.all
