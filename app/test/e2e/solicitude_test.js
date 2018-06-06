@@ -53,7 +53,7 @@ describe('Solicitude', () => {
     expect(solicitude.isSubmitEnabled()).to.eq(false)
   })
 
-  it("hides date info when is not needed", () => {
+  it("hides date alert when is not needed", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     solicitude.fill().date()
@@ -62,17 +62,15 @@ describe('Solicitude', () => {
     expect(solicitude.isDateInfoHiden()).to.eq(true)
   })
 
-  it("knows when the date is invalid", () => {
+  it("knows when the date is incomplete", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
-    solicitude.fill().date()
-    assert(solicitude.isDateInfoHiden(), true)
-    solicitude.lostFocus()
-
     solicitude.fill().wrongDate()
-    solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(false)
+
+    solicitude.lostFocus()
+
   })
 
   it("can be created with phone number and email", () => {
