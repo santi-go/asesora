@@ -1,6 +1,8 @@
 <template>
   <div  class="card large-card" >
-    <h3>{{ labels.applicant }}</h3>
+    <div class="card-title">
+      <h3>{{ labels.applicant }}</h3>
+    </div>
     <div class="row grid-responsive">
       <div class="column column-50">
         <div>

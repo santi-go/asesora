@@ -1,6 +1,6 @@
 <template>
   <div  class="card large-card" >
-    <div class="row grid-responsive">
+    <div class="card-title">
       <h3>{{ labels.company }}</h3>
     </div>
     <div class="row grid-responsive">
