@@ -10,9 +10,8 @@ export default class Solicitude extends Component {
     super('solicitude')
     this.validationCif = ValidationCif
     this.client = APIClient
-    this.validEmail = false
-    this.validPhonenumber = false
     this.initialValues = this.data.cloneValues()
+    this.validateContact()
     this.load()
   }
 
@@ -52,11 +51,11 @@ export default class Solicitude extends Component {
     )
     document.getElementById(this.element).addEventListener(
       'changed.email',
-      this.setValidEmail.bind(this)
+      this.runValidations.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.phone',
-      this.setValidPhone.bind(this)
+      this.runValidations.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.text',
@@ -124,6 +123,7 @@ export default class Solicitude extends Component {
       this.data.editCompany = false
     } else {
       this.data.editionmode = true
+      this.data.isValidContact = true
       this.data.editCompany = true
       Bus.publish('get.solicitude', {id: id})
     }
@@ -412,19 +412,26 @@ export default class Solicitude extends Component {
     }
 
     isValidContact(){
-      return this.validateEmail() || this.validatePhonenumber()
+      return this.data.isValidContact
       }
 
     validateContact(){
-      this.data.isValidContact = this.validEmail || this.validPhonenumber
-      this.setButtonStatus()
+      const email = this.data.values.applicantEmail
+      const phone = this.data.values.applicantPhonenumber
+      this.data.isValidContact = this.validEmail && this.validPhonenumber
+      if (this.validEmail && phone == "") {
+        this.data.isValidContact = true
+      }
+      if (this.validPhonenumber && email == "") {
+        this.data.isValidContact = true
+      }
     }
 
     runValidations(){
       this.validEmail = this.validateEmail()
       this.validPhonenumber = this.validatePhonenumber()
-
       this.validateContact()
+      this.setButtonStatus()
     }
 
     validateEmail(){
@@ -441,18 +448,8 @@ export default class Solicitude extends Component {
       return (phone.length == 9)
     }
 
-    setValidEmail(event){
-      this.validEmail = event.detail.valid
-      this.validateContact()
-    }
-
-    setValidPhone(event){
-      this.validPhonenumber = event.detail.valid
-      this.validateContact()
-    }
-
     changedApplicantField(){
-      this.setButtonStatus()
+      this.runValidations()
       this.searchForApplicants()
     }
 
