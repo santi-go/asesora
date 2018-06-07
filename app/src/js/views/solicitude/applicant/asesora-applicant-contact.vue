@@ -1,13 +1,13 @@
  <template>
   <div>
     <asesora-applicant-phone :values="values"
-                   :labels="labels"
+                   :labels="labels" :is-valid-phone="isValidPhone"
                    ></asesora-applicant-phone>
     <asesora-applicant-email :values="values"
-                   :labels="labels"
+                   :labels="labels" :is-valid-email="isValidEmail"
                    ></asesora-applicant-email>
-    <div  id="contact-info" v-if="this.showMessage()">
-      <div class="alert background-danger">
+    <div  id="contact-info">
+      <div class="alert">
         <em class="fa fa-times-circle"></em>
          {{ labels.noContact }}
       </div>
@@ -22,7 +22,7 @@ import PhoneView from './asesora-applicant-phone'
 export default {
   name: 'asesora-applicant-contact',
 
-  props: ['labels', 'values', 'editionmode', 'isValidContact'],
+  props: ['labels', 'values', 'editionmode', 'isValidContact', 'isValidPhone', 'isValidEmail'],
 
   components: {
     "asesora-applicant-email" : EmailView,

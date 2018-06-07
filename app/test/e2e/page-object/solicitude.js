@@ -56,7 +56,7 @@ class Solicitude{
 
   wrongDate(){
     let date = $("#date")
-    date.addValue("02/31/2018")
+    date.addValue("01/mm/aaaa")
     return this
   }
 

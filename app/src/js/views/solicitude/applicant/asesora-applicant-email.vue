@@ -8,6 +8,12 @@
             v-on:keyup="onKeyup"
             v-model="values.applicantEmail"
             >
+      <div id="contact-email" v-if="!isValidEmail">
+        <div class="alert background-danger">
+          <em class="fa fa-times-circle"></em>
+          {{ labels.errorEmail }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,7 +21,7 @@
 export default {
   name: 'asesora-applicant-email',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'isValidEmail'],
 
   methods: {
 

@@ -58,6 +58,14 @@ export default class Solicitude extends Component {
       this.runValidations.bind(this)
     )
     document.getElementById(this.element).addEventListener(
+      'changed.email',
+      this.setValidEmail.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.phone',
+      this.setValidPhone.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
       'changed.text',
       this.setButtonStatus.bind(this)
     )
@@ -359,8 +367,6 @@ export default class Solicitude extends Component {
     this.setButtonStatus()
   }
 
-
-
   isNameEmpty(){
     return this.data.values.companyName === ""
   }
@@ -385,7 +391,7 @@ export default class Solicitude extends Component {
     }
 
     gotCnaeCatalog(payload) {
-      this.data.cnaeCatalog = payload
+      this.data.cnaeCatalog = payload.data
     }
 
     discardAnimation(){
@@ -441,6 +447,7 @@ export default class Solicitude extends Component {
     runValidations(){
       this.validEmail = this.validateEmail()
       this.validPhonenumber = this.validatePhonenumber()
+
       this.validateContact()
       this.setButtonStatus()
     }
@@ -457,6 +464,24 @@ export default class Solicitude extends Component {
       const phone = this.data.values.applicantPhonenumber
       if (phone == "") { return false }
       return (phone.length == 9)
+    }
+
+    setValidEmail(event){
+      this.validEmail = event.detail.valid
+      this.validateContact()
+      this.data.isValidEmail = this.validateEmail()
+      if (this.data.values.applicantEmail == "") {
+        this.data.isValidEmail = true
+      }
+    }
+
+    setValidPhone(event){
+      this.validPhonenumber = event.detail.valid
+      this.validateContact()
+      this.data.isValidPhone = this.validatePhonenumber()
+      if (this.data.values.applicantPhonenumber == "") {
+        this.data.isValidPhone = true
+      }
     }
 
     changedApplicantField(){
@@ -520,8 +545,11 @@ export default class Solicitude extends Component {
         "editiondiscard" : "xxxxxxxxxx",
         "editionsubmit" : "xxxxxx",
         "editionsubmitting" : "xxxxxx",
-        "sent" : "XXXX",
-        "deleteSolicitude" : "XXXXX" },
+        "deleteSolicitude" : "XXXXX",
+        "errorPhone": "xxxxxxxx",
+        "errorEmail": "xxxxxxx",
+        "sent": "XXXX"
+      },
         values: { "text": "",
         "date": "",
         "applicantName": "",
@@ -547,7 +575,9 @@ export default class Solicitude extends Component {
       editionmode: false,
       editCompany: false,
       saveCompany: false,
-      disabledTextAndDate:false,
+      disabledTextAndDate: false,
+      isValidPhone: true,
+      isValidEmail: true,
       translate:function(key,value) {
         this.labels[key] = value
       },
