@@ -6,16 +6,19 @@ module Applicant
   class Collection
     class << self
       def create(applicant)
+        memento = applicant.memento
         serialized = applicant.serialize()
 
         document = MongoClient.create(serialized)
+        MongoClient.store(memento)
         Domain::Applicant.from_document(document)
       end
 
-      def retrieve(id)
+      def retrieve(id, timestamp=Time.now.to_i)
         document = MongoClient.retrieve(id)
-
         applicant = Domain::Applicant.from_document(document)
+        memento = MongoClient.retrieve_state_at(timestamp,applicant.identify)
+        applicant.remind(memento)
         applicant
       end
 
@@ -33,11 +36,11 @@ module Applicant
 
       def update(applicant, id)
         serialized = applicant.serialize()
-        
+        memento = applicant.memento
         document = MongoClient.update(serialized, id)
 
         return if document.nil?
-
+        MongoClient.store memento
         Domain::Applicant.from_document(document)
       end
     end
@@ -51,9 +54,21 @@ module Applicant
           descriptor
         end
 
+        def store (memento)
+          client[:applicant_memento].insert_one(memento)
+        end
+
         def retrieve(id)
           documents = client[:applicant].find({"id": id})
           documents.first
+        end
+
+        def retrieve_state_at(timestamp, id)
+          memento = client[:applicant_memento]
+                          .find({"timestamp":{"$lte": timestamp},"signature": id})
+                          .sort({"timestamp": -1})
+                          .first
+          memento
         end
 
         def all_by(criteria)
