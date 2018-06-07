@@ -61,7 +61,7 @@ class Fixtures < Asesora
   end
 
   def create_solicitude(applicant, company)
-    ::Solicitudes::Service.create(DATE, TEXT, applicant.identify(), company.identify())
+    ::Solicitudes::Service.create(DATE, TEXT, applicant["id"], company["cif"])
   end
 
   def create_company

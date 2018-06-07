@@ -10,11 +10,11 @@ module Applicant
 
       applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
 
-      Collection.create(applicant)
+      Collection.create(applicant).serialize
     end
 
     def self.retrieve_with_id(name, surname, email, phonenumber, id)
-      Collection.retrieve(id)
+      Collection.retrieve(id).serialize
     end
 
     def self.delete(id)

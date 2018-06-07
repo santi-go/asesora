@@ -7,6 +7,7 @@ module Actions
   class RetrieveSolicitude extend Mergeable
     def self.do(id:)
       solicitude = ::Solicitudes::Service.retrieve(id)
+      return {} if solicitude.empty?
       company = ::Companies::Service.retrieve(solicitude['company'])
       applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
       prepared_solicitude = add_with_prefix(solicitude,company,'company')

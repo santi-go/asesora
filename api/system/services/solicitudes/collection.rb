@@ -24,9 +24,13 @@ module Solicitudes
         Domain::Solicitude.from_document(document)
       end
 
+      def delete(id)
+        MongoClient.delete(id)
+      end
+
       def retrieve(id)
         document = MongoClient.retrieve(id)
-
+        return nil if document == nil
         solicitude = Domain::Solicitude.from_document(document)
 
         solicitude
@@ -55,7 +59,12 @@ module Solicitudes
 
           def retrieve(id)
             documents = client[:solicitudes].find({"creation_moment": id})
+
             documents.first
+          end
+
+          def delete(id)
+            client[:solicitudes].delete_one({"creation_moment": id})
           end
 
           def update(creation_moment, data)

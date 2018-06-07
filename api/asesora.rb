@@ -9,6 +9,7 @@ require_relative 'system/actions/retrieve_dictionary'
 require_relative 'system/actions/retrieve_cnae'
 require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/actions/update_solicitude'
+require_relative 'system/actions/delete_solicitude'
 require_relative 'system/actions/update_company'
 require_relative 'system/actions/update_applicant'
 require_relative 'system/domain/solicitude'
@@ -129,7 +130,13 @@ class Asesora < Sinatra::Base
     solicitude = Actions::RetrieveSolicitude.do(id: params['id'])
 
     {data: solicitude}.to_json
+  end
 
+  post '/api/delete-solicitude' do
+    params = JSON.parse(request.body.read)
+
+    Actions::DeleteSolicitude.do(id: params['id'])
+    status 200
   end
 
   post '/api/cnae' do
