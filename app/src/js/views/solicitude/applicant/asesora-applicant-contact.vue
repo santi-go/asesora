@@ -7,9 +7,10 @@
                    :labels="labels" :is-valid-email="isValidEmail"
                    ></asesora-applicant-email>
     <div  id="contact-info">
-      <div class="alert">
-        <em class="fa fa-times-circle"></em>
+      <div>
+        <em>
          {{ labels.noContact }}
+        </em>
       </div>
     </div>
   </div>

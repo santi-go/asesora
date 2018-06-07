@@ -41,7 +41,7 @@ module Translation
                 "applicantSurname": "Apellidos",
                 "applicantEmail": "Correo Electrónico",
                 "applicantPhonenumber": "Teléfono",
-                "noContact": "Si necesitas contactar más adelante con el o la solicitante, deberías poner su email o teléfono",
+                "noContact": "Debes proporcionar al menos email o teléfono para guardar la solicitud",
                 "text": "Texto",
                 "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
                 "incompleteCompanyIdentity": "No has proporcionado suficiente información de la empresa",
@@ -61,8 +61,8 @@ module Translation
                 "alertBackgroundDanger": "Lo sentimos, ha habido un error",
                 "suggestions": "Sugerencias",
                 "deleteSolicitude": "Eliminar solicitud",
-                "errorPhone": "El teléfono es inválido",
-                "errorEmail": "El email es inválido",
+                "errorPhone": "El teléfono debe tener nueve números para ser válido",
+                "errorEmail": "El email no tiene un formato correcto, ejemplo: 'nombre@gmail.es'",
                 "sent": "Todo Ok! Enviado!"
               },
 
