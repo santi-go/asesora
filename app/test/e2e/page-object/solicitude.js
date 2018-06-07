@@ -124,6 +124,10 @@ class Solicitude{
     return browser.isVisible('#edit-company')
   }
 
+  isDeleteSolicitudeButtonVisible(){
+    return browser.isVisible('#delete-solicitude')
+  }
+
   hasCompanyMatches(){
     return browser.isVisible('#company-matches tbody')
   }

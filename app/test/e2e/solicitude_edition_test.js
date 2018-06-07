@@ -67,6 +67,25 @@ describe('Solicitude Edition', () => {
     expect(solicitude.dateValue()).to.eq(DATE_ENGLISH)
   })
 
+  it("shows delete solicitude button", function(){
+    const solicitude = new Solicitude()
+    solicitude.fill()
+              .applicantName()
+              .applicantPhonenumber()
+              .description()
+    solicitude.submit()
+
+    const solicitudesList = new SolicitudesList()
+
+    browser.waitForVisible('#solicitudes-list', 2000)
+
+    solicitudesList.clickOnListItem()
+
+    browser.waitForVisible('#solicitude', 2000)
+
+    assert(solicitude.isDeleteSolicitudeButtonVisible(), true)
+  })
+
   describe ("when editing a company", function() {
     it ("shows a notification when the company is related with only ONE solicitude", () => {
 
@@ -84,6 +103,7 @@ describe('Solicitude Edition', () => {
       solicitudesList.clickOnListItem()
 
       browser.waitForVisible('#solicitude', 2000)
+      browser.scroll("#company-cnae")
 
       assert(solicitude.isEditCompanyAlertVisible(), true)
     })
@@ -119,6 +139,5 @@ describe('Solicitude Edition', () => {
       assert(secondSolicitude.isEditCompanyButtonVisible(), true)
     })
   })
-
 
 })
