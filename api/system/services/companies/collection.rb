@@ -8,6 +8,8 @@ module Companies
         serialized = company.serialize()
         id = serialized["cif"]
 
+        id.upcase!
+
         company = retrieve(id)
 
         return company if company
@@ -18,6 +20,7 @@ module Companies
 
       def retrieve(id)
         id = /#{id}/i
+
         document = MongoClient.retrieve(id)
         return false if document.nil?
         company= Domain::Company.from_document(document)
