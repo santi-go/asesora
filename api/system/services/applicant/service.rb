@@ -17,6 +17,10 @@ module Applicant
       Collection.retrieve(id)
     end
 
+    def self.delete(id)
+      Collection.delete(id)
+    end
+
     def self.retrieve(id)
       result = Collection.retrieve(id)
       return result.serialize if(result != false)

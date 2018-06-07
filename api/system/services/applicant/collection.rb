@@ -13,10 +13,13 @@ module Applicant
       end
 
       def retrieve(id)
-        document = MongoClient.retrieve(id)
-
+        document = MongoClient.retrieve(id) || {}
         applicant = Domain::Applicant.from_document(document)
         applicant
+      end
+
+      def delete(id)
+        MongoClient.delete(id)
       end
 
       def all_by(criteria)
@@ -33,7 +36,7 @@ module Applicant
 
       def update(applicant, id)
         serialized = applicant.serialize()
-        
+
         document = MongoClient.update(serialized, id)
 
         return if document.nil?
@@ -54,6 +57,10 @@ module Applicant
         def retrieve(id)
           documents = client[:applicant].find({"id": id})
           documents.first
+        end
+
+        def delete(id)
+          client[:applicant].find_one_and_delete({"id": id})
         end
 
         def all_by(criteria)

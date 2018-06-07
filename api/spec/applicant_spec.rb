@@ -4,6 +4,7 @@ require 'json'
 require 'rack/test'
 require 'date'
 
+require_relative '../system/services/applicant/service'
 require_relative './fixtures/fixtures'
 
 describe 'Solicitude Applicant' do
@@ -74,11 +75,11 @@ context 'of the applicant' do
           'applicantId': "",
           'companyCif': ""
           }.to_json
-        
+
         post_create_solicitude(first_body)
         response = JSON.parse(last_response.body)
         applicant_id = response['applicant']
-        
+
         second_body = {
           'applicantName': Fixtures::APPLICANT_NAME,
           'applicantSurname': Fixtures::APPLICANT_SURNAME,
@@ -90,8 +91,30 @@ context 'of the applicant' do
         post '/api/update-applicant', second_body
         response = JSON.parse(last_response.body)
         applicant_phone = response['phonenumber']
-        
+
         expect(applicant_phone).to eq(Fixtures::APPLICANT_PHONENUMBER_2)
+    end
+
+    it 'deletes applicant' do
+      solicitude = {
+        'date': Fixtures::DATE,
+        'applicantName': Fixtures::APPLICANT_NAME,
+        'applicantSurname': Fixtures::APPLICANT_SURNAME,
+        'applicantEmail': Fixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'applicantId': "",
+        'companyCif': ""
+        }.to_json
+      post_create_solicitude(solicitude)
+      response = JSON.parse(last_response.body)
+      applicant_id = response['applicant']
+
+      before_delete = Applicant::Service.retrieve(applicant_id)
+      delete_applicant(applicant_id)
+      after_delete = Applicant::Service.retrieve(applicant_id)
+
+      expect(before_delete).not_to eq(after_delete)
     end
   end
 
@@ -99,5 +122,9 @@ context 'of the applicant' do
 
   def post_create_solicitude(body_created)
     post '/api/create-solicitude', body_created
+  end
+
+  def delete_applicant(applicant_id)
+      Applicant::Service.delete(applicant_id)
   end
 end
