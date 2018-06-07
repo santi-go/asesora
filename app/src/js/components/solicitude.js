@@ -348,8 +348,6 @@ export default class Solicitude extends Component {
     this.setButtonStatus()
   }
 
-
-
   isNameEmpty(){
     return this.data.values.companyName === ""
   }
@@ -423,7 +421,7 @@ export default class Solicitude extends Component {
     runValidations(){
       this.validEmail = this.validateEmail()
       this.validPhonenumber = this.validatePhonenumber()
-
+      
       this.validateContact()
     }
 
@@ -444,11 +442,19 @@ export default class Solicitude extends Component {
     setValidEmail(event){
       this.validEmail = event.detail.valid
       this.validateContact()
+      this.data.isValidEmail = this.validateEmail()
+      if (this.data.values.applicantEmail == "") {
+        this.data.isValidEmail = true
+      }
     }
 
     setValidPhone(event){
       this.validPhonenumber = event.detail.valid
       this.validateContact()
+      this.data.isValidPhone = this.validatePhonenumber()
+      if (this.data.values.applicantPhonenumber == "") {
+        this.data.isValidPhone = true
+      }
     }
 
     changedApplicantField(){
@@ -512,6 +518,8 @@ export default class Solicitude extends Component {
         "editiondiscard" : "xxxxxxxxxx",
         "editionsubmit" : "xxxxxx",
         "editionsubmitting" : "xxxxxx",
+        "errorPhone": "xxxxxxxx",
+        "errorEmail": "xxxxxxx",
         "sent" : "XXXX"},
         values: { "text": "",
         "date": "",
@@ -538,7 +546,9 @@ export default class Solicitude extends Component {
       editionmode: false,
       editCompany: false,
       saveCompany: false,
-      disabledTextAndDate:false,
+      disabledTextAndDate: false,
+      isValidPhone: true,
+      isValidEmail: true,
       translate:function(key,value) {
         this.labels[key] = value
       },

@@ -7,8 +7,15 @@
             v-on:focus="onFocus"
             v-on:keydown="keydown"
             v-on:keyup="onKeyup"
+            v-on:blur="onKeyup"
             v-model="values.applicantPhonenumber"
             >
+    <div id="contact-phone" v-if="!isValidPhone">
+      <div class="alert background-danger">
+        <em class="fa fa-times-circle"></em>
+        {{ labels.errorPhone }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,7 +23,7 @@
 export default {
   name: 'asesora-applicant-phone',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'isValidPhone'],
   data: { function () {
       commandKey: false
     }

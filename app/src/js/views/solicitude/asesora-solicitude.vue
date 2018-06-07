@@ -4,6 +4,8 @@
                        :labels="labels"
                        :is-valid-contact="isValidContact"
                        :suggested-applicants='suggestedApplicants'
+                       :is-valid-phone="isValidPhone"
+                       :is-valid-email='isValidEmail'
                        ></asesora-applicant>
 
     <div  class="card large-card" >
@@ -70,7 +72,7 @@ export default {
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
-          'disabledTextAndDate', 'saveCompany'],
+          'disabledTextAndDate', 'saveCompany', 'isValidPhone', 'isValidEmail'],
 
   components: {
     "asesora-date" : DateView,

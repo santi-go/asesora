@@ -60,6 +60,8 @@ module Translation
                 "editingCompany": "Las modificaciones que introduzcas afectarán a todos los casos asociados a esta empresa",
                 "alertBackgroundDanger": "Lo sentimos, ha habido un error",
                 "suggestions": "Sugerencias",
+                "errorPhone": "El teléfono es inválido",
+                "errorEmail": "El email es inválido",
                 "sent": "Todo Ok! Enviado!"
               },
 
