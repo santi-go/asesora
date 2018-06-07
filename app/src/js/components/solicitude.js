@@ -374,7 +374,7 @@ export default class Solicitude extends Component {
     }
 
     gotCnaeCatalog(payload) {
-      this.data.cnaeCatalog = payload
+      this.data.cnaeCatalog = payload.data
     }
 
     discardAnimation(){
