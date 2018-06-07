@@ -24,6 +24,10 @@ module Companies
         company
       end
 
+      def delete(id)
+        MongoClient.delete(id)
+      end
+
       def all(criteria)
         return [] if criteria[:name].length < 3
 
@@ -66,6 +70,10 @@ module Companies
           def retrieve(id)
             documents = client[:companies].find({"cif": id})
             documents.first
+          end
+
+          def delete(id)
+            client[:companies].find_one_and_delete({"cif": id})
           end
 
           def all(regex)

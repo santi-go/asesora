@@ -19,6 +19,10 @@ module Companies
       return {}
     end
 
+    def self.delete(id)
+      Collection.delete(id)
+    end
+
     def self.all(criteria)
       companies = Collection.all(criteria)
       companies.map do |company|
