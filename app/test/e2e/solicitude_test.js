@@ -53,7 +53,7 @@ describe('Solicitude', () => {
     expect(solicitude.isSubmitEnabled()).to.eq(false)
   })
 
-  it("hides date info when is not needed", () => {
+  it("hides date alert when is not needed", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
     solicitude.fill().date()
@@ -62,17 +62,15 @@ describe('Solicitude', () => {
     expect(solicitude.isDateInfoHiden()).to.eq(true)
   })
 
-  it("knows when the date is invalid", () => {
+  it("knows when the date is incomplete", () => {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
-    solicitude.fill().date()
-    assert(solicitude.isDateInfoHiden(), true)
-    solicitude.lostFocus()
-
     solicitude.fill().wrongDate()
-    solicitude.lostFocus()
 
     expect(solicitude.isDateInfoHiden()).to.eq(false)
+
+    solicitude.lostFocus()
+
   })
 
   it("can be created with phone number and email", () => {
@@ -127,10 +125,16 @@ describe('Solicitude', () => {
   it ("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
     solicitude.acceptAlert()
+
+
+    const invalidCnaeID = "99999"
+    solicitude.fill().CNAE(invalidCnaeID)
+    solicitude.lostFocus()
+    assert.equal(solicitude.CNAEIDisValid(invalidCnaeID), false, "cnae id is invalid")
+
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
     solicitude.lostFocus()
-
     assert(solicitude.CNAEIDisValid(cnaeID), true)
 
     let CNAELongFormat = solicitude.CNAELongFormat(cnaeID)

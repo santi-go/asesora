@@ -10,9 +10,8 @@ export default class Solicitude extends Component {
     super('solicitude')
     this.validationCif = ValidationCif
     this.client = APIClient
-    this.validEmail = false
-    this.validPhonenumber = false
     this.initialValues = this.data.cloneValues()
+    this.validateContact()
     this.load()
   }
 
@@ -49,6 +48,14 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'check.submittable',
       this.setButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.email',
+      this.runValidations.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.phone',
+      this.runValidations.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.email',
@@ -124,6 +131,7 @@ export default class Solicitude extends Component {
       this.data.editCompany = false
     } else {
       this.data.editionmode = true
+      this.data.isValidContact = true
       this.data.editCompany = true
       Bus.publish('get.solicitude', {id: id})
     }
@@ -372,7 +380,7 @@ export default class Solicitude extends Component {
     }
 
     gotCnaeCatalog(payload) {
-      this.data.cnaeCatalog = payload
+      this.data.cnaeCatalog = payload.data
     }
 
     discardAnimation(){
@@ -410,12 +418,19 @@ export default class Solicitude extends Component {
     }
 
     isValidContact(){
-      return this.validateEmail() || this.validatePhonenumber()
+      return this.data.isValidContact
       }
 
     validateContact(){
-      this.data.isValidContact = this.validEmail || this.validPhonenumber
-      this.setButtonStatus()
+      const email = this.data.values.applicantEmail
+      const phone = this.data.values.applicantPhonenumber
+      this.data.isValidContact = this.validEmail && this.validPhonenumber
+      if (this.validEmail && phone == "") {
+        this.data.isValidContact = true
+      }
+      if (this.validPhonenumber && email == "") {
+        this.data.isValidContact = true
+      }
     }
 
     runValidations(){
@@ -423,6 +438,7 @@ export default class Solicitude extends Component {
       this.validPhonenumber = this.validatePhonenumber()
       
       this.validateContact()
+      this.setButtonStatus()
     }
 
     validateEmail(){
@@ -458,7 +474,7 @@ export default class Solicitude extends Component {
     }
 
     changedApplicantField(){
-      this.setButtonStatus()
+      this.runValidations()
       this.searchForApplicants()
     }
 

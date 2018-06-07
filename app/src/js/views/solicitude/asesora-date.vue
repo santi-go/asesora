@@ -38,17 +38,8 @@ export default {
     margin-bottom: 1.5rem;
     outline: none;
   }
-  input:invalid {
-      border: 1px solid var(--error-color);
-  }
   input:focus {
       border: 1px solid var(--main-color);
   }
-  .editionmode::after {
-    content: '*';
-    font-size: 32px;
-    color: var(--error-color);
-    position: relative;
-    top: 6px;
-  }
+
 </style>

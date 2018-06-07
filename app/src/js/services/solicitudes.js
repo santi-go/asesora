@@ -23,18 +23,12 @@ export default class Solicitudes {
   }
 
   retrieveCnae() {
-    let callback = this.store()
+    let callback = this.buildCallback('got.cnae-catalog')
     let body = {}
     let url = 'cnae'
     this.client.hit(url, body, callback)
   }
 
-  store() {
-    return function(response) {
-      this.cnaeCatalog = response.data
-      Bus.publish("got.cnae-catalog", this.cnaeCatalog)
-    }
-  }
   updateCompany(payload){
     let callback = this.buildCallback('updated.company')
     let body = payload

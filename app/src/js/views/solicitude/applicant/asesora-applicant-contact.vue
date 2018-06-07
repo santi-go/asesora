@@ -1,7 +1,7 @@
  <template>
   <div>
     <asesora-applicant-phone :values="values"
-                   :labels="labels" :is-valid-phone="isValidPhone" :is-valid-email="isValidEmail"
+                   :labels="labels" :is-valid-phone="isValidPhone"
                    ></asesora-applicant-phone>
     <asesora-applicant-email :values="values"
                    :labels="labels" :is-valid-email="isValidEmail"
@@ -22,11 +22,22 @@ import PhoneView from './asesora-applicant-phone'
 export default {
   name: 'asesora-applicant-contact',
 
-  props: ['labels', 'values', 'isValidContact', 'isValidPhone', 'isValidEmail'],
+  props: ['labels', 'values', 'editionmode', 'isValidContact', 'isValidPhone', 'isValidEmail'],
 
   components: {
     "asesora-applicant-email" : EmailView,
     "asesora-applicant-phone" : PhoneView
+  },
+
+  methods: {
+    showMessage() {
+      let emailLength = this.values.applicantEmail.length
+      let phoneLength = this.values.applicantPhonenumber.length
+      if ( (emailLength == 0) && (phoneLength == 0) ){
+        return false
+      }
+      return !this.isValidContact
+    }
   }
 }
 </script>

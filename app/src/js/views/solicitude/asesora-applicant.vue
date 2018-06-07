@@ -1,6 +1,8 @@
 <template>
   <div  class="card large-card" >
-    <h3>{{ labels.applicant }}</h3>
+    <div class="card-title">
+      <h3>{{ labels.applicant }}</h3>
+    </div>
     <div class="row grid-responsive">
       <div class="column column-50">
         <div>
@@ -23,6 +25,7 @@
         </div>
 
         <asesora-applicant-contact :values="values"
+                                   :editionmode="editionmode"
                                    :labels="labels"
                                    :is-valid-contact="isValidContact"
                                    :is-valid-phone="isValidPhone"
@@ -47,7 +50,7 @@ import ApplicantMatchesView from './applicant/asesora-applicant-matches'
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'isValidContact', 'suggestedApplicants', 'isValidPhone', 'isValidEmail'],
+  props: ['labels', 'values', 'editionmode', 'isValidContact', 'suggestedApplicants', 'isValidPhone', 'isValidEmail'],
 
   components: {
     "asesora-applicant-contact" : ApplicantContactView,
