@@ -40,6 +40,7 @@
                     ></asesora-button>
     <template v-if="editionmode">
       <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
+      <asesora-button-delete :labels="labels" :solicitude-id="values.creation_moment"></asesora-button-delete>
     </template>
     </div>
 
@@ -66,6 +67,7 @@ import TextView from './asesora-text'
 import CompanyView from './asesora-company'
 import ButtonView from './asesora-button'
 import ButtonDiscardView from './asesora-button-discard'
+import ButtonDeleteView from './asesora-button-solicitude-delete'
 
 export default {
   name: 'asesora-solicitude',
@@ -81,7 +83,8 @@ export default {
     "asesora-text" : TextView,
     "asesora-company" : CompanyView,
     "asesora-button" : ButtonView,
-    "asesora-button-discard" : ButtonDiscardView
+    "asesora-button-discard" : ButtonDiscardView,
+    "asesora-button-delete" : ButtonDeleteView
   },
 
   watch: {

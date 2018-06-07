@@ -10,6 +10,16 @@ describe('Solicitude', () => {
     fixtures.clean()
   })
 
+  it("didn't have delete button", function () {
+    const solicitude = new Solicitude()
+    solicitude.fill()
+      .applicantPhonenumber()
+      .description()
+    solicitude.lostFocus()
+
+    expect(solicitude.isDeleteSolicitudeButtonVisible()).to.eq(false)
+  })
+
   describe("can be created",() => {
     it("with phone and description", () => {
       const solicitude = new Solicitude()
@@ -36,6 +46,7 @@ describe('Solicitude', () => {
 
   it("can not be created without phone or email", () => {
     const solicitude = new Solicitude()
+    solicitude.acceptAlert()
     solicitude.fill()
               .description()
     solicitude.lostFocus()
@@ -208,4 +219,6 @@ describe('Solicitude', () => {
     thirdSolicitude.fill().CNAE("931").lostFocus()
     expect(thirdSolicitude.numberOfCompanyMatches()).to.eq(1)
   })
+
+
 })

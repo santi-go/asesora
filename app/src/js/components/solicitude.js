@@ -109,6 +109,10 @@ export default class Solicitude extends Component {
       'changed.company.cif',
       this.changedCompanyCif.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.delete.solicitude',
+      this.deleteSolicitude.bind(this)
+    )
 
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -208,6 +212,13 @@ export default class Solicitude extends Component {
     this.data.isValidCompanyIdentity = true
     this.data.isValidCif = true
     this.data.suggestedCompanies = []
+  }
+
+  deleteSolicitude(payload){
+    if (!confirm("¿Estás seguro/a de que quieres eliminar esta solicitud?")){
+      return
+    }
+    Bus.publish('delete.solicitude', payload.detail.solicitudeId)
   }
 
   gotCompanyCount(count){
@@ -436,7 +447,7 @@ export default class Solicitude extends Component {
     runValidations(){
       this.validEmail = this.validateEmail()
       this.validPhonenumber = this.validatePhonenumber()
-      
+
       this.validateContact()
       this.setButtonStatus()
     }
@@ -534,9 +545,11 @@ export default class Solicitude extends Component {
         "editiondiscard" : "xxxxxxxxxx",
         "editionsubmit" : "xxxxxx",
         "editionsubmitting" : "xxxxxx",
+        "deleteSolicitude" : "XXXXX",
         "errorPhone": "xxxxxxxx",
         "errorEmail": "xxxxxxx",
-        "sent" : "XXXX"},
+        "sent": "XXXX"
+      },
         values: { "text": "",
         "date": "",
         "applicantName": "",

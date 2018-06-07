@@ -20,12 +20,27 @@ export default class Solicitudes {
     Bus.subscribe("get.applicant.matches", this.getSuggestedApplicants.bind(this))
     Bus.subscribe("update.company", this.updateCompany.bind(this))
     Bus.subscribe("get.company.count", this.getCompanyCount.bind(this))
+    Bus.subscribe("delete.solicitude", this.deleteSolicitude.bind(this))
   }
 
   retrieveCnae() {
     let callback = this.buildCallback('got.cnae-catalog')
     let body = {}
     let url = 'cnae'
+    this.client.hit(url, body, callback)
+  }
+
+  store() {
+    return function(response) {
+      this.cnaeCatalog = response.data
+      Bus.publish("got.cnae-catalog", this.cnaeCatalog)
+    }
+  }
+
+  deleteSolicitude(payload){
+    let callback = this.buildCallback('deleted.solicitude')
+    let body = payload
+    let url = 'delete-solicitude'
     this.client.hit(url, body, callback)
   }
 

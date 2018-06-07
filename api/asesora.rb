@@ -176,6 +176,10 @@ class Asesora < Sinatra::Base
     times.to_json
   end
 
+  post '/api/delete-solicitude' do
+    200
+  end
+
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
