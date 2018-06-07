@@ -11,8 +11,12 @@ module Solicitudes
 
     def self.retrieve(id)
       solicitude = Collection.retrieve(id)
-
+      return {} if solicitude == nil
       solicitude.serialize
+    end
+
+    def self.delete(id)
+      Collection.delete(id)
     end
 
     def self.update(date, text, applicant, company, creation_moment)

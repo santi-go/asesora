@@ -14,6 +14,40 @@ describe 'Solicitude Api' do
     Fixtures
   end
 
+  context 'delete solicitude' do
+    it 'endpoint deletes solicitude' do
+      solicitude = create_solicitude()
+      id = {id: solicitude['creation_moment']}.to_json
+
+      post_delete_solicitude(id)
+
+      expect_solicitude_deleted(id)
+      end
+
+    def create_solicitude
+      body = {
+        'applicantName': Fixtures::APPLICANT_NAME,
+        'applicantSurname': Fixtures::APPLICANT_SURNAME,
+        'applicantEmail': Fixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        'companyCif': ""
+      }.to_json
+
+      post_create_solicitude(body)
+      created_solicitude = JSON.parse(last_response.body)
+      created_solicitude
+    end
+
+    def expect_solicitude_deleted(id)
+      post '/api/retrieve-solicitude', id
+      solicitude = JSON.parse(last_response.body)
+      expect(solicitude['data']).to eq({})
+    end
+  end
+
   context 'create solicitude' do
 
     before(:each) do
@@ -332,6 +366,10 @@ end
 
   def post_create_solicitude(body_created)
     post '/api/create-solicitude', body_created
+  end
+
+  def post_delete_solicitude(id)
+    post '/api/delete-solicitude', id
   end
 
   def retrieve_date(information)
