@@ -23,10 +23,7 @@ module Companies
     end
 
     def self.all(criteria)
-      companies = Collection.all(criteria)
-      companies.map do |company|
-        company.serialize
-      end
+      Collection.all(criteria).serialize
     end
 
     def self.all_by(criteria)

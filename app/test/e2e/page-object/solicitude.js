@@ -146,6 +146,12 @@ class Solicitude{
     data.click()
   }
 
+  clickOnDeleteSolicitude(){
+    const data = $('#delete-solicitude')
+    data.click()
+    return this
+  }
+
   clickOnEditCompany(){
     const data = $('#edit-company')
     data.click()

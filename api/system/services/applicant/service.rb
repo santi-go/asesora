@@ -28,10 +28,7 @@ module Applicant
     end
 
     def self.all_by(criteria)
-      applicants = Collection.all_by(criteria)
-      applicants.map do |applicant|
-        applicant.serialize
-      end
+      Collection.all_by(criteria).serialize
     end
 
     def self.update(name, surname, email, phonenumber, id)

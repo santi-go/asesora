@@ -1,4 +1,3 @@
-
 module Domain
   class Company
     def self.from_document(document)

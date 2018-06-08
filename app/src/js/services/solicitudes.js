@@ -39,7 +39,7 @@ export default class Solicitudes {
 
   deleteSolicitude(payload){
     let callback = this.buildCallback('deleted.solicitude')
-    let body = payload
+    let body = {id: payload}
     let url = 'delete-solicitude'
     this.client.hit(url, body, callback)
   }

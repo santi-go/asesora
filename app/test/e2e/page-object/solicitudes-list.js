@@ -55,6 +55,14 @@ class SolicitudesList{
     return false
   }
 
+  numberOfSolicitudes(){
+    browser.waitForVisible('#solicitudes-list', 2000)
+    const data = $('#solicitudes-list tbody')
+    const companyNames =  data.$$(`tr td:nth-child(${COMPANY_NAME_COLUMN})`)
+
+    return companyNames.length
+  }
+
   clickOnListItem(){
     browser.waitForVisible('#solicitudes-list', 2000)
     const data = $('#solicitudes-list tbody')
