@@ -14,12 +14,12 @@
 export default {
   name: 'asesora-button',
 
-  props: ['labels', 'solicitudeId'],
+  props: ['labels', 'values'],
 
   methods: {
     submit(){
       let signal = new CustomEvent('clicked.delete.solicitude',
-                                  {'detail': {'solicitudeId': this.solicitudeId },
+                                  {'detail': {'solicitudeId': this.values.creation_moment },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     }

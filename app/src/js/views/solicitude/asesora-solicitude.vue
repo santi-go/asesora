@@ -40,7 +40,7 @@
                     ></asesora-button>
     <template v-if="editionmode">
       <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
-      <asesora-button-delete :labels="labels" :solicitude-id="values.creation_moment"></asesora-button-delete>
+      <asesora-button-delete :labels="labels" :values="values"></asesora-button-delete>
     </template>
     </div>
 
