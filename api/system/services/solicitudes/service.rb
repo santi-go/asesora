@@ -34,5 +34,13 @@ module Solicitudes
     def self.all
       Collection.all.serialize
     end
+
+    def self.all_by(criteria)
+      solicitudes = Collection.all_by(criteria)
+      solicitudes.map do |solicitude|
+        solicitude.serialize
+      end
+    end
+
   end
 end

@@ -14,17 +14,72 @@ describe 'Solicitude Api' do
     Fixtures
   end
 
-  context 'delete solicitude' do
-    it 'endpoint deletes solicitude' do
-      solicitude = create_solicitude()
+  after(:each) do
+    post 'fixtures/clean'
+  end
+
+  context 'delete solicitude by endpoint' do
+    it 'deletes solicitude' do
+      solicitude = create_solicitude_one()
       id = {id: solicitude['creation_moment']}.to_json
 
       post_delete_solicitude(id)
 
       expect_solicitude_deleted(id)
+    end
+
+    context 'when it leaves orphans' do
+      it 'deletes the applicant' do
+        solicitude = create_solicitude_one()
+        id = {id: solicitude['creation_moment']}.to_json
+        applicant_id = solicitude['applicant']
+
+        post_delete_solicitude(id)
+        applicant = Applicant::Service.retrieve(applicant_id)
+
+        expect(applicant['id']).to be_nil
       end
 
-    def create_solicitude
+      it 'deletes the company' do
+        solicitude = create_solicitude_one()
+        id = {id: solicitude['creation_moment']}.to_json
+        company_id = solicitude['company']
+
+        post_delete_solicitude(id)
+        company = Companies::Service.retrieve(company_id)
+
+        expect(company['cif']).to be_nil
+      end
+    end
+
+    context 'when not leaves orphans' , :wip do
+      it 'not deletes the applicant' do
+        solicitude = create_solicitude_one()
+        id = {id: solicitude['creation_moment']}.to_json
+        applicant_id = solicitude['applicant']
+        solicitude_two = create_solicitude_two(applicant_id)
+
+        post_delete_solicitude(id)
+        applicant = Applicant::Service.retrieve(applicant_id)
+
+        expect(applicant['id']).not_to be_nil
+      end
+
+      it 'not deletes the company' do
+        solicitude = create_solicitude_one()
+        id = {id: solicitude['creation_moment']}.to_json
+        company_id = solicitude['company']
+        applicant_id = solicitude['applicant']
+        solicitude_two = create_solicitude_two(applicant_id)
+
+        post_delete_solicitude(id)
+        company = Companies::Service.retrieve(company_id)
+
+        expect(company['cif']).not_to be_nil
+      end
+    end
+
+    def create_solicitude_one
       body = {
         'applicantName': Fixtures::APPLICANT_NAME,
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
@@ -33,7 +88,26 @@ describe 'Solicitude Api' do
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': "",
-        'companyCif': ""
+        "companyName": Fixtures::COMPANY_NAME,
+        "companyCif": Fixtures::COMPANY_CIF
+      }.to_json
+
+      post_create_solicitude(body)
+      created_solicitude = JSON.parse(last_response.body)
+      created_solicitude
+    end
+
+    def create_solicitude_two(applicant_id)
+      body = {
+        'applicantName': Fixtures::APPLICANT_NAME,
+        'applicantSurname': Fixtures::APPLICANT_SURNAME,
+        'applicantEmail': Fixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'text': Fixtures::TEXT_2,
+        'date': "",
+        'applicantId': applicant_id,
+        "companyName": Fixtures::COMPANY_NAME,
+        "companyCif": Fixtures::COMPANY_CIF
       }.to_json
 
       post_create_solicitude(body)

@@ -50,6 +50,18 @@ module Companies
         companies
       end
 
+      def all_by(criteria)
+        minimun_length = 3
+        list = criteria.select{ |field, value| value.length >= minimun_length }
+
+        result = MongoClient.all_by(list)
+
+        companies = result.map do |company|
+          Domain::Company.from_document(company)
+        end
+        companies
+      end
+
       def update(cif, company)
         serialized = company.serialize()
 
@@ -82,6 +94,16 @@ module Companies
           def all(regex)
             documents = client[:companies].find({"name":{ "$regex": regex}})
             documents
+          end
+
+          def all_by(criteria)
+            list = {}
+            criteria.each do |key, value|
+              regex = /#{value}/i
+              chain = { key => {"$regex": regex}}
+              list.merge!(chain)
+            end
+            documents = client[:companies].find(list)
           end
 
           def update(cif, company)

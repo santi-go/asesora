@@ -42,6 +42,18 @@ module Solicitudes
         Domain::ListSolicitudes.from_document(solicitudes)
       end
 
+      def all_by(criteria)
+        minimun_length = 3
+        list = criteria.select{ |field, value| value.length >= minimun_length }
+
+        result = MongoClient.all_by(list)
+
+        solicitudes = result.map do |solicitude|
+          Domain::Solicitude.from_document(solicitude)
+        end
+        solicitudes
+      end
+
       def times_company(cif)
         MongoClient.times_company(cif)
       end
@@ -73,6 +85,16 @@ module Solicitudes
 
           def all
             client[:solicitudes].find().sort({"date": DESCENDENT, "creation_moment": DESCENDENT})
+          end
+
+          def all_by(criteria)
+            list = {}
+            criteria.each do |key, value|
+              regex = /#{value}/i
+              chain = { key => {"$regex": regex}}
+              list.merge!(chain)
+            end
+            documents = client[:solicitudes].find(list)
           end
 
           def times_company(cif)

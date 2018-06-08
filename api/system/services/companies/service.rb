@@ -29,6 +29,13 @@ module Companies
       end
     end
 
+    def self.all_by(criteria)
+      companies = Collection.all_by(criteria)
+      companies.map do |company|
+        company.serialize
+      end
+    end
+
     def self.update(name, cif, employees, cnae)
       cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
