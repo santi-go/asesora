@@ -1,4 +1,5 @@
 require_relative '../../domain/applicant'
+require_relative '../../domain/list'
 
 require 'mongo'
 
@@ -23,12 +24,9 @@ module Applicant
         minimun_length = 3
         list = criteria.select{ |field, value| value.length >= minimun_length }
 
-        result = MongoClient.all_by(list)
+        applicants = MongoClient.all_by(list)
 
-        applicants = result.map do |applicant|
-          Domain::Applicant.from_document(applicant)
-        end
-        applicants
+        Domain::List.from_document(applicants, Domain::Applicant)
       end
 
       def update(applicant, id)

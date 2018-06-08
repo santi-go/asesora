@@ -1,4 +1,5 @@
 require_relative '../../domain/company'
+require_relative '../../domain/list'
 require 'mongo'
 
 module Companies
@@ -40,10 +41,7 @@ module Companies
           list = list.select{|company| company["cnae"].include?(cnae)}
         end
 
-        companies = list.map do |company|
-          Domain::Company.from_document(company)
-        end
-        companies
+        Domain::List.from_document(list, Domain::Company)
       end
 
       def update(cif, company)
