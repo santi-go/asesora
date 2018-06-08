@@ -19,6 +19,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
     Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
+    Bus.subscribe("deleted.solicitude", this.deletedSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
@@ -218,6 +219,7 @@ export default class Solicitude extends Component {
     if (!confirm("¿Estás seguro/a de que quieres eliminar esta solicitud?")){
       return
     }
+
     Bus.publish('delete.solicitude', payload.detail.solicitudeId)
   }
 
@@ -235,6 +237,12 @@ export default class Solicitude extends Component {
       this.data.fullfilled = true
     }
   }
+
+  deletedSolicitude(response){
+    window.alert("Solicitud eliminada")
+    window.location = "/solicitudes-list.html"
+  }
+
   updatedCompany(){
     this.data.editCompany = true
   }
