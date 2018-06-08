@@ -239,7 +239,6 @@ export default class Solicitude extends Component {
   }
 
   deletedSolicitude(response){
-    window.alert("Solicitud eliminada")
     window.location = "/solicitudes-list.html"
   }
 
