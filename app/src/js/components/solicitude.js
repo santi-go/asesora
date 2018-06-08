@@ -238,8 +238,12 @@ export default class Solicitude extends Component {
     }
   }
 
-  deletedSolicitude(response){
-    window.location = "/solicitudes-list.html"
+  deletedSolicitude(){
+    let element = document.querySelector('#solicitude')
+    element.classList.add('discardCard')
+    window.setTimeout(function(){
+      window.location = "/solicitudes-list.html"
+    }, 1250)
   }
 
   updatedCompany(){

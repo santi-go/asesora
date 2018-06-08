@@ -53,22 +53,20 @@ export default {
     },
 
     keydown(event){
-      checkCmdCtrlKey(event)
-
-      if(!this.commandKey){
+      let cmdKeyMac = 91
+      if (event.keyCode == cmdKeyMac){
+        this.commandKey = true
+      }
+      if(!event.ctrlKey && this.commandKey != true){
         if (!this.isValidKeyCode(event.keyCode)){
           event.preventDefault()
         }
       }
-      checkCmdCtrlKey(event)
+      if (event.keyCode != cmdKeyMac){
+        this.commandKey = false
+      }
     },
 
-    checkCmdCtrlKey(event){
-      let cmdKeyMac = 91
-      let ctrlKey = 17
-      let ctrlKeys = [cmdKeyMac, ctrlKey]
-      this.commandKey = ctrlKeys.includes(event.keyCode)
-    },
 
     isArrowKeyCode(keycode){
       let isInitKey = (keycode == 36)
