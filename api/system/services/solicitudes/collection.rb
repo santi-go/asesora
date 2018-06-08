@@ -1,5 +1,5 @@
 require_relative '../../domain/solicitude'
-require_relative '../../domain/list_solicitudes'
+require_relative '../../domain/list'
 
 require 'mongo'
 
@@ -39,7 +39,7 @@ module Solicitudes
       def all
         solicitudes = MongoClient.all
 
-        Domain::ListSolicitudes.from_document(solicitudes)
+        Domain::List.from_document(solicitudes, Domain::Solicitude)
       end
 
       def times_company(cif)
