@@ -18,8 +18,19 @@ module Companies
       return {}
     end
 
+    def self.delete(id)
+      Collection.delete(id)
+    end
+
     def self.all(criteria)
       Collection.all(criteria).serialize
+    end
+
+    def self.all_by(criteria)
+      companies = Collection.all_by(criteria)
+      companies.map do |company|
+        company.serialize
+      end
     end
 
     def self.update(name, cif, employees, cnae)

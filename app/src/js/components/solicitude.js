@@ -355,6 +355,7 @@ export default class Solicitude extends Component {
 
     this.data.isValidCif = true
     this.data.isValidCompanyIdentity = true
+    this.data.submittable = true
   }
 
   fillApplicant(item){
