@@ -20,12 +20,9 @@ module Companies
       end
 
       def retrieve(id)
-        id = /#{id}/i
-
         document = MongoClient.retrieve(id)
         return false if document.nil?
-        company= Domain::Company.from_document(document)
-        company
+        Domain::Company.from_document(document)
       end
 
       def delete(id)

@@ -11,11 +11,9 @@ module Companies
     end
 
     def self.retrieve(id)
-      return self.create_empty() if id == ""
-      result = Collection.retrieve(id)
-
-      return result.serialize if(result != false)
-      return {}
+      retrieved = Collection.retrieve(id)
+      return {} if (retrieved == false)
+      retrieved.serialize
     end
 
     def self.delete(id)
