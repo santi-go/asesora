@@ -7,9 +7,9 @@
 
     <template v-if="editionmode && !editCompany">
       <div class="button-inline">
-        <button id="add-value"
+        <button id="add-name-value"
                 type="button"
-                name="add-value"
+                name="add-name-value"
                 class="submitbutton"
                 v-on:click="addValueName()">
         {{ labels.addValue }}</button>

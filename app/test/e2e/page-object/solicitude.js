@@ -124,6 +124,14 @@ class Solicitude{
     return browser.isVisible('#edit-company')
   }
 
+  isAddEmployeesValueButtonVisible(){
+    return browser.isVisible('#add-employees-value')
+  }
+
+  isAddNameValueButtonVisible(){
+    return browser.isVisible('#add-name-value')  
+  }
+
   isDeleteSolicitudeButtonVisible(){
     return browser.isVisible('#delete-solicitude')
   }

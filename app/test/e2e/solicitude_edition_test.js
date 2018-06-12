@@ -138,6 +138,74 @@ describe('Solicitude Edition', () => {
 
       assert(secondSolicitude.isEditCompanyButtonVisible(), true)
     })
+
+    context('when the company is related to more than one solicitude when is modifing company', () => {
+
+      it ("shows add value button of employees", () => {
+        const firstSolicitude = new Solicitude()
+        firstSolicitude.fill()
+                  .applicantName("First")
+                  .applicantPhonenumber("555333111")
+                  .description()
+                  .companyName('Empresa 1')
+                  .companyCif('W1626268E')
+        firstSolicitude.submit()
+
+        const secondSolicitude = new Solicitude()
+        secondSolicitude.fill()
+                  .applicantName("Second")
+                  .applicantPhonenumber("111555333")
+                  .description()
+                  .companyName('Empresa corregida')
+                  .companyCif('W1626268E')
+        secondSolicitude.submit()
+
+        const solicitudesList = new SolicitudesList()
+
+        browser.waitForVisible('#solicitudes-list', 2000)
+
+        solicitudesList.clickOnListItem()
+
+        browser.waitForVisible('#solicitude', 2000)
+
+        secondSolicitude.clickOnEditCompany()
+
+
+        assert(secondSolicitude.isAddEmployeesValueButtonVisible(), true)
+      })
+
+      it ("shows add value button of name", () => {
+        const firstSolicitude = new Solicitude()
+        firstSolicitude.fill()
+                  .applicantName("First")
+                  .applicantPhonenumber("555333111")
+                  .description()
+                  .companyName('Empresa 1')
+                  .companyCif('W1626268E')
+        firstSolicitude.submit()
+
+        const secondSolicitude = new Solicitude()
+        secondSolicitude.fill()
+                  .applicantName("Second")
+                  .applicantPhonenumber("111555333")
+                  .description()
+                  .companyName('Empresa corregida')
+                  .companyCif('W1626268E')
+        secondSolicitude.submit()
+
+        const solicitudesList = new SolicitudesList()
+
+        browser.waitForVisible('#solicitudes-list', 2000)
+
+        solicitudesList.clickOnListItem()
+
+        browser.waitForVisible('#solicitude', 2000)
+
+        secondSolicitude.clickOnEditCompany()
+
+        assert(secondSolicitude.isAddNameValueButtonVisible(), true)
+      })
+    })
   })
 
 })
