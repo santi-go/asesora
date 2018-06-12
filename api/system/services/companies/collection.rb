@@ -6,9 +6,10 @@ module Companies
   class Collection
     class << self
       def create(company)
+        memento = company.memento
         serialized = company.serialize()
         id = serialized["cif"]
-
+        
         id.upcase!
 
         company = retrieve(id)
@@ -16,13 +17,18 @@ module Companies
         return company if company
 
         document = MongoClient.create(serialized)
+        MongoClient.store(memento)
         Domain::Company.from_document(document)
       end
 
-      def retrieve(id)
+      def retrieve(id, timestamp = Time.now.to_i)
+
         document = MongoClient.retrieve(id)
         return false if document.nil?
-        Domain::Company.from_document(document)
+        company = Domain::Company.from_document(document)
+        memento = MongoClient.retrieve_state_at(timestamp, company.identify)
+        company.remind(memento)
+        company
       end
 
       def delete(id)
@@ -59,11 +65,12 @@ module Companies
 
       def update(cif, company)
         serialized = company.serialize()
+        memento = company.memento
 
         document = MongoClient.update(cif, serialized)
 
         return if document.nil?
-
+        MongoClient.store(memento)
         Domain::Company.from_document(document)
       end
 
@@ -77,9 +84,21 @@ module Companies
             descriptor
           end
 
+          def store(memento)
+            client[:company_memento].insert_one(memento)
+          end
+
           def retrieve(id)
             documents = client[:companies].find({"cif": id})
             documents.first
+          end
+
+          def retrieve_state_at(timestamp, id)
+            memento = client[:company_memento]
+                            .find({"timestamp":{"$lte": timestamp}, "signature": id})
+                            .sort({"timestamp": -1})
+                            .first
+            memento
           end
 
           def delete(id)

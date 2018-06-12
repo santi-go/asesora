@@ -26,6 +26,7 @@ class Fixtures < Asesora
   COMPANY_CIF_2 = 'F7575797A'
   COMPANY_CIF_3 = 'U7053991A'
   COMPANY_EMPLOYEES = '34'
+  COMPANY_EMPLOYEES_2 = '3'
   COMPANY_CNAE = '931 - Actividades deportivas'
   COMPANY_CNAE_2 = '870 - Asistencia en establecimientos residenciales'
 
@@ -72,6 +73,7 @@ class Fixtures < Asesora
     client['solicitudes'].drop()
     client['companies'].drop()
     client['applicant'].drop()
+    client['company_memento'].drop()
   end
 
   def client
