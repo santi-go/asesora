@@ -3,6 +3,7 @@ require 'json'
 require 'rack/test'
 
 require_relative './fixtures/fixtures'
+require_relative '../system/services/companies/service'
 
 describe 'Companies' do
 
@@ -13,7 +14,11 @@ describe 'Companies' do
   end
 
   before(:each) do
-	post 'fixtures/pristine'
+	  post 'fixtures/pristine'
+  end
+
+  after(:each) do
+    post 'fixtures/clean'
   end
 
 	it 'returns a list filtered by criteria' do
@@ -78,6 +83,26 @@ describe 'Companies' do
 
 		expect(filtered_companies_list["data"].count).to be >= 2
 	end
+
+  it 'search by outdated company name return zero matches' do
+    name = 'mikel'
+    cif = Fixtures::COMPANY_CIF
+    employees = Fixtures::COMPANY_EMPLOYEES
+    cnae = Fixtures::COMPANY_CNAE
+    Companies::Service.create(name, cif, employees, cnae)
+
+    updated_name = 'raul'
+    updated_employees = Fixtures::COMPANY_EMPLOYEES_2
+    Companies::Service.update(updated_name, cif, updated_employees, cnae)
+
+    criteria = {
+      name: name,
+      cnae: ""
+    }
+    company_list = Companies::Service.all(criteria)
+
+		expect(company_list.size).to eq(0)
+  end
 
 	private
 

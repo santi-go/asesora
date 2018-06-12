@@ -52,7 +52,7 @@ describe 'Solicitude Api' do
       end
     end
 
-    context 'when not leaves orphans' , :wip do
+    context 'when not leaves orphans' do
       it 'not deletes the applicant' do
         solicitude = create_solicitude_one()
         id = {id: solicitude['creation_moment']}.to_json
