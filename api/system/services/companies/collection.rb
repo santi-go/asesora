@@ -27,7 +27,7 @@ module Companies
         return false if document.nil?
         company = Domain::Company.from_document(document)
         memento = MongoClient.retrieve_state_at(timestamp, company.identify)
-        company.remind(memento)
+        company.remind(memento) unless memento.nil?
         company
       end
 
