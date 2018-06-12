@@ -63,7 +63,8 @@ module Translation
                 "deleteSolicitude": "Eliminar solicitud",
                 "errorPhone": "El teléfono debe tener nueve números para ser válido",
                 "errorEmail": "El email no tiene un formato correcto, ejemplo: 'nombre@gmail.es'",
-                "sent": "Todo Ok! Enviado!"
+                "sent": "Todo Ok! Enviado!",
+                "addValue": "Agregar valor"
               },
 
               "solicitudes-list": {

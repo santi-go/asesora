@@ -114,7 +114,14 @@ export default class Solicitude extends Component {
       'clicked.delete.solicitude',
       this.deleteSolicitude.bind(this)
     )
-
+    document.getElementById(this.element).addEventListener(
+      'clicked.add.value.employees.to.company',
+      this.addEmployeesValueToCompany.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'clicked.add.value.name.to.company',
+      this.addNameValueToCompany.bind(this)
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -248,6 +255,14 @@ export default class Solicitude extends Component {
 
   updatedCompany(){
     this.data.editCompany = true
+  }
+
+  addEmployeesValueToCompany(){
+    console.log("Clicked on: add value employees to company ")
+  }
+
+  addNameValueToCompany(){
+    console.log("Clicked on: add value name to company ")
   }
 
   updateModel(payload) {
@@ -560,7 +575,8 @@ export default class Solicitude extends Component {
         "deleteSolicitude" : "XXXXX",
         "errorPhone": "xxxxxxxx",
         "errorEmail": "xxxxxxx",
-        "sent": "XXXX"
+        "sent": "XXXX",
+        "addValue": "xxxxx"
       },
         values: { "text": "",
         "date": "",

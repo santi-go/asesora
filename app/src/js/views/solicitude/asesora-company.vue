@@ -8,6 +8,7 @@
         <asesora-company-identity :values="values"
                                   :labels="labels"
                                   :isValidCif="isValidCif"
+                                  :editionmode="editionmode"
                                   :edit-company="editCompany"
                                   :is-valid-company-identity="isValidCompanyIdentity"
                                   ></asesora-company-identity>
@@ -15,6 +16,19 @@
                                    :labels="labels"
                                    :edit-company="editCompany"
                                    ></asesora-company-employees>
+
+
+        <template v-if="editionmode && !editCompany">
+          <div class="button-inline">
+            <button id="add-value"
+                    type="button"
+                    name="add-value"
+                    class="submitbutton"
+                    v-on:click="addValueEmployees()">
+            {{ labels.addValue }}</button>
+          </div>
+        </template>
+
         <asesora-company-cnae :values="values"
                               :labels="labels"
                               :edit-company="editCompany"
@@ -74,6 +88,17 @@ export default {
     "asesora-company-edit-button" : CompanyEditButton,
     "asesora-company-save-button" : CompanySaveButton,
     "asesora-company-discard-button" : CompanyDiscardButton
+  },
+
+  methods: {
+    addValueEmployees(){
+      let signal = new CustomEvent('clicked.add.value.employees.to.company',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
+
+    }
   }
+
 }
 </script>
