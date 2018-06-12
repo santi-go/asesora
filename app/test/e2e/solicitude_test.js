@@ -5,7 +5,12 @@ const Fixtures = require('./fixtures')
 
 
 describe('Solicitude', () => {
-  beforeEach(function(){
+  before(function(){
+    fixtures = new Fixtures()
+    fixtures.clean()
+  })
+
+  afterEach(function(){
     fixtures = new Fixtures()
     fixtures.clean()
   })

@@ -5,7 +5,12 @@ const Fixtures = require('./fixtures')
 
 
 describe('Solicitude List', () => {
-  beforeEach(() => {
+  before(() => {
+    this.fixtures = new Fixtures()
+    this.fixtures.clean()
+  })
+
+  afterEach(() => {
     this.fixtures = new Fixtures()
     this.fixtures.clean()
   })
@@ -56,14 +61,13 @@ describe('Solicitude List', () => {
 
  it ('can be populated with company name', () => {
     const solicitude = new Solicitude()
-    const solicitudeApplicantName = 'John'
     const solicitudeCompanyName = 'John Inc.'
     const solicitudeCompanyCif = '12345678Z'
 
     solicitude.fill().required()
-                     .applicantName(solicitudeApplicantName)
                      .companyName(solicitudeCompanyName)
                      .companyCif(solicitudeCompanyCif)
+                     .lostFocus()
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
@@ -83,6 +87,7 @@ describe('Solicitude List', () => {
      solicitude.submit()
 
      const solicitudesList = new SolicitudesList()
+     browser.waitForVisible('#solicitudes-list', 2000)
 
      expect(solicitudesList.withoutCompany(solicitudeDate, notCompany)).to.be.true
    })

@@ -94,14 +94,14 @@ describe('Solicitude Edition', () => {
                 .applicantName()
                 .applicantPhonenumber()
                 .description()
+                .companyName('Empresa 1')
+                .companyCif('W1626268E')
       solicitude.submit()
 
       const solicitudesList = new SolicitudesList()
-
       browser.waitForVisible('#solicitudes-list', 2000)
 
       solicitudesList.clickOnListItem()
-
       browser.waitForVisible('#solicitude', 2000)
       browser.scroll("#company-cnae")
 
