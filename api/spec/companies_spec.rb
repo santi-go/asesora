@@ -36,7 +36,7 @@ describe 'Companies' do
 		post_create_solicitude(solicitude)
 
 		body = {
-			"name": "Com",
+			"name": "Lit",
 			"cnae": "931 - Actividades deportivas"
 		}.to_json
 
@@ -53,7 +53,7 @@ describe 'Companies' do
 			"date": Fixtures::DATE,
 			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
-			"companyName": Fixtures::COMPANY_NAME,
+			"companyName": "First company",
 			"companyCif": Fixtures::COMPANY_CIF_2,
 			"companyCnae": Fixtures::COMPANY_CNAE
 		}.to_json
@@ -66,7 +66,7 @@ describe 'Companies' do
 			"date": Fixtures::DATE,
 			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
-			"companyName": Fixtures::COMPANY_NAME,
+			"companyName": "Last company",
 			"companyCif": Fixtures::COMPANY_CIF_3,
 			"companyCnae": Fixtures::COMPANY_CNAE_2
 		}.to_json
@@ -74,7 +74,7 @@ describe 'Companies' do
 		post_create_solicitude(second_solicitude)
 
 		body = {
-			"name": "Com",
+			"name": "com",
 			"cnae": ""
 		}.to_json
 
@@ -85,18 +85,18 @@ describe 'Companies' do
 	end
 
   it 'search by outdated company name return zero matches' do
-    name = 'mikel'
+    name = Fixtures::COMPANY_NAME
     cif = Fixtures::COMPANY_CIF
     employees = Fixtures::COMPANY_EMPLOYEES
     cnae = Fixtures::COMPANY_CNAE
     Companies::Service.create(name, cif, employees, cnae)
 
-    updated_name = 'raul'
+    updated_name = Fixtures::COMPANY_NAME_2
     updated_employees = Fixtures::COMPANY_EMPLOYEES_2
     Companies::Service.update(updated_name, cif, updated_employees, cnae)
 
     criteria = {
-      name: name,
+      name: Fixtures::COMPANY_NAME,
       cnae: ""
     }
     company_list = Companies::Service.all(criteria)

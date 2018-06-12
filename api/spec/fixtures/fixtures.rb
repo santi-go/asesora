@@ -18,10 +18,10 @@ class Fixtures < Asesora
   DATE = '2018-04-25'
   CREATION_MOMENT = '1234567890'
   TEXT = 'Solicitude text'
-  TEXT_2 = '2 Solicitude text'
+  TEXT_2 = 'The last mohican'
   SOLICITUDES_COUNT = 1
-  COMPANY_NAME = 'Company'
-  COMPANY_NAME_2 = 'Company2'
+  COMPANY_NAME = 'Little market'
+  COMPANY_NAME_2 = 'Bookstore inc.'
   COMPANY_CIF = 'A98005978'
   COMPANY_CIF_2 = 'F7575797A'
   COMPANY_CIF_3 = 'U7053991A'
