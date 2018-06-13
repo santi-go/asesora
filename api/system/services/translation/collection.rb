@@ -64,6 +64,8 @@ module Translation
                 "errorPhone": "El teléfono debe tener nueve números para ser válido",
                 "errorEmail": "El email no tiene un formato correcto, ejemplo: 'nombre@gmail.es'",
                 "sent": "Todo Ok! Enviado!",
+                "addedEmployeesValueMessage": "Se ha agregado información actualizada de número de empleados a la empresa",
+                "addedNameValueMessage": "Se ha agregado información actualizada del nombre de la empresa",
                 "addValue": "Agregar valor"
               },
 

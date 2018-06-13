@@ -10,6 +10,7 @@
                                   :isValidCif="isValidCif"
                                   :editionmode="editionmode"
                                   :edit-company="editCompany"
+                                  :show-updated-name-value-message='showUpdatedNameValueMessage'
                                   :is-valid-company-identity="isValidCompanyIdentity"
                                   ></asesora-company-identity>
         <asesora-company-employees :values="values"
@@ -17,6 +18,11 @@
                                    :edit-company="editCompany"
                                    ></asesora-company-employees>
 
+        <template v-if="showUpdatedEmployeesValueMessage">
+          <div id="added-employees-value-message">
+            <em>{{labels.addedEmployeesValueMessage}}</em>
+          </div>
+        </template>
 
         <template v-if="editionmode && !editCompany">
           <div class="button-inline">
@@ -78,7 +84,8 @@ export default {
   name: 'asesora-company',
 
   props: ['labels', 'values', 'isValidCif', 'cnaeCatalog', 'suggestedCompanies',
-          'isValidCompanyIdentity', 'editionmode', 'saveCompany', 'editCompany', 'disabledTextAndDate'],
+          'isValidCompanyIdentity', 'editionmode', 'saveCompany', 'editCompany',
+          'disabledTextAndDate', 'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage'],
 
   components: {
     "asesora-company-identity" : CompanyIdentityView,
@@ -93,7 +100,12 @@ export default {
   methods: {
     addValueEmployees(){
       let signal = new CustomEvent('clicked.add.value.employees.to.company',
-                                  {'detail': {},
+                                  {'detail': {
+                                    'companyName': this.values.companyName,
+                                    'companyCif': this.values.companyCif,
+                                    'companyEmployees': this.values.companyEmployees,
+                                    'companyCnae': this.values.companyCnae
+                                    },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
 

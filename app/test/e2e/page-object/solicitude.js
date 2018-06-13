@@ -129,7 +129,15 @@ class Solicitude{
   }
 
   isAddNameValueButtonVisible(){
-    return browser.isVisible('#add-name-value')  
+    return browser.isVisible('#add-name-value')
+  }
+
+  isAddedEmployeesValueVisible(){
+    return browser.isVisible('#added-employees-value-message')
+  }
+
+  isAddedNameValueVisible(){
+    return browser.isVisible('#added-name-value-message')
   }
 
   isDeleteSolicitudeButtonVisible(){
@@ -162,6 +170,18 @@ class Solicitude{
 
   clickOnEditCompany(){
     const data = $('#edit-company')
+    data.click()
+    return this
+  }
+
+  clickOnAddEmployeesValueButton(){
+    const data = $('#add-employees-value')
+    data.click()
+    return this
+  }
+
+  clickOnAddNameValueButton(){
+    const data = $('#add-name-value')
     data.click()
     return this
   }

@@ -29,6 +29,8 @@
                      :editionmode="editionmode"
                      :edit-company='editCompany'
                      :save-company='saveCompany'
+                     :show-updated-employees-value-message='showUpdatedEmployeesValueMessage'
+                     :show-updated-name-value-message='showUpdatedNameValueMessage'
                      :is-valid-company-identity="isValidCompanyIdentity"
                      ></asesora-company>
     <div  class="card large-card" >
@@ -75,7 +77,8 @@ export default {
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
-          'disabledTextAndDate', 'saveCompany', 'isValidPhone', 'isValidEmail'],
+          'disabledTextAndDate', 'saveCompany', 'isValidPhone', 'isValidEmail',
+          'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage'],
 
   components: {
     "asesora-date" : DateView,
