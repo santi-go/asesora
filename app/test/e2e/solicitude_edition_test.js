@@ -47,13 +47,16 @@ describe('Solicitude Edition', () => {
     const solicitudesList = new SolicitudesList()
     solicitudesList.clickOnListItem()
 
-    browser.waitForVisible('#solicitude', 2000)
+    solicitude.waitForSolicitude()
+    solicitude.waitForCompanyName()
 
     solicitude.fill()
               .companyName('Other Company')
               .lostFocus()
 
     solicitude.clickOnSaveCompany()
+
+    solicitude.waitForSolicitude()
 
     expect(solicitude.applicantNameValue()).to.eq(APPLICANT_NAME)
     expect(solicitude.applicantSurnameValue()).to.eq(APPLICANT_SURNAME)
@@ -77,11 +80,11 @@ describe('Solicitude Edition', () => {
 
     const solicitudesList = new SolicitudesList()
 
-    browser.waitForVisible('#solicitudes-list', 2000)
+    solicitudesList.waitForSolicitudesList()
 
     solicitudesList.clickOnListItem()
 
-    browser.waitForVisible('#solicitude', 2000)
+    solicitude.waitForSolicitude()
 
     assert(solicitude.isDeleteSolicitudeButtonVisible(), true)
   })
@@ -99,11 +102,11 @@ describe('Solicitude Edition', () => {
       solicitude.submit()
 
       const solicitudesList = new SolicitudesList()
-      browser.waitForVisible('#solicitudes-list', 2000)
+      solicitudesList.waitForSolicitudesList()
 
       solicitudesList.clickOnListItem()
-      browser.waitForVisible('#solicitude', 2000)
-      browser.scroll("#company-cnae")
+      solicitude.waitForSolicitude()
+      solicitude.waitForAlertEditCompany()
 
       assert(solicitude.isEditCompanyAlertVisible(), true)
     })
@@ -129,12 +132,10 @@ describe('Solicitude Edition', () => {
 
       const solicitudesList = new SolicitudesList()
 
-      browser.waitForVisible('#solicitudes-list', 2000)
-
+      solicitudesList.waitForSolicitudesList()
       solicitudesList.clickOnListItem()
 
-      browser.waitForVisible('#solicitude', 2000)
-
+      secondSolicitude.waitForSolicitude()
 
       assert(secondSolicitude.isEditCompanyButtonVisible(), true)
     })
@@ -161,9 +162,11 @@ describe('Solicitude Edition', () => {
                     .companyCif('W1626268E')
           secondSolicitude.submit()
           const solicitudesList = new SolicitudesList()
-          browser.waitForVisible('#solicitudes-list', 2000)
+
+          solicitudesList.waitForSolicitudesList()
           solicitudesList.clickOnListItem()
-          browser.waitForVisible('#solicitude', 2000)
+
+          secondSolicitude.waitForSolicitude()
 
           secondSolicitude.clickOnEditCompany()
           assert(secondSolicitude.isAddEmployeesValueButtonVisible(), true)

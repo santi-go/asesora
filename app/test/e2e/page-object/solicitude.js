@@ -241,10 +241,6 @@ class Solicitude{
     return input.includes(cif)
   }
 
-  wait(){
-    browser.waitForVisible('#name', 2000)
-  }
-
   applicantNameValue(){
      return $('#name').getValue()
   }
@@ -283,6 +279,27 @@ class Solicitude{
 
   textValue(){
     return $('#solicitude-text').getValue()
+  }
+
+  waitFor(field){
+    browser.waitForVisible(field, 2000)
+    browser.scroll(field)
+  }
+
+  waitForSolicitude(){
+    this.waitFor('#solicitude')
+  }
+
+  waitForAlertEditCompany(){
+    this.waitFor('#alert-edit-company')
+  }
+
+  waitForCompanyName(){
+    this.waitFor('#company-name')
+  }
+
+  waitForAddNameValue(){
+    this.waitFor('#add-name-value')
   }
 
 }
