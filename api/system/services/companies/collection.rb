@@ -22,7 +22,6 @@ module Companies
       end
 
       def retrieve(id, timestamp = Time.now.to_i)
-
         document = MongoClient.retrieve(id)
         return false if document.nil?
         company = Domain::Company.from_document(document)

@@ -6,7 +6,8 @@ module Domain
       solicitude = new(
         document['applicant'],
         document['company'],
-        document['creation_moment']
+        document['creation_moment'],
+        document['edition_moment']
       )
       solicitude.solicited_at(document['date'])
       solicitude.text = document['text']
@@ -28,10 +29,11 @@ module Domain
       
     attr_writer :text, :date
 
-    def initialize(applicant, company, creation_moment = nil)
+    def initialize(applicant, company, creation_moment = nil, edition_moment = nil)
       @applicant = applicant
       @company=company
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
+      @edition_moment = edition_moment || Time.now.to_i
     end
     private_class_method :new
 
@@ -45,6 +47,7 @@ module Domain
         "text" => @text,
         "applicant" => @applicant,
         "creation_moment" => @creation_moment,
+        "edition_moment" => @edition_moment,
         "company" => @company
       }
     end

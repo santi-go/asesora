@@ -10,8 +10,8 @@ module Companies
       Collection.create(company).serialize
     end
 
-    def self.retrieve(id)
-      retrieved = Collection.retrieve(id)
+    def self.retrieve(id, edition_moment = nil)
+      retrieved = Collection.retrieve(id, edition_moment)
       return {} if (retrieved == false)
       retrieved.serialize
     end

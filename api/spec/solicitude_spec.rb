@@ -416,28 +416,75 @@ describe 'Solicitude Api' do
 
       expect(response['text']).to eq(Fixtures::TEXT_2)
     end
+  context 'memento'
+    it 'retrieves company in latest state' do
+      first_solicitude = {
+        'applicantName': Fixtures::APPLICANT_NAME,
+        'applicantSurname': Fixtures::APPLICANT_SURNAME,
+        'applicantEmail': Fixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        'companyName': Fixtures::COMPANY_NAME,
+        'companyCif': Fixtures::COMPANY_CIF
+      }
+      first_creation_moment = create_solicitude(first_solicitude)
+
+      wait_for_new_edition_moment
+
+      second_solicitude = {
+        'applicantName': Fixtures::APPLICANT_NAME_2,
+        'applicantSurname': Fixtures::APPLICANT_SURNAME,
+        'applicantEmail': Fixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'text': Fixtures::TEXT,
+        'date': Fixtures::DATE,
+        'applicantId': "",
+        'companyName': Fixtures::COMPANY_NAME,
+        'companyCif': Fixtures::COMPANY_CIF
+      }
+      second_creation_moment = create_solicitude(second_solicitude)
+
+      same_company_with_new_data = {
+        'companyName': Fixtures::COMPANY_NAME_2,
+        'companyCif': Fixtures::COMPANY_CIF
+  		}
+      post '/api/update-company', same_company_with_new_data.to_json
+
+      update_solicitude(second_solicitude.merge('creation_moment' => second_creation_moment))
+
+      first_solicitude = retrieve_solicitude(first_creation_moment)
+      second_solicitude = retrieve_solicitude(second_creation_moment)
+
+      expect(first_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME)
+      expect(second_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME_2)
+    end
+
   end
-
-describe "Solicitude Service" do
-  it 'knows when company hasnt solicitudes' do
-    post 'fixtures/clean'
-
-    result = Solicitudes::Service.times_company("non_existing_cif")
-
-    expect(result).to eq(0)
-  end
-
-  it 'knows how many solicitudes has one company' do
-    post 'fixtures/pristine'
-
-    result = Solicitudes::Service.times_company(Fixtures::COMPANY_CIF)
-
-    expect(result).to eq(1)
-  end
-end
-
-
+  
   private
+  
+  def create_solicitude(solicitude)
+    post_create_solicitude(solicitude.to_json)
+    response = JSON.parse(last_response.body)
+    
+    response['creation_moment']
+  end
+
+  def update_solicitude(solicitude)
+    post '/api/update-solicitude', solicitude.to_json
+  end
+
+  def wait_for_new_edition_moment
+    sleep 1
+  end
+
+  def retrieve_solicitude(creation_moment)
+    post '/api/retrieve-solicitude', { 'id' => creation_moment }.to_json
+    
+    JSON.parse(last_response.body)
+  end
 
   def in_microseconds
     return '%Q'
