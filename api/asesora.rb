@@ -135,7 +135,8 @@ class Asesora < Sinatra::Base
   post '/api/delete-solicitude' do
     params = JSON.parse(request.body.read)
 
-    Actions::DeleteSolicitude.do(id: params['id'])
+    response = Actions::DeleteSolicitude.do(id: params['id'])
+    return status 500 if response == "500"
     status 200
   end
 

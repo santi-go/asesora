@@ -5,6 +5,7 @@ module Actions
   class DeleteSolicitude
     def self.do(id:)
       solicitude = ::Solicitudes::Service.retrieve(id)
+      return "500" if solicitude == {}
       applicant_id =  solicitude['applicant']
       delete_applicant_orphans(applicant_id)
       company_id =  solicitude['company']
