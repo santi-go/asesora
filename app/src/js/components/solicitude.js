@@ -172,6 +172,8 @@ export default class Solicitude extends Component {
   }
 
   enableCompanyFields(){
+    this.data.showUpdatedEmployeesValueMessage =  false
+    this.data.showUpdatedNameValueMessage =  false
     this.data.editCompany = false
     this.data.disabledTextAndDate = true
   }
@@ -200,6 +202,15 @@ export default class Solicitude extends Component {
     Bus.publish('update.applicant', this.data.values )
   }
 
+  addEmployeesValueToCompany(event){
+    this.saveCompanyInfo(event)
+    this.data.showUpdatedEmployeesValueMessage = true
+  }
+
+  addNameValueToCompany(event){
+    this.saveCompanyInfo(event)
+    this.data.showUpdatedNameValueMessage = true
+  }
   saveCompanyInfo(event){
     Bus.publish('update.company', event.detail)
     this.initialValues['companyName'] = this.data.values['companyName']
@@ -255,14 +266,6 @@ export default class Solicitude extends Component {
 
   updatedCompany(){
     this.data.editCompany = true
-  }
-
-  addEmployeesValueToCompany(){
-    console.log("Clicked on: add value employees to company ")
-  }
-
-  addNameValueToCompany(){
-    console.log("Clicked on: add value name to company ")
   }
 
   updateModel(payload) {
@@ -576,7 +579,9 @@ export default class Solicitude extends Component {
         "errorPhone": "xxxxxxxx",
         "errorEmail": "xxxxxxx",
         "sent": "XXXX",
-        "addValue": "xxxxx"
+        "addValue": "xxxxx",
+        "addedEmployeesValueMessage": "xxxx",
+        "addedNameValueMessage": "xxxx"
       },
         values: { "text": "",
         "date": "",
@@ -600,6 +605,8 @@ export default class Solicitude extends Component {
       isValidContact: true,
       submittable: false,
       showAlert: true,
+      showUpdatedEmployeesValueMessage: false,
+      showUpdatedNameValueMessage: false,
       editionmode: false,
       editCompany: false,
       saveCompany: false,

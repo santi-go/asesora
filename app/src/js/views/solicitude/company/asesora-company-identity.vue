@@ -5,6 +5,13 @@
                           :edit-company="editCompany">
                           </asesora-company-name>
 
+    <template v-if="showUpdatedNameValueMessage">
+    <div id="added-name-value-message">
+      <em>{{labels.addedNameValueMessage}}</em>
+    </div>
+    </template>
+
+
     <template v-if="editionmode && !editCompany">
       <div class="button-inline">
         <button id="add-name-value"
@@ -39,7 +46,8 @@ import CompanyCifView from './asesora-company-cif'
 export default {
   name: 'asesora-company-identity',
 
-  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity', 'editCompany', 'editionmode'],
+  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity',
+          'editCompany', 'editionmode', 'showUpdatedNameValueMessage'],
 
   components: {
     "asesora-company-name" : CompanyNameView,
@@ -49,10 +57,14 @@ export default {
   methods: {
     addValueName(){
       let signal = new CustomEvent('clicked.add.value.name.to.company',
-                                  {'detail': {},
+                                  {'detail': {
+                                    'companyName': this.values.companyName,
+                                    'companyCif': this.values.companyCif,
+                                    'companyEmployees': this.values.companyEmployees,
+                                    'companyCnae': this.values.companyCnae
+                                    },
                                   'bubbles': true})
-      this.$el.dispatchEvent(signal)
-
+      this.$el.dispatchEvent(signal)  
     }
   }
 }
