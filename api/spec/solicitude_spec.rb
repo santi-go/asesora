@@ -19,6 +19,15 @@ describe 'Solicitude Api' do
   end
 
   context 'delete solicitude by endpoint' do
+    it 'returns error when solicitude not exists'  do
+      id = {id: 1528913921360}.to_json
+
+      post '/api/delete-solicitude', id
+      response = last_response.status
+
+      expect(response).to eq(500)
+    end
+
     it 'deletes solicitude' do
       solicitude = create_solicitude_one()
       id = {id: solicitude['creation_moment']}.to_json
@@ -27,7 +36,7 @@ describe 'Solicitude Api' do
 
       expect_solicitude_deleted(id)
     end
-
+    
     context 'when it leaves orphans' do
       it 'deletes the applicant' do
         solicitude = create_solicitude_one()
