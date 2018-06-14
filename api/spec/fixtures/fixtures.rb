@@ -16,6 +16,7 @@ class Fixtures < Asesora
   APPLICANT_EMAIL_2 = 'john@doe.com'
   APPLICANT_PHONENUMBER_2 = '600100200'
   DATE = '2018-04-25'
+  DATE_2 = '2018-05-25'
   CREATION_MOMENT = '1234567890'
   TEXT = 'Solicitude text'
   TEXT_2 = 'The last mohican'

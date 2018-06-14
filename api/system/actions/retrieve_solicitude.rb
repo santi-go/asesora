@@ -8,7 +8,7 @@ module Actions
     def self.do(id:)
       solicitude = ::Solicitudes::Service.retrieve(id)
       return {} if solicitude.empty?
-      company = ::Companies::Service.retrieve(solicitude['company'])
+      company = ::Companies::Service.retrieve(solicitude['company'], solicitude['edition_moment'])
       applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
       prepared_solicitude = add_with_prefix(solicitude,company,'company')
       prepared_applicant = add_with_prefix(solicitude,applicant,'applicant')

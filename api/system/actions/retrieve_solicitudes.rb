@@ -6,7 +6,7 @@ module Actions
     def self.do(*_)
       solicitudes = ::Solicitudes::Service.all
       lista = solicitudes.map do |solicitude|
-        company = ::Companies::Service.retrieve(solicitude['company'])
+        company = ::Companies::Service.retrieve(solicitude['company'], solicitude['edition_moment'])
         applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
         prepared_solicitude = add_with_prefix(solicitude,company,'company')
         add(prepared_solicitude, applicant)
