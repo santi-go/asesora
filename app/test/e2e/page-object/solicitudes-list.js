@@ -69,8 +69,13 @@ class SolicitudesList{
     data.click()
   }
 
-  wait(){
-    browser.waitForVisible('#solicitudes-list', 2000)
+  waitFor(field){
+    browser.waitForVisible(field, 2000)
+    browser.scroll(field)
+  }
+
+  waitForSolicitudesList(){
+    this.waitFor('#solicitudes-list')
   }
 
 }
