@@ -1,4 +1,10 @@
 module Domain
+  class NullCompany
+    def serialize
+      return {}
+    end
+  end
+  
   class Company
     def self.from_document(document)
       company = new(document['cif'])
@@ -17,7 +23,10 @@ module Domain
       
       company
     end
-
+    
+    def self.nullified
+      return NullCompany.new
+    end
     
     def initialize(cif)
       @cif = cif

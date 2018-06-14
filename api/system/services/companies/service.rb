@@ -4,7 +4,7 @@ require_relative 'collection'
 module Companies
   class Service
     def self.create(name, cif, employees, cnae)
-      return create_empty() if cif == ""
+      return Domain::Company.nullified.serialize if cif == ""
 
       company = Domain::Company.with(name, cif, employees, cnae)
       Collection.create(company).serialize
@@ -12,7 +12,6 @@ module Companies
 
     def self.retrieve(id, edition_moment = nil)
       retrieved = Collection.retrieve(id, edition_moment)
-      return {} if (retrieved == false)
       retrieved.serialize
     end
 
@@ -34,15 +33,11 @@ module Companies
     def self.update(name, cif, employees, cnae)
       cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      if Collection.retrieve(cif) == false
+      if Collection.retrieve(cif).is_a?(Domain::NullCompany)
         Collection.create(company).serialize
       else
         Collection.update(cif, company).serialize
       end
-    end
-
-    def self.create_empty()
-      Domain::Company.with("", "", "", "").serialize
     end
   end
 end

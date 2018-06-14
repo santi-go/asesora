@@ -14,7 +14,7 @@ module Companies
 
         company = retrieve(id)
 
-        return company if company
+        return company if company.is_a?(Domain::Company)
 
         document = MongoClient.create(serialized)
         MongoClient.store(memento)
@@ -23,7 +23,7 @@ module Companies
 
       def retrieve(id, timestamp = Time.now.to_i)
         document = MongoClient.retrieve(id)
-        return false if document.nil?
+        return Domain::Company.nullified if document.nil?
         company = Domain::Company.from_document(document)
         memento = MongoClient.retrieve_state_at(timestamp, company.identify)
         company.remind(memento) unless memento.nil?
