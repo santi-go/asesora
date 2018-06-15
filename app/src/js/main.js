@@ -6,7 +6,7 @@ import About from './components/about'
 import Sidebar from './components/sidebar'
 import Solicitude from './components/solicitude'
 import SolicitudesList from './components/solicitudes-list'
-import Cases from './components/cases'
+import ShowSolicitude from './components/show-solicitude'
 
 new Translations()
 new Information()
@@ -18,5 +18,5 @@ new Sidebar()
 module.exports = {
   Solicitude: Solicitude,
   SolicitudesList: SolicitudesList,
-  Cases: Cases
+  ShowSolicitude: ShowSolicitude
 };

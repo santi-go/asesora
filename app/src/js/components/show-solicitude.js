@@ -1,17 +1,17 @@
-import CasesView from '../views/solicitude/asesora-cases'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
+import ShowSolicitudeView from '../views/solicitude/asesora-show-solicitude'
 
-export default class Cases extends Component {
+export default class ShowSolicitude extends Component {
 
   constructor(){
-    super('cases')
+    super('show-solicitude')
     this.client = APIClient
   }
 
   subscribe(){
-    Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.show-solicitude", this.translate.bind(this))
   }
 
   load(){
@@ -21,10 +21,10 @@ export default class Cases extends Component {
   watchActions(){
 
   }
-  
+
   initializeViews(){
     let listView = {
-      'asesora-cases': CasesView
+      'asesora-show-solicitude': ShowSolicitudeView
     }
     super.initializeViews(listView)
   }
