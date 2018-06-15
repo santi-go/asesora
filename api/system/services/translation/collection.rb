@@ -76,7 +76,9 @@ module Translation
                 "applicant": "Nombre completo del solicitante",
                 "company": "Nombre de empresa",
                 "topics": "Temas del caso",
-                "notApply": "n/a"
+                "notApply": "n/a",
+                "edit": "Editar",
+                "show": "Mostrar"
               },
 
               "show-solicitude": {

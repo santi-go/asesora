@@ -14,8 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-on:click="solicitudeEdit(item.creation_moment)"
-            v-for="item in solicitudes">
+        <tr v-for="item in solicitudes">
           <td>{{ labels.notApply }}</td>
           <td>{{ item.date | es }}</td>
           <td>
@@ -27,6 +26,20 @@
             <template v-else>{{ item.company_name }}</template>
           </td>
           <td>{{ labels.notApply }}</td>
+          <td><button class="solicitude-show-button"
+                      type="button"
+                      name="button"button border="1"
+                      v-on:click='showSolicitude(item.creation_moment)'>
+                {{ labels.show }}
+              </button>
+          </td>
+          <td><button class="solicitude-edit-button"
+                      type="button"
+                      name="button"button border="1"
+                      v-on:click='solicitudeEdit(item.creation_moment)'>
+                {{ labels.edit }}
+              </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -49,7 +62,14 @@
                                       {'detail': id,
                                       'bubbles': true})
           this.$el.dispatchEvent(signal)
+        },
+        showSolicitude(id){
+          let signal = new CustomEvent('show.solicitude',
+                                      {'detail': id,
+                                      'bubbles': true})
+          this.$el.dispatchEvent(signal)
         }
+
     }
 
     }
