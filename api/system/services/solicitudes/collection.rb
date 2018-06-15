@@ -98,7 +98,9 @@ module Solicitudes
           end
 
           def times_company(cif)
-            client[:solicitudes].find({"company": cif}).count()
+            companies = client[:solicitudes].find({"company": cif})
+            return 0 if companies.nil?
+            companies.count()
           end
 
           private
