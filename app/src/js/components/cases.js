@@ -47,10 +47,12 @@ export default class Cases extends Component {
   model(){
     return {
       labels: {
-        "proposals": "xxxxx"
+        "proposals": "xxxxx",
+        "analysis": "xxxxxx"
       },
       values: {
-        "proposals": ""
+        "proposals": "",
+        "analysis": ""
       },
       translate:function(key,value) {
         this.labels[key] = value
