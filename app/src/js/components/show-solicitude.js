@@ -8,18 +8,22 @@ export default class ShowSolicitude extends Component {
   constructor(){
     super('show-solicitude')
     this.client = APIClient
+    this.load()
   }
 
   subscribe(){
     Bus.subscribe("got.translation.for.show-solicitude", this.translate.bind(this))
+    Bus.subscribe("got.solicitude", this.populateStaticSolicitude.bind(this))
   }
 
   load(){
-
-  }
+    let url = document.URL
+    let index = url.indexOf("=")
+    let id = url.slice(index + 1)
+    Bus.publish('get.solicitude', {id: id})
+    }
 
   watchActions(){
-
   }
 
   initializeViews(){
@@ -27,6 +31,10 @@ export default class ShowSolicitude extends Component {
       'asesora-show-solicitude': ShowSolicitudeView
     }
     super.initializeViews(listView)
+  }
+
+  populateStaticSolicitude(payload){
+      console.log(payload);
   }
 
   translate(payload) {
