@@ -81,7 +81,8 @@ module Translation
               
               "cases": {
                 "proposals": "Propuestas de actuación",
-                "analysis": "Análisis de la solicitud"
+                "analysis": "Análisis de la solicitud",
+                "casesData": "Datos de la solicitud"
               },
 
               "solicitudes-edition": {
