@@ -78,6 +78,10 @@ module Translation
                 "topics": "Temas del caso",
                 "notApply": "n/a"
               },
+              
+              "cases": {
+                "proposals": "Propuestas de actuación"
+              },
 
               "solicitudes-edition": {
                 "applicant": "Solicitante",

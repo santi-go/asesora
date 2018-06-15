@@ -14,7 +14,6 @@ new Solicitudes()
 
 new About()
 new Sidebar()
-new Cases()
 
 module.exports = {
   Solicitude: Solicitude,

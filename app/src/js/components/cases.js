@@ -8,36 +8,53 @@ export default class Cases extends Component {
   constructor(){
     super('cases')
     this.client = APIClient
-    this.load()
   }
 
   subscribe(){
-
-  }
-
-  watchActions(){
-
-  }
-
-  initializeViews(){
-    let listView = {
-      'asesora-cases': CasesView
-    }
-    let mounted =function() {}
-    super.initializeViews(listView, mounted)
+    Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
   }
 
   load(){
 
   }
 
+  watchActions(){
+
+  }
+  
+  initializeViews(){
+    let listView = {
+      'asesora-cases': CasesView
+    }
+    super.initializeViews(listView)
+  }
+
+  translate(payload) {
+    let key = payload.key
+    let label = payload.label
+    this.data.translate(key,label)
+  }
+
+  askTranslations() {
+    let labelKeys = Object.keys(this.model().labels)
+    for (const labelKey of labelKeys) {
+      let data = {  for: this.element,
+        key: labelKey }
+        Bus.publish('ask.translation', data)
+      }
+    }
+
   model(){
     return {
       labels: {
+        "proposals": "xxxxx"
       },
       values: {
+        "proposals": ""
+      },
+      translate:function(key,value) {
+        this.labels[key] = value
       }
-
     }
   }
 }
