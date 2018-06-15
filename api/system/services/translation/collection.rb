@@ -78,8 +78,8 @@ module Translation
                 "topics": "Temas del caso",
                 "notApply": "n/a"
               },
-              
-              "cases": {
+
+              "show-solicitude": {
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "casesData": "Datos de la solicitud"

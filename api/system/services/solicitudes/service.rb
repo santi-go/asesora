@@ -26,6 +26,7 @@ module Solicitudes
     end
 
     def self.times_company(cif)
+      return 0 if cif.nil?
       cif = cif.upcase
 
       Collection.times_company(cif)
