@@ -34,8 +34,26 @@ export default class ShowSolicitude extends Component {
   }
 
   populateStaticSolicitude(payload){
-      console.log(payload);
+    let dictionary = this.dictionaryOfSolicitude(payload)
+     for (let [labelKey, valueKey] of Object.entries(dictionary)) {
+       this.data.setValues(labelKey, valueKey)
+     }
   }
+
+  dictionaryOfSolicitude(payload){
+    return {
+        'text': payload.data.text,
+        'date': payload.data.date,
+        'applicantName': payload.data.applicant_name,
+        'applicantSurname': payload.data.applicant_surname,
+        'applicantEmail': payload.data.applicant_email,
+        'applicantPhonenumber': payload.data.applicant_phonenumber,
+        'companyName': payload.data.company_name,
+        'companyCif': payload.data.company_cif,
+        'companyEmployees': payload.data.company_employees,
+        'companyCnae': payload.data.company_cnae
+        }
+    }
 
   translate(payload) {
     let key = payload.key
@@ -56,11 +74,38 @@ export default class ShowSolicitude extends Component {
     return {
       labels: {
         "proposals": "xxxxx",
-        "analysis": "xxxxxx"
+        "analysis": "xxxxxx",
+        "casesData": "xxxxx",
+        "applicant": "xxxxx",
+        "company": "xxxxx",
+        "applicantName": "XXXX",
+        "applicantSurname": "XXXXXXXXX",
+        "applicantEmail": "XXX",
+        "applicantPhonenumber": "XXXXXXXXX",
+        "date": "XXXXX",
+        "text": "XXXXX",
+        "companyName": "XXXXXXXX",
+        "companyCif": "XXXXXX",
+        "companyEmployees": "XXXXXX",
+        "companyCnae": "XXXXXXXX"
       },
       values: {
         "proposals": "",
-        "analysis": ""
+        "analysis": "",
+        "casesData": "",
+        "applicantName": "",
+        "applicantSurname": "",
+        "applicantEmail": "",
+        "applicantPhonenumber": "",
+        "date": "",
+        "text": "",
+        "companyName": "",
+        "companyCif": "",
+        "companyEmployees": "",
+        "companyCnae": ""
+      },
+      setValues:function(key, value) {
+        this.values[key] = value
       },
       translate:function(key,value) {
         this.labels[key] = value
