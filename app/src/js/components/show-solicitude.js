@@ -42,8 +42,28 @@ export default class ShowSolicitude extends Component {
   }
 
   populateStaticSolicitude(payload){
-      this.data.values.id = payload.data.creation_moment
+    this.data.values.id = payload.data.creation_moment
+
+    let dictionary = this.dictionaryOfSolicitude(payload)
+     for (let [labelKey, valueKey] of Object.entries(dictionary)) {
+       this.data.setValues(labelKey, valueKey)
+     }
   }
+
+  dictionaryOfSolicitude(payload){
+    return {
+        'text': payload.data.text,
+        'date': payload.data.date,
+        'applicantName': payload.data.applicant_name,
+        'applicantSurname': payload.data.applicant_surname,
+        'applicantEmail': payload.data.applicant_email,
+        'applicantPhonenumber': payload.data.applicant_phonenumber,
+        'companyName': payload.data.company_name,
+        'companyCif': payload.data.company_cif,
+        'companyEmployees': payload.data.company_employees,
+        'companyCnae': payload.data.company_cnae
+        }
+    }
 
   translate(payload) {
     let key = payload.key
@@ -65,12 +85,39 @@ export default class ShowSolicitude extends Component {
       labels: {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
-        "edit": "xxxxx"
+        "edit": "xxxxx",
+        "casesData": "xxxxx",
+        "applicant": "xxxxx",
+        "company": "xxxxx",
+        "applicantName": "XXXX",
+        "applicantSurname": "XXXXXXXXX",
+        "applicantEmail": "XXX",
+        "applicantPhonenumber": "XXXXXXXXX",
+        "date": "XXXXX",
+        "text": "XXXXX",
+        "companyName": "XXXXXXXX",
+        "companyCif": "XXXXXX",
+        "companyEmployees": "XXXXXX",
+        "companyCnae": "XXXXXXXX"
       },
       values: {
         "proposals": "",
         "analysis": "",
-        "id": ""
+        "casesData": "",
+        "id": "",
+        "applicantName": "",
+        "applicantSurname": "",
+        "applicantEmail": "",
+        "applicantPhonenumber": "",
+        "date": "",
+        "text": "",
+        "companyName": "",
+        "companyCif": "",
+        "companyEmployees": "",
+        "companyCnae": ""
+      },
+      setValues:function(key, value) {
+        this.values[key] = value
       },
       translate:function(key,value) {
         this.labels[key] = value

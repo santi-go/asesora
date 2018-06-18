@@ -85,7 +85,19 @@ module Translation
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "casesData": "Datos de la solicitud",
-                "edit": "Editar"
+                "edit": "Editar",
+                "date": "Fecha",
+                "text": "Texto",
+                "applicant": "Solicitante",
+                "applicantName": "Nombre",
+                "applicantSurname": "Apellidos",
+                "applicantEmail": "Correo Electrónico",
+                "applicantPhonenumber": "Teléfono",
+                "company": "Empresa",
+                "companyName": "Nombre empresa",
+                "companyCif": "CIF",
+                "companyEmployees": "Número trabajadoras y trabajadores",
+                "companyCnae": "CNAE"
               },
 
               "solicitudes-edition": {
