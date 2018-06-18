@@ -1,8 +1,5 @@
 <template>
 <div>
-  <div>
-    <label>{{ labels.casesData }}</label>
-  </div>
   <div class="row grid-resposive">
     <div class="colum colum-50" id="colum">
       <label>{{ labels.applicant}}</label>
@@ -35,7 +32,7 @@ export default {
 </script>
 <style scoped>
 label {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-left: 1rem;
 }
 

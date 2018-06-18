@@ -293,7 +293,7 @@ select:focus {
     width: 98%; }
   .card .card-title {
     border-bottom: 1px solid #eee;
-    padding: 15px 20px; }
+    padding: 15px 1px; }
     .card .card-title h1, .card .card-title h2, .card .card-title h3, .card .card-title h4, .card .card-title h5, .card .card-title h6 {
       margin: 0;
       padding: 0; }
