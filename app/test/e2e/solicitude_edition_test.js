@@ -45,7 +45,7 @@ describe('Solicitude Edition', () => {
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
-    solicitudesList.clickOnListItem(1)
+    solicitudesList.clickOnEditButtonOnItem(1)
 
     solicitude.waitForSolicitude()
     solicitude.waitForCompanyName()
@@ -82,7 +82,7 @@ describe('Solicitude Edition', () => {
 
     solicitudesList.waitForSolicitudesList()
 
-    solicitudesList.clickOnListItem(1)
+    solicitudesList.clickOnEditButtonOnItem(1)
 
     solicitude.waitForSolicitude()
 
@@ -104,7 +104,7 @@ describe('Solicitude Edition', () => {
       const solicitudesList = new SolicitudesList()
       solicitudesList.waitForSolicitudesList()
 
-      solicitudesList.clickOnListItem(1)
+      solicitudesList.clickOnEditButtonOnItem(1)
       solicitude.waitForSolicitude()
       solicitude.waitForAlertEditCompany()
 
@@ -133,7 +133,7 @@ describe('Solicitude Edition', () => {
       const solicitudesList = new SolicitudesList()
 
       solicitudesList.waitForSolicitudesList()
-      solicitudesList.clickOnListItem(1)
+      solicitudesList.clickOnEditButtonOnItem(1)
 
       secondSolicitude.waitForSolicitude()
 
@@ -164,7 +164,7 @@ describe('Solicitude Edition', () => {
           const solicitudesList = new SolicitudesList()
 
           solicitudesList.waitForSolicitudesList()
-          solicitudesList.clickOnListItem(1)
+          solicitudesList.clickOnEditButtonOnItem(1)
 
           secondSolicitude.waitForSolicitude()
 
@@ -194,7 +194,7 @@ describe('Solicitude Edition', () => {
           secondSolicitude.submit()
           const solicitudesList = new SolicitudesList()
           browser.waitForVisible('#solicitudes-list', 2000)
-          solicitudesList.clickOnListItem(1)
+          solicitudesList.clickOnEditButtonOnItem(1)
           browser.waitForVisible('#solicitude', 2000)
 
           secondSolicitude.clickOnEditCompany()

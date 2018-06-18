@@ -24,6 +24,14 @@ export default class ShowSolicitude extends Component {
     }
 
   watchActions(){
+    document.getElementById(this.element).addEventListener(
+      'load.solicitude',
+      this.loadSolicitudeToEdit.bind(this)
+    )
+  }
+
+  loadSolicitudeToEdit(){
+    window.location.href = "/index.html?id=" + event.detail
   }
 
   initializeViews(){
@@ -34,7 +42,7 @@ export default class ShowSolicitude extends Component {
   }
 
   populateStaticSolicitude(payload){
-      console.log(payload);
+      this.data.values.id = payload.data.creation_moment
   }
 
   translate(payload) {
@@ -56,11 +64,13 @@ export default class ShowSolicitude extends Component {
     return {
       labels: {
         "proposals": "xxxxx",
-        "analysis": "xxxxxx"
+        "analysis": "xxxxxx",
+        "edit": "xxxxx"
       },
       values: {
         "proposals": "",
-        "analysis": ""
+        "analysis": "",
+        "id": ""
       },
       translate:function(key,value) {
         this.labels[key] = value
