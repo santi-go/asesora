@@ -18,10 +18,18 @@ export default class SolicitudesList extends Component {
       'load.solicitude',
       this.load.bind(this)
     )
+
+    document.getElementById(this.element).addEventListener(
+      'show.solicitude',
+      this.showSolicitude.bind(this)
+    )
   }
 
   load(event){
-    // window.location.href = "/index.html?id=" + event.detail
+    window.location.href = "/index.html?id=" + event.detail
+  }
+
+  showSolicitude(event){
     window.location.href = "/show-solicitude.html?id=" + event.detail
   }
 
@@ -63,7 +71,9 @@ export default class SolicitudesList extends Component {
                 "company": "XXXXX",
                 "topics": "xxxxxxxxxx",
                 "listTitle": "XXXXXXXX",
-                "notApply": "xxxxxxx"
+                "notApply": "xxxxxxx",
+                "edit": "xxxxxx",
+                "show": "xxxx"
               },
       solicitudes: [
         {

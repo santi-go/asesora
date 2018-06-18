@@ -31,7 +31,7 @@ describe('Delete solicitude', () => {
 
     browser.waitForVisible('#solicitudes-list', 2000)
 
-    solicitudesList.clickOnListItem()
+    solicitudesList.clickOnListItem(1)
 
     browser.waitForVisible('#solicitude', 2000)
 
