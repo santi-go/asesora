@@ -8,5 +8,9 @@ module Subjects
 
       Collection.create(subject).serialize
     end
+
+    def self.all_by(solicitude_id)
+      Collection.all_by(solicitude_id).serialize
+    end
   end
 end

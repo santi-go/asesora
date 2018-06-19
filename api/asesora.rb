@@ -4,6 +4,7 @@ require 'json'
 
 require_relative 'system/actions/create_solicitude'
 require_relative 'system/actions/create_subject'
+require_relative 'system/actions/retrieve_subjects'
 require_relative 'system/actions/retrieve_solicitudes'
 require_relative 'system/actions/retrieve_about'
 require_relative 'system/actions/retrieve_dictionary'
@@ -203,6 +204,15 @@ class Asesora < Sinatra::Base
 
     solicitude_subject.to_json
   end
+
+  post '/api/retrieve-subjects' do
+    params = JSON.parse(request.body.read)
+
+    subjects = Actions::RetrieveSubjects.do(solicitude_id: params['creation_moment'])
+
+    {data: subjects}.to_json
+  end
+
 
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"

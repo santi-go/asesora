@@ -1,0 +1,83 @@
+diff --git a/api/asesora.rb b/api/asesora.rb
+index 9d923d7c..e4eace30 100644
+--- a/api/asesora.rb
++++ b/api/asesora.rb
+@@ -204,6 +204,15 @@ class Asesora < Sinatra::Base
+     solicitude_subject.to_json
+   end
+ 
++  post '/api/retrieve-subjects' do
++    params = JSON.parse(request.body.read)
++
++    subjects = Actions::RetrieveSubjects.do(id: params['creation_moment'])
++
++    {data: subjects}.to_json
++  end
++
++
+   options "*" do
+     response.headers["Allow"] = "GET, POST, OPTIONS"
+     response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept, X-User-Email, X-Auth-Token"
+diff --git a/api/system/actions/retrieve_subjects.rb b/api/system/actions/retrieve_subjects.rb
+new file mode 100644
+index 00000000..9b84a8c8
+--- /dev/null
++++ b/api/system/actions/retrieve_subjects.rb
+@@ -0,0 +1,9 @@
++require_relative '../services/subjects/service'
++
++module Actions
++  class RetrieveSubjects
++    def self.do(id:)
++      ::Subjects::Service.all_by(id)
++    end
++  end
++end
+diff --git a/api/system/services/subjects/collection.rb b/api/system/services/subjects/collection.rb
+index cf649764..520000f8 100644
+--- a/api/system/services/subjects/collection.rb
++++ b/api/system/services/subjects/collection.rb
+@@ -12,6 +12,12 @@ module Subjects
+         Domain::Subject.from_document(document)
+       end
+ 
++      def all_by(id)
++        subjects = MongoClient.all_by(id)
++
++        Domain::List.from_document(subjects, Domain::Subject)
++      end
++
+       private
+ 
+     class MongoClient
+@@ -21,6 +27,16 @@ module Subjects
+           descriptor
+         end
+ 
++        def all_by(id)
++          list = {}
++          id.each do |key, value|
++            regex = /#{value}/i
++            chain = { key => {"$regex": regex}}
++            list.merge!(chain)
++          end
++          documents = client[:subjects].find(list)
++        end
++
+         private
+ 
+           def client
+diff --git a/api/system/services/subjects/service.rb b/api/system/services/subjects/service.rb
+index b75ade26..fb206d0d 100644
+--- a/api/system/services/subjects/service.rb
++++ b/api/system/services/subjects/service.rb
+@@ -8,5 +8,9 @@ module Subjects
+ 
+       Collection.create(subject).serialize
+     end
++
++    def self.all_by(id)
++      Collection.all_by(id).serialize
++    end
+   end
+ end
