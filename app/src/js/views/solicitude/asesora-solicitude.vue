@@ -35,16 +35,16 @@
                      :is-valid-company-name='isValidCompanyName'
                      ></asesora-company>
     <div  class="card large-card" >
-    <asesora-button :values="values"
-                    :labels="labels"
-                    :editionmode="editionmode"
-                    :submittable="submittable"
-                    :edit-company='editCompany'
-                    ></asesora-button>
-    <template v-if="editionmode">
-      <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
-      <asesora-button-delete :labels="labels" :values="values"></asesora-button-delete>
-    </template>
+      <asesora-button :values="values"
+                      :labels="labels"
+                      :editionmode="editionmode"
+                      :submittable="submittable"
+                      :edit-company='editCompany'
+                      ></asesora-button>
+      <template v-if="editionmode">
+        <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
+        <asesora-button-delete :labels="labels" :values="values"></asesora-button-delete>
+      </template>
     </div>
 
     <div class="alert background-success message-hidden ">

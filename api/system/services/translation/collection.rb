@@ -84,10 +84,9 @@ module Translation
               },
 
               "show-solicitude": {
-                "proposals": "Propuestas de actuación",
-                "analysis": "Análisis de la solicitud",
-                "casesData": "Datos de la solicitud",
+                "summary": "Datos de la solicitud",
                 "edit": "Editar",
+                "createCase": "Crear Caso",
                 "date": "Fecha",
                 "text": "Texto",
                 "applicant": "Solicitante",
@@ -102,29 +101,12 @@ module Translation
                 "companyCnae": "CNAE"
               },
 
-              "solicitudes-edition": {
-                "applicant": "Solicitante",
-                "applicantName": "Nombre",
-                "applicantSurname": "Apellidos",
-                "contact": "Contacto",
-                "applicantEmail": "Correo Electrónico",
-                "applicantPhonenumber": "Teléfono",
-                "noContact": "Si necesitas contactar más adelante con el o la solicitante, deberías poner su email o teléfono",
-                "date": "Fecha",
-                "text": "Texto",
-                "noDate": "Si no indicas fecha de la solicitud, ésta se registrará con la fecha de hoy",
-                "incompleteCompanyIdentity": "No has proporcionado suficiente información de la empresa",
-                "company": "Empresa",
-                "companyName": "Nombre empresa",
-                "companyCif": "CIF",
-                "companyEmployees": "Número trabajadoras y trabajadores",
-                "companyCnae": "CNAE",
-                "submit": "Guardar cambios",
-                "submitting": "Guardando",
-                "discard": "Descartar",
-                "discarding": "Descartando",
-                "edited": "Todo Ok! Guardado!",
-                "alertBackgroundDanger": "Lo sentimos, ha habido un error"
+              "cases": {
+                "proposals": "Propuestas de actuación",
+                "analysis": "Análisis de la solicitud",
+                "casesData": "Datos del caso",
+                "edit": "Editar",
+                "createCase": "Crear caso"
               }
             },
 

@@ -28,10 +28,19 @@ export default class ShowSolicitude extends Component {
       'load.solicitude',
       this.loadSolicitudeToEdit.bind(this)
     )
+
+    document.getElementById(this.element).addEventListener(
+      'clicked.create.case',
+      this.createCase.bind(this)
+    )
   }
 
   loadSolicitudeToEdit(){
     window.location.href = "/index.html?id=" + event.detail
+  }
+
+  createCase(){
+    window.location.href = "/cases.html?id=" + event.detail
   }
 
   initializeViews(){
@@ -86,7 +95,9 @@ export default class ShowSolicitude extends Component {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
         "edit": "xxxxx",
+        "createCase": "XXXXXX",
         "casesData": "xxxxx",
+        "summary": "XxXxXxX",
         "applicant": "xxxxx",
         "company": "xxxxx",
         "applicantName": "XXXX",
