@@ -30,6 +30,9 @@ class Fixtures < Asesora
   COMPANY_EMPLOYEES_2 = '3'
   COMPANY_CNAE = '931 - Actividades deportivas'
   COMPANY_CNAE_2 = '870 - Asistencia en establecimientos residenciales'
+  PROPOSAL = 'Propuestas de actuacion'
+  ANALYSIS = 'Analisis de la solicitud'
+  TOPICS = 'Temas del caso'
 
   def self.locale
     Translation::Collection::DEFAULT_LOCALE
@@ -75,6 +78,7 @@ class Fixtures < Asesora
     client['companies'].drop()
     client['applicant'].drop()
     client['company_memento'].drop()
+    client['subjects'].drop()
   end
 
   def client

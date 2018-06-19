@@ -3,6 +3,7 @@ require 'sinatra/cross_origin'
 require 'json'
 
 require_relative 'system/actions/create_solicitude'
+require_relative 'system/actions/create_subject'
 require_relative 'system/actions/retrieve_solicitudes'
 require_relative 'system/actions/retrieve_about'
 require_relative 'system/actions/retrieve_dictionary'
@@ -186,6 +187,21 @@ class Asesora < Sinatra::Base
 
   post '/api/delete-solicitude' do
     200
+  end
+
+  post '/api/create-subject' do
+    params = JSON.parse(request.body.read)
+
+    data = {
+      solicitude_id: params['creation_moment'],
+      proposal: params['proposal'],
+      analysis: params['analysis'],
+      topics: params['topics']
+    }
+
+    solicitude_subject = Actions::CreateSubject.do(data)
+
+    solicitude_subject.to_json
   end
 
   options "*" do
