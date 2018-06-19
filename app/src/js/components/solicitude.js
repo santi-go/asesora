@@ -386,13 +386,31 @@ export default class Solicitude extends Component {
     this.runValidations()
   }
 
-  toggleCompanyIdentityMessage(){
-    this.data.isValidCompanyIdentity = false
-    if(this.isNameEmpty() && this.isCifEmpty()){
-      this.data.isValidCompanyIdentity = true
+  showMessageCompanyName(){
+    this.data.isValidCompanyName = false
+    if(!this.isNameEmpty()){
+      this.data.isValidCompanyName = true
+      return true
     }
-    if(!this.isNameEmpty() && !this.isCifEmpty() && this.data.isValidCif){
+    return false
+  }
+
+  showMessageCompanyIdentity(){
+    this.data.isValidCompanyIdentity = false
+    if(!this.isCifEmpty() && this.data.isValidCif){
       this.data.isValidCompanyIdentity = true
+      return true
+    }
+    return false
+  }
+
+  toggleCompanyIdentityMessage(){
+    this.showMessageCompanyName()
+    this.showMessageCompanyIdentity()
+    
+    if(this.isNameEmpty() && this.isCifEmpty()){
+      this.data.isValidCompanyIdentity = true 
+      this.data.isValidCompanyName = true
     }
     this.setButtonStatus()
   }
@@ -451,9 +469,13 @@ export default class Solicitude extends Component {
       return (this.data.values.text == "")
     }
 
+    isValidCompany(){
+      return this.data.isValidCompanyIdentity && this.data.isValidCompanyName
+    }
+
     setButtonStatus(){
       this.data.submittable = false
-      if (!this.textIsEmpty() && this.isValidContact() && this.data.isValidCompanyIdentity) {
+      if (!this.textIsEmpty() && this.isValidContact() && this.isValidCompany()) {
         this.data.submittable = true
       }
     }
@@ -567,6 +589,7 @@ export default class Solicitude extends Component {
         "companyCnae": "XXXXXXXX",
         "noContact": "XXXXX",
         "incompleteCompanyIdentity": "XXXXXXX",
+        "noCompanyName": "xxxxxxxx",
         "suggestions" : "xxxxxx",
         "submit" : "xxxxxxxxxx",
         "editCompany":"xxxxxxxxxxx",
@@ -581,7 +604,8 @@ export default class Solicitude extends Component {
         "sent": "XXXX",
         "addValue": "xxxxx",
         "addedEmployeesValueMessage": "xxxx",
-        "addedNameValueMessage": "xxxx"
+        "addedNameValueMessage": "xxxx",
+        "companyInfo": "xxxxxxx"
       },
         values: { "text": "",
         "date": "",
@@ -602,6 +626,7 @@ export default class Solicitude extends Component {
       isValidCif: true,
       cnaeCatalog:[],
       isValidCompanyIdentity: true,
+      isValidCompanyName: true,
       isValidContact: true,
       submittable: false,
       showAlert: true,

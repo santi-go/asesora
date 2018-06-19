@@ -12,6 +12,7 @@
                                   :edit-company="editCompany"
                                   :show-updated-name-value-message='showUpdatedNameValueMessage'
                                   :is-valid-company-identity="isValidCompanyIdentity"
+                                  :is-valid-company-name='isValidCompanyName'
                                   ></asesora-company-identity>
         <asesora-company-employees :values="values"
                                    :labels="labels"
@@ -84,7 +85,7 @@ export default {
   name: 'asesora-company',
 
   props: ['labels', 'values', 'isValidCif', 'cnaeCatalog', 'suggestedCompanies',
-          'isValidCompanyIdentity', 'editionmode', 'saveCompany', 'editCompany',
+          'isValidCompanyIdentity', 'isValidCompanyName', 'editionmode', 'saveCompany', 'editCompany',
           'disabledTextAndDate', 'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage'],
 
   components: {

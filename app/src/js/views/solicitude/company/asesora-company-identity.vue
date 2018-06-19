@@ -4,7 +4,12 @@
                           :labels="labels"
                           :edit-company="editCompany">
                           </asesora-company-name>
-
+      <div id="company-identity-info" v-if="!isValidCompanyName">
+        <div class="alert background-danger">
+          <em class="fa fa-times-circle"></em>
+            {{ labels.noCompanyName }}
+        </div>
+      </div>
     <template v-if="showUpdatedNameValueMessage">
     <div id="added-name-value-message">
       <em>{{labels.addedNameValueMessage}}</em>
@@ -36,6 +41,7 @@
          {{ labels.incompleteCompanyIdentity }}
       </div>
     </div>
+    <em>{{ labels.companyInfo }}</em>
   </div>
 </template>
 
@@ -46,7 +52,7 @@ import CompanyCifView from './asesora-company-cif'
 export default {
   name: 'asesora-company-identity',
 
-  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity',
+  props: ['labels', 'values', 'isValidCif','isValidCompanyIdentity', 'isValidCompanyName',
           'editCompany', 'editionmode', 'showUpdatedNameValueMessage'],
 
   components: {

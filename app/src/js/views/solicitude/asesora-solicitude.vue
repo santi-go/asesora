@@ -32,6 +32,7 @@
                      :show-updated-employees-value-message='showUpdatedEmployeesValueMessage'
                      :show-updated-name-value-message='showUpdatedNameValueMessage'
                      :is-valid-company-identity="isValidCompanyIdentity"
+                     :is-valid-company-name='isValidCompanyName'
                      ></asesora-company>
     <div  class="card large-card" >
     <asesora-button :values="values"
@@ -75,7 +76,7 @@ export default {
   name: 'asesora-solicitude',
 
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
-          'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity',
+          'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'isValidCompanyName',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'disabledTextAndDate', 'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage'],
