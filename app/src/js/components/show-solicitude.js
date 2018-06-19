@@ -24,6 +24,14 @@ export default class ShowSolicitude extends Component {
     }
 
   watchActions(){
+    document.getElementById(this.element).addEventListener(
+      'load.solicitude',
+      this.loadSolicitudeToEdit.bind(this)
+    )
+  }
+
+  loadSolicitudeToEdit(){
+    window.location.href = "/index.html?id=" + event.detail
   }
 
   initializeViews(){
@@ -34,6 +42,8 @@ export default class ShowSolicitude extends Component {
   }
 
   populateStaticSolicitude(payload){
+    this.data.values.id = payload.data.creation_moment
+
     let dictionary = this.dictionaryOfSolicitude(payload)
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
@@ -75,6 +85,7 @@ export default class ShowSolicitude extends Component {
       labels: {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
+        "edit": "xxxxx",
         "casesData": "xxxxx",
         "applicant": "xxxxx",
         "company": "xxxxx",
@@ -93,6 +104,7 @@ export default class ShowSolicitude extends Component {
         "proposals": "",
         "analysis": "",
         "casesData": "",
+        "id": "",
         "applicantName": "",
         "applicantSurname": "",
         "applicantEmail": "",

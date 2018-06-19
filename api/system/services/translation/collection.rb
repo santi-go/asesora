@@ -87,6 +87,7 @@ module Translation
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "casesData": "Datos de la solicitud",
+                "edit": "Editar",
                 "date": "Fecha",
                 "text": "Texto",
                 "applicant": "Solicitante",

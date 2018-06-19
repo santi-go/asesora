@@ -62,18 +62,19 @@ class SolicitudesList{
 
     return companyNames.length
   }
-  // 
-  // clickOnListItem(){
-  //   browser.waitForVisible('#solicitudes-list', 2000)
-  //   const data = $('#solicitudes-list tbody')
-  //   data.click()
-  // }
 
-  clickOnListItem(item){
+  clickOnEditButtonOnItem(item){
       browser.waitForVisible('#solicitudes-list', 2000)
       const data = $(`.solicitude-edit-button:nth-child(${item})` )
       data.click()
-}
+  }
+
+  clickOnShowButtonOnItem(item){
+      browser.waitForVisible('#solicitudes-list', 2000)
+      const data = $(`.solicitude-show-button:nth-child(${item})` )
+      data.click()
+  }
+
 
   waitFor(field){
     browser.waitForVisible(field, 2000)
