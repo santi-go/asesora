@@ -122,6 +122,10 @@ export default class Solicitude extends Component {
       'clicked.add.value.name.to.company',
       this.addNameValueToCompany.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.create.case',
+      this.createCase.bind(this)
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -145,6 +149,7 @@ export default class Solicitude extends Component {
       this.data.editionmode = true
       this.data.isValidContact = true
       this.data.editCompany = true
+      this.data.values.id = id
       Bus.publish('get.solicitude', {id: id})
     }
   }
@@ -159,6 +164,10 @@ export default class Solicitude extends Component {
       event.returnValue = confirmationMessage
       return confirmationMessage
     }
+  }
+
+  createCase(){
+    window.location.href = "/cases.html?id=" + event.detail
   }
 
   toggleSaveCompanyButton(){
@@ -407,9 +416,9 @@ export default class Solicitude extends Component {
   toggleCompanyIdentityMessage(){
     this.showMessageCompanyName()
     this.showMessageCompanyIdentity()
-    
+
     if(this.isNameEmpty() && this.isCifEmpty()){
-      this.data.isValidCompanyIdentity = true 
+      this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
     this.setButtonStatus()
@@ -582,6 +591,8 @@ export default class Solicitude extends Component {
         "applicantSurname": "XXXXXXXXX",
         "text": "XXXXX",
         "noDate": "XXXXX",
+        "createCase": "XXXXXX",
+        "subjects": "XxXxXxX",
         "company": "XXXXXXX",
         "companyName": "XXXXXXXX",
         "companyCif": "XXXXXX",
@@ -609,6 +620,7 @@ export default class Solicitude extends Component {
       },
         values: { "text": "",
         "date": "",
+        "id": "",
         "applicantName": "",
         "applicantSurname": "",
         "applicantEmail": "",

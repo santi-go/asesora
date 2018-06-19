@@ -34,6 +34,14 @@
                      :is-valid-company-identity="isValidCompanyIdentity"
                      :is-valid-company-name='isValidCompanyName'
                      ></asesora-company>
+    <template v-if="editionmode">
+      <div  class="card large-card" >
+        <div class="card-title">
+          <h3>{{ labels.subjects }}</h3>
+        </div>
+        <asesora-button-create-case :labels="labels" :values="values"></asesora-button-create-case>
+      </div>
+    </template>
     <div  class="card large-card" >
       <asesora-button :values="values"
                       :labels="labels"
@@ -71,6 +79,7 @@ import CompanyView from './asesora-company'
 import ButtonView from './asesora-button'
 import ButtonDiscardView from './asesora-button-discard'
 import ButtonDeleteView from './asesora-button-solicitude-delete'
+import ButtonCreateCase from './asesora-button-create-case'
 
 export default {
   name: 'asesora-solicitude',
@@ -88,7 +97,8 @@ export default {
     "asesora-company" : CompanyView,
     "asesora-button" : ButtonView,
     "asesora-button-discard" : ButtonDiscardView,
-    "asesora-button-delete" : ButtonDeleteView
+    "asesora-button-delete" : ButtonDeleteView,
+    "asesora-button-create-case": ButtonCreateCase
   },
 
   watch: {

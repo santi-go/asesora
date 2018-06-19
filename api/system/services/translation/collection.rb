@@ -52,6 +52,8 @@ module Translation
                 "companyCif": "CIF",
                 "companyEmployees": "Número trabajadoras y trabajadores",
                 "companyCnae": "CNAE",
+                "createCase": "Crear Caso",
+                "subjects": "Tus casos",
                 "submit": "Solicitar",
                 "submitting": "Solicitando",
                 "editionsubmit": "Guardar cambios",
