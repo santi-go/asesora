@@ -194,7 +194,7 @@ class Asesora < Sinatra::Base
     params = JSON.parse(request.body.read)
 
     data = {
-      solicitude_id: params['solicitudeId'],
+      solicitude_id: params['creation_moment'],
       proposal: params['proposal'],
       analysis: params['analysis'],
       topics: params['topics']

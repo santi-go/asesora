@@ -34,7 +34,7 @@ describe 'Subjects Api' do
         expect(response["proposal"]).to eq(Fixtures::PROPOSAL)
         expect(response["solicitude_id"]).to eq(Fixtures::CREATION_MOMENT)
   end
-  
+
   it 'retrieves subjects by creation moment of the solicitude' do
     created_subject = {
       "creation_moment": Fixtures::CREATION_MOMENT,
@@ -44,7 +44,7 @@ describe 'Subjects Api' do
     }.to_json
 
     post '/api/create-subject', created_subject
-    
+
     retrieve_subject = {
             "creation_moment": Fixtures::CREATION_MOMENT
     }.to_json
