@@ -184,7 +184,6 @@ export default class Solicitude extends Component {
     this.data.showUpdatedEmployeesValueMessage =  false
     this.data.showUpdatedNameValueMessage =  false
     this.data.editCompany = false
-    this.data.disabledTextAndDate = true
   }
 
   checkForChangesInCompany() {
@@ -383,6 +382,8 @@ export default class Solicitude extends Component {
     this.data.isValidCif = true
     this.data.isValidCompanyIdentity = true
     this.data.submittable = true
+    this.data.showEditCompanyButton = true
+    this.data.editCompany = true
   }
 
   fillApplicant(item){
@@ -646,8 +647,8 @@ export default class Solicitude extends Component {
       showUpdatedNameValueMessage: false,
       editionmode: false,
       editCompany: false,
+      showEditCompanyButton: false,
       saveCompany: false,
-      disabledTextAndDate: false,
       isValidPhone: true,
       isValidEmail: true,
       translate:function(key,value) {
