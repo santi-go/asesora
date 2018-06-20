@@ -5,9 +5,14 @@ module Companies
   class Service
     def self.create(name, cif, employees, cnae)
       return Domain::Company.nullified.serialize if cif == ""
-
+      cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      Collection.create(company).serialize
+      
+      if Collection.retrieve(cif).is_a?(Domain::Company)
+        Collection.update(cif, company).serialize
+      else
+        Collection.create(company).serialize
+      end
     end
 
     def self.retrieve(id, edition_moment = nil)

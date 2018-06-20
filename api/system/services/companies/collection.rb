@@ -8,13 +8,6 @@ module Companies
       def create(company)
         memento = company.memento
         serialized = company.serialize()
-        id = serialized["cif"]
-        
-        id.upcase!
-
-        company = retrieve(id)
-
-        return company if company.is_a?(Domain::Company)
 
         document = MongoClient.create(serialized)
         MongoClient.store(memento)

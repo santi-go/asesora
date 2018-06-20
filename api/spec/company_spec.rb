@@ -51,45 +51,6 @@ describe 'Company Api' do
     expect(pepe).to eq({})
   end
 
-  it "don't saves a duplicated company" do
-    first_solicitude = {
-      "applicantName": Fixtures::APPLICANT_NAME,
-      "applicantSurname": Fixtures::APPLICANT_SURNAME,
-      "applicantEmail": Fixtures::APPLICANT_EMAIL,
-      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
-      "text": Fixtures::TEXT,
-      "date": Fixtures::DATE,
-      'applicantId': "",
-      "companyName": Fixtures::COMPANY_NAME,
-			"companyCif": Fixtures::COMPANY_CIF,
-      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae": Fixtures::COMPANY_CNAE
-    }.to_json
-
-    post '/api/create-solicitude', first_solicitude
-
-    second_solicitude = {
-      "applicantName": Fixtures::APPLICANT_NAME,
-      "applicantSurname": Fixtures::APPLICANT_SURNAME,
-      "applicantEmail": Fixtures::APPLICANT_EMAIL,
-      "applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
-      "text": Fixtures::TEXT,
-      "date": Fixtures::DATE,
-      'applicantId': "",
-      "companyName": Fixtures::COMPANY_NAME_2,
-			"companyCif": Fixtures::COMPANY_CIF,
-      "companyEmployees": Fixtures::COMPANY_EMPLOYEES,
-			"companyCnae": Fixtures::COMPANY_CNAE
-    }.to_json
-
-    post '/api/create-solicitude', second_solicitude
-
-    post '/api/duplicated-company', {"id": Fixtures::COMPANY_CIF}.to_json
-    company = JSON.parse(last_response.body)
-
-    expect(company["name"]).to eq(Fixtures::COMPANY_NAME)
-  end
-
   it 'update data in edition mode' do
     first_solicitude = {
       "applicantName": Fixtures::APPLICANT_NAME,

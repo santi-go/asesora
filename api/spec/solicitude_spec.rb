@@ -416,51 +416,52 @@ describe 'Solicitude Api' do
 
       expect(response['text']).to eq(Fixtures::TEXT_2)
     end
-  context 'memento'
-    it 'retrieves company in latest state' do
-      first_solicitude = {
-        'applicantName': Fixtures::APPLICANT_NAME,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-        'text': Fixtures::TEXT,
-        'date': Fixtures::DATE,
-        'applicantId': "",
-        'companyName': Fixtures::COMPANY_NAME,
-        'companyCif': Fixtures::COMPANY_CIF
-      }
-      first_creation_moment = create_solicitude(first_solicitude)
+    context 'memento' do
+      it 'retrieves company in latest state' do
+        first_solicitude = {
+          'applicantName': Fixtures::APPLICANT_NAME,
+          'applicantSurname': Fixtures::APPLICANT_SURNAME,
+          'applicantEmail': Fixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+          'text': Fixtures::TEXT,
+          'date': Fixtures::DATE,
+          'applicantId': "",
+          'companyName': Fixtures::COMPANY_NAME,
+          'companyCif': Fixtures::COMPANY_CIF
+        }
+        first_creation_moment = create_solicitude(first_solicitude)
 
-      wait_for_new_edition_moment
+        wait_for_new_edition_moment
 
-      second_solicitude = {
-        'applicantName': Fixtures::APPLICANT_NAME_2,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-        'text': Fixtures::TEXT,
-        'date': Fixtures::DATE,
-        'applicantId': "",
-        'companyName': Fixtures::COMPANY_NAME,
-        'companyCif': Fixtures::COMPANY_CIF
-      }
-      second_creation_moment = create_solicitude(second_solicitude)
+        second_solicitude = {
+          'applicantName': Fixtures::APPLICANT_NAME_2,
+          'applicantSurname': Fixtures::APPLICANT_SURNAME,
+          'applicantEmail': Fixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+          'text': Fixtures::TEXT,
+          'date': Fixtures::DATE,
+          'applicantId': "",
+          'companyName': Fixtures::COMPANY_NAME,
+          'companyCif': Fixtures::COMPANY_CIF
+        }
+        second_creation_moment = create_solicitude(second_solicitude)
+        wait_for_new_edition_moment
+        
+        same_company_with_new_data = {
+          'companyName': Fixtures::COMPANY_NAME_2,
+          'companyCif': Fixtures::COMPANY_CIF
+        }
+        post '/api/update-company', same_company_with_new_data.to_json
 
-      same_company_with_new_data = {
-        'companyName': Fixtures::COMPANY_NAME_2,
-        'companyCif': Fixtures::COMPANY_CIF
-  		}
-      post '/api/update-company', same_company_with_new_data.to_json
+        update_solicitude(second_solicitude.merge('creation_moment' => second_creation_moment))
 
-      update_solicitude(second_solicitude.merge('creation_moment' => second_creation_moment))
+        first_solicitude = retrieve_solicitude(first_creation_moment)
+        second_solicitude = retrieve_solicitude(second_creation_moment)
 
-      first_solicitude = retrieve_solicitude(first_creation_moment)
-      second_solicitude = retrieve_solicitude(second_creation_moment)
-
-      expect(first_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME)
-      expect(second_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME_2)
+        expect(first_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME)
+        expect(second_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME_2)
+      end
     end
-
   end
   
   private
