@@ -13,12 +13,10 @@
     <asesora-date :values="values"
                   :labels="labels"
                   :edit-solicitude='editSolicitude'
-                  :disabled-text-and-date='disabledTextAndDate'
                   ></asesora-date>
     <asesora-text :values="values"
                   :labels="labels"
                   :edit-solicitude='editSolicitude'
-                  :disabled-text-and-date='disabledTextAndDate'
                   ></asesora-text>
     </div>
     <asesora-company :values="values"
@@ -29,6 +27,8 @@
                      :editionmode="editionmode"
                      :edit-company='editCompany'
                      :save-company='saveCompany'
+                     :show-edit-company-button='showEditCompanyButton'
+
                      :show-updated-employees-value-message='showUpdatedEmployeesValueMessage'
                      :show-updated-name-value-message='showUpdatedNameValueMessage'
                      :is-valid-company-identity="isValidCompanyIdentity"
@@ -87,8 +87,8 @@ export default {
   props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'isValidCompanyName',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
-          'disabledTextAndDate', 'saveCompany', 'isValidPhone', 'isValidEmail',
-          'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage'],
+          'saveCompany', 'isValidPhone', 'isValidEmail',
+          'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton'],
 
   components: {
     "asesora-date" : DateView,

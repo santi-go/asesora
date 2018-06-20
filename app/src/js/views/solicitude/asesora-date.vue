@@ -5,7 +5,6 @@
                 type="date"
                 v-model="values.date"
                 v-bind:required="editionmode"
-                :disabled="disabledTextAndDate"
                 v-bind:class="{editionmode: editionmode}">
         <div id="date-info"
                 v-if="!mustBeHidden">
@@ -19,7 +18,7 @@
 <script>
 export default {
   name: 'asesora-date',
-  props: ['labels', 'values', 'editionmode', 'disabledTextAndDate'],
+  props: ['labels', 'values', 'editionmode'],
   computed: {
     mustBeHidden() {
       return (this.editionmode || this.values.date)

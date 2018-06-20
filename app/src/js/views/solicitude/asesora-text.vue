@@ -5,7 +5,6 @@
               placeholder="*"
               v-on:keyup="onKeyup"
               v-on:focus="onFocus"
-              :disabled="disabledTextAndDate"
               v-model="values.text">
     </textarea>
   </div>
@@ -15,7 +14,7 @@
 export default {
   name: 'asesora-text',
 
-  props: ['labels', 'values', 'disabledTextAndDate'],
+  props: ['labels', 'values'],
 
   methods: {
     onKeyup(event){
