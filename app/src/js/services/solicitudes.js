@@ -21,12 +21,21 @@ export default class Solicitudes {
     Bus.subscribe("update.company", this.updateCompany.bind(this))
     Bus.subscribe("get.company.count", this.getCompanyCount.bind(this))
     Bus.subscribe("delete.solicitude", this.deleteSolicitude.bind(this))
+    Bus.subscribe("create.subject", this.createSubject.bind(this))
+
   }
 
   retrieveCnae() {
     let callback = this.buildCallback('got.cnae-catalog')
     let body = {}
     let url = 'cnae'
+    this.client.hit(url, body, callback)
+  }
+
+  createSubject(payload) {
+    let callback = this.buildCallback('subject.created')
+    let body = payload
+    let url = 'create-subject'
     this.client.hit(url, body, callback)
   }
 

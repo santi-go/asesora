@@ -3,6 +3,7 @@ import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
 import CasesView from '../views/solicitude/asesora-cases'
 
+
 export default class Cases extends Component {
 
   constructor(){
@@ -13,19 +14,24 @@ export default class Cases extends Component {
 
   subscribe(){
     Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
+    Bus.subscribe("subject.created", this.subjectCreated.bind(this))
+
   }
 
   load(){
-
+    this.data.values.solicitudeId = this.getSolicitudeId()
   }
 
   watchActions(){
-
+    document.getElementById(this.element).addEventListener(
+      'clicked.create.counseling',
+      this.createCounseling.bind(this)
+    )
   }
 
   initializeViews(){
     let listView = {
-      'asesora-cases': CasesView
+      'asesora-cases': CasesView,
     }
     super.initializeViews(listView)
   }
@@ -45,20 +51,38 @@ export default class Cases extends Component {
     this.data.translate(key,label)
   }
 
+  createCounseling(payload){
+    Bus.publish('create.subject', payload.detail)
+  }
+
+  subjectCreated(payload) {
+    alert("Caso creado con ID : "+ payload.id);
+  }
+
+  getSolicitudeId() {
+    let url = document.URL
+    let index = url.indexOf("=")
+    let id = url.slice(index + 1)
+
+    return id
+  }
+
   model(){
     return {
       labels: {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
         "edit": "xxxxx",
-        "createCase": "XXXXXX",
+        "addSubject": "XXXXXX",
+        "createSubject": "XxX",
         "casesData": "xxxxx"
       },
       values: {
+        "solicitudeId": "",
         "proposals": "",
         "analysis": "",
-        "casesData": "",
-        "id": ""
+        "subjectId":"",
+        "topics": ""
       },
       translate:function(key,value) {
         this.labels[key] = value

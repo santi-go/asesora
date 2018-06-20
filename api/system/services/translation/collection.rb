@@ -52,7 +52,7 @@ module Translation
                 "companyCif": "CIF",
                 "companyEmployees": "Número trabajadoras y trabajadores",
                 "companyCnae": "CNAE",
-                "createCase": "Crear Caso",
+                "addSubject": "Añadir Caso",
                 "subjects": "Tus casos",
                 "submit": "Solicitar",
                 "submitting": "Solicitando",
@@ -88,7 +88,7 @@ module Translation
               "show-solicitude": {
                 "summary": "Datos de la solicitud",
                 "edit": "Editar",
-                "createCase": "Crear Caso",
+                "addSubject": "Añadir Caso",
                 "date": "Fecha",
                 "text": "Texto",
                 "applicant": "Solicitante",
@@ -108,7 +108,8 @@ module Translation
                 "analysis": "Análisis de la solicitud",
                 "casesData": "Datos del caso",
                 "edit": "Editar",
-                "createCase": "Crear caso"
+                "addSubject": "Añadir caso",
+                "createSubject": "Crear asesoramiento"
               }
             },
 

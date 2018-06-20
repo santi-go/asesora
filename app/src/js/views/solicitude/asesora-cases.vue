@@ -5,11 +5,13 @@
       </div>
         <asesora-proposals-for-action :labels="labels" :values="values"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
+        <asesora-button-create-counseling :labels="labels" :values="values"></asesora-button-create-counseling>
     </div>
 </template>
 <script>
 import ProposalsView from './cases/asesora-proposals-for-action'
 import AnalysisView from './cases/asesora-analysis-for-solicitude'
+import ButtonCreateCounseling from './cases/asesora-button-create-counseling'
 
 export default {
 
@@ -17,11 +19,13 @@ export default {
   props: ['labels', 'values'],
   components: {
     "asesora-proposals-for-action" : ProposalsView,
-    "asesora-analysis-for-solicitude" : AnalysisView
+    "asesora-analysis-for-solicitude" : AnalysisView,
+    "asesora-button-create-counseling": ButtonCreateCounseling
+
   }
 
 }
 </script>
 <style scoped>
-  
+
 </style>

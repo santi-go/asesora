@@ -3,8 +3,8 @@
     <button class='create-case-button'
             type="button"
             name="button"
-            v-on:click='createCase()'>
-            {{ labels.createCase }}
+            v-on:click='addSubject()'>
+            {{ labels.addSubject }}
     </button>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
-    createCase(){
+    addSubject(){
       let signal = new CustomEvent('clicked.create.case',
                                   {'detail': this.values.id,
                                   'bubbles': true})

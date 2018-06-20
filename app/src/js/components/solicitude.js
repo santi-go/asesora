@@ -124,7 +124,7 @@ export default class Solicitude extends Component {
     )
     document.getElementById(this.element).addEventListener(
       'clicked.create.case',
-      this.createCase.bind(this)
+      this.addSubject.bind(this)
     )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -166,7 +166,7 @@ export default class Solicitude extends Component {
     }
   }
 
-  createCase(){
+  addSubject(){
     window.location.href = "/cases.html?id=" + event.detail
   }
 
@@ -592,7 +592,7 @@ export default class Solicitude extends Component {
         "applicantSurname": "XXXXXXXXX",
         "text": "XXXXX",
         "noDate": "XXXXX",
-        "createCase": "XXXXXX",
+        "addSubject": "XXXXXX",
         "subjects": "XxXxXxX",
         "company": "XXXXXXX",
         "companyName": "XXXXXXXX",

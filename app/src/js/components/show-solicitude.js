@@ -31,7 +31,7 @@ export default class ShowSolicitude extends Component {
 
     document.getElementById(this.element).addEventListener(
       'clicked.create.case',
-      this.createCase.bind(this)
+      this.addSubject.bind(this)
     )
   }
 
@@ -39,7 +39,7 @@ export default class ShowSolicitude extends Component {
     window.location.href = "/index.html?id=" + event.detail
   }
 
-  createCase(){
+  addSubject(){
     window.location.href = "/cases.html?id=" + event.detail
   }
 
@@ -95,7 +95,7 @@ export default class ShowSolicitude extends Component {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
         "edit": "xxxxx",
-        "createCase": "XXXXXX",
+        "addSubject": "XXXXXX",
         "casesData": "xxxxx",
         "summary": "XxXxXxX",
         "applicant": "xxxxx",
