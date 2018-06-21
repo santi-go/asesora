@@ -56,6 +56,7 @@ export default class Cases extends Component {
   }
 
   subjectCreated(payload) {
+    console.log(payload);
     alert("Caso creado con ID : "+ payload.id);
   }
 

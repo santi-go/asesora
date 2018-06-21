@@ -22,7 +22,7 @@ describe 'Subjects Api' do
 
 	it 'create subjects for solicitude' do
 		subject = {
-            "creation_moment": Fixtures::CREATION_MOMENT,
+            "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
@@ -37,7 +37,7 @@ describe 'Subjects Api' do
 
   it 'retrieves subjects by creation moment of the solicitude' do
     created_subject = {
-      "creation_moment": Fixtures::CREATION_MOMENT,
+      "solicitudeId": Fixtures::CREATION_MOMENT,
       "proposal": Fixtures::PROPOSAL,
       "analysis": Fixtures::ANALYSIS,
       "topics": Fixtures::TOPICS
@@ -46,7 +46,7 @@ describe 'Subjects Api' do
     post '/api/create-subject', created_subject
 
     retrieve_subject = {
-            "creation_moment": Fixtures::CREATION_MOMENT
+            "solicitudeId": Fixtures::CREATION_MOMENT
     }.to_json
 
     post '/api/retrieve-subjects', retrieve_subject
