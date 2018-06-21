@@ -20,7 +20,8 @@ class Fixtures < Asesora
   CREATION_MOMENT = '1234567890'
   TEXT = 'Solicitude text'
   TEXT_2 = 'The last mohican'
-  SOLICITUDES_COUNT = 1
+  SOLICITUDES_COUNT = 2
+  SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY = 2
   COMPANY_NAME = 'Little market'
   COMPANY_NAME_2 = 'Bookstore inc.'
   COMPANY_CIF = 'A98005978'
@@ -57,8 +58,9 @@ class Fixtures < Asesora
     company = create_company
     applicant = create_applicant
     solicitude = create_solicitude(applicant, company)
+    other_solicitude = create_solicitude(applicant, company)
 
-    [solicitude]
+    [solicitude, other_solicitude]
   end
 
   def create_applicant
