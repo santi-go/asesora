@@ -14,6 +14,7 @@ export default class ShowSolicitude extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.show-solicitude", this.translate.bind(this))
     Bus.subscribe("got.solicitude", this.populateStaticSolicitude.bind(this))
+    Bus.subscribe("got.subjects.list", this.loadSubjectsList.bind(this))
   }
 
   load(){
@@ -21,6 +22,7 @@ export default class ShowSolicitude extends Component {
     let index = url.indexOf("=")
     let id = url.slice(index + 1)
     Bus.publish('get.solicitude', {id: id})
+    Bus.publish('get.subjects.list', {id: id})
     }
 
   watchActions(){
@@ -74,6 +76,11 @@ export default class ShowSolicitude extends Component {
         }
     }
 
+  loadSubjectsList(payload){
+    console.log(payload)
+    this.data.subjects = payload.data
+  }
+
   translate(payload) {
     let key = payload.key
     let label = payload.label
@@ -94,6 +101,7 @@ export default class ShowSolicitude extends Component {
       labels: {
         "proposals": "xxxxx",
         "analysis": "xxxxxx",
+        "topics": "xxxxxxx",
         "edit": "xxxxx",
         "addSubject": "XXXXXX",
         "casesData": "xxxxx",
@@ -109,7 +117,8 @@ export default class ShowSolicitude extends Component {
         "companyName": "XXXXXXXX",
         "companyCif": "XXXXXX",
         "companyEmployees": "XXXXXX",
-        "companyCnae": "XXXXXXXX"
+        "companyCnae": "XXXXXXXX",
+        "subjectsList": "xxxxxxx"
       },
       values: {
         "proposals": "",
@@ -127,6 +136,13 @@ export default class ShowSolicitude extends Component {
         "companyEmployees": "",
         "companyCnae": ""
       },
+      subjects: [
+        {
+          proposal: "",
+          analysis: "",
+          topics: ""
+        }
+      ],
       setValues:function(key, value) {
         this.values[key] = value
       },

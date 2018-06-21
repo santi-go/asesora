@@ -100,7 +100,11 @@ module Translation
                 "companyName": "Nombre empresa",
                 "companyCif": "CIF",
                 "companyEmployees": "Número trabajadoras y trabajadores",
-                "companyCnae": "CNAE"
+                "companyCnae": "CNAE",
+                "proposals": "Propuestas de actuación",
+                "analysis": "Análisis de la solicitud",
+                "topics": "Temas del caso",
+                "subjectsList": "Listado de casos"
               },
 
               "cases": {
