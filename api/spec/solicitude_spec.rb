@@ -36,7 +36,7 @@ describe 'Solicitude Api' do
 
       expect_solicitude_deleted(id)
     end
-    
+
     context 'when it leaves orphans' do
       it 'deletes the applicant' do
         solicitude = create_solicitude_one()
@@ -240,6 +240,43 @@ describe 'Solicitude Api' do
       expect(created_solicitude['applicant']).not_to be_empty
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
       expect(created_solicitude['date']).to eq(today)
+    end
+    context "memento" do
+      it 'saves company in latest state' do
+        first_solicitude = {
+          'applicantName': Fixtures::APPLICANT_NAME,
+          'applicantSurname': Fixtures::APPLICANT_SURNAME,
+          'applicantEmail': Fixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+          'text': Fixtures::TEXT,
+          'date': Fixtures::DATE,
+          'applicantId': "",
+          'companyName': Fixtures::COMPANY_NAME,
+          'companyCif': Fixtures::COMPANY_CIF
+        }
+        first_creation_moment = create_solicitude(first_solicitude)
+
+        wait_for_new_edition_moment
+
+        second_solicitude = {
+          'applicantName': Fixtures::APPLICANT_NAME_2,
+          'applicantSurname': Fixtures::APPLICANT_SURNAME,
+          'applicantEmail': Fixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+          'text': Fixtures::TEXT,
+          'date': Fixtures::DATE,
+          'applicantId': "",
+          'companyName': Fixtures::COMPANY_NAME_2,
+          'companyCif': Fixtures::COMPANY_CIF
+        }
+        second_creation_moment = create_solicitude(second_solicitude)
+
+        first_solicitude = retrieve_solicitude(first_creation_moment)
+        second_solicitude = retrieve_solicitude(second_creation_moment)
+
+        expect(first_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME)
+        expect(second_solicitude['data']['company_name']).to eq(Fixtures::COMPANY_NAME_2)
+      end
     end
   end
 
@@ -446,7 +483,7 @@ describe 'Solicitude Api' do
         }
         second_creation_moment = create_solicitude(second_solicitude)
         wait_for_new_edition_moment
-        
+
         same_company_with_new_data = {
           'companyName': Fixtures::COMPANY_NAME_2,
           'companyCif': Fixtures::COMPANY_CIF
@@ -463,13 +500,13 @@ describe 'Solicitude Api' do
       end
     end
   end
-  
+
   private
-  
+
   def create_solicitude(solicitude)
     post_create_solicitude(solicitude.to_json)
     response = JSON.parse(last_response.body)
-    
+
     response['creation_moment']
   end
 
@@ -483,7 +520,7 @@ describe 'Solicitude Api' do
 
   def retrieve_solicitude(creation_moment)
     post '/api/retrieve-solicitude', { 'id' => creation_moment }.to_json
-    
+
     JSON.parse(last_response.body)
   end
 
