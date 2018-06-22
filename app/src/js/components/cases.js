@@ -57,7 +57,7 @@ export default class Cases extends Component {
 
   subjectCreated(payload) {
     console.log(payload);
-    alert("Caso creado con ID : "+ payload.id);
+    window.location.href = "/index.html?id=" + payload.solicitude_id
   }
 
   getSolicitudeId() {

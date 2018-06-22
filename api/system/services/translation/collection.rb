@@ -53,8 +53,8 @@ module Translation
                 "companyEmployees": "Número trabajadoras y trabajadores",
                 "companyCnae": "CNAE",
                 "addSubject": "Añadir Caso",
-                "subjects": "Tus casos",
                 "submit": "Solicitar",
+                "subjectsList": "Listado de casos",
                 "submitting": "Solicitando",
                 "editionsubmit": "Guardar cambios",
                 "editionsubmitting": "Guardando",
@@ -70,7 +70,10 @@ module Translation
                 "sent": "Todo Ok! Enviado!",
                 "addedEmployeesValueMessage": "Se ha agregado información actualizada de número de empleados a la empresa",
                 "addedNameValueMessage": "Se ha agregado información actualizada del nombre de la empresa",
-                "addValue": "Agregar valor"
+                "addValue": "Agregar valor",
+                "proposals": "Propuestas de actuación",
+                "analysis": "Análisis de la solicitud",
+                "topics": "Temas del caso"
               },
 
               "solicitudes-list": {

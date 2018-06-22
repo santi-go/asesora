@@ -13,8 +13,7 @@ export default class ShowSolicitude extends Component {
 
   subscribe(){
     Bus.subscribe("got.translation.for.show-solicitude", this.translate.bind(this))
-    Bus.subscribe("got.solicitude", this.populateStaticSolicitude.bind(this))
-    Bus.subscribe("got.subjects.list", this.loadSubjectsList.bind(this))
+    Bus.subscribe("got.solicitude", this.updateModel.bind(this))
   }
 
   load(){
@@ -22,8 +21,7 @@ export default class ShowSolicitude extends Component {
     let index = url.indexOf("=")
     let id = url.slice(index + 1)
     Bus.publish('get.solicitude', {id: id})
-    Bus.publish('get.subjects.list', {id: id})
-    }
+  }
 
   watchActions(){
     document.getElementById(this.element).addEventListener(
@@ -37,11 +35,11 @@ export default class ShowSolicitude extends Component {
     )
   }
 
-  loadSolicitudeToEdit(){
+  loadSolicitudeToEdit(event){
     window.location.href = "/index.html?id=" + event.detail
   }
 
-  addSubject(){
+  addSubject(event){
     window.location.href = "/cases.html?id=" + event.detail
   }
 
@@ -52,7 +50,7 @@ export default class ShowSolicitude extends Component {
     super.initializeViews(listView)
   }
 
-  populateStaticSolicitude(payload){
+  updateModel(payload){
     this.data.values.id = payload.data.creation_moment
 
     let dictionary = this.dictionaryOfSolicitude(payload)
@@ -72,14 +70,10 @@ export default class ShowSolicitude extends Component {
         'companyName': payload.data.company_name,
         'companyCif': payload.data.company_cif,
         'companyEmployees': payload.data.company_employees,
-        'companyCnae': payload.data.company_cnae
+        'companyCnae': payload.data.company_cnae,
+        'subjects': payload.data.subjects
         }
     }
-
-  loadSubjectsList(payload){
-    console.log(payload)
-    this.data.subjects = payload.data
-  }
 
   translate(payload) {
     let key = payload.key
@@ -121,9 +115,6 @@ export default class ShowSolicitude extends Component {
         "subjectsList": "xxxxxxx"
       },
       values: {
-        "proposals": "",
-        "analysis": "",
-        "casesData": "",
         "id": "",
         "applicantName": "",
         "applicantSurname": "",
@@ -134,15 +125,9 @@ export default class ShowSolicitude extends Component {
         "companyName": "",
         "companyCif": "",
         "companyEmployees": "",
-        "companyCnae": ""
+        "companyCnae": "",
+        "subjects":""
       },
-      subjects: [
-        {
-          proposal: "",
-          analysis: "",
-          topics: ""
-        }
-      ],
       setValues:function(key, value) {
         this.values[key] = value
       },

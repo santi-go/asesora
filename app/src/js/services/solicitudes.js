@@ -22,8 +22,6 @@ export default class Solicitudes {
     Bus.subscribe("get.company.count", this.getCompanyCount.bind(this))
     Bus.subscribe("delete.solicitude", this.deleteSolicitude.bind(this))
     Bus.subscribe("create.subject", this.createSubject.bind(this))
-    Bus.subscribe("get.subjects.list", this.loadSubjects.bind(this))
-
   }
 
   retrieveCnae() {
@@ -38,20 +36,6 @@ export default class Solicitudes {
     let body = payload
     let url = 'create-subject'
     this.client.hit(url, body, callback)
-  }
-
-  loadSubjects(payload) {
-    let callback = this.buildCallback('got.subjects.list')
-    let body = payload
-    let url = 'retrieve-subjects'
-    this.client.hit(url, body, callback)
-  }
-
-  store() {
-    return function(response) {
-      this.cnaeCatalog = response.data
-      Bus.publish("got.cnae-catalog", this.cnaeCatalog)
-    }
   }
 
   deleteSolicitude(payload){

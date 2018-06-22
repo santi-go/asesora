@@ -10,9 +10,13 @@ module Actions
       return {} if solicitude.empty?
       company = ::Companies::Service.retrieve(solicitude['company'], solicitude['edition_moment'])
       applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
+      subjects = ::Subjects::Service.all_by(id)
       prepared_solicitude = add_with_prefix(solicitude,company,'company')
       prepared_applicant = add_with_prefix(solicitude,applicant,'applicant')
-      add(prepared_solicitude, prepared_applicant)
+      solicitude = add(prepared_solicitude, prepared_applicant)
+      solicitude[:subjects] = subjects
+
+      solicitude
     end
   end
 end

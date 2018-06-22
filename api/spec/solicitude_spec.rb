@@ -138,7 +138,7 @@ describe 'Solicitude Api' do
       post 'fixtures/clean'
     end
 
-    it 'returns the brand new solicitude' do
+    it 'returns a brand new solicitude' do
       body = {
         'applicantName': Fixtures::APPLICANT_NAME,
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
@@ -160,7 +160,7 @@ describe 'Solicitude Api' do
       expect(created_solicitude['creation_moment']).not_to be_nil
     end
 
-    it 'returns the new solicitude with existent applicant id' do
+    it 'returns a new solicitude with existent applicant id' do
       body = {
         'applicantName': Fixtures::APPLICANT_NAME,
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
