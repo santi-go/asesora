@@ -147,6 +147,7 @@ ssh -i ~/.ssh/your_key root@ip.droplet
 For copy the applicative to a server, view or run the script:
 
 ~~~
+cd deploy
 sh staging.sh
 ~~~
 
