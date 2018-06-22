@@ -1,6 +1,6 @@
 <template>
   <div class="button-inline">
-    <button class='create-case-button'
+    <button id='add-case-button'
             type="button"
             name="button"
             v-on:click='addSubject()'>

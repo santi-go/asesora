@@ -35,7 +35,7 @@
                      :is-valid-company-name='isValidCompanyName'
                      ></asesora-company>
     <template v-if="editionmode">
-      <div  class="card large-card" >
+      <div  class="card large-card listed-subjects">
         <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
         <asesora-button-create-case :labels="labels" :values="values"></asesora-button-create-case>
       </div>
