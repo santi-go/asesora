@@ -36,7 +36,7 @@ describe 'Companies' do
 		post_create_solicitude(solicitude)
 
 		body = {
-			"name": "Lit",
+			"name": "Rap",
 			"cnae": "931 - Actividades deportivas"
 		}.to_json
 

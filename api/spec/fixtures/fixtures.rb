@@ -7,32 +7,33 @@ require 'json'
 
 
 class Fixtures < Asesora
-  APPLICANT_NAME = 'John'
-  APPLICANT_SURNAME = 'Doe'
-  APPLICANT_EMAIL = 'john@doe.com'
-  APPLICANT_PHONENUMBER = '987654321'
-  APPLICANT_NAME_2 = 'John'
-  APPLICANT_SURNAME_2 = 'Connor'
-  APPLICANT_EMAIL_2 = 'john@doe.com'
-  APPLICANT_PHONENUMBER_2 = '600100200'
-  DATE = '2018-04-25'
-  DATE_2 = '2018-05-25'
   CREATION_MOMENT = '1234567890'
-  TEXT = 'Solicitude text'
-  TEXT_2 = 'The last mohican'
   SOLICITUDES_COUNT = 2
   SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY = 2
-  COMPANY_NAME = 'Little market'
-  COMPANY_NAME_2 = 'Bookstore inc.'
+  DATE = '2018-04-25'
+  TEXT = 'La primera solicitud'
+  DATE_1 = '2018-04-25'
+  TEXT_1 = 'La primera solicitud'
+  APPLICANT_NAME = 'Piedad'
+  APPLICANT_SURNAME = 'Alarcón'
+  APPLICANT_EMAIL = 'piedadalarcon@noname.es'
+  APPLICANT_PHONENUMBER = '000111000'
+  COMPANY_NAME = 'De Rape SL'
   COMPANY_CIF = 'A98005978'
-  COMPANY_CIF_2 = 'F7575797A'
-  COMPANY_CIF_3 = 'U7053991A'
   COMPANY_EMPLOYEES = '34'
-  COMPANY_EMPLOYEES_2 = '3'
   COMPANY_CNAE = '931 - Actividades deportivas'
+  TEXT_2 = 'La primera solicitud'
+  APPLICANT_NAME_2 = 'Piedad'
+  APPLICANT_SURNAME_2 = 'Romero'
+  APPLICANT_EMAIL_2 = 'hidalgoromero@noname.es'
+  APPLICANT_PHONENUMBER_2 = '000222000'
+  COMPANY_NAME_2 = 'Campigue SAL'
+  COMPANY_CIF_2 = 'A98005978'
+  COMPANY_EMPLOYEES_2 = '34'
   COMPANY_CNAE_2 = '870 - Asistencia en establecimientos residenciales'
-  PROPOSAL = 'Propuestas de actuacion'
-  ANALYSIS = 'Analisis de la solicitud'
+  COMPANY_CIF_3 = 'U7053991A'
+  PROPOSAL = 'Propuestas de actuación'
+  ANALYSIS = 'Análisis de la solicitud'
   TOPICS = 'Temas del caso'
 
   def self.locale
@@ -55,24 +56,26 @@ class Fixtures < Asesora
   private
 
   def insert_solicitudes()
-    company = create_company
-    applicant = create_applicant
-    solicitude = create_solicitude(applicant, company)
-    other_solicitude = create_solicitude(applicant, company)
+    first_company = create_company(COMPANY_NAME, COMPANY_CIF, COMPANY_EMPLOYEES, COMPANY_CNAE)
+    first_applicant = create_applicant(APPLICANT_NAME, APPLICANT_SURNAME, APPLICANT_EMAIL, APPLICANT_PHONENUMBER)
+    first_solicitude = create_solicitude(first_applicant, first_company)
+    second_company = create_company(COMPANY_NAME_2, COMPANY_CIF_2, COMPANY_EMPLOYEES_2, COMPANY_CNAE_2)
+    second_applicant = create_applicant(APPLICANT_NAME_2, APPLICANT_SURNAME_2, APPLICANT_EMAIL_2, APPLICANT_PHONENUMBER_2)
+    second_solicitude = create_solicitude(second_applicant, second_company)
 
-    [solicitude, other_solicitude]
+    [first_solicitude, second_solicitude]
   end
 
-  def create_applicant
-    ::Applicant::Service.create(APPLICANT_NAME, APPLICANT_SURNAME, APPLICANT_EMAIL, APPLICANT_PHONENUMBER)
+  def create_applicant(name, surname, email, phonenumber)
+    ::Applicant::Service.create(name, surname, email, phonenumber)
   end
 
   def create_solicitude(applicant, company)
-    ::Solicitudes::Service.create(DATE, TEXT, applicant["id"], company["cif"])
+    ::Solicitudes::Service.create(DATE_1, TEXT_1, applicant["id"], company["cif"])
   end
 
-  def create_company
-    ::Companies::Service.create(COMPANY_NAME, COMPANY_CIF, COMPANY_EMPLOYEES, COMPANY_CNAE)
+  def create_company(name, cif, employees, cnae)
+    ::Companies::Service.create(name, cif, employees, cnae)
   end
 
   def clean_collections
