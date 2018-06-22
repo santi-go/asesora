@@ -2,6 +2,8 @@
 THIS_DIRECTORY=$(dirname "$0")/
 . $THIS_DIRECTORY/staging-explain.sh
 
+cd ..
+
 explain_title
 
 explain_abstract
@@ -117,12 +119,12 @@ copy_staging_fixtures(){
   print_message
 
   printf "${TEXT}· copy staging fixture: ${RESET}"
-  cp api/spec/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
+  cp deploy/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
   VALUE=$?
   print_message
 
   printf "${TEXT}· copy staging spec: ${RESET}"
-  cp api/spec/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
+  cp deploy/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
   VALUE=$?
   print_message
 

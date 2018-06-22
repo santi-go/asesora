@@ -194,7 +194,7 @@ class Asesora < Sinatra::Base
     params = JSON.parse(request.body.read)
 
     data = {
-      solicitude_id: params['creation_moment'],
+      solicitude_id: params['solicitudeId'],
       proposal: params['proposal'],
       analysis: params['analysis'],
       topics: params['topics']
@@ -208,7 +208,7 @@ class Asesora < Sinatra::Base
   post '/api/retrieve-subjects' do
     params = JSON.parse(request.body.read)
 
-    subjects = Actions::RetrieveSubjects.do(solicitude_id: params['creation_moment'])
+    subjects = Actions::RetrieveSubjects.do(solicitude_id: params['solicitudeId'])
 
     {data: subjects}.to_json
   end

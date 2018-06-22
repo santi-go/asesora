@@ -99,15 +99,41 @@ Remember: only change the permission of the private key (this not have a _.pub_ 
 
 ## Copy your public key to the droplet
 
+You need to have access rights as an administrator in order to upload your key to the server.
+
+
+### With root password
+
 ~~~
 cd ~/.ssh
 ssh-copy-id -i your_key.pub root@ip.droplet
 ~~~
 
-In this moment we urge you to indicate the root password of root in droplet.
+In this moment we urge you to indicate the password of root in droplet.
 
 
-## Finally, connect into droplet with ssh
+### Or, send your public key to an administrator
+
+The administrator must copy with 'scp' the key:
+
+~~~
+scp -i admin_key -rC new_admin_user_key.pub root@206.189.1.31:/root/new_admin_user_key.pub
+~~~
+
+Then, with 'ssh', the administrator add the key to authorized keys:
+
+~~~
+ssh -i admin_key root@206.189.1.31 "cat /root/new_admin_user_key.pub >> /root/.ssh/authorized_keys"
+~~~
+
+And finally, the administrator removes the uploaded file:
+
+~~~
+ssh -i admin_key root@206.189.1.31 "rm /root/new_admin_user_key.pub"
+~~~
+
+
+## Connect into droplet with ssh
 
 ~~~
 ssh -i ~/.ssh/your_key root@ip.droplet
@@ -121,6 +147,7 @@ ssh -i ~/.ssh/your_key root@ip.droplet
 For copy the applicative to a server, view or run the script:
 
 ~~~
+cd deploy
 sh staging.sh
 ~~~
 
