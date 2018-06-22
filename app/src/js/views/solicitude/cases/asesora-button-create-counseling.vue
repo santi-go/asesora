@@ -18,7 +18,6 @@ export default {
 
   methods: {
     createCounseling() {
-    console.log(this.values.solicitudeId);  
     let signal = new CustomEvent('clicked.create.counseling',
                                   {'detail': {
                                     solicitudeId: this.values.solicitudeId,
