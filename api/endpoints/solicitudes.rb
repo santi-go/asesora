@@ -6,6 +6,9 @@ require_relative '../system/actions/delete_solicitude'
 require_relative '../system/actions/retrieve_cnae'
 require_relative '../system/actions/create_subject'
 require_relative '../system/actions/retrieve_subjects'
+require_relative '../system/actions/retrieve_subjects'
+require_relative '../system/actions/retrieve_topics'
+
 
 module Endpoints
   class Solicitudes
@@ -110,6 +113,13 @@ module Endpoints
         subjects = Actions::RetrieveSubjects.do(solicitude_id: params['solicitudeId'])
       
         {data: subjects}.to_json
+      end
+    end
+
+    def self.define_retrieve_topics(api)
+      api.post '/api/topics' do
+        topics_catalog = Actions::RetrieveTopics.do()
+        {data: topics_catalog}.to_json
       end
     end
   end
