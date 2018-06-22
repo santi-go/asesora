@@ -9,6 +9,7 @@ require_relative 'system/actions/retrieve_solicitudes'
 require_relative 'system/actions/retrieve_about'
 require_relative 'system/actions/retrieve_dictionary'
 require_relative 'system/actions/retrieve_cnae'
+require_relative 'system/actions/retrieve_topics'
 require_relative 'system/actions/retrieve_solicitude'
 require_relative 'system/actions/update_solicitude'
 require_relative 'system/actions/delete_solicitude'
@@ -145,6 +146,11 @@ class Asesora < Sinatra::Base
   post '/api/cnae' do
     cnae_catalog = Actions::RetrieveCnae.do()
     {data: cnae_catalog}.to_json
+  end
+
+  post '/api/topics' do
+    topics_catalog = Actions::RetrieveTopics.do()
+    {data: topics_catalog}.to_json
   end
 
   post '/api/duplicated-company' do

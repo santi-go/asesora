@@ -22,7 +22,7 @@
 export default {
   name: 'asesora-company-cnae',
 
-  props: ['labels', 'values', 'cnaeCatalog','editCompany'],
+  props: ['labels', 'values', 'cnaeCatalog', 'editCompany'],
 
   data(){
     return {

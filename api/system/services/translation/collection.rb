@@ -113,7 +113,8 @@ module Translation
                 "casesData": "Datos del caso",
                 "edit": "Editar",
                 "addSubject": "Añadir caso",
-                "createSubject": "Crear asesoramiento"
+                "createSubject": "Crear asesoramiento",
+                "topics": "Temas del caso"
               }
             },
 

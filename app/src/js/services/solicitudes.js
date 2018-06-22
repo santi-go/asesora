@@ -7,6 +7,8 @@ export default class Solicitudes {
     this.subscribe()
     this.retrieveCnae()
     this.cnaeCatalog = []
+    this.retrieveTopics()
+    this.topicsCatalog = []
   }
 
   subscribe() {
@@ -30,6 +32,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('got.cnae-catalog')
     let body = {}
     let url = 'cnae'
+    this.client.hit(url, body, callback)
+  }
+
+  retrieveTopics() {
+    let callback = this.buildCallback('got.topics-catalog')
+    let body = {}
+    let url = 'topics'
     this.client.hit(url, body, callback)
   }
 
