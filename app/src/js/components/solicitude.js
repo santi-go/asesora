@@ -166,7 +166,7 @@ export default class Solicitude extends Component {
     }
   }
 
-  addSubject(){
+  addSubject(event){
     window.location.href = "/cases.html?id=" + event.detail
   }
 
@@ -298,7 +298,8 @@ export default class Solicitude extends Component {
          'companyName': payload.data.company_name,
          'companyCif': payload.data.company_cif,
          'companyEmployees': payload.data.company_employees,
-         'companyCnae': payload.data.company_cnae
+         'companyCnae': payload.data.company_cnae,
+         'subjects': payload.data.subjects
          }
      }
 
@@ -584,83 +585,89 @@ export default class Solicitude extends Component {
 
     model(){
       return {
-        labels: { "applicant": "XXXXXXXX",
-        "date": "XXXXX",
-        "applicantEmail": "XXX",
-        "applicantPhonenumber": "XXXXXXXXX",
-        "applicantName": "XXXX",
-        "applicantSurname": "XXXXXXXXX",
-        "text": "XXXXX",
-        "noDate": "XXXXX",
-        "addSubject": "XXXXXX",
-        "subjects": "XxXxXxX",
-        "company": "XXXXXXX",
-        "companyName": "XXXXXXXX",
-        "companyCif": "XXXXXX",
-        "companyEmployees": "XXXXXX",
-        "companyCnae": "XXXXXXXX",
-        "noContact": "XXXXX",
-        "incompleteCompanyIdentity": "XXXXXXX",
-        "noCompanyName": "xxxxxxxx",
-        "suggestions" : "xxxxxx",
-        "submit" : "xxxxxxxxxx",
-        "editCompany":"xxxxxxxxxxx",
-        "editingCompany": "xxxxxxxxxxxxxx",
-        "submitting" : "xxxxxxxxxx",
-        "editiondiscard" : "xxxxxxxxxx",
-        "editionsubmit" : "xxxxxx",
-        "editionsubmitting" : "xxxxxx",
-        "deleteSolicitude" : "XXXXX",
-        "errorPhone": "xxxxxxxx",
-        "errorEmail": "xxxxxxx",
-        "sent": "XXXX",
-        "addValue": "xxxxx",
-        "addedEmployeesValueMessage": "xxxx",
-        "addedNameValueMessage": "xxxx",
-        "companyInfo": "xxxxxxx"
-      },
-        values: { "text": "",
-        "date": "",
-        "id": "",
-        "applicantName": "",
-        "applicantSurname": "",
-        "applicantEmail": "",
-        "applicantPhonenumber": "",
-        "applicantId": "",
-        "companyName": "",
-        "companyCif": "",
-        "companyEmployees": "",
-        "companyCnae": "",
-        "suggestions" : ""
-      },
-      suggestedCompanies: [],
-      suggestedApplicants: [],
-      fullfilled: false,
-      isValidCif: true,
-      cnaeCatalog:[],
-      isValidCompanyIdentity: true,
-      isValidCompanyName: true,
-      isValidContact: true,
-      submittable: false,
-      showAlert: true,
-      showUpdatedEmployeesValueMessage: false,
-      showUpdatedNameValueMessage: false,
-      editionmode: false,
-      editCompany: false,
-      showEditCompanyButton: false,
-      saveCompany: false,
-      isValidPhone: true,
-      isValidEmail: true,
-      translate:function(key,value) {
-        this.labels[key] = value
-      },
-      setValues:function(key, value) {
-        this.values[key] = value
-      },
-      cloneValues:function(){
-        let clone = Object.assign({}, this.values)
-        return clone
+        labels: {
+          "analysis": "xxxxxx",
+          "applicant": "XXXXXXXX",
+          "date": "XXXXX",
+          "applicantEmail": "XXX",
+          "applicantPhonenumber": "XXXXXXXXX",
+          "applicantName": "XXXX",
+          "applicantSurname": "XXXXXXXXX",
+          "text": "XXXXX",
+          "noDate": "XXXXX",
+          "addSubject": "XXXXXX",
+          "company": "XXXXXXX",
+          "companyName": "XXXXXXXX",
+          "companyCif": "XXXXXX",
+          "companyEmployees": "XXXXXX",
+          "companyCnae": "XXXXXXXX",
+          "noContact": "XXXXX",
+          "incompleteCompanyIdentity": "XXXXXXX",
+          "noCompanyName": "xxxxxxxx",
+          "suggestions" : "xxxxxx",
+          "submit" : "xxxxxxxxxx",
+          "editCompany":"xxxxxxxxxxx",
+          "editingCompany": "xxxxxxxxxxxxxx",
+          "submitting" : "xxxxxxxxxx",
+          "editiondiscard" : "xxxxxxxxxx",
+          "editionsubmit" : "xxxxxx",
+          "editionsubmitting" : "xxxxxx",
+          "deleteSolicitude" : "XXXXX",
+          "errorPhone": "xxxxxxxx",
+          "errorEmail": "xxxxxxx",
+          "proposals": "xxxxx",
+          "topics": "xxxxxxx",
+          "sent": "XXXX",
+          "subjectsList": "xxxxxxx",
+          "addValue": "xxxxx",
+          "addedEmployeesValueMessage": "xxxx",
+          "addedNameValueMessage": "xxxx",
+          "companyInfo": "xxxxxxx"
+        },
+        values: {
+          "text": "",
+          "date": "",
+          "id": "",
+          "applicantName": "",
+          "applicantSurname": "",
+          "applicantEmail": "",
+          "applicantPhonenumber": "",
+          "applicantId": "",
+          "companyName": "",
+          "companyCif": "",
+          "companyEmployees": "",
+          "companyCnae": "",
+          "suggestions" : "",
+          "subjects":""
+        },
+        suggestedCompanies: [],
+        suggestedApplicants: [],
+        fullfilled: false,
+        isValidCif: true,
+        cnaeCatalog:[],
+        isValidCompanyIdentity: true,
+        isValidCompanyName: true,
+        isValidContact: true,
+        submittable: false,
+        showAlert: true,
+        showUpdatedEmployeesValueMessage: false,
+        showUpdatedNameValueMessage: false,
+        editionmode: false,
+        editCompany: false,
+        showEditCompanyButton: false,
+        saveCompany: false,
+        isValidPhone: true,
+        isValidEmail: true,
+        translate:function(key,value) {
+          this.labels[key] = value
+        },
+        setValues:function(key, value) {
+          this.values[key] = value
+        },
+        cloneValues:function(){
+          let clone = Object.assign({}, this.values)
+          return clone
+        }
       }
     }
-  }
 }

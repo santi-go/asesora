@@ -31,9 +31,13 @@ describe('Delete solicitude', () => {
 
     browser.waitForVisible('#solicitudes-list', 2000)
 
+    browser.scroll('#solicitudes-list')
+
     solicitudesList.clickOnEditButtonOnItem(1)
 
     browser.waitForVisible('#solicitude', 2000)
+
+    browser.scroll('#solicitude')
 
     assert(solicitude.isDeleteSolicitudeButtonVisible(), true)
     solicitude.clickOnDeleteSolicitude()

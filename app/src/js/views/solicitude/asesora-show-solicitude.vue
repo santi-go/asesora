@@ -4,7 +4,7 @@
         <h4>{{ labels.summary }}</h4>
       </div>
         <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
-        <asesora-subjects-list :labels="labels" :subjects="subjects"></asesora-subjects-list>
+        <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
         <div  class="card large-card" >
           <div class="button-inline">
             <button   id='edit-button'
@@ -29,7 +29,7 @@ import SubjectsListView from './cases/asesora-subjects-list'
 export default {
 
   name: 'asesora-show-solicitude',
-  props: ['labels', 'values', 'subjects'],
+  props: ['labels', 'values'],
   methods: {
     solicitudeEdit(){
       let signal = new CustomEvent('load.solicitude',

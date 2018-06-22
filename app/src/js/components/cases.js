@@ -15,7 +15,7 @@ export default class Cases extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
     Bus.subscribe("subject.created", this.subjectCreated.bind(this))
-
+    Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
   }
 
   load(){
@@ -57,7 +57,11 @@ export default class Cases extends Component {
 
   subjectCreated(payload) {
     console.log(payload);
-    alert("Caso creado con ID : "+ payload.id);
+    window.location.href = "/index.html?id=" + payload.solicitude_id
+  }
+
+  gotTopicsCatalog(payload) {
+    this.data.topicsCatalog = payload.data
   }
 
   getSolicitudeId() {
@@ -76,7 +80,8 @@ export default class Cases extends Component {
         "edit": "xxxxx",
         "addSubject": "XXXXXX",
         "createSubject": "XxX",
-        "casesData": "xxxxx"
+        "casesData": "xxxxx",
+        "topics": "Temas del caso"
       },
       values: {
         "solicitudeId": "",
@@ -85,6 +90,7 @@ export default class Cases extends Component {
         "subjectId":"",
         "topics": ""
       },
+      topicsCatalog: [],
       translate:function(key,value) {
         this.labels[key] = value
       }
