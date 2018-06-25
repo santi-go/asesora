@@ -6,7 +6,7 @@ require 'mongo'
 require 'json'
 
 
-class Fixtures < Asesora
+class AsesoraWithFixtures < Asesora
   CREATION_MOMENT = '1234567890'
   SOLICITUDES_COUNT = 2
   SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY = 2

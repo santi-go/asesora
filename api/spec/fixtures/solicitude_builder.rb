@@ -6,14 +6,14 @@ class SolicitudeBuilder
   def initialize
     @solicitude = {
       applicantId: "",
-      applicantName: Fixtures::APPLICANT_NAME,
-      applicantSurname: Fixtures::APPLICANT_SURNAME,
-      applicantEmail: Fixtures::APPLICANT_EMAIL,
-      applicantPhonenumber: Fixtures::APPLICANT_PHONENUMBER,
-      text: Fixtures::TEXT,
-      date: Fixtures::DATE,
-      companyName: Fixtures::COMPANY_NAME,
-      companyCif: Fixtures::COMPANY_CIF
+      applicantName: AsesoraWithFixtures::APPLICANT_NAME,
+      applicantSurname: AsesoraWithFixtures::APPLICANT_SURNAME,
+      applicantEmail: AsesoraWithFixtures::APPLICANT_EMAIL,
+      applicantPhonenumber: AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+      text: AsesoraWithFixtures::TEXT,
+      date: AsesoraWithFixtures::DATE,
+      companyName: AsesoraWithFixtures::COMPANY_NAME,
+      companyCif: AsesoraWithFixtures::COMPANY_CIF
     }
   end
 

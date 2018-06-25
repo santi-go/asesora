@@ -1,3 +1,3 @@
-require_relative './spec/fixtures/fixtures'
+require_relative './spec/fixtures/asesora_with_fixtures'
 
-run Fixtures
+run AsesoraWithFixtures

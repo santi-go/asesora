@@ -2,13 +2,13 @@ require 'json'
 
 require_relative  '../../system/services/solicitudes/service'
 require_relative  '../../system/domain/solicitude'
-require_relative './../fixtures/fixtures'
+require_relative './../fixtures/asesora_with_fixtures'
 
 describe 'Solicitude service' do
   include Rack::Test::Methods
 
   def app
-    Fixtures
+    AsesoraWithFixtures
   end
 
   after(:each) do
@@ -26,14 +26,14 @@ describe 'Solicitude service' do
   it 'knows how many solicitudes has one company' do
     post 'fixtures/pristine'
 
-    result = Solicitudes::Service.times_company(Fixtures::COMPANY_CIF)
+    result = Solicitudes::Service.times_company(AsesoraWithFixtures::COMPANY_CIF)
 
-    expect(result).to eq(Fixtures::SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY)
+    expect(result).to eq(AsesoraWithFixtures::SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY)
   end
 
   it 'update edition moment', :wip do
-      date = Fixtures::DATE
-      text = Fixtures::TEXT
+      date = AsesoraWithFixtures::DATE
+      text = AsesoraWithFixtures::TEXT
       applicant = '1'
       company = '12345678Z'
 

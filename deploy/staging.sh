@@ -113,18 +113,13 @@ third_add_fixture
 
 printf "${TITLE}\nYou want to clean the staging database? (y/n) \n${RESET}"; read INTRO
 copy_staging_fixtures(){
-  printf "${TEXT}· create fixture folder: ${RESET}"
+  printf "${TEXT}· create spec/fixtures folder: ${RESET}"
   mkdir staging/spec/fixtures/ -p 2>/dev/null
   VALUE=$?
   print_message
 
-  printf "${TEXT}· copy staging fixture: ${RESET}"
-  cp deploy/prepare_staging/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
-  VALUE=$?
-  print_message
-
-  printf "${TEXT}· copy staging spec: ${RESET}"
-  cp deploy/prepare_staging/spec_staging.rb staging/spec/staging_spec.rb 2>/dev/null
+  printf "${TEXT}· copy fixtures.rb: ${RESET}"
+  cp api/spec/fixtures/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
   VALUE=$?
   print_message
 

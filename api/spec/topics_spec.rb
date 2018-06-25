@@ -1,7 +1,7 @@
 require 'json'
 require 'rack/test'
 
-require_relative './fixtures/fixtures'
+require_relative './fixtures/asesora_with_fixtures'
 
 
 describe 'Topics' do
@@ -9,7 +9,7 @@ describe 'Topics' do
   include Rack::Test::Methods
 
   def app
-    Fixtures
+    AsesoraWithFixtures
   end
 
   it 'retrieves complete catalog' do

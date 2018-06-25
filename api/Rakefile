@@ -17,7 +17,7 @@ task :start_dev do
   sh "rerun --background -- rackup config.dev.ru --port #{API_PORT} -o 0.0.0.0"
 end
 
-task :prepare_demo do
+task :deploy do
   sh "rackup config.dev.ru --port #{API_PORT} -o #{API_HOST} -D"
 end
 

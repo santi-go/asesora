@@ -5,13 +5,13 @@ require 'rack/test'
 require 'date'
 
 require_relative '../system/services/applicant/service'
-require_relative './fixtures/fixtures'
+require_relative './fixtures/asesora_with_fixtures'
 
 describe 'Solicitude Applicant' do
   include Rack::Test::Methods
 
   def app
-    Fixtures
+    AsesoraWithFixtures
   end
 
 context 'of the applicant' do
@@ -21,40 +21,40 @@ context 'of the applicant' do
 
     it 'search matches by filter' do
       first_body = {
-        'applicantName': Fixtures::APPLICANT_NAME,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-        'text': Fixtures::TEXT,
+        'applicantName': AsesoraWithFixtures::APPLICANT_NAME,
+        'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME,
+        'applicantEmail': AsesoraWithFixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+        'text': AsesoraWithFixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE,
+        'date': AsesoraWithFixtures::DATE,
         'companyCif': ""
         }.to_json
       post_create_solicitude(first_body)
       second_body = {
-        'applicantName': Fixtures::APPLICANT_NAME_2,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL_2,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
-        'text': Fixtures::TEXT,
+        'applicantName': AsesoraWithFixtures::APPLICANT_NAME_2,
+        'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME_2,
+        'applicantEmail': AsesoraWithFixtures::APPLICANT_EMAIL_2,
+        'applicantPhonenumber': AsesoraWithFixtures::APPLICANT_PHONENUMBER_2,
+        'text': AsesoraWithFixtures::TEXT,
         'applicantId': "",
-        'date': Fixtures::DATE,
+        'date': AsesoraWithFixtures::DATE,
         'companyCif': ""
         }.to_json
       post_create_solicitude(second_body)
 
       matches_body = {
         'applicantName': '',
-        'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
+        'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME_2,
         'applicantEmail': '',
         'applicantPhonenumber': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
-      expect(response['data'][0]['phonenumber']).to eq(Fixtures::APPLICANT_PHONENUMBER_2)
+      expect(response['data'][0]['phonenumber']).to eq(AsesoraWithFixtures::APPLICANT_PHONENUMBER_2)
 
       matches_body = {
-        'applicantName': Fixtures::APPLICANT_NAME,
+        'applicantName': AsesoraWithFixtures::APPLICANT_NAME,
         'applicantSurname': '',
         'applicantEmail': '',
         'applicantPhonenumber': ''
@@ -66,12 +66,12 @@ context 'of the applicant' do
 
     it 'update applicant data' do
         first_body = {
-          'date': Fixtures::DATE,
-          'applicantName': Fixtures::APPLICANT_NAME,
-          'applicantSurname': Fixtures::APPLICANT_SURNAME,
-          'applicantEmail': Fixtures::APPLICANT_EMAIL,
-          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-          'text': Fixtures::TEXT,
+          'date': AsesoraWithFixtures::DATE,
+          'applicantName': AsesoraWithFixtures::APPLICANT_NAME,
+          'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME,
+          'applicantEmail': AsesoraWithFixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+          'text': AsesoraWithFixtures::TEXT,
           'applicantId': "",
           'companyCif': ""
           }.to_json
@@ -81,10 +81,10 @@ context 'of the applicant' do
         applicant_id = response['applicant']
 
         second_body = {
-          'applicantName': Fixtures::APPLICANT_NAME,
-          'applicantSurname': Fixtures::APPLICANT_SURNAME,
-          'applicantEmail': Fixtures::APPLICANT_EMAIL,
-          'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
+          'applicantName': AsesoraWithFixtures::APPLICANT_NAME,
+          'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME,
+          'applicantEmail': AsesoraWithFixtures::APPLICANT_EMAIL,
+          'applicantPhonenumber': AsesoraWithFixtures::APPLICANT_PHONENUMBER_2,
           'applicantId': applicant_id,
           }.to_json
 
@@ -92,17 +92,17 @@ context 'of the applicant' do
         response = JSON.parse(last_response.body)
         applicant_phone = response['phonenumber']
 
-        expect(applicant_phone).to eq(Fixtures::APPLICANT_PHONENUMBER_2)
+        expect(applicant_phone).to eq(AsesoraWithFixtures::APPLICANT_PHONENUMBER_2)
     end
 
     it 'deletes applicant' do
       solicitude = {
-        'date': Fixtures::DATE,
-        'applicantName': Fixtures::APPLICANT_NAME,
-        'applicantSurname': Fixtures::APPLICANT_SURNAME,
-        'applicantEmail': Fixtures::APPLICANT_EMAIL,
-        'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
-        'text': Fixtures::TEXT,
+        'date': AsesoraWithFixtures::DATE,
+        'applicantName': AsesoraWithFixtures::APPLICANT_NAME,
+        'applicantSurname': AsesoraWithFixtures::APPLICANT_SURNAME,
+        'applicantEmail': AsesoraWithFixtures::APPLICANT_EMAIL,
+        'applicantPhonenumber': AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+        'text': AsesoraWithFixtures::TEXT,
         'applicantId': "",
         'companyCif': ""
         }.to_json

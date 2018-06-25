@@ -2,7 +2,7 @@ require 'rspec'
 require 'json'
 require 'rack/test'
 
-require_relative './fixtures/fixtures'
+require_relative './fixtures/asesora_with_fixtures'
 require_relative '../system/services/companies/service'
 
 describe 'Companies' do
@@ -10,7 +10,7 @@ describe 'Companies' do
   include Rack::Test::Methods
 
   def app
-    Fixtures
+    AsesoraWithFixtures
   end
 
   before(:each) do
@@ -23,14 +23,14 @@ describe 'Companies' do
 
 	it 'returns a list filtered by criteria' do
 		solicitude = {
-			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
-			"text": Fixtures::TEXT,
-			"applicantemail": Fixtures::APPLICANT_EMAIL,
-			"date": Fixtures::DATE,
+			"applicantPhonenumber": AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+			"text": AsesoraWithFixtures::TEXT,
+			"applicantemail": AsesoraWithFixtures::APPLICANT_EMAIL,
+			"date": AsesoraWithFixtures::DATE,
       'applicantId': "",
-			"companyName": Fixtures::COMPANY_NAME,
-			"companyCif": Fixtures::COMPANY_CIF,
-			"companyCnae": Fixtures::COMPANY_CNAE
+			"companyName": AsesoraWithFixtures::COMPANY_NAME,
+			"companyCif": AsesoraWithFixtures::COMPANY_CIF,
+			"companyCnae": AsesoraWithFixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(solicitude)
@@ -43,32 +43,32 @@ describe 'Companies' do
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
-		expect(filtered_companies_list["data"][0]['name']).to eq(Fixtures::COMPANY_NAME)
+		expect(filtered_companies_list["data"][0]['name']).to eq(AsesoraWithFixtures::COMPANY_NAME)
 	end
 
 	it 'searches by name when cnae is empty' do
 		first_solicitude = {
-			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
-			"text": Fixtures::TEXT,
-			"date": Fixtures::DATE,
-			"applicantEmail": Fixtures::APPLICANT_EMAIL,
+			"applicantPhonenumber": AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+			"text": AsesoraWithFixtures::TEXT,
+			"date": AsesoraWithFixtures::DATE,
+			"applicantEmail": AsesoraWithFixtures::APPLICANT_EMAIL,
       'applicantId': "",
 			"companyName": "First company",
-			"companyCif": Fixtures::COMPANY_CIF_2,
-			"companyCnae": Fixtures::COMPANY_CNAE
+			"companyCif": AsesoraWithFixtures::COMPANY_CIF_2,
+			"companyCnae": AsesoraWithFixtures::COMPANY_CNAE
 		}.to_json
 
 		post_create_solicitude(first_solicitude)
 
 		second_solicitude = {
-			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
-			"text": Fixtures::TEXT,
-			"date": Fixtures::DATE,
-			"applicantEmail": Fixtures::APPLICANT_EMAIL,
+			"applicantPhonenumber": AsesoraWithFixtures::APPLICANT_PHONENUMBER,
+			"text": AsesoraWithFixtures::TEXT,
+			"date": AsesoraWithFixtures::DATE,
+			"applicantEmail": AsesoraWithFixtures::APPLICANT_EMAIL,
       'applicantId': "",
 			"companyName": "Last company",
-			"companyCif": Fixtures::COMPANY_CIF_3,
-			"companyCnae": Fixtures::COMPANY_CNAE_2
+			"companyCif": AsesoraWithFixtures::COMPANY_CIF_3,
+			"companyCnae": AsesoraWithFixtures::COMPANY_CNAE_2
 		}.to_json
 
 		post_create_solicitude(second_solicitude)
@@ -85,18 +85,18 @@ describe 'Companies' do
 	end
 
   it 'search by outdated company name return zero matches' do
-    name = Fixtures::COMPANY_NAME
-    cif = Fixtures::COMPANY_CIF
-    employees = Fixtures::COMPANY_EMPLOYEES
-    cnae = Fixtures::COMPANY_CNAE
+    name = AsesoraWithFixtures::COMPANY_NAME
+    cif = AsesoraWithFixtures::COMPANY_CIF
+    employees = AsesoraWithFixtures::COMPANY_EMPLOYEES
+    cnae = AsesoraWithFixtures::COMPANY_CNAE
     Companies::Service.create(name, cif, employees, cnae)
 
-    updated_name = Fixtures::COMPANY_NAME_2
-    updated_employees = Fixtures::COMPANY_EMPLOYEES_2
+    updated_name = AsesoraWithFixtures::COMPANY_NAME_2
+    updated_employees = AsesoraWithFixtures::COMPANY_EMPLOYEES_2
     Companies::Service.update(updated_name, cif, updated_employees, cnae)
 
     criteria = {
-      name: Fixtures::COMPANY_NAME,
+      name: AsesoraWithFixtures::COMPANY_NAME,
       cnae: ""
     }
     company_list = Companies::Service.all(criteria)

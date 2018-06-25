@@ -171,8 +171,7 @@ if [ -f /var/www/asesora/config.dev.ru ]; then
   cd ~/bin
   sh down_asesora.sh
   cd /var/www/asesora
-  bundle exec rake prepare_demo
-  bundle exec rake test
+  bundle exec rake deploy
   cd ~/bin
   sh down_asesora.sh
   rm /var/www/asesora/spec/ -rf
