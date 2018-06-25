@@ -88,7 +88,8 @@ export default class Cases extends Component {
         "proposals": "",
         "analysis": "",
         "subjectId":"",
-        "topics": ""
+        "topics": "",
+        "selectedTopics": []
       },
       topicsCatalog: [],
       translate:function(key,value) {

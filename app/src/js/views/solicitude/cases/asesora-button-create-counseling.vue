@@ -23,7 +23,7 @@ export default {
                                     solicitudeId: this.values.solicitudeId,
                                     proposal: this.values.proposals,
                                     analysis: this.values.analysis,
-                                    topics:[]
+                                    topics:this.values.selectedTopics
                                   },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
