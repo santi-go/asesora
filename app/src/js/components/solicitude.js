@@ -456,17 +456,24 @@ export default class Solicitude extends Component {
     discardAnimation(){
       this.data.submittable = true
       this.data.showAlert = false
-      let element = document.querySelector('#solicitude')
-      element.classList.add('discardCard')
-      window.setTimeout(function(){
-        window.location = "/solicitudes-list.html"
-      }, 1250)
+
+      this.addClassToSolicitude('discardCard')
+      this.setTimeToRelocateUrl()
     }
 
     moveCardAnimation(){
       this.initialValues = this.data.cloneValues()
+
+      this.addClassToSolicitude('submitCard')
+      this.setTimeToRelocateUrl()
+    }
+
+    addClassToSolicitude(cssClass){
       let element = document.querySelector('#solicitude')
-      element.classList.add('submitCard')
+      element.classList.add(cssClass)
+    }
+
+    setTimeToRelocateUrl() {
       window.setTimeout(function(){
         window.location = "/solicitudes-list.html"
       }, 1250)
