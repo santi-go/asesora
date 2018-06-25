@@ -107,14 +107,24 @@ cp api/system staging/system/ -r 2>/dev/null
 VALUE=$?
 print_message
 
+printf "${TEXT}· copy api endpoints folder: ${RESET}"
+cp api/endpoints staging/endpoints/ -r 2>/dev/null
+VALUE=$?
+print_message
+
 
 third_add_fixture
 
 
-printf "${TITLE}\nYou want to clean the staging database? (y/n) \n${RESET}"; read INTRO
+printf "${TITLE}\nDo you want to clean the staging database? (y/n) \n${RESET}"; read INTRO
 copy_staging_fixtures(){
   printf "${TEXT}· create spec/fixtures folder: ${RESET}"
   mkdir staging/spec/fixtures/ -p 2>/dev/null
+  VALUE=$?
+  print_message
+
+  printf "${TEXT}· copy asesora_with_fixtures.rb: ${RESET}"
+  cp api/spec/fixtures/asesora_with_fixtures.rb staging/spec/fixtures/asesora_with_fixtures.rb 2>/dev/null
   VALUE=$?
   print_message
 

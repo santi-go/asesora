@@ -65,8 +65,8 @@ ${RESET}
    to build the app.
 2. Clean the environment with 'docker-compose down'.
 3. Copy the folder 'app/public' to 'staging'.
-4. Copy the files 'config.ru', 'Rakefile', 'asesora.rb', 'Gemfile'
-   and folder 'api/system' to 'staging'.
+4. Copy the files 'config.ru', 'Rakefile', 'asesora.rb', 'Gemfile',
+   folder 'api/endpoints' and folder 'api/system' to 'staging'.
    \n"
 read -p "Press enter to run the third chapter" key
 }
