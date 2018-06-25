@@ -1,7 +1,6 @@
 <template>
     <div class="card large-card">
       <div class="card-title">
-        CASES
         <h4>{{ labels.casesData}}</h4>
       </div>
         <asesora-proposals-for-action :labels="labels" :values="values"></asesora-proposals-for-action>

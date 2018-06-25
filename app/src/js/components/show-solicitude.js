@@ -20,6 +20,9 @@ export default class ShowSolicitude extends Component {
     let url = document.URL
     let index = url.indexOf("=")
     let id = url.slice(index + 1)
+    if (url.includes("cases.html")) {
+      this.buttonsPresent = false
+    }
     Bus.publish('get.solicitude', {id: id})
   }
 
@@ -128,6 +131,8 @@ export default class ShowSolicitude extends Component {
         "companyCnae": "",
         "subjects":""
       },
+      buttonsPresent: true,
+      hasSubjects: false,
       setValues:function(key, value) {
         this.values[key] = value
       },
