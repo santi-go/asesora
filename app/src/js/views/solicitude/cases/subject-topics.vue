@@ -3,9 +3,18 @@
     <div class="card-title">
       <h3>{{ labels.topics }}</h3>
     </div>
+  <select v-on:blur="selectedItem">
+    <option id="item"
+            v-bind:value="fullTopicName(item)"
+            v-for="item in topicsCatalog">
+            {{ item.name }}
+    </option>
+  </select>
+  <button type="button" name="button" v-on:click="addItem">Añadir</button>
     <table>
-      <tr v-for="item in topicsCatalog">
-        <td>{{ item.id }} -- {{ item.name }}</td>
+      <tr v-for="item in values.selectedTopics">
+        {{item}}
+        <button type="button" name="button" v-on:click="remove(item)">borrar</button>
       </tr>
     </table>
   </div>
@@ -14,6 +23,30 @@
 <script>
   export default {
     name: 'subject-topics',
-    props: ['labels', 'topicsCatalog']
+    props: ['labels', 'values', 'topicsCatalog'],
+    data(){
+      return {
+        separator: ' - ',
+        selected: ''
+      }
+    },
+
+    methods:{
+      fullTopicName(item){
+        return item.id + this.separator + item.name
+      },
+      selectedItem(event){
+        if (event.target.value !="") {
+          this.selected = event.target.value
+        }
+      },
+      addItem(){
+        this.values.selectedTopics.push(this.selected)
+      },
+      remove(item){
+        let index = this.values.selectedTopics.indexOf(item)
+        this.values.selectedTopics.splice(index, 1)
+      }
+    }
   }
   </script>
