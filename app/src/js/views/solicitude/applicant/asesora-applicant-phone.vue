@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.applicantPhonenumber }}:</label>
+    <label for="phonenumber">{{ labels.applicantPhonenumber }}:</label>
     <input  id="phonenumber"
             name="phonenumber"
             type="text"

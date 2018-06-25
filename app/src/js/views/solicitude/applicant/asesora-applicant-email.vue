@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.applicantEmail }}</label>
+    <label for="email">{{ labels.applicantEmail }}</label>
     <input  id="email"
             name="email"
             type="text"

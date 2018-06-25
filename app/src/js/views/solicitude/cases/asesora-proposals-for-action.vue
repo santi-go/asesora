@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.proposals }}</label>
+    <label for="subject-proposals">{{ labels.proposals }}</label>
     <textarea id="subject-proposals"
               v-model="values.proposals">
     </textarea>

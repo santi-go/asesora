@@ -6,7 +6,7 @@
     <div class="row grid-responsive">
       <div class="column column-50">
         <div>
-          <label>{{ labels.applicantName }}</label>
+          <label for="name">{{ labels.applicantName }}</label>
           <input  id="name"
                   name="name"
                   type="text"
@@ -15,7 +15,7 @@
           >
         </div>
         <div>
-          <label>{{ labels.applicantSurname }}</label>
+          <label for="surname">{{ labels.applicantSurname }}</label>
           <input  id="surname"
                   name="surname"
                   type="text"
