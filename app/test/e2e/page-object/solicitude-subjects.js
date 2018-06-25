@@ -19,9 +19,9 @@ class SolicitudeSubjects{
       data.click()
   }
 
-  clickOnAddCaseButton(){
-      browser.waitForVisible('#add-case-button', 2000)
-      const data = $('#add-case-button')
+  clickOnAddSubjectButton(){
+      browser.waitForVisible('#add-subject-button', 2000)
+      const data = $('#add-subject-button')
       data.click()
   }
 
@@ -34,8 +34,12 @@ class SolicitudeSubjects{
     this.waitFor('#solicitude')
   }
 
-  waitForAddCaseButton(){
-    this.waitFor('#add-case-button')
+  waitForAddSubjectButton(){
+    this.waitFor('#add-subject-button')
+  }
+
+  waitForSubjectProposal(){
+        this.waitFor('#subject-proposals')
   }
 
   waitForCreateCounseling(){
@@ -48,7 +52,7 @@ class SolicitudeSubjects{
 
   subjectProposal(value){
     value = value || "subject proposal"
-    let subjectProposal =  $('#cases-proposals')
+    let subjectProposal =  $('#subject-proposals')
     subjectProposal.setValue(value)
     return this
   }

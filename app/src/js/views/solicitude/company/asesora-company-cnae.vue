@@ -1,6 +1,6 @@
  <template>
   <div>
-    <label>{{ labels.companyCnae }}</label>
+    <label for="company-cnae">{{ labels.companyCnae }}</label>
     <input  id="company-cnae"
             name="company-cnae"
             type="text"

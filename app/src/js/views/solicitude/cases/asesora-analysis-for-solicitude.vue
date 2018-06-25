@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.analysis }}</label>
+    <label for="analysis-solicitude">{{ labels.analysis }}</label>
     <textarea id="analysis-solicitude"
               maxlength="200"
               placeholder="Máximo 200 caracteres"
@@ -24,5 +24,3 @@ textarea::placeholder {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 </style>
-
-

@@ -16,7 +16,7 @@ module Endpoints
         }
         updated = Actions::UpdateCompany.do(data)
         return {}.to_json if updated.nil?
-    
+
         updated.to_json
         end
       end
@@ -24,17 +24,17 @@ module Endpoints
     def self.define_company_matches(api)
       api.post '/api/company-matches' do
         params = JSON.parse(request.body.read)
-    
+
         criteria = {
           name: params['name'],
           cnae: params['cnae']
         }
         companies = Actions::RetrieveSolicitudes.do_companies(criteria)
-    
+
         {data: companies}.to_json
       end
     end
-    
+
     def self.define_duplicated_company(api)
       api.post '/api/duplicated-company' do
         params = JSON.parse(request.body.read)
@@ -53,9 +53,3 @@ module Endpoints
     end
   end
 end
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>{{ labels.text }}</label>
+    <label for="solicitude-text">{{ labels.text }}</label>
     <textarea id="solicitude-text"
               placeholder="*"
               v-on:keyup="onKeyup"

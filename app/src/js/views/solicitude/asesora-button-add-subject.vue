@@ -1,6 +1,6 @@
 <template>
   <div class="button-inline">
-    <button id='add-case-button'
+    <button id='add-subject-button'
             type="button"
             name="button"
             v-on:click='addSubject()'>
@@ -12,13 +12,13 @@
 <script>
 export default {
 
-  name: 'asesora-button-create-case',
+  name: 'asesora-button-add-subject',
 
   props: ['labels', 'values'],
 
   methods: {
     addSubject(){
-      let signal = new CustomEvent('clicked.create.case',
+      let signal = new CustomEvent('clicked.add.subject',
                                   {'detail': this.values.id,
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

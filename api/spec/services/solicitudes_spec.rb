@@ -16,7 +16,7 @@ describe 'Solicitude service' do
     post 'fixtures/clean'
   end
 
-  it 'knows when company hasnt solicitudes' do
+  it "knows when company hasn't solicitudes" do
     post 'fixtures/clean'
 
     result = Solicitudes::Service.times_company("non_existing_cif")
@@ -32,7 +32,7 @@ describe 'Solicitude service' do
     expect(result).to eq(Fixtures::SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY)
   end
 
-  it 'update edition moment', :wip do
+  it 'update edition moment' do
       date = Fixtures::DATE
       text = Fixtures::TEXT
       applicant = '1'

@@ -1,6 +1,6 @@
  <template>
   <div>
-    <label>{{ labels.companyEmployees }}</label>
+    <label for="company-employees">{{ labels.companyEmployees }}</label>
     <input  id="company-employees"
             name="company-employees"
             type="number"
