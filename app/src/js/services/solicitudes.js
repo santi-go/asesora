@@ -75,7 +75,7 @@ export default class Solicitudes {
     let url = 'update-solicitude'
     this.client.hit(url, body, callback)
   }
-  
+
   buildCallback(signal){
     return function(response){
       Bus.publish(signal, response)

@@ -47,6 +47,13 @@
                       :submittable="submittable"
                       :edit-company='editCompany'
                       ></asesora-button>
+      <asesora-create-solicitude-with-case-button
+                      :values="values"
+                      :labels="labels"
+                      :editionmode="editionmode"
+                      :submittable="submittable"
+                      :edit-company='editCompany'
+                      ></asesora-create-solicitude-with-case-button>
       <template v-if="editionmode">
         <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
         <asesora-button-delete :labels="labels" :values="values"></asesora-button-delete>
@@ -75,6 +82,7 @@ import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
 import CompanyView from './asesora-company'
 import ButtonView from './asesora-button'
+import ButtonSolicitudeWithCaseView from './asesora-create-solicitude-with-case-button'
 import ButtonDiscardView from './asesora-button-discard'
 import ButtonDeleteView from './asesora-button-solicitude-delete'
 import ButtonAddSubject from './asesora-button-add-subject'
@@ -95,6 +103,7 @@ export default {
     "asesora-text" : TextView,
     "asesora-company" : CompanyView,
     "asesora-button" : ButtonView,
+    "asesora-create-solicitude-with-case-button" : ButtonSolicitudeWithCaseView,
     "asesora-button-discard" : ButtonDiscardView,
     "asesora-button-delete" : ButtonDeleteView,
     "asesora-button-add-subject": ButtonAddSubject,
