@@ -22,29 +22,56 @@ describe 'Companies' do
     post 'fixtures/clean'
   end
 
-	it 'returns a list filtered by criteria' do
-		solicitude = {
+	it 'returns a list filtered by name and cnae' do
+    first_solicitude = {
 			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
 			"text": Fixtures::TEXT,
-			"applicantemail": Fixtures::APPLICANT_EMAIL,
 			"date": Fixtures::DATE,
+			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
-			"companyName": Fixtures::COMPANY_NAME,
+			"companyName": "First company",
+			"companyCif": Fixtures::COMPANY_CIF_2,
+			"companyCnae": Fixtures::COMPANY_CNAE
+		}.to_json
+
+		post_create_solicitude(first_solicitude)
+
+		second_solicitude = {
+			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
+			"text": Fixtures::TEXT,
+			"date": Fixtures::DATE,
+			"applicantEmail": Fixtures::APPLICANT_EMAIL,
+      'applicantId': "",
+			"companyName": "Second company",
+			"companyCif": Fixtures::COMPANY_CIF_3,
+			"companyCnae": ""
+		}.to_json
+
+		post_create_solicitude(second_solicitude)
+
+    third_solicitude = {
+			"applicantPhonenumber": Fixtures::APPLICANT_PHONENUMBER,
+			"text": Fixtures::TEXT,
+			"date": Fixtures::DATE,
+			"applicantEmail": Fixtures::APPLICANT_EMAIL,
+      'applicantId': "",
+			"companyName": "Third comp",
 			"companyCif": Fixtures::COMPANY_CIF,
 			"companyCnae": Fixtures::COMPANY_CNAE
 		}.to_json
 
-		post_create_solicitude(solicitude)
+		post_create_solicitude(third_solicitude)
 
 		body = {
-			"name": "Rap",
-			"cnae": "931 - Actividades deportivas"
+			"name": "pan",
+			"cnae": Fixtures::COMPANY_CNAE
 		}.to_json
 
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
-		expect(filtered_companies_list["data"][0]['name']).to eq(Fixtures::COMPANY_NAME)
+    expect(filtered_companies_list["data"].count).to be == 1
+		expect(filtered_companies_list["data"][0]['name']).to eq("First company")
 	end
 
 	it 'searches by name when cnae is empty' do
@@ -67,7 +94,7 @@ describe 'Companies' do
 			"date": Fixtures::DATE,
 			"applicantEmail": Fixtures::APPLICANT_EMAIL,
       'applicantId': "",
-			"companyName": "Last company",
+			"companyName": "Last",
 			"companyCif": Fixtures::COMPANY_CIF_3,
 			"companyCnae": Fixtures::COMPANY_CNAE_2
 		}.to_json
@@ -82,7 +109,7 @@ describe 'Companies' do
 		post_company_matches(body)
 		filtered_companies_list = JSON.parse(last_response.body)
 
-		expect(filtered_companies_list["data"].count).to be >= 2
+		expect(filtered_companies_list["data"].count).to be == 1
 	end
 
   it 'search by outdated company name return zero matches' do
