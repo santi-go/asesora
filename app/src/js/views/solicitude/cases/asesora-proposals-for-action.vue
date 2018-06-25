@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>{{ labels.proposals }}</label>
-    <textarea id="cases-proposals"
+    <textarea id="subject-proposals"
               v-model="values.proposals">
     </textarea>
   </div>

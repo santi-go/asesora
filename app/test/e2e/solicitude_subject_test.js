@@ -22,8 +22,7 @@ describe('Solicitude Subjects', () => {
     solicitudesList.clickOnShowButtonOnItem(1)
 
     const solicitudeSubjects = new SolicitudeSubjects()
-    solicitudeSubjects.waitForAddCaseButton()
-    solicitudeSubjects.clickOnAddCaseButton()
+    solicitudeSubjects.clickOnAddSubjectButton()
     solicitudeSubjects.fill().subjectProposal(newProposal).lostFocus()
     solicitudeSubjects.waitForCreateCounseling()
     solicitudeSubjects.clickOnCreateCounseling()

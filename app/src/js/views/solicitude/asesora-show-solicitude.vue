@@ -14,7 +14,7 @@
               {{ labels.edit }}
             </button>
           </div>
-          <asesora-button-create-case :labels="labels" :values="values"></asesora-button-create-case>
+          <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
         </div>
     </div>
 </template>
@@ -22,7 +22,7 @@
 import ProposalsView from './cases/asesora-proposals-for-action'
 import AnalysisView from './cases/asesora-analysis-for-solicitude'
 import SummarySolicitudeView from './cases/asesora-summary-solicitude'
-import ButtonCreateCase from './asesora-button-create-case'
+import ButtonAddSubject from './asesora-button-add-subject'
 import SubjectsListView from './cases/asesora-subjects-list'
 
 
@@ -42,7 +42,7 @@ export default {
     "asesora-proposals-for-action" : ProposalsView,
     "asesora-analysis-for-solicitude" : AnalysisView,
     "asesora-summary-solicitude" : SummarySolicitudeView,
-    "asesora-button-create-case" : ButtonCreateCase,
+    "asesora-button-add-subject" : ButtonAddSubject,
     "asesora-subjects-list" : SubjectsListView
   }
 

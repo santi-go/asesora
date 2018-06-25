@@ -30,7 +30,7 @@ export default class ShowSolicitude extends Component {
     )
 
     document.getElementById(this.element).addEventListener(
-      'clicked.create.case',
+      'clicked.add.subject',
       this.addSubject.bind(this)
     )
   }

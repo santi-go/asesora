@@ -37,7 +37,7 @@
     <template v-if="editionmode">
       <div  class="card large-card listed-subjects">
         <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
-        <asesora-button-create-case :labels="labels" :values="values"></asesora-button-create-case>
+        <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
       </div>
     </template>
     <div  class="card large-card" >
@@ -77,7 +77,7 @@ import CompanyView from './asesora-company'
 import ButtonView from './asesora-button'
 import ButtonDiscardView from './asesora-button-discard'
 import ButtonDeleteView from './asesora-button-solicitude-delete'
-import ButtonCreateCase from './asesora-button-create-case'
+import ButtonAddSubject from './asesora-button-add-subject'
 import SubjectsListView from './cases/asesora-subjects-list'
 
 export default {
@@ -97,7 +97,7 @@ export default {
     "asesora-button" : ButtonView,
     "asesora-button-discard" : ButtonDiscardView,
     "asesora-button-delete" : ButtonDeleteView,
-    "asesora-button-create-case": ButtonCreateCase,
+    "asesora-button-add-subject": ButtonAddSubject,
     "asesora-subjects-list" : SubjectsListView
   },
 
