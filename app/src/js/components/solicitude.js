@@ -123,7 +123,7 @@ export default class Solicitude extends Component {
       this.addNameValueToCompany.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'clicked.create.case',
+      'clicked.add.subject',
       this.addSubject.bind(this)
     )
     window.addEventListener("beforeunload", this.leaving.bind(this))
