@@ -91,7 +91,7 @@ import SubjectsListView from './cases/asesora-subjects-list'
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'editionmode', 'isValidCif',
+  props: ['labels', 'values', 'fullfilled', 'fullfilledToAddCase', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'isValidCompanyName',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
@@ -115,10 +115,23 @@ export default {
       if (val == true){
         this.animateCard()
       }
+    },
+    fullfilledToAddCase: function(val, oldVal){
+      if (val == true){
+        this.hitToCase()
+      }
     }
   },
 
   methods: {
+
+    hitToCase() {
+      this.show()
+      let signal = new CustomEvent('fullfilled.solicitude.to.add.case',
+                                  {'detail': {},
+                                  'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
 
     animateCard() {
       this.show()
