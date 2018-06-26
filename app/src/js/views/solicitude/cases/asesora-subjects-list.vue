@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id='subjects-list'>
     <div class="card-title">
       <h3>{{ labels.subjectsList }}</h3>
     </div>
