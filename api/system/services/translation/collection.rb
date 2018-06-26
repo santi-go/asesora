@@ -73,7 +73,9 @@ module Translation
                 "addValue": "Agregar valor",
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
-                "topics": "Temas del caso"
+                "topics": "Temas del caso",
+                "submittocase": "Solicitar y añadir caso",
+                "editionsubmittocase": "Guardar cambios y añadir caso"
               },
 
               "solicitudes-list": {

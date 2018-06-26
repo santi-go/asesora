@@ -4,8 +4,11 @@
         <h4>{{ labels.summary }}</h4>
       </div>
         <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
-        <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
-        <div  class="card large-card" >
+        <template v-if="hasSubjects">
+          <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
+        </template>
+
+        <div v-if="buttonsPresent" class="card large-card" >
           <div class="button-inline">
             <button   id='edit-button'
               type="button"
@@ -29,7 +32,7 @@ import SubjectsListView from './cases/asesora-subjects-list'
 export default {
 
   name: 'asesora-show-solicitude',
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'buttonsPresent', 'hasSubjects'],
   methods: {
     solicitudeEdit(){
       let signal = new CustomEvent('load.solicitude',
@@ -37,6 +40,9 @@ export default {
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     }
+  },
+  computed: {
+    hasSubjects: function(){return this.values.subjects.length > 0}
   },
   components: {
     "asesora-proposals-for-action" : ProposalsView,

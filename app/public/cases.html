@@ -38,6 +38,14 @@
         <section id="main-content" class="column column-offset-20">
             <div class="row grid-responsive">
                 <div class="column page-heading">
+                  <div id="show-solicitude">
+                    <fieldset>
+                        <asesora-show-solicitude
+                          :values='values'
+                          :labels='labels'
+                          ></asesora-show-solicitude>
+                    </fieldset>
+                  </div>
                   <div id="cases">
                       <form class="case-form">
                           <fieldset>
@@ -45,8 +53,8 @@
                           </fieldset>
                       </form>
                   </div>
-              </div>
                 </div>
+              </div>
             </div>
         </section>
     </main>
@@ -54,6 +62,7 @@
     </footer>
     <script src="dist/bundle.js" type="text/javascript"></script>
     <script>
+        new Asesora.ShowSolicitude
          new Asesora.Cases
     </script>
 </body>
