@@ -78,8 +78,7 @@ export default class Cases extends Component {
   }
 
   subjectCreated(payload) {
-    console.log(payload);
-    window.location.href = "/index.html?id=" + payload.solicitude_id
+    window.location.href = "/show-solicitude.html?id=" + payload.solicitude_id
   }
 
   gotTopicsCatalog(payload) {
