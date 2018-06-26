@@ -41,11 +41,10 @@ describe('Solicitude Subjects', () => {
     const solicitude = new Solicitude()
 
     solicitude.required().submit()
-    
+
     const solicitudesList = new SolicitudesList()
 
     solicitudesList.waitForSolicitudesList()
-    browser.saveScreenshot("test.png")
     solicitudesList.clickOnShowButtonOnItem(1)
 
     const solicitudeSubjects = new SolicitudeSubjects()
