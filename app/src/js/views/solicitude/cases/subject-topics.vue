@@ -3,14 +3,15 @@
     <div class="card-title">
       <h3>{{ labels.topics }}</h3>
     </div>
-  <select v-on:blur="selectedItem">
+  <select v-on:blur="selectedItem"
+          v-on:click="enableButton">
     <option id="item"
             v-bind:value="fullTopicName(item)"
             v-for="item in topicsCatalog">
             {{ item.name }}
     </option>
   </select>
-  <button type="button" name="button" v-on:click="addItem">Añadir</button>
+  <button type="button" name="button" :disabled="noTopic" v-on:click="addItem">Añadir</button>
     <table>
       <tr v-for="item in values.selectedTopics">
         {{item}}
@@ -27,7 +28,8 @@
     data(){
       return {
         separator: ' - ',
-        selected: ''
+        selected: '',
+        noTopic: true
       }
     },
 
@@ -35,8 +37,11 @@
       fullTopicName(item){
         return item.id + this.separator + item.name
       },
+      enableButton(){
+        this.noTopic = false
+      },
       selectedItem(event){
-        if (event.target.value !="") {
+        if (event.target.value != "") {
           this.selected = event.target.value
         }
       },
