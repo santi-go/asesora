@@ -57,9 +57,23 @@ class SolicitudeSubjects{
     return this
   }
 
+  subjectAnalysis(value){
+    value = value || "subject analysis"
+    let subjectProposal =  $('#analysis-solicitude')
+    subjectProposal.setValue(value)
+    return this
+  }
+
   lostFocus(){
     let keyTab="\u0009"
     browser.keys(keyTab)
+  }
+
+  isCreateCounselingEnabled(){
+    let submit =  $('#create-counseling')
+    let isDisabled = submit.getAttribute("disabled")
+
+    return isDisabled == null
   }
 
   includeSubjectProposal(){
