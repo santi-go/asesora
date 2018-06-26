@@ -4,6 +4,7 @@
             type="button"
             name="submit"
             class="submitbutton"
+            :disabled="!submittable"
             v-on:click="createCounseling()">
             {{ labels.createSubject }}
     </button>
@@ -14,7 +15,7 @@
 export default {
   name: 'asesora-button-create-counseling',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'submittable'],
 
   methods: {
     createCounseling() {

@@ -40,12 +40,20 @@
           this.selected = event.target.value
         }
       },
-      addItem(){
+      addItem(event){
         this.values.selectedTopics.push(this.selected)
+        let signal = new CustomEvent('add.topics',
+                                      {'detail': [],
+                                      'bubbles': true})
+        this.$el.dispatchEvent(signal)
       },
       remove(item){
         let index = this.values.selectedTopics.indexOf(item)
         this.values.selectedTopics.splice(index, 1)
+        let signal = new CustomEvent('remove.topics',
+                                      {'detail': [],
+                                      'bubbles': true})
+        this.$el.dispatchEvent(signal)
       }
     }
   }
