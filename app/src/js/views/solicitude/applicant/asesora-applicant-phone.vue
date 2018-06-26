@@ -69,24 +69,26 @@ export default {
 
 
     isArrowKeyCode(keycode){
-      let isInitKey = (keycode == 36)
-      let isFinKey = (keycode == 35)
-      let isSuprKey = (keycode == 46)
-      let isLeftArrow = (keycode == 37)
-      let isArrowUp = (keycode == 38)
-      let isRightArrow = (keycode == 39)
-      let isArrowDown = (keycode == 40)
+      let InitKey = 36
+      let FinKey = 35
+      let SuprKey = 46
+      let LeftArrow = 37
+      let ArrowUp = 8
+      let RightArrow = 39
+      let ArrowDown = 40
 
-      return isInitKey || isFinKey || isSuprKey
-             || isLeftArrow || isRightArrow || isArrowDown || isArrowUp
+      return [InitKey, FinKey, SuprKey, LeftArrow,
+              RightArrow, ArrowDown, ArrowUp].includes(keycode)
     },
 
     isSeparatorKeyCode(keycode){
-      let isSpaceBar = (keycode == 32)
-      let isPeriod = keycode == 190 || keycode == 110
-      let isHyphen = keycode == 189 || keycode == 109
+      let SpaceBar = 32
+      let Period = 190
+      let otherPeriod = 110
+      let Hyphen = 189
+      let otherHyphen = 109
 
-      return isSpaceBar || isPeriod || isHyphen
+      return [SpaceBar, Period, Hyphen, otherPeriod, otherHyphen].includes(keycode)
     },
 
     isValidKeyCode(keycode){
@@ -97,7 +99,8 @@ export default {
       let isSeparator = this.isSeparatorKeyCode(keycode)
       let isArrow = this.isArrowKeyCode(keycode)
 
-      return isNumber || isNumericKey || isSeparator || isTab || isBackSpace || isArrow
+      return [isNumber, isNumericKey, isSeparator,
+              isTab, isBackSpace, isArrow].includes(true)
     },
 
     phoneValidation(){
