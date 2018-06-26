@@ -4,7 +4,8 @@
     <textarea id="analysis-solicitude"
               maxlength="200"
               placeholder="Máximo 200 caracteres"
-              v-model="values.analysis">
+              v-model="values.analysis"
+              v-on:keydown="keyDown">
     </textarea>
   </div>
 </template>
@@ -13,7 +14,16 @@
 export default {
   name: 'asesora-analysis-for-solicitude',
 
-  props: ['labels', 'values']
+  props: ['labels', 'values'],
+
+  methods: {
+    keyDown(event){
+      let signal = new CustomEvent('changed.analysis',
+                                    {'detail': "",
+                                    'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    }
+  }
 }
 </script>
 <style scoped>

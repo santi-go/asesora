@@ -27,6 +27,18 @@ export default class Cases extends Component {
       'clicked.create.counseling',
       this.createCounseling.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'changed.analysis',
+      this.setButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'add.topics',
+      this.setButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'remove.topics',
+      this.setButtonStatus.bind(this)
+    )
   }
 
   initializeViews(){
@@ -53,6 +65,16 @@ export default class Cases extends Component {
 
   createCounseling(payload){
     Bus.publish('create.subject', payload.detail)
+  }
+
+  setButtonStatus(){
+    this.data.submittable = false
+
+    let analysis = (this.data.values.analysis != "")
+    let topics = (this.data.values.selectedTopics.length > 0)
+    if(analysis || topics){
+      this.data.submittable = true
+    }
   }
 
   subjectCreated(payload) {
@@ -91,6 +113,7 @@ export default class Cases extends Component {
         "topics": "",
         "selectedTopics": []
       },
+      submittable: false,
       topicsCatalog: [],
       translate:function(key,value) {
         this.labels[key] = value
