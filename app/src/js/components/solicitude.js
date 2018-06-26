@@ -18,7 +18,9 @@ export default class Solicitude extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
+    Bus.subscribe("created.solicitude.to.add.case", this.createdSolicitudeToAddCase.bind(this))
     Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
+    Bus.subscribe("updated.solicitude.and.add.case", this.updatedSolicitudeAndAddCase.bind(this))
     Bus.subscribe("deleted.solicitude", this.deletedSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
@@ -33,6 +35,10 @@ export default class Solicitude extends Component {
     document.getElementById(this.element).addEventListener(
       'submit.solicitude',
       this.submit.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'submit.solicitude.and.add.case',
+      this.submitSolicitudeToAddCase.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.company.name',
@@ -75,12 +81,20 @@ export default class Solicitude extends Component {
       this.update.bind(this)
     )
     document.getElementById(this.element).addEventListener(
+      'edit.solicitude.and.add.case',
+      this.updateAndAddCase.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
       'clicked.discard.button',
       this.discardAnimation.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'fullfilled.solicitude',
-      this.moveCardAnimation.bind(this)
+      this.transitToList.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'fullfilled.solicitude.to.add.case',
+      this.transitToAddCase.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.applicant.fields',
@@ -205,8 +219,17 @@ export default class Solicitude extends Component {
     Bus.publish('create.solicitude', this.data.values)
   }
 
+  submitSolicitudeToAddCase(){
+    Bus.publish('create.solicitude.to.add.case', this.data.values)
+  }
+
   update(){
     Bus.publish('update.solicitude', this.data.values )
+    Bus.publish('update.applicant', this.data.values )
+  }
+
+  updateAndAddCase(){
+    Bus.publish('update.solicitude.and.add.case', this.data.values )
     Bus.publish('update.applicant', this.data.values )
   }
 
@@ -261,6 +284,15 @@ export default class Solicitude extends Component {
       this.data.errors = true
     }else{
       this.data.fullfilled = true
+    }
+  }
+
+  updatedSolicitudeAndAddCase(response){
+    this.data.showAlert = false
+    if (Object.keys(response).length === 0){
+      this.data.errors = true
+    }else{
+      this.data.fullfilledToAddCase = true
     }
   }
 
@@ -457,30 +489,42 @@ export default class Solicitude extends Component {
       this.data.submittable = true
       this.data.showAlert = false
 
-      this.addClassToSolicitude('discardCard')
+      this.moveCardAnimation('discardCard')
       this.setTimeToRelocateUrl()
     }
 
-    moveCardAnimation(){
+    transitToList(){
+      let url = "/solicitudes-list.html"
       this.initialValues = this.data.cloneValues()
-
-      this.addClassToSolicitude('submitCard')
-      this.setTimeToRelocateUrl()
+      this.moveCardAnimation('submitCard')
+      this.setTimeToRelocateUrl(url)
     }
 
-    addClassToSolicitude(cssClass){
+    transitToAddCase(){
+      let url = "/cases.html?id=" + this.data.values.id
+      this.initialValues = this.data.cloneValues()
+      this.moveCardAnimation('submitCard')
+      this.setTimeToRelocateUrl(url)
+    }
+
+    moveCardAnimation(cssClass){
       let element = document.querySelector('#solicitude')
       element.classList.add(cssClass)
     }
 
-    setTimeToRelocateUrl() {
+    setTimeToRelocateUrl(url) {
       window.setTimeout(function(){
-        window.location = "/solicitudes-list.html"
+        window.location = url
       }, 1250)
     }
 
     createdSolicitude(){
       this.data.fullfilled = true
+    }
+
+    createdSolicitudeToAddCase(event){
+      this.data.values.id = event.creation_moment
+      this.data.fullfilledToAddCase = true
     }
 
     textIsEmpty(){
@@ -652,6 +696,7 @@ export default class Solicitude extends Component {
         suggestedCompanies: [],
         suggestedApplicants: [],
         fullfilled: false,
+        fullfilledToAddCase: false,
         isValidCif: true,
         cnaeCatalog:[],
         isValidCompanyIdentity: true,

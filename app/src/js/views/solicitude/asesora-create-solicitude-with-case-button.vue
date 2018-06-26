@@ -29,9 +29,9 @@ export default {
 
   methods: {
     submit(){
-      let event = 'submit.solicitude.with.case'
+      let event = 'submit.solicitude.and.add.case'
       if (this.editionmode) {
-        event = 'edit.solicitude.with.case'
+        event = 'edit.solicitude.and.add.case'
       }
 
       let signal = new CustomEvent(event,
