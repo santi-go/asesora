@@ -34,6 +34,10 @@ class SolicitudeSubjects{
     this.waitFor('#solicitude')
   }
 
+  waitForSubjectsList(){
+    this.waitFor('#subjects-list')
+  }
+
   waitForAddSubjectButton(){
     this.waitFor('#add-subject-button')
   }
@@ -77,8 +81,8 @@ class SolicitudeSubjects{
   }
 
   includeSubjectProposal(){
-    browser.waitForVisible('.listed-subjects', 2000)
-    if(browser.isVisible('.listed-subjects table tr td p')) return true
+    browser.waitForVisible('#subjects-list', 2000)
+    if(browser.isVisible('#subjects-list')) return true
     return false
   }
 

@@ -16,7 +16,7 @@ describe('Solicitude Subjects', () => {
     fixtures.clean()
   })
 
-  it("are rendered in a subject list within edition solicitude", function () {
+  it("are rendered in a subject list within show solicitude", function () {
     const newProposal = "A new proposal"
     const newAnalysis = "Other Analysis"
     const solicitudesList = new SolicitudesList()
@@ -29,7 +29,7 @@ describe('Solicitude Subjects', () => {
     solicitudeSubjects.fill().subjectProposal(newProposal).lostFocus()
     solicitudeSubjects.waitForCreateCounseling()
     solicitudeSubjects.clickOnCreateCounseling()
-    solicitudeSubjects.waitForSolicitude()
+    solicitudeSubjects.waitForSubjectsList()
 
     result = solicitudeSubjects.includeSubjectProposal()
     expect(result).to.eq(true)
