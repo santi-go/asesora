@@ -102,7 +102,8 @@ export default class Cases extends Component {
         "addSubject": "XXXXXX",
         "createSubject": "XxX",
         "casesData": "xxxxx",
-        "topics": "Temas del caso"
+        "topics": "xxxxxx",
+        "notApply": "xxxx"
       },
       values: {
         "solicitudeId": "",

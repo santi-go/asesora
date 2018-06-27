@@ -675,7 +675,8 @@ export default class Solicitude extends Component {
           "addedNameValueMessage": "xxxx",
           "companyInfo": "xxxxxxx",
           "submittocase": "xxxxxxx",
-          "editionsubmittocase": "xxxxxxx"
+          "editionsubmittocase": "xxxxxxx",
+          "notApply": "xxxx"
         },
         values: {
           "text": "",

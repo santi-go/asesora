@@ -75,7 +75,8 @@ module Translation
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
                 "submittocase": "Solicitar y añadir caso",
-                "editionsubmittocase": "Guardar cambios y añadir caso"
+                "editionsubmittocase": "Guardar cambios y añadir caso",
+                "notApply": "N/A"
               },
 
               "solicitudes-list": {
@@ -109,7 +110,8 @@ module Translation
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
-                "subjectsList": "Listado de casos"
+                "subjectsList": "Listado de casos",
+                "notApply": "N/A"
               },
 
               "cases": {

@@ -6,12 +6,30 @@
     <table>
       <tr v-for="item in values.subjects">
         <td>
-          <label>{{ labels.proposals }}</label>
-          <p>{{ item.proposal }}</p>
-          <label>{{ labels.analysis }}</label>
-          <p>{{ item.analysis }}</p>
-          <label>{{ labels.topics }}</label>
-          <p>{{ item.topics }}</p>
+          <div class="row grid-responsive">
+            <div class="column column-33">
+              <h4>Caso {{values.subjects.indexOf(item) +1 }}:</h4>
+            </div>
+            <div class="column column-67">
+              <label>{{ labels.proposals }}</label>
+              <template v-if=" item.proposal =='' "><p>{{ labels.notApply }}</p></template>
+              <template v-else><p>{{ item.proposal }}</p></template>
+
+              <label>{{ labels.analysis }}</label>
+              <template v-if=" item.analysis =='' "><p>{{ labels.notApply }}</p></template>
+              <template v-else><p>{{ item.analysis }}</p></template>
+
+              <label>{{ labels.topics }}</label>
+              <template v-if=" item.topics.length == 0 "><p>{{ labels.notApply }}</p></template>
+              <template v-else>
+                <tr v-for="topic in item.topics">
+                  <td>
+                    {{ topic }}
+                  </td>
+                </tr>
+              </template>
+            </div>
+          </div>
         </td>
       </tr>
     </table>
