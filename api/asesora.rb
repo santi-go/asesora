@@ -23,17 +23,17 @@ class Asesora < Sinatra::Base
      response.headers['Access-Control-Allow-Origin'] = '*'
      content_type 'application/json'
   end
-  
+
 
   get '/' do
     redirect '/index.html'
   end
 
-  
+
   Endpoints::Translations.define_retrieve_translations(self)
-  
+
   Endpoints::Information.define_retrieve_about(self)
-  
+
   Endpoints::Solicitudes.define_create_solicitude(self)
   Endpoints::Solicitudes.define_retrieve_solicitude(self)
   Endpoints::Solicitudes.define_retrieve_solicitudes(self)
@@ -43,6 +43,8 @@ class Asesora < Sinatra::Base
   Endpoints::Solicitudes.define_create_subject(self)
   Endpoints::Solicitudes.define_retrieve_subjects(self)
   Endpoints::Solicitudes.define_retrieve_topics(self)
+  Endpoints::Solicitudes.define_retrieve_proposals(self)
+
 
   Endpoints::Applicants.define_update_applicant(self)
   Endpoints::Applicants.define_applicant_matches(self)
@@ -51,7 +53,7 @@ class Asesora < Sinatra::Base
   Endpoints::Companies.define_company_matches(self)
   Endpoints::Companies.define_duplicated_company(self)
   Endpoints::Companies.define_count_company_in_solicitudes(self)
-  
+
 
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
