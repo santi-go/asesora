@@ -16,6 +16,7 @@ export default class Cases extends Component {
     Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
     Bus.subscribe("subject.created", this.subjectCreated.bind(this))
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
+    Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
   }
 
   load(){
@@ -85,6 +86,11 @@ export default class Cases extends Component {
     this.data.topicsCatalog = payload.data
   }
 
+  gotProposalsCatalog(payload) {
+    console.log(payload);
+    this.data.proposalsCatalog = payload.data
+  }
+
   getSolicitudeId() {
     let url = document.URL
     let index = url.indexOf("=")
@@ -114,6 +120,7 @@ export default class Cases extends Component {
       },
       submittable: false,
       topicsCatalog: [],
+      proposalsCatalog: [],
       translate:function(key,value) {
         this.labels[key] = value
       }
