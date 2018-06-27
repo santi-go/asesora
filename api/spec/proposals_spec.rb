@@ -16,6 +16,6 @@ describe 'Proposals' do
     post '/api/proposals', {}
     catalog = JSON.parse(last_response.body)
 
-    expect(catalog['data'].size).to be 3
+    expect(catalog['data'].size).to be 12
   end
 end
