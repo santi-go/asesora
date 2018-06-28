@@ -2,10 +2,11 @@
   <div>
     <label for="analysis-solicitude">{{ labels.analysis }}</label>
     <textarea id="analysis-solicitude"
-              maxlength="200"
-              placeholder="Máximo 200 caracteres"
+              placeholder="Máximo 200 palabras"
               v-model="values.analysis"
-              v-on:keydown="keyDown">
+              v-on:keydown="keyDown"
+              v-on:keyup="changeLimitationSpace"
+              >
     </textarea>
   </div>
 </template>
@@ -17,6 +18,26 @@ export default {
   props: ['labels', 'values'],
 
   methods: {
+    changeLimitationSpace(event) {
+      let maximumWordsSize = 200
+      let analysis = this.values.analysis
+      let words = analysis.split(/\s+/).length
+      let isMaxLength = (words > maximumWordsSize)
+      if (isMaxLength) { this.limitLengthFrom(analysis) }
+      if (!isMaxLength) { this.unblockLength() }
+    },
+
+    limitLengthFrom(text) {
+      let analysisArea = document.querySelector('#analysis-solicitude')
+      let actualLength = text.length
+      analysisArea.setAttribute('maxlength', actualLength.toString())
+    },
+
+    unblockLength() {
+      let analysisArea = document.querySelector('#analysis-solicitude')
+      analysisArea.removeAttribute('maxlength')
+    },
+
     keyDown(event){
       let signal = new CustomEvent('changed.analysis',
                                     {'detail': "",
