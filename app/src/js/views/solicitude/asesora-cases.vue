@@ -3,7 +3,7 @@
       <div class="card-title">
         <h4>{{ labels.casesData}}</h4>
       </div>
-        <asesora-proposals-for-action :labels="labels" :values="values"></asesora-proposals-for-action>
+        <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
         <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog"></subject-topics>
         <asesora-button-create-counseling :labels="labels" :values="values" :submittable="submittable"></asesora-button-create-counseling>
@@ -18,7 +18,7 @@ import SubjectTopicsView from './cases/subject-topics'
 export default {
 
   name: 'asesora-cases',
-  props: ['labels', 'values', 'topicsCatalog', 'submittable'],
+  props: ['labels', 'values', 'topicsCatalog', 'submittable', 'proposalsCatalog'],
   components: {
     "asesora-proposals-for-action" : ProposalsView,
     "asesora-analysis-for-solicitude" : AnalysisView,
