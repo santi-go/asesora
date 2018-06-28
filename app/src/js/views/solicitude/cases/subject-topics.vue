@@ -1,23 +1,25 @@
 <template>
   <div>
-    <div class="card-title">
-      <h3>{{ labels.topics }}</h3>
+    <label for="subjects-topics">{{ labels.topics }}</label>
+    <div id="subjects-topics">
+      <select v-on:blur="selectedItem"
+              v-on:click="enableButton">
+        <option id="item"
+                v-bind:value="fullTopicName(item)"
+                v-for="item in topicsCatalog">
+          {{ item.name }}
+        </option>
+      </select>
+
+      <button type="button" name="button" :disabled="noTopic" v-on:click="addItem">Añadir</button>
+
+      <table>
+        <tr v-for="item in values.selectedTopics">
+          {{item}}
+          <button type="button" name="button" v-on:click="remove(item)">borrar</button>
+        </tr>
+      </table>
     </div>
-  <select v-on:blur="selectedItem"
-          v-on:click="enableButton">
-    <option id="item"
-            v-bind:value="fullTopicName(item)"
-            v-for="item in topicsCatalog">
-            {{ item.name }}
-    </option>
-  </select>
-  <button type="button" name="button" :disabled="noTopic" v-on:click="addItem">Añadir</button>
-    <table>
-      <tr v-for="item in values.selectedTopics">
-        {{item}}
-        <button type="button" name="button" v-on:click="remove(item)">borrar</button>
-      </tr>
-    </table>
   </div>
 </template>
 
