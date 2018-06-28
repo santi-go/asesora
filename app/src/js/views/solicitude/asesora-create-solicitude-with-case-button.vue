@@ -1,8 +1,8 @@
 <template>
   <div class="button-inline">
-    <button  id="submit"
+    <button  id="submit-and-add-subject"
             type="button"
-            name="submit"
+            name="submit-and-add-subject"
             class="submitbutton"
             :disabled="!submittable && !editCompany"
             v-on:click="submit()">

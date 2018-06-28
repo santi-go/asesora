@@ -73,6 +73,14 @@ class SolicitudeSubjects{
     browser.keys(keyTab)
   }
 
+  isCreateCounselingButtonVisible(){
+    return browser.isVisible('#create-counseling')
+  }
+
+  isCasesVisible(){
+    return browser.isVisible('#cases')
+  }
+
   isCreateCounselingEnabled(){
     let submit =  $('#create-counseling')
     let isDisabled = submit.getAttribute("disabled")
