@@ -65,6 +65,9 @@ export default class Cases extends Component {
   }
 
   createCounseling(payload){
+    let proposals = payload.detail.proposal.map(item => item.value)
+    payload.detail.proposal = proposals 
+
     Bus.publish('create.subject', payload.detail)
   }
 
@@ -88,7 +91,11 @@ export default class Cases extends Component {
 
   gotProposalsCatalog(payload) {
     console.log(payload);
-    this.data.proposalsCatalog = payload.data
+    let list = []
+    for (const item of payload.data) {
+      list.push({value: item, text: item})
+    }
+    this.data.proposalsCatalog = list
   }
 
   getSolicitudeId() {

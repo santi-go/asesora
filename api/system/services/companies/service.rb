@@ -7,12 +7,7 @@ module Companies
       return Domain::Company.nullified.serialize if cif == ""
       cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      
-      if Collection.retrieve(cif).is_a?(Domain::Company)
-        Collection.update(cif, company).serialize
-      else
-        Collection.create(company).serialize
-      end
+      create_or_update(cif, company)
     end
 
     def self.retrieve(id, edition_moment = nil)
@@ -38,10 +33,14 @@ module Companies
     def self.update(name, cif, employees, cnae)
       cif = cif.upcase
       company = Domain::Company.with(name, cif, employees, cnae)
-      if Collection.retrieve(cif).is_a?(Domain::NullCompany)
-        Collection.create(company).serialize
-      else
+      create_or_update(cif, company)
+    end
+
+    def self.create_or_update(cif, company)
+      if Collection.retrieve(cif).is_a?(Domain::Company)
         Collection.update(cif, company).serialize
+      else Collection.retrieve(cif).is_a?(Domain::NullCompany)
+        Collection.create(company).serialize
       end
     end
   end
