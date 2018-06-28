@@ -204,6 +204,12 @@ class Solicitude{
     browser.waitForVisible('.messageSent', 2000)
   }
 
+  submitAndAddSubject(){
+    this.lostFocus()
+    $('#submit-and-add-subject').click()
+    browser.waitForVisible('.messageSent', 2000)
+  }
+
   required(){
     this.applicantPhonenumber()
     this.description()
@@ -284,6 +290,10 @@ class Solicitude{
   waitFor(field){
     browser.waitForVisible(field, 2000)
     browser.scroll(field)
+  }
+
+  waitForSubmitAndAddSubject(){
+    this.waitFor('#submit-and-add-subject')
   }
 
   waitForSolicitude(){

@@ -11,7 +11,7 @@ describe('Solicitude Subjects', () => {
     fixtures.pristine()
   })
 
-  afterEach(function(){
+  after(function(){
     fixtures = new Fixtures()
     fixtures.clean()
   })
@@ -54,5 +54,34 @@ describe('Solicitude Subjects', () => {
     result = solicitudeSubjects.isCreateCounselingEnabled()
 
     expect(result).to.eq(true)
+  })
+
+  it("would show add subject after create solicitude", function () {
+    const solicitude = new Solicitude()
+
+    solicitude.required().submitAndAddSubject()
+
+    const solicitudeSubjects = new SolicitudeSubjects()
+    solicitudeSubjects.waitFor('#show-solicitude')
+
+    expect(solicitudeSubjects.isCasesVisible()).to.eq(true)
+  })
+
+  it("would show add subject after modify solicitude", function () {
+    const solicitude = new Solicitude()
+
+    solicitude.required().submit()
+
+    const solicitudesList = new SolicitudesList()
+    solicitudesList.waitForSolicitudesList()
+    solicitudesList.clickOnEditButtonOnItem(1)
+
+    solicitude.fill().applicantName()
+    solicitude.submitAndAddSubject()
+
+    const solicitudeSubjects = new SolicitudeSubjects()
+    solicitudeSubjects.waitFor('#show-solicitude')
+
+    expect(solicitudeSubjects.isCasesVisible()).to.eq(true)
   })
 })
