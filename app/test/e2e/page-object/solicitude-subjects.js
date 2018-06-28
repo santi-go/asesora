@@ -77,8 +77,8 @@ class SolicitudeSubjects{
     return browser.isVisible('#create-counseling')
   }
 
-  isCasesVisible(){
-    return browser.isVisible('#cases')
+  isSubjectsVisible(){
+    return browser.isVisible('#subjects')
   }
 
   isCreateCounselingEnabled(){

@@ -17,7 +17,6 @@ describe('Solicitude Subjects', () => {
   })
 
   it("are rendered in a subject list within show solicitude", function () {
-    const newProposal = "A new proposal"
     const newAnalysis = "Other Analysis"
     const solicitudesList = new SolicitudesList()
     solicitudesList.waitForSolicitudesList()
@@ -26,7 +25,6 @@ describe('Solicitude Subjects', () => {
     const solicitudeSubjects = new SolicitudeSubjects()
     solicitudeSubjects.clickOnAddSubjectButton()
     solicitudeSubjects.fill().subjectAnalysis(newAnalysis).lostFocus()
-    solicitudeSubjects.fill().subjectProposal(newProposal).lostFocus()
     solicitudeSubjects.waitForCreateCounseling()
     solicitudeSubjects.clickOnCreateCounseling()
     solicitudeSubjects.waitForSubjectsList()
@@ -64,7 +62,7 @@ describe('Solicitude Subjects', () => {
     const solicitudeSubjects = new SolicitudeSubjects()
     solicitudeSubjects.waitFor('#show-solicitude')
 
-    expect(solicitudeSubjects.isCasesVisible()).to.eq(true)
+    expect(solicitudeSubjects.isSubjectsVisible()).to.eq(true)
   })
 
   it("would show add subject after modify solicitude", function () {
@@ -82,6 +80,6 @@ describe('Solicitude Subjects', () => {
     const solicitudeSubjects = new SolicitudeSubjects()
     solicitudeSubjects.waitFor('#show-solicitude')
 
-    expect(solicitudeSubjects.isCasesVisible()).to.eq(true)
+    expect(solicitudeSubjects.isSubjectsVisible()).to.eq(true)
   })
 })

@@ -65,9 +65,8 @@ export default class Subjects extends Component {
   }
 
   createCounseling(payload){
-    let proposals = payload.detail.proposal.map(item => item.value)
-    payload.detail.proposal = proposals 
-
+    // let proposals = payload.detail.proposal.map(item => item.value)
+    // payload.detail.proposal = proposals 
     Bus.publish('create.subject', payload.detail)
   }
 
