@@ -22,11 +22,11 @@
     </div>
 </template>
 <script>
-import ProposalsView from './cases/asesora-proposals-for-action'
-import AnalysisView from './cases/asesora-analysis-for-solicitude'
-import SummarySolicitudeView from './cases/asesora-summary-solicitude'
+import ProposalsView from './subjects/asesora-proposals-for-action'
+import AnalysisView from './subjects/asesora-analysis-for-solicitude'
+import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
 import ButtonAddSubject from './asesora-button-add-subject'
-import SubjectsListView from './cases/asesora-subjects-list'
+import SubjectsListView from './subjects/asesora-subjects-list'
 
 
 export default {

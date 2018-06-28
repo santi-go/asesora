@@ -17,9 +17,9 @@ export default class Solicitudes {
     Bus.subscribe("get.solicitudes.list", this.getSolicitudesList.bind(this))
     Bus.subscribe("get.solicitude", this.getSolicitude.bind(this))
     Bus.subscribe("create.solicitude", this.createSolicitude.bind(this))
-    Bus.subscribe("create.solicitude.to.add.case", this.createSolicitudeToAddCase.bind(this))
+    Bus.subscribe("create.solicitude.to.add.subject", this.createSolicitudeToAddSubject.bind(this))
     Bus.subscribe("update.solicitude", this.updateSolicitude.bind(this))
-    Bus.subscribe("update.solicitude.and.add.case", this.updateSolicitudeAndAddCase.bind(this))
+    Bus.subscribe("update.solicitude.and.add.subject", this.updateSolicitudeAndAddSubject.bind(this))
     Bus.subscribe("delete.solicitude", this.deleteSolicitude.bind(this))
     Bus.subscribe("create.subject", this.createSubject.bind(this))
   }
@@ -80,8 +80,8 @@ export default class Solicitudes {
     this.client.hit(url, body, callback)
   }
 
-  createSolicitudeToAddCase(payload) {
-    let callback = this.buildCallback('created.solicitude.to.add.case')
+  createSolicitudeToAddSubject(payload) {
+    let callback = this.buildCallback('created.solicitude.to.add.subject')
     let body = payload
     let url = 'create-solicitude'
     this.client.hit(url, body, callback)
@@ -94,8 +94,8 @@ export default class Solicitudes {
     this.client.hit(url, body, callback)
   }
 
-  updateSolicitudeAndAddCase(payload) {
-    let callback = this.buildCallback('updated.solicitude.and.add.case')
+  updateSolicitudeAndAddSubject(payload) {
+    let callback = this.buildCallback('updated.solicitude.and.add.subject')
     let body = payload
     let url = 'update-solicitude'
     this.client.hit(url, body, callback)

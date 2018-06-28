@@ -46,10 +46,10 @@
                           ></asesora-show-solicitude>
                     </fieldset>
                   </div>
-                  <div id="cases">
-                      <form class="case-form">
+                  <div id="subjects">
+                      <form class="subject-form">
                           <fieldset>
-                          <asesora-cases :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable" :proposals-catalog="proposalsCatalog"></asesora-cases>
+                          <asesora-subjects :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable" :proposals-catalog="proposalsCatalog"></asesora-subjects>
                           </fieldset>
                       </form>
                   </div>
@@ -63,7 +63,7 @@
     <script src="dist/bundle.js" type="text/javascript"></script>
     <script>
         new Asesora.ShowSolicitude
-         new Asesora.Cases
+         new Asesora.Subjects
     </script>
 </body>
 </html>

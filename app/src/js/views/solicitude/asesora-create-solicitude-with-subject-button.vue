@@ -6,15 +6,15 @@
             class="submitbutton"
             :disabled="!submittable && !editCompany"
             v-on:click="submit()">
-    <template v-if="!editionmode">{{ labels.submittocase }}</template>
-    <template v-else>{{ labels.editionsubmittocase }}</template>
+    <template v-if="!editionmode">{{ labels.submittoSubject }}</template>
+    <template v-else>{{ labels.editionsubmittoSubject }}</template>
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'asesora-create-solicitude-with-case-button',
+  name: 'asesora-create-solicitude-with-subject-button',
 
   props: ['labels', 'values', 'editionmode', 'submittable', 'editCompany'],
 
@@ -29,9 +29,9 @@ export default {
 
   methods: {
     submit(){
-      let event = 'submit.solicitude.and.add.case'
+      let event = 'submit.solicitude.and.add.subject'
       if (this.editionmode) {
-        event = 'edit.solicitude.and.add.case'
+        event = 'edit.solicitude.and.add.subject'
       }
 
       let signal = new CustomEvent(event,

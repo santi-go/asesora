@@ -20,7 +20,7 @@ export default class ShowSolicitude extends Component {
     let url = document.URL
     let index = url.indexOf("=")
     let id = url.slice(index + 1)
-    if (url.includes("cases.html")) {
+    if (url.includes("subjects.html")) {
       this.buttonsPresent = false
     }
     Bus.publish('get.solicitude', {id: id})
@@ -43,7 +43,7 @@ export default class ShowSolicitude extends Component {
   }
 
   addSubject(event){
-    window.location.href = "/cases.html?id=" + event.detail
+    window.location.href = "/subjects.html?id=" + event.detail
   }
 
   initializeViews(){
@@ -101,7 +101,7 @@ export default class ShowSolicitude extends Component {
         "topics": "xxxxxxx",
         "edit": "xxxxx",
         "addSubject": "XXXXXX",
-        "casesData": "xxxxx",
+        "subjectsData": "xxxxx",
         "summary": "XxXxXxX",
         "applicant": "xxxxx",
         "company": "xxxxx",

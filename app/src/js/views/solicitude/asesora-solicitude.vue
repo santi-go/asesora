@@ -47,13 +47,13 @@
                       :submittable="submittable"
                       :edit-company='editCompany'
                       ></asesora-button>
-      <asesora-create-solicitude-with-case-button
+      <asesora-create-solicitude-with-subject-button
                       :values="values"
                       :labels="labels"
                       :editionmode="editionmode"
                       :submittable="submittable"
                       :edit-company='editCompany'
-                      ></asesora-create-solicitude-with-case-button>
+                      ></asesora-create-solicitude-with-subject-button>
       <template v-if="editionmode">
         <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
         <asesora-button-delete :labels="labels" :values="values"></asesora-button-delete>
@@ -82,16 +82,16 @@ import ApplicantView from './asesora-applicant'
 import TextView from './asesora-text'
 import CompanyView from './asesora-company'
 import ButtonView from './asesora-button'
-import ButtonSolicitudeWithCaseView from './asesora-create-solicitude-with-case-button'
+import ButtonSolicitudeWithSubjectView from './asesora-create-solicitude-with-subject-button'
 import ButtonDiscardView from './asesora-button-discard'
 import ButtonDeleteView from './asesora-button-solicitude-delete'
 import ButtonAddSubject from './asesora-button-add-subject'
-import SubjectsListView from './cases/asesora-subjects-list'
+import SubjectsListView from './subjects/asesora-subjects-list'
 
 export default {
   name: 'asesora-solicitude',
 
-  props: ['labels', 'values', 'fullfilled', 'fullfilledToAddCase', 'editionmode', 'isValidCif',
+  props: ['labels', 'values', 'fullfilled', 'fullfilledToAddSubject', 'editionmode', 'isValidCif',
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'isValidCompanyName',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
@@ -103,7 +103,7 @@ export default {
     "asesora-text" : TextView,
     "asesora-company" : CompanyView,
     "asesora-button" : ButtonView,
-    "asesora-create-solicitude-with-case-button" : ButtonSolicitudeWithCaseView,
+    "asesora-create-solicitude-with-subject-button" : ButtonSolicitudeWithSubjectView,
     "asesora-button-discard" : ButtonDiscardView,
     "asesora-button-delete" : ButtonDeleteView,
     "asesora-button-add-subject": ButtonAddSubject,
@@ -116,18 +116,18 @@ export default {
         this.animateCard()
       }
     },
-    fullfilledToAddCase: function(val, oldVal){
+    fullfilledToAddSubject: function(val, oldVal){
       if (val == true){
-        this.hitToCase()
+        this.hitToSubject()
       }
     }
   },
 
   methods: {
 
-    hitToCase() {
+    hitToSubject() {
       this.show()
-      let signal = new CustomEvent('fullfilled.solicitude.to.add.case',
+      let signal = new CustomEvent('fullfilled.solicitude.to.add.subject',
                                   {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

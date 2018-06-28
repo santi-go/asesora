@@ -18,9 +18,9 @@ export default class Solicitude extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.solicitude", this.translate.bind(this))
     Bus.subscribe("created.solicitude", this.createdSolicitude.bind(this))
-    Bus.subscribe("created.solicitude.to.add.case", this.createdSolicitudeToAddCase.bind(this))
+    Bus.subscribe("created.solicitude.to.add.subject", this.createdSolicitudeToAddSubject.bind(this))
     Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
-    Bus.subscribe("updated.solicitude.and.add.case", this.updatedSolicitudeAndAddCase.bind(this))
+    Bus.subscribe("updated.solicitude.and.add.subject", this.updatedSolicitudeAndAddSubject.bind(this))
     Bus.subscribe("deleted.solicitude", this.deletedSolicitude.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
@@ -37,8 +37,8 @@ export default class Solicitude extends Component {
       this.submit.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'submit.solicitude.and.add.case',
-      this.submitSolicitudeToAddCase.bind(this)
+      'submit.solicitude.and.add.subject',
+      this.submitSolicitudeToAddSubject.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.company.name',
@@ -81,8 +81,8 @@ export default class Solicitude extends Component {
       this.update.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'edit.solicitude.and.add.case',
-      this.updateAndAddCase.bind(this)
+      'edit.solicitude.and.add.subject',
+      this.updateAndAddSubject.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'clicked.discard.button',
@@ -93,8 +93,8 @@ export default class Solicitude extends Component {
       this.transitToList.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'fullfilled.solicitude.to.add.case',
-      this.transitToAddCase.bind(this)
+      'fullfilled.solicitude.to.add.subject',
+      this.transitToAddSubject.bind(this)
     )
     document.getElementById(this.element).addEventListener(
       'changed.applicant.fields',
@@ -181,7 +181,7 @@ export default class Solicitude extends Component {
   }
 
   addSubject(event){
-    window.location.href = "/cases.html?id=" + event.detail
+    window.location.href = "/subjects.html?id=" + event.detail
   }
 
   toggleSaveCompanyButton(){
@@ -219,8 +219,8 @@ export default class Solicitude extends Component {
     Bus.publish('create.solicitude', this.data.values)
   }
 
-  submitSolicitudeToAddCase(){
-    Bus.publish('create.solicitude.to.add.case', this.data.values)
+  submitSolicitudeToAddSubject(){
+    Bus.publish('create.solicitude.to.add.subject', this.data.values)
   }
 
   update(){
@@ -228,8 +228,8 @@ export default class Solicitude extends Component {
     Bus.publish('update.applicant', this.data.values )
   }
 
-  updateAndAddCase(){
-    Bus.publish('update.solicitude.and.add.case', this.data.values )
+  updateAndAddSubject(){
+    Bus.publish('update.solicitude.and.add.subject', this.data.values )
     Bus.publish('update.applicant', this.data.values )
   }
 
@@ -287,12 +287,12 @@ export default class Solicitude extends Component {
     }
   }
 
-  updatedSolicitudeAndAddCase(response){
+  updatedSolicitudeAndAddSubject(response){
     this.data.showAlert = false
     if (Object.keys(response).length === 0){
       this.data.errors = true
     }else{
-      this.data.fullfilledToAddCase = true
+      this.data.fullfilledToAddSubject = true
     }
   }
 
@@ -500,8 +500,8 @@ export default class Solicitude extends Component {
       this.setTimeToRelocateUrl(url)
     }
 
-    transitToAddCase(){
-      let url = "/cases.html?id=" + this.data.values.id
+    transitToAddSubject(){
+      let url = "/subjects.html?id=" + this.data.values.id
       this.initialValues = this.data.cloneValues()
       this.moveCardAnimation('submitCard')
       this.setTimeToRelocateUrl(url)
@@ -522,9 +522,9 @@ export default class Solicitude extends Component {
       this.data.fullfilled = true
     }
 
-    createdSolicitudeToAddCase(event){
+    createdSolicitudeToAddSubject(event){
       this.data.values.id = event.creation_moment
-      this.data.fullfilledToAddCase = true
+      this.data.fullfilledToAddSubject = true
     }
 
     textIsEmpty(){
@@ -674,8 +674,8 @@ export default class Solicitude extends Component {
           "addedEmployeesValueMessage": "xxxx",
           "addedNameValueMessage": "xxxx",
           "companyInfo": "xxxxxxx",
-          "submittocase": "xxxxxxx",
-          "editionsubmittocase": "xxxxxxx",
+          "submittoSubject": "xxxxxxx",
+          "editionsubmittoSubject": "xxxxxxx",
           "notApply": "xxxx"
         },
         values: {
@@ -697,7 +697,7 @@ export default class Solicitude extends Component {
         suggestedCompanies: [],
         suggestedApplicants: [],
         fullfilled: false,
-        fullfilledToAddCase: false,
+        fullfilledToAddSubject: false,
         isValidCif: true,
         cnaeCatalog:[],
         isValidCompanyIdentity: true,

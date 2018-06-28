@@ -1,7 +1,7 @@
 <template>
     <div class="card large-card">
       <div class="card-title">
-        <h4>{{ labels.casesData}}</h4>
+        <h4>{{ labels.subjectsData}}</h4>
       </div>
         <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
@@ -10,14 +10,14 @@
     </div>
 </template>
 <script>
-import ProposalsView from './cases/asesora-proposals-for-action'
-import AnalysisView from './cases/asesora-analysis-for-solicitude'
-import ButtonCreateCounseling from './cases/asesora-button-create-counseling'
-import SubjectTopicsView from './cases/subject-topics'
+import ProposalsView from './subjects/asesora-proposals-for-action'
+import AnalysisView from './subjects/asesora-analysis-for-solicitude'
+import ButtonCreateCounseling from './subjects/asesora-button-create-counseling'
+import SubjectTopicsView from './subjects/subject-topics'
 
 export default {
 
-  name: 'asesora-cases',
+  name: 'asesora-subjects',
   props: ['labels', 'values', 'topicsCatalog', 'submittable', 'proposalsCatalog'],
   components: {
     "asesora-proposals-for-action" : ProposalsView,

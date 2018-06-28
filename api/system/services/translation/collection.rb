@@ -74,8 +74,8 @@ module Translation
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
-                "submittocase": "Solicitar y añadir caso",
-                "editionsubmittocase": "Guardar cambios y añadir caso",
+                "submittoSubject": "Solicitar y añadir caso",
+                "editionsubmittoSubject": "Guardar cambios y añadir caso",
                 "notApply": "N/A"
               },
 
@@ -114,10 +114,10 @@ module Translation
                 "notApply": "N/A"
               },
 
-              "cases": {
+              "subjects": {
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
-                "casesData": "Datos del caso",
+                "subjectsData": "Datos del caso",
                 "edit": "Editar",
                 "addSubject": "Añadir caso",
                 "createSubject": "Crear asesoramiento",

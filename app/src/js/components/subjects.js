@@ -1,19 +1,19 @@
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
-import CasesView from '../views/solicitude/asesora-cases'
+import SubjectsView from '../views/solicitude/asesora-subjects'
 
 
-export default class Cases extends Component {
+export default class Subjects extends Component {
 
   constructor(){
-    super('cases')
+    super('subjects')
     this.client = APIClient
     this.load()
   }
 
   subscribe(){
-    Bus.subscribe("got.translation.for.cases", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.subjects", this.translate.bind(this))
     Bus.subscribe("subject.created", this.subjectCreated.bind(this))
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
@@ -44,7 +44,7 @@ export default class Cases extends Component {
 
   initializeViews(){
     let listView = {
-      'asesora-cases': CasesView,
+      'asesora-subjects': SubjectsView,
     }
     super.initializeViews(listView)
   }
@@ -114,7 +114,7 @@ export default class Cases extends Component {
         "edit": "xxxxx",
         "addSubject": "XXXXXX",
         "createSubject": "XxX",
-        "casesData": "xxxxx",
+        "subjectsData": "xxxxx",
         "topics": "xxxxxx",
         "notApply": "xxxx"
       },
