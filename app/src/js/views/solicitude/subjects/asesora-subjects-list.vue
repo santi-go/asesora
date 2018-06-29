@@ -10,25 +10,30 @@
           <td>
             <div class="row grid-responsive">
               <div class="column column-20">
-                <h4>Caso {{values.subjects.indexOf(item) +1 }}:</h4>
+                <h4>{{labels.subject}} {{values.subjects.indexOf(item) +1 }}:</h4>
               </div>
               <div class="column column-80">
-                <label>{{ labels.proposals }}</label>
-                <template v-if=" item.proposal =='' "><p>{{ labels.notApply }}</p></template>
-                <template v-else><p>{{ item.proposal }}</p></template>
+                <template v-if=" item.proposal.length > 0 ">
+                  <label>{{ labels.proposals }}</label>
+                  <ul>
+                    <li v-for="proposal in item.proposal">
+                      {{ proposal }}
+                    </li>
+                  </ul>
+                </template>
 
-                <label>{{ labels.analysis }}</label>
-                <template v-if=" item.analysis =='' "><p>{{ labels.notApply }}</p></template>
-                <template v-else><p>{{ item.analysis }}</p></template>
+                <template v-if=" item.analysis !='' ">
+                  <label>{{ labels.analysis }}</label>
+                  <p>{{ item.analysis }}</p>
+                </template>
 
-                <label>{{ labels.topics }}</label>
-                <template v-if=" item.topics.length == 0 "><p>{{ labels.notApply }}</p></template>
-                <template v-else>
-                  <tr v-for="topic in item.topics">
-                    <td>
+                <template v-if=" item.topics.length > 0 ">
+                  <label>{{ labels.topics }}</label>
+                  <ul>
+                    <li v-for="topic in item.topics">
                       {{ topic }}
-                    </td>
-                  </tr>
+                    </li>
+                  </ul>
                 </template>
               </div>
             </div>

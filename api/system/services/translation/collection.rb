@@ -111,7 +111,8 @@ module Translation
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
                 "subjectsList": "Listado de casos",
-                "notApply": "N/A"
+                "notApply": "N/A",
+                "subject": "Caso"
               },
 
               "subjects": {

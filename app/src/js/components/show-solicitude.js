@@ -116,7 +116,8 @@ export default class ShowSolicitude extends Component {
         "companyEmployees": "XXXXXX",
         "companyCnae": "XXXXXXXX",
         "subjectsList": "xxxxxxx",
-        "notApply": "xxxx"
+        "notApply": "xxxx",
+        "subject": "xxxx"
       },
       values: {
         "id": "",
