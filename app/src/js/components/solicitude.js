@@ -676,7 +676,8 @@ export default class Solicitude extends Component {
           "companyInfo": "xxxxxxx",
           "submittoSubject": "xxxxxxx",
           "editionsubmittoSubject": "xxxxxxx",
-          "notApply": "xxxx"
+          "notApply": "xxxx",
+          "subject": "xxxxx"
         },
         values: {
           "text": "",
@@ -692,7 +693,7 @@ export default class Solicitude extends Component {
           "companyEmployees": "",
           "companyCnae": "",
           "suggestions" : "",
-          "subjects":""
+          "subjects": ""
         },
         suggestedCompanies: [],
         suggestedApplicants: [],

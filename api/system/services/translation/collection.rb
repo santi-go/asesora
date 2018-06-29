@@ -76,7 +76,8 @@ module Translation
                 "topics": "Temas del caso",
                 "submittoSubject": "Solicitar y añadir caso",
                 "editionsubmittoSubject": "Guardar cambios y añadir caso",
-                "notApply": "N/A"
+                "notApply": "N/A",
+                "subject": "Caso"
               },
 
               "solicitudes-list": {

@@ -131,7 +131,7 @@ export default class ShowSolicitude extends Component {
         "companyCif": "",
         "companyEmployees": "",
         "companyCnae": "",
-        "subjects":""
+        "subjects": ""
       },
       buttonsPresent: true,
       hasSubjects: false,
