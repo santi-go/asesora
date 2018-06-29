@@ -5,7 +5,7 @@
       </div>
         <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
-        <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog"></subject-topics>
+        <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
         <asesora-button-create-counseling :labels="labels" :values="values" :submittable="submittable"></asesora-button-create-counseling>
     </div>
 </template>
