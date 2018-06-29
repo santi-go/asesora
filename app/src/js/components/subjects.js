@@ -71,7 +71,6 @@ export default class Subjects extends Component {
       analysis: payload.detail.analysis,
       topics: payload.detail.topics
     }
-
     Bus.publish('create.subject', subject)
   }
 
