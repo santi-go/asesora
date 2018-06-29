@@ -2,12 +2,13 @@
   <div>
     <label for="analysis-solicitude">{{ labels.analysis }}</label>
     <textarea id="analysis-solicitude"
-              placeholder="Máximo 200 palabras"
+              :placeholder= "labels.placeholderAnalysis"
               v-model="values.analysis"
               v-on:keydown="keyDown"
               v-on:keyup="changeLimitationSpace"
               >
     </textarea>
+    <em>{{ labels.max200Words }}</em>
   </div>
 </template>
 
@@ -48,10 +49,13 @@ export default {
 }
 </script>
 <style scoped>
-textarea::placeholder {
-  text-align: left;
-  font-size: 0.8em;
-  color: grey;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  em {
+    font-size: 1.5rem;
+  }
+  textarea::placeholder {
+    text-align: left;
+    font-size: 1em;
+    color: grey;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 </style>

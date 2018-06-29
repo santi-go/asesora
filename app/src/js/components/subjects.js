@@ -118,7 +118,9 @@ export default class Subjects extends Component {
         "createSubject": "XxX",
         "subjectsData": "xxxxx",
         "topics": "xxxxxx",
-        "notApply": "xxxx"
+        "notApply": "xxxx",
+        "placeholderAnalysis": "xxxx",
+        "max200Words": "xxxx"
       },
       values: {
         "solicitudeId": "",
