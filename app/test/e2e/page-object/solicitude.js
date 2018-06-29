@@ -201,13 +201,13 @@ class Solicitude{
   submit(){
     this.lostFocus()
     $('#submit').click()
-    browser.waitForVisible('.messageSent', 2000)
+    browser.waitForVisible('.messageSent', 5000)
   }
 
   submitAndAddSubject(){
     this.lostFocus()
     $('#submit-and-add-subject').click()
-    browser.waitForVisible('.messageSent', 2000)
+    browser.waitForVisible('.messageSent', 5000)
   }
 
   required(){
