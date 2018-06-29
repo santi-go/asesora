@@ -33,11 +33,7 @@ export default class Subjects extends Component {
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'add.topics',
-      this.setButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'remove.topics',
+      'changed.topics',
       this.setButtonStatus.bind(this)
     )
   }
@@ -69,7 +65,7 @@ export default class Subjects extends Component {
       solicitudeId: payload.detail.solicitudeId,
       proposal: payload.detail.proposals.map(item => item.value),
       analysis: payload.detail.analysis,
-      topics: payload.detail.topics
+      topics: payload.detail.topics.map(item => item.value)
     }
     Bus.publish('create.subject', subject)
   }
@@ -89,7 +85,11 @@ export default class Subjects extends Component {
   }
 
   gotTopicsCatalog(payload) {
-    this.data.topicsCatalog = payload.data
+    let catalog = []
+    for (const topic of payload.data) {
+      catalog.push({ value: topic, text: topic.name })
+    }
+    this.data.topicsCatalog = catalog
   }
 
   gotProposalsCatalog(payload) {

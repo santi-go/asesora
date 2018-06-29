@@ -24,8 +24,9 @@ describe('Solicitude Subjects', () => {
 
     const solicitudeSubjects = new SolicitudeSubjects()
     solicitudeSubjects.clickOnAddSubjectButton()
-    solicitudeSubjects.fill().subjectAnalysis(newAnalysis).lostFocus()
-    solicitudeSubjects.waitForCreateCounseling()
+    solicitudeSubjects.fill().subjectAnalysis(newAnalysis)
+
+
     solicitudeSubjects.clickOnCreateCounseling()
     solicitudeSubjects.waitForSubjectsList()
 

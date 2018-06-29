@@ -31,7 +31,7 @@
                   <label>{{ labels.topics }}</label>
                   <ul>
                     <li v-for="topic in item.topics">
-                      {{ topic }}
+                      {{ topic.name }}
                     </li>
                   </ul>
                 </template>
