@@ -64,10 +64,15 @@ export default class Subjects extends Component {
     this.data.translate(key,label)
   }
 
-  createCounseling(payload){
-    // let proposals = payload.detail.proposal.map(item => item.value)
-    // payload.detail.proposal = proposals 
-    Bus.publish('create.subject', payload.detail)
+  createCounseling(payload) {
+    const subject = {
+      solicitudeId: payload.detail.solicitudeId,
+      proposal: payload.detail.proposals.map(item => item.value),
+      analysis: payload.detail.analysis,
+      topics: payload.detail.topics
+    }
+
+    Bus.publish('create.subject', subject)
   }
 
   setButtonStatus(){
@@ -89,12 +94,11 @@ export default class Subjects extends Component {
   }
 
   gotProposalsCatalog(payload) {
-    console.log(payload);
-    let list = []
-    for (const item of payload.data) {
-      list.push({value: item, text: item})
+    let catalog = []
+    for (const proposal of payload.data) {
+      catalog.push({ value: proposal, text: proposal })
     }
-    this.data.proposalsCatalog = list
+    this.data.proposalsCatalog = catalog
   }
 
   getSolicitudeId() {
@@ -119,7 +123,7 @@ export default class Subjects extends Component {
       },
       values: {
         "solicitudeId": "",
-        "proposals": "",
+        "proposals": [],
         "analysis": "",
         "subjectId":"",
         "topics": "",

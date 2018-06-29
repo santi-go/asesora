@@ -22,7 +22,7 @@ export default {
     let signal = new CustomEvent('clicked.create.counseling',
                                   {'detail': {
                                     solicitudeId: this.values.solicitudeId,
-                                    proposal: this.values.proposals,
+                                    proposals: this.values.proposals,
                                     analysis: this.values.analysis,
                                     topics:this.values.selectedTopics
                                   },

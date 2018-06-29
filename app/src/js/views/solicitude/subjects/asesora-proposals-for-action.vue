@@ -1,44 +1,52 @@
 <template>
   <div>
-      <label for="subject-proposals">{{ labels.proposals }}</label>
-      <multi-select :options="proposalsCatalog"
-                    :selected-options="values.proposals"
-                    id="subject-proposals"
-                    @select="onSelect"
-                    v-model="values.proposals">
-      </multi-select>
+    <label for="subject-proposals">{{ labels.proposals }}</label>
+    <multi-select :options="proposalsCatalog"
+                  :selected-options="values.proposals"
+                  id="subject-proposals"
+                  @select="onSelect"
+                  v-model="values.proposals">
+    </multi-select>
   </div>
 </template>
 
 <script>
-import { MultiSelect } from 'vue-search-select'
+  import { MultiSelect } from 'vue-search-select'
 
-export default {
-  
-  name: 'asesora-proposals-for-action',
-
-  props: ['labels', 'values', 'proposalsCatalog'],
-
-  methods: {
+  export default {
+    name: 'asesora-proposals-for-action',
+    props: ['labels', 'values', 'proposalsCatalog'],
+    methods: {
       onSelect (items, lastSelectItem) {
         this.values.proposals = items
       }
     },
-  components: {
+    components: {
       MultiSelect
     }
   }
 </script>
 
 <style>
-  .item {
+  i.icon {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  i.icon.delete:before {
+    content: "\f00d";
+  }
+  .ui.selection.dropdown .menu > .item {
     font-size: 1.5rem !important;
     border-color: #eee !important;
   }
-  .menu {
+  .ui.selection.active.dropdown .menu {
     border-color: #eee !important;
   }
-  .ui.multiple.search.dropdown:hover {
+  .ui.selection.active.dropdown:hover {
     border-color: #eee !important;
   }
 </style>
