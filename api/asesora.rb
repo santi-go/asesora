@@ -47,7 +47,7 @@ class Asesora < Sinatra::Base
 
 
   Endpoints::Applicants.define_update_applicant(self)
-  Endpoints::Applicants.define_applicant_matches(self)
+  Endpoints::Applicants.define_search_applicants(self)
 
   Endpoints::Companies.define_update_company(self)
   Endpoints::Companies.define_company_matches(self)

@@ -21,7 +21,7 @@ module Endpoints
       end
     end
 
-    def self.define_applicant_matches(api)
+    def self.define_search_applicants(api)
       api.post '/api/applicant-matches' do
         params = JSON.parse(request.body.read)
     
