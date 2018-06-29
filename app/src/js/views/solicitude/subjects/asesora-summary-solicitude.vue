@@ -17,8 +17,10 @@
       <p><em>{{ labels.companyCnae }}:</em> {{ values.companyCnae }}</p>
     </div>
   </div>
-    <p>{{ labels.text }}:</p>
-    <textarea disabled>{{ values.text }}</textarea>
+  <div>
+    <label> {{ labels.text }}:</label>
+    <p><em>{{ values.text }}</em></p>
+  </div>
 </div>
 </template>
 
