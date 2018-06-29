@@ -6,21 +6,22 @@ module Domain
       solicitude = new(
         document['applicant'],
         document['company'],
-        document['creation_moment'],
-        document['edition_moment']
+        document['creation_moment']
       )
+      solicitude.edition_moment = document['edition_moment']
       solicitude.solicited_at(document['date'])
       solicitude.text = document['text']
       
       solicitude
     end
-    
-    def self.with(date, text, applicant, company, creation_moment = nil)
+
+    def self.with(date, text, applicant, company, creation_moment = nil, edition_moment = nil)
       solicitude = new(
         applicant,
         company,
         creation_moment
       )
+      solicitude.edition_moment = Time.now.to_i
       solicitude.solicited_at(date)
       solicitude.text = text
       
@@ -29,17 +30,20 @@ module Domain
       
     attr_writer :text, :date
 
-    def initialize(applicant, company, creation_moment = nil, edition_moment = nil)
+    def initialize(applicant, company, creation_moment = nil)
       @applicant = applicant
       @company=company
       @creation_moment = creation_moment || DateTime.now.strftime("%Q")
-      @edition_moment = edition_moment || Time.now.to_i
     end
     private_class_method :new
 
     def solicited_at(date)
       @date = parse(date)
     end
+
+    def edition_moment=(value)
+      @edition_moment = value
+    end 
 
     def serialize
       {
