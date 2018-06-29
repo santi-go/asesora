@@ -6,12 +6,12 @@ const Solicitude = require('./page-object/solicitude')
 const Fixtures = require('./fixtures')
 
 describe('Solicitude Subjects', () => {
-  before(function(){
+  beforeEach(function(){
     fixtures = new Fixtures()
     fixtures.pristine()
   })
 
-  after(function(){
+  afterEach(function(){
     fixtures = new Fixtures()
     fixtures.clean()
   })
