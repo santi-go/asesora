@@ -56,4 +56,33 @@ describe 'Subjects Api' do
     expect(response["data"][0]["proposal"]).to eq(Fixtures::PROPOSAL)
     expect(response["data"][0]["solicitude_id"]).to eq(Fixtures::CREATION_MOMENT)
 	end
+
+  it 'updates subject' do
+		subject = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "proposal": Fixtures::PROPOSAL,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS
+		}.to_json
+
+    post '/api/create-subject', subject
+    response = JSON.parse(last_response.body)
+
+    other_subject = {
+            "id": response['id'],
+            "proposal": Fixtures::PROPOSAL_2,
+            "analysis": Fixtures::ANALYSIS_2,
+            "topics": Fixtures::TOPICS
+		}.to_json
+
+
+
+    post '/api/update-subject', other_subject
+    updated_response = JSON.parse(last_response.body)
+
+
+    expect(updated_response["proposal"]).to eq(Fixtures::PROPOSAL_2)
+    expect(updated_response["analysis"]).to eq(Fixtures::ANALYSIS_2)
+    expect(updated_response["topics"]).to eq(Fixtures::TOPICS)
+  end
 end
