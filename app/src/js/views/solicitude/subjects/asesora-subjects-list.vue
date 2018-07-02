@@ -6,7 +6,7 @@
 
     <div>
       <table>
-        <tr v-for="item in values.subjects" 
+        <tr v-for="item in values.subjects"
             v-on:click="onClick(item)"
             >
             <td>
@@ -16,10 +16,10 @@
               </div>
               <div class="column column-80">
                 <template v-if="editionSubject == item.id">
-                  <asesora-subjects :labels="labels" 
-                                    :values="values" 
-                                    :topics-catalog="topicsCatalog" 
-                                    :proposals-catalog="proposalsCatalog" 
+                  <asesora-subjects :labels="labels"
+                                    :values="values"
+                                    :topics-catalog="topicsCatalog"
+                                    :proposals-catalog="proposalsCatalog"
                                     :submittable="submittable">
                   </asesora-subjects>
                 </template>
@@ -66,10 +66,12 @@ import SubjectsView from '../asesora-subjects'
     },
     methods: {
       onClick(item){
-        let signal = new CustomEvent('clicked.subject.list',
-                                  {'detail': item,
-                                  'bubbles': true})
-        this.$el.dispatchEvent(signal)
+        if (item.id != this.editionSubject){
+          let signal = new CustomEvent('clicked.subject.list',
+                                    {'detail': item,
+                                    'bubbles': true})
+          this.$el.dispatchEvent(signal)
+        }
       }
     }
   }

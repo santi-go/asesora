@@ -202,7 +202,6 @@ export default class Solicitude extends Component {
 
   editSubject(event){
     this.data.editionSubject = event.detail.id
-    console.log(event.detail)
     let valuesProposals = []
     for (const proposal of event.detail.proposal) {
       valuesProposals.push({ value: proposal, text: proposal })
