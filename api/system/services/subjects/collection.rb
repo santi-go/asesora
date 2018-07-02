@@ -12,6 +12,16 @@ module Subjects
         Domain::Subject.from_document(document)
       end
 
+      def update(subject, id)
+        serialized = subject.serialize()
+
+        document = MongoClient.update(serialized, id)
+
+        return if document.nil?
+
+        Domain::Subject.from_document(document)
+      end
+
       def all_by(solicitude_id)
         subjects = MongoClient.all_by(solicitude_id)
 
@@ -29,6 +39,10 @@ module Subjects
 
         def all_by(solicitude_id)
           client[:subjects].find({"solicitude_id": solicitude_id})
+        end
+
+        def update(subject, id)
+          client[:subjects].find_one_and_replace({ "id": id }, subject, :return_document => :after)
         end
 
         private

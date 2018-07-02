@@ -5,6 +5,7 @@ require_relative '../system/actions/update_solicitude'
 require_relative '../system/actions/delete_solicitude'
 require_relative '../system/actions/retrieve_cnae'
 require_relative '../system/actions/create_subject'
+require_relative '../system/actions/update_subject'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
@@ -104,6 +105,22 @@ module Endpoints
         solicitude_subject = Actions::CreateSubject.do(data)
 
         solicitude_subject.to_json
+      end
+    end
+
+    def self.define_update_subject(api)
+      api.post '/api/update-subject' do
+        params = JSON.parse(request.body.read)
+        data = {
+          id:params['id'],
+          proposal: params['proposal'],
+          analysis: params['analysis'],
+          topics: params['topics']
+        }
+
+        updated = Actions::UpdateSubject.do(data)
+        return {}.to_json if updated.nil?
+        updated.to_json
       end
     end
 
