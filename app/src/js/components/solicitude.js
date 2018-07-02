@@ -29,6 +29,8 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.applicant.matches", this.populateSuggestedApplicants.bind(this))
     Bus.subscribe("updated.company", this.updatedCompany.bind(this))
     Bus.subscribe("got.company.count", this.gotCompanyCount.bind(this))
+    Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
+    Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
   }
 
   watchActions(){
@@ -140,6 +142,10 @@ export default class Solicitude extends Component {
       'clicked.add.subject',
       this.addSubject.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.subject.list',
+      this.editSubject.bind(this)
+    )
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -192,6 +198,40 @@ export default class Solicitude extends Component {
     } else {
       this.data.saveCompany = false
     }
+  }
+
+  editSubject(event){
+    this.data.editionSubject = event.detail.id
+    console.log(event.detail)
+    let valuesProposals = []
+    for (const proposal of event.detail.proposal) {
+      valuesProposals.push({ value: proposal, text: proposal })
+    }
+
+    let valuesTopics = []
+    for (const topic of event.detail.topics) {
+      valuesTopics.push({ value: topic, text: topic.name })
+    }
+
+    this.data.setValues('proposals', valuesProposals)
+    this.data.setValues('analysis', event.detail.analysis)
+    this.data.setValues('selectedTopics', valuesTopics)
+  }
+
+  gotTopicsCatalog(payload) {
+    let catalog = []
+    for (const topic of payload.data) {
+      catalog.push({ value: topic, text: topic.name })
+    }
+    this.data.topicsCatalog = catalog
+  }
+
+  gotProposalsCatalog(payload) {
+    let catalog = []
+    for (const proposal of payload.data) {
+      catalog.push({ value: proposal, text: proposal })
+    }
+    this.data.proposalsCatalog = catalog
   }
 
   enableCompanyFields(){
@@ -693,7 +733,11 @@ export default class Solicitude extends Component {
           "companyEmployees": "",
           "companyCnae": "",
           "suggestions" : "",
-          "subjects": ""
+          "subjects": "",
+          "proposals": [],
+          "analysis": "",
+          "selectedTopics": [],
+          "subjectId": ""
         },
         suggestedCompanies: [],
         suggestedApplicants: [],
@@ -714,6 +758,9 @@ export default class Solicitude extends Component {
         saveCompany: false,
         isValidPhone: true,
         isValidEmail: true,
+        topicsCatalog: [],
+        proposalsCatalog: [],
+        editionSubject: false,
         translate:function(key,value) {
           this.labels[key] = value
         },
