@@ -36,7 +36,13 @@
                      ></asesora-company>
     <template v-if="editionmode">
       <div  class="card large-card listed-subjects">
-        <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
+        <asesora-subjects-list  :labels="labels" 
+                                :values="values" 
+                                :topics-catalog="topicsCatalog" 
+                                :proposals-catalog="proposalsCatalog" 
+                                :submittable="submittable"
+                                :edition-subject="editionSubject">
+        </asesora-subjects-list>
         <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
       </div>
     </template>
@@ -95,7 +101,8 @@ export default {
           'cnaeCatalog', 'suggestedCompanies', 'isValidCompanyIdentity', 'isValidCompanyName',
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
-          'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton'],
+          'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
+          'topicsCatalog', 'proposalsCatalog', 'editionSubject'],
 
   components: {
     "asesora-date" : DateView,
