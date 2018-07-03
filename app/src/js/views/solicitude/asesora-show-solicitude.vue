@@ -42,7 +42,9 @@ export default {
     }
   },
   computed: {
-    hasSubjects: function(){return this.values.subjects.length > 0}
+    hasSubjects: function(){
+      return this.values.subjects !=""
+    }
   },
   components: {
     "asesora-proposals-for-action" : ProposalsView,

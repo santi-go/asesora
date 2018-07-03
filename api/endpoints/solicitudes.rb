@@ -113,6 +113,7 @@ module Endpoints
         params = JSON.parse(request.body.read)
         data = {
           id: params['subjectId'],
+          solicitude_id: params['solicitudeId'],
           proposal: params['proposal'],
           analysis: params['analysis'],
           topics: params['topics']
