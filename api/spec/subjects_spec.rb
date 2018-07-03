@@ -69,13 +69,11 @@ describe 'Subjects Api' do
     response = JSON.parse(last_response.body)
 
     other_subject = {
-            "id": response['id'],
+            "subjectId": response['id'],
             "proposal": Fixtures::PROPOSAL_2,
             "analysis": Fixtures::ANALYSIS_2,
             "topics": Fixtures::TOPICS
 		}.to_json
-
-
 
     post '/api/update-subject', other_subject
     updated_response = JSON.parse(last_response.body)

@@ -112,7 +112,7 @@ module Endpoints
       api.post '/api/update-subject' do
         params = JSON.parse(request.body.read)
         data = {
-          id:params['subjectId'],
+          id: params['subjectId'],
           proposal: params['proposal'],
           analysis: params['analysis'],
           topics: params['topics']
