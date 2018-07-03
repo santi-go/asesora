@@ -36,12 +36,13 @@
                      ></asesora-company>
     <template v-if="editionmode">
       <div  class="card large-card listed-subjects">
-        <asesora-subjects-list  :labels="labels" 
-                                :values="values" 
-                                :topics-catalog="topicsCatalog" 
-                                :proposals-catalog="proposalsCatalog" 
+        <asesora-subjects-list  :labels="labels"
+                                :values="values"
+                                :topics-catalog="topicsCatalog"
+                                :proposals-catalog="proposalsCatalog"
                                 :submittable="submittable"
-                                :edition-subject="editionSubject">
+                                :edition-subject="editionSubject"
+                                :editionmode="editionmode">
         </asesora-subjects-list>
         <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
       </div>

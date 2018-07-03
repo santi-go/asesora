@@ -6,7 +6,19 @@
         <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
         <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
-        <asesora-button-create-counseling :labels="labels" :values="values" :submittable="submittable"></asesora-button-create-counseling>
+
+        <template v-if="!editionmode">
+          <asesora-button-create-counseling :labels="labels"
+                                            :values="values"
+                                            :submittable="submittable">
+          </asesora-button-create-counseling>
+        </template>
+        <template v-else>
+          <asesora-button-modify-counseling :labels="labels"
+                                            :values="values"
+                                            :submittable="submittable">
+          </asesora-button-modify-counseling>
+        </template>
     </div>
 </template>
 <script>
@@ -14,19 +26,21 @@ import ProposalsView from './subjects/asesora-proposals-for-action'
 import AnalysisView from './subjects/asesora-analysis-for-solicitude'
 import ButtonCreateCounseling from './subjects/asesora-button-create-counseling'
 import SubjectTopicsView from './subjects/subject-topics'
+import ButtonModifyCounseling from './subjects/asesora-button-modify-counseling'
 
 export default {
 
   name: 'asesora-subjects',
-  props: ['labels', 'values', 'topicsCatalog', 'submittable', 'proposalsCatalog'],
+  props: ['labels', 'values', 'topicsCatalog', 'submittable',
+          'proposalsCatalog', 'editionSubject', 'editionmode'],
   components: {
     "asesora-proposals-for-action" : ProposalsView,
     "asesora-analysis-for-solicitude" : AnalysisView,
     "asesora-button-create-counseling": ButtonCreateCounseling,
-    "subject-topics": SubjectTopicsView
+    "subject-topics": SubjectTopicsView,
+    "asesora-button-modify-counseling": ButtonModifyCounseling
+    }
   }
-
-}
 </script>
 <style scoped>
 

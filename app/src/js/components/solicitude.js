@@ -146,6 +146,19 @@ export default class Solicitude extends Component {
       'clicked.subject.list',
       this.editSubject.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'changed.analysis',
+      this.setModifySubjectButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'changed.topics',
+      this.setModifySubjectButtonStatus.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
+      'clicked.modify.counseling',
+      this.modifyCounseling.bind(this)
+    )
+
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
 
@@ -201,6 +214,7 @@ export default class Solicitude extends Component {
   }
 
   editSubject(event){
+
     this.data.editionSubject = event.detail.id
     let valuesProposals = []
     for (const proposal of event.detail.proposal) {
@@ -214,6 +228,7 @@ export default class Solicitude extends Component {
 
     this.data.setValues('proposals', valuesProposals)
     this.data.setValues('analysis', event.detail.analysis)
+    this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
   }
 
@@ -231,6 +246,26 @@ export default class Solicitude extends Component {
       catalog.push({ value: proposal, text: proposal })
     }
     this.data.proposalsCatalog = catalog
+  }
+
+  setModifySubjectButtonStatus(){
+    this.data.submittable = false
+
+    let analysis = (this.data.values.analysis != "")
+    let topics = (this.data.values.selectedTopics.length > 0)
+    if(analysis || topics){
+      this.data.submittable = true
+    }
+  }
+
+  modifyCounseling(payload) {
+    const subject = {
+      subjectId: payload.detail.subjectId,
+      proposal: payload.detail.proposals.map(item => item.value),
+      analysis: payload.detail.analysis,
+      topics: payload.detail.topics.map(item => item.value)
+    }
+    Bus.publish('update.subject', subject)
   }
 
   enableCompanyFields(){
@@ -716,7 +751,8 @@ export default class Solicitude extends Component {
           "submittoSubject": "xxxxxxx",
           "editionsubmittoSubject": "xxxxxxx",
           "notApply": "xxxx",
-          "subject": "xxxxx"
+          "subject": "xxxxx",
+          "modifySubject": "xxxxx"
         },
         values: {
           "text": "",

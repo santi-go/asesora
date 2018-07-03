@@ -20,7 +20,9 @@
                                     :values="values"
                                     :topics-catalog="topicsCatalog"
                                     :proposals-catalog="proposalsCatalog"
-                                    :submittable="submittable">
+                                    :submittable="submittable"
+                                    :edition-subject="editionSubject"
+                                    :editionmode="editionmode">
                   </asesora-subjects>
                 </template>
                 <template v-else>
@@ -60,7 +62,8 @@ import SubjectsView from '../asesora-subjects'
 
   export default {
     name: 'asesora-subjects-list',
-    props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'submittable'],
+    props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
+            'editionSubject', 'submittable', 'editionmode'],
     components: {
       "asesora-subjects" : SubjectsView
     },
