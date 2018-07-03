@@ -31,6 +31,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.company.count", this.gotCompanyCount.bind(this))
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
+    Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
   }
 
   watchActions(){
@@ -261,11 +262,28 @@ export default class Solicitude extends Component {
   modifyCounseling(payload) {
     const subject = {
       subjectId: payload.detail.subjectId,
+      solicitudeId: payload.detail.solicitudeId,
       proposal: payload.detail.proposals.map(item => item.value),
       analysis: payload.detail.analysis,
       topics: payload.detail.topics.map(item => item.value)
     }
     Bus.publish('update.subject', subject)
+  }
+  subjectUpdated(payload){
+    this.refreshModifiedSubject(payload)
+
+    this.data.submittable = false
+    this.data.editionSubject = false
+  }
+
+  refreshModifiedSubject(updatedSubject){
+    for (let subject of this.data.values.subjects){
+      if (subject.id == updatedSubject.id){
+        subject.proposals = updatedSubject.proposals
+        subject.analysis = updatedSubject.analysis
+        subject.topics = updatedSubject.topics
+      }
+    }
   }
 
   enableCompanyFields(){

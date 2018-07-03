@@ -9,8 +9,8 @@ module Subjects
       Collection.create(subject).serialize
     end
 
-    def self.update(id, proposal, analysis, topics)
-      subject = Domain::Subject.with(id, proposal, analysis, topics)
+    def self.update(id, proposal, analysis, topics, solicitude_id)
+      subject = Domain::Subject.with(solicitude_id, proposal, analysis, topics, id)
       Collection.update(subject, id).serialize
     end
 
