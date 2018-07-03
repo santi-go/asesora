@@ -36,6 +36,41 @@ export default class Subjects extends Component {
       'changed.topics',
       this.setButtonStatus.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.discard.subject.button',
+      this.discardCard.bind(this)
+    )
+  }
+
+  getSolicitudeId() {
+    let url = document.URL
+    let urlSplitted = url.split('=')
+    let id = urlSplitted[1]
+    this.origin = urlSplitted[2]
+    return id
+  }
+
+  discardCard(event){
+    let url = ""
+    if (this.origin == "show") {
+      url =  "/show-solicitude.html?id=" + this.data.values.solicitudeId
+    }
+    if (this.origin == "edit") {
+      url =  "/index.html?id=" + this.data.values.solicitudeId
+    }
+    this.moveCardAnimation('discardCard')
+    this.setTimeToRelocateUrl(url)
+  }
+
+  moveCardAnimation(cssClass){
+    let element = document.querySelector('#subjects')
+    element.classList.add(cssClass)
+  }
+
+  setTimeToRelocateUrl(url) {
+    window.setTimeout(function(){
+      window.location = url
+    }, 1250)
   }
 
   initializeViews(){
@@ -100,14 +135,6 @@ export default class Subjects extends Component {
     this.data.proposalsCatalog = catalog
   }
 
-  getSolicitudeId() {
-    let url = document.URL
-    let index = url.indexOf("=")
-    let id = url.slice(index + 1)
-
-    return id
-  }
-
   model(){
     return {
       labels: {
@@ -120,7 +147,8 @@ export default class Subjects extends Component {
         "topics": "xxxxxx",
         "notApply": "xxxx",
         "placeholderAnalysis": "xxxx",
-        "max200Words": "xxxx"
+        "max200Words": "xxxx",
+        "discardButtonSubject": "xxxxxx"
       },
       values: {
         "solicitudeId": "",
@@ -133,6 +161,7 @@ export default class Subjects extends Component {
       submittable: false,
       topicsCatalog: [],
       proposalsCatalog: [],
+      origin: "none",
       translate:function(key,value) {
         this.labels[key] = value
       }

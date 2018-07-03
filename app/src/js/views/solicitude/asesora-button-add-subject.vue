@@ -14,7 +14,7 @@ export default {
 
   name: 'asesora-button-add-subject',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', ],
 
   methods: {
     addSubject(){

@@ -49,7 +49,14 @@
                   <div id="subjects">
                       <form class="subject-form">
                           <fieldset>
-                          <asesora-subjects :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable" :proposals-catalog="proposalsCatalog"></asesora-subjects>
+                          <asesora-subjects
+                                            :labels="labels"
+                                            :values="values"
+                                            :topics-catalog="topicsCatalog"
+                                            :submittable="submittable"
+                                            :proposals-catalog="proposalsCatalog"
+                                            :origin="origin"
+                                            ></asesora-subjects>
                           </fieldset>
                       </form>
                   </div>

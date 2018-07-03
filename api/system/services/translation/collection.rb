@@ -126,7 +126,8 @@ module Translation
                 "createSubject": "Crear asesoramiento",
                 "topics": "Temas del caso",
                 "placeholderAnalysis": "Describe brevemente tu análisis técnico de la solicitud para este caso. Puedes utilizar este campo para extender la información de la temática si lo necesitas, o proporcionar información relevante que hayas extraído del contexto de la solicitud.",
-                "max200Words": "Máximo 200 palabras"
+                "max200Words": "Máximo 200 palabras",
+                "discardButtonSubject": "Descartar"
               }
             },
 

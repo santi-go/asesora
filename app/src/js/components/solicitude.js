@@ -200,7 +200,7 @@ export default class Solicitude extends Component {
   }
 
   addSubject(event){
-    window.location.href = "/subjects.html?id=" + event.detail
+    window.location.href = "/subjects.html?id=" + event.detail + "=edit"
   }
 
   toggleSaveCompanyButton(){
