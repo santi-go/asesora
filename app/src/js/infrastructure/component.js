@@ -15,7 +15,12 @@ export default class Component {
     console.log('subscribe must be overwritten')
   }
 
-
+  reactTo(eventName, callback) {
+    document.getElementById(this.element).addEventListener(
+      eventName,
+      callback
+    )
+  }
 
   initializeViews(viewList, mountedFunction){
     new Vue({

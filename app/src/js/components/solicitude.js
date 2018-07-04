@@ -35,127 +35,37 @@ export default class Solicitude extends Component {
     Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
   }
 
-  watchActions(){
-    document.getElementById(this.element).addEventListener(
-      'submit.solicitude',
-      this.submit.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'submit.solicitude.and.add.subject',
-      this.submitSolicitudeToAddSubject.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.company.name',
-      this.changedCompanyName.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.company',
-      this.fillCompany.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.applicant',
-      this.fillApplicant.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'check.submittable',
-      this.setButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.email',
-      this.runValidations.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.phone',
-      this.runValidations.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.email',
-      this.setValidEmail.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.phone',
-      this.setValidPhone.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.text',
-      this.setButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'edit.solicitude',
-      this.update.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'edit.solicitude.and.add.subject',
-      this.updateAndAddSubject.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.discard.button',
-      this.discardAnimation.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'fullfilled.solicitude',
-      this.transitToList.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'fullfilled.solicitude.to.add.subject',
-      this.transitToAddSubject.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.applicant.fields',
-      this.changedApplicantField.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.edit.company',
-      this.enableCompanyFields.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.save.company',
-      this.saveCompanyInfo.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.discard.company.button',
-      this.discardCompanyInfo.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.company.employees',
-      this.toggleSaveCompanyButton.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.company.cnae',
-      this.changedCompanyCnae.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.company.cif',
-      this.changedCompanyCif.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.delete.solicitude',
-      this.deleteSolicitude.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.add.value.employees.to.company',
-      this.addEmployeesValueToCompany.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.add.value.name.to.company',
-      this.addNameValueToCompany.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.add.subject',
-      this.addSubject.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.subject.list',
-      this.editSubject.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.subject',
-      this.setModifySubjectButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'clicked.modify.counseling',
-      this.modifyCounseling.bind(this)
-    )
+  watchActions() {
+    this.reactTo('submit.solicitude', this.submit.bind(this))
+    this.reactTo('submit.solicitude.and.add.subject', this.submitSolicitudeToAddSubject.bind(this))
+    this.reactTo('changed.company.name', this.changedCompanyName.bind(this))
+    this.reactTo('clicked.company', this.fillCompany.bind(this))
+    this.reactTo('clicked.applicant', this.fillApplicant.bind(this))
+    this.reactTo('check.submittable', this.setButtonStatus.bind(this))
+    this.reactTo('changed.email', this.runValidations.bind(this))
+    this.reactTo('changed.phone', this.runValidations.bind(this))
+    this.reactTo('changed.email', this.setValidEmail.bind(this))
+    this.reactTo('changed.phone', this.setValidPhone.bind(this))
+    this.reactTo('changed.text', this.setButtonStatus.bind(this))
+    this.reactTo('edit.solicitude', this.update.bind(this))
+    this.reactTo('edit.solicitude.and.add.subject', this.updateAndAddSubject.bind(this))
+    this.reactTo('clicked.discard.button', this.discardAnimation.bind(this))
+    this.reactTo('fullfilled.solicitude', this.transitToList.bind(this))
+    this.reactTo('fullfilled.solicitude.to.add.subject', this.transitToAddSubject.bind(this))
+    this.reactTo('changed.applicant.fields', this.changedApplicantField.bind(this))
+    this.reactTo('clicked.edit.company', this.enableCompanyFields.bind(this))
+    this.reactTo('clicked.save.company', this.saveCompanyInfo.bind(this))
+    this.reactTo('clicked.discard.company.button', this.discardCompanyInfo.bind(this))
+    this.reactTo('changed.company.employees', this.toggleSaveCompanyButton.bind(this))
+    this.reactTo('changed.company.cnae', this.changedCompanyCnae.bind(this))
+    this.reactTo('changed.company.cif', this.changedCompanyCif.bind(this))
+    this.reactTo('clicked.delete.solicitude', this.deleteSolicitude.bind(this))
+    this.reactTo('clicked.add.value.employees.to.company', this.addEmployeesValueToCompany.bind(this))
+    this.reactTo('clicked.add.value.name.to.company', this.addNameValueToCompany.bind(this))
+    this.reactTo('clicked.add.subject', this.addSubject.bind(this))
+    this.reactTo('clicked.subject.list', this.editSubject.bind(this))
+    this.reactTo('changed.subject', this.setModifySubjectButtonStatus.bind(this))
+    this.reactTo('clicked.modify.counseling', this.modifyCounseling.bind(this))
 
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
