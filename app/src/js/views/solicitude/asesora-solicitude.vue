@@ -42,7 +42,8 @@
                                 :proposals-catalog="proposalsCatalog"
                                 :submittable="submittable"
                                 :edition-subject="editionSubject"
-                                :editionmode="editionmode">
+                                :editionmode="editionmode"
+                                :modified-subject-id="modifiedSubjectId">
         </asesora-subjects-list>
         <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
       </div>
@@ -103,7 +104,7 @@ export default {
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
-          'topicsCatalog', 'proposalsCatalog', 'editionSubject'],
+          'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId'],
 
   components: {
     "asesora-date" : DateView,

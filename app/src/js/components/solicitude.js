@@ -265,11 +265,16 @@ export default class Solicitude extends Component {
     }
     Bus.publish('update.subject', subject)
   }
+
   subjectUpdated(payload){
     this.refreshModifiedSubject(payload)
-
     this.data.submittable = false
+    this.showSubjectModified()
     this.data.editionSubject = false
+  }
+
+  showSubjectModified(){
+    this.data.modifiedSubjectId = this.data.editionSubject
   }
 
   refreshModifiedSubject(updatedSubject){
@@ -766,7 +771,8 @@ export default class Solicitude extends Component {
           "editionsubmittoSubject": "xxxxxxx",
           "notApply": "xxxx",
           "subject": "xxxxx",
-          "modifySubject": "xxxxx"
+          "modifySubject": "xxxxx",
+          "subjectModified": "xxxxx"
         },
         values: {
           "text": "",
@@ -810,6 +816,7 @@ export default class Solicitude extends Component {
         topicsCatalog: [],
         proposalsCatalog: [],
         editionSubject: false,
+        modifiedSubjectId: 0,
         translate:function(key,value) {
           this.labels[key] = value
         },

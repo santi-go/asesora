@@ -7,8 +7,7 @@
     <div>
       <table>
         <tr v-for="item in values.subjects"
-            v-on:click="onClick(item)"
-            >
+            v-on:click="onClick(item)">
             <td>
             <div class="row grid-responsive">
               <div class="column column-20">
@@ -50,6 +49,9 @@
                 </template>
               </div>
             </div>
+            <template v-if="modifiedSubjectId == item.id">
+              <em>{{labels.subjectModified}}</em>
+            </template>
           </td>
         </tr>
       </table>
@@ -63,7 +65,7 @@ import SubjectsView from '../asesora-subjects'
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
-            'editionSubject', 'submittable', 'editionmode'],
+            'editionSubject', 'submittable', 'editionmode', 'modifiedSubjectId'],
     components: {
       "asesora-subjects" : SubjectsView
     },

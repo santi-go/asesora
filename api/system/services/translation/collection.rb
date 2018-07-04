@@ -78,7 +78,8 @@ module Translation
                 "editionsubmittoSubject": "Guardar cambios y añadir caso",
                 "notApply": "N/A",
                 "subject": "Caso",
-                "modifySubject": "Guardar cambios"
+                "modifySubject": "Guardar cambios",
+                "subjectModified": "Se han guardado los cambios del asesoramiento"
               },
 
               "solicitudes-list": {
