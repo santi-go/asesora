@@ -19,9 +19,7 @@
                                             :submittable="submittable">
           </asesora-button-modify-counseling>
         </template>
-        <asesora-button-discard-subject :labels="labels"
-                                        :origin="origin"
-                                        >
+        <asesora-button-discard-subject :labels="labels">
         </asesora-button-discard-subject>
     </div>
 </template>
@@ -36,7 +34,7 @@ import ButtonModifyCounseling from './subjects/asesora-button-modify-counseling'
 export default {
   name: 'asesora-subjects',
   props: ['labels', 'values', 'topicsCatalog', 'submittable',
-          'proposalsCatalog', 'editionSubject', 'editionmode', 'origin'],
+          'proposalsCatalog', 'editionSubject', 'editionmode'],
   components: {
     "asesora-proposals-for-action" : ProposalsView,
     "asesora-analysis-for-solicitude" : AnalysisView,

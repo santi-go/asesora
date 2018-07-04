@@ -12,12 +12,12 @@
 export default {
   name: 'asesora-button-discard-subject',
 
-  props: ['labels', 'editionmode', 'origin'],
+  props: ['labels'],
 
   methods: {
     onclick() {
       let signal = new CustomEvent('clicked.discard.subject.button',
-                                  {'detail': {'origin': this.origin},
+                                  {'detail': {},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     },
