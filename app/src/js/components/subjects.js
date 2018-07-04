@@ -29,11 +29,7 @@ export default class Subjects extends Component {
       this.createCounseling.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'changed.analysis',
-      this.setButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.topics',
+      'changed.subject',
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
