@@ -4,6 +4,7 @@ require_relative '../system/actions/retrieve_solicitudes'
 require_relative '../system/actions/update_solicitude'
 require_relative '../system/actions/delete_solicitude'
 require_relative '../system/actions/retrieve_cnae'
+require_relative '../system/actions/retrieve_ccaa'
 require_relative '../system/actions/create_subject'
 require_relative '../system/actions/update_subject'
 require_relative '../system/actions/retrieve_subjects'
@@ -88,6 +89,14 @@ module Endpoints
         cnae_catalog = Actions::RetrieveCnae.do()
 
         {data: cnae_catalog}.to_json
+      end
+    end
+
+    def self.define_retrieve_ccaa(api)
+      api.post '/api/ccaa' do
+        ccaa_catalog = Actions::RetrieveCcaa.do()
+
+        {data: ccaa_catalog}.to_json
       end
     end
 

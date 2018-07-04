@@ -40,6 +40,7 @@ class Asesora < Sinatra::Base
   Endpoints::Solicitudes.define_update_solicitude(self)
   Endpoints::Solicitudes.define_delete_solicitude(self)
   Endpoints::Solicitudes.define_retrieve_cnae(self)
+  Endpoints::Solicitudes.define_retrieve_ccaa(self)
   Endpoints::Solicitudes.define_create_subject(self)
   Endpoints::Solicitudes.define_update_subject(self)
   Endpoints::Solicitudes.define_retrieve_subjects(self)
