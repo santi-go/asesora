@@ -5,6 +5,7 @@
                   :selected-options="values.proposals"
                   id="subject-proposals"
                   @select="onSelect"
+                  v-on:keyup="changedProposal"
                   v-model="values.proposals">
     </multi-select>
   </div>
@@ -19,6 +20,13 @@
     methods: {
       onSelect (items, lastSelectItem) {
         this.values.proposals = items
+        this.changedProposal()
+      },
+      changedProposal(event) {
+        let signal = new CustomEvent('changed.subject',
+                                    {'detail': "",
+                                    'bubbles': true})
+        this.$el.dispatchEvent(signal)
       }
     },
     components: {

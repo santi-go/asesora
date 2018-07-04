@@ -24,7 +24,7 @@ export default {
     },
 
     emitSignal(event) {
-      let signal = new CustomEvent('changed.analysis',
+      let signal = new CustomEvent('changed.subject',
                                   {'detail': "",
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

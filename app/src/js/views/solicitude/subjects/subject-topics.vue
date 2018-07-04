@@ -28,7 +28,7 @@
       },
 
       emitSignal(){
-        let signal = new CustomEvent('changed.topics',
+        let signal = new CustomEvent('changed.subject',
                                       {'detail':[],
                                       'bubbles':true})
         this.$el.dispatchEvent(signal)

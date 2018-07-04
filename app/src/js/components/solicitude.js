@@ -148,11 +148,7 @@ export default class Solicitude extends Component {
       this.editSubject.bind(this)
     )
     document.getElementById(this.element).addEventListener(
-      'changed.analysis',
-      this.setModifySubjectButtonStatus.bind(this)
-    )
-    document.getElementById(this.element).addEventListener(
-      'changed.topics',
+      'changed.subject',
       this.setModifySubjectButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
