@@ -11,7 +11,9 @@
             <td>
             <div class="row grid-responsive">
               <div class="column column-20">
-                <h4>{{labels.subject}} {{values.subjects.indexOf(item) +1 }}:</h4>
+                <h4>
+                  <template v-if="editionmode">{{labels.modify}}</template>
+                  {{labels.subject}} {{values.subjects.indexOf(item) +1 }}:</h4>
               </div>
               <div class="column column-80">
                 <template v-if="editionSubject == item.id">

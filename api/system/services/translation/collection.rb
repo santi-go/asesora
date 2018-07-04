@@ -79,7 +79,8 @@ module Translation
                 "notApply": "N/A",
                 "subject": "Caso",
                 "modifySubject": "Guardar cambios",
-                "subjectModified": "Se han guardado los cambios del asesoramiento"
+                "subjectModified": "Se han guardado los cambios del asesoramiento",
+                "modify": "Modificar "
               },
 
               "solicitudes-list": {

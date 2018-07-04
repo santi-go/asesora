@@ -772,7 +772,8 @@ export default class Solicitude extends Component {
           "notApply": "xxxx",
           "subject": "xxxxx",
           "modifySubject": "xxxxx",
-          "subjectModified": "xxxxx"
+          "subjectModified": "xxxxx",
+          "modify": "xxxxx"
         },
         values: {
           "text": "",
