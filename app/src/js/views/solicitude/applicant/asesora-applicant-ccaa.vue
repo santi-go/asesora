@@ -4,7 +4,8 @@
     <basic-select id="applicant-ccaa"
                   :options="ccaaCatalog"
                   :selected-option="item"
-                  @select="onSelect">
+                  @select="onSelect"
+                  >
     </basic-select>
   </div>
 </template>
@@ -27,6 +28,7 @@
     methods: {
       onSelect (item) {
         this.item = item
+        this.values.ccaa = item.value + ' - ' + item.text
       },
       reset () {
         this.item = {}
