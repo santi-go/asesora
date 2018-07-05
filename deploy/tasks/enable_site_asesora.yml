@@ -1,0 +1,23 @@
+---
+- name: create asesora site for apache2
+  copy:
+    src: "tasks/010-asesora.conf"
+    dest: "/etc/apache2/sites-available/010-asesora.conf"
+- name: enable asesora site from apache2
+  shell: "a2ensite 010-asesora"
+- name: restart apache2 service
+  service:
+    name: apache2
+    state: restarted
+# - name: Install Bundler
+#   become: yes
+#   command: bash -lc "gem install bundler"
+# gem install bundle, bundle install
+- name: gem install bundler
+  shell: "gem install bundler"
+  args:
+    chdir: "/var/www/asesora/"
+- name: bundle install
+  shell: "bundle install"
+  args:
+    chdir: "/var/www/asesora/"

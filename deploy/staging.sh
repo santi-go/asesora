@@ -113,41 +113,6 @@ VALUE=$?
 print_message
 
 
-third_add_fixture
-
-
-printf "${TITLE}\nDo you want to clean the staging database? (y/n) \n${RESET}"; read INTRO
-copy_staging_fixtures(){
-  printf "${TEXT}· create spec/fixtures folder: ${RESET}"
-  mkdir staging/spec/fixtures/ -p 2>/dev/null
-  VALUE=$?
-  print_message
-
-  printf "${TEXT}· copy asesora_with_fixtures.rb: ${RESET}"
-  cp api/spec/fixtures/asesora_with_fixtures.rb staging/spec/fixtures/asesora_with_fixtures.rb 2>/dev/null
-  VALUE=$?
-  print_message
-
-  printf "${TEXT}· copy fixtures.rb: ${RESET}"
-  cp api/spec/fixtures/fixtures.rb staging/spec/fixtures/fixtures.rb 2>/dev/null
-  VALUE=$?
-  print_message
-
-  printf "${TEXT}· copy config.dev.ru: ${RESET}"
-  cp api/config.dev.ru staging/. 2>/dev/null
-  VALUE=$?
-  print_message
-}
-if [ $INTRO = 'y' ]
-then
-  copy_staging_fixtures
-else
-  printf "${TEXT}The files have not been added to the staging,
-  the database will not be cleaned.${RESET}"
-fi
-
-
-
 four_copy_to_droplet
 
 printf "${TITLE}\nYou need to identify in ssh connections:\n\n${RESET}"
@@ -173,11 +138,14 @@ VALUE=$?
 printf "${TEXT}\n· copying with scp (Secure Copy): ${RESET}"
 print_message
 
+printf "${TITLE}\nBundle install:\n\n${RESET}"
+ssh -i $SSHKEY root@206.189.1.31 "cd /var/www/asesora && bundle install" 2>/dev/null
+VALUE=$?
+printf "${TEXT}\n· bundle install: ${RESET}"
+print_message
+
 printf "${TITLE}\nClean staging\n${RESET}"
 printf "${TEXT}· remove folder staging: ${RESET}"
 rm -rf staging 2>/dev/null
 VALUE=$?
 print_message
-
-ssh -i $SSHKEY root@206.189.1.31 'reboot' 2>/dev/null
-printf "${TITLE}\nDroplet restarted.\n\n${RESET}"

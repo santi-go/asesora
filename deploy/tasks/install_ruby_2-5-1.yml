@@ -1,0 +1,26 @@
+---
+- name: download and extract ruby 2.5.1
+  unarchive:
+    copy: no
+    src: "http://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz"
+    dest: "/tmp"
+    owner: root
+    group: root
+- name: install ruby 2.5.1 from source
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/ruby-2.5.1/"
+  with_items:
+    - ./configure
+    - make
+    - make install
+- name: remove installation files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /tmp/ruby-2.5.1.tar.gz
+    - /tmp/ruby-2.5.1
+
+- name: version of ruby
+  shell: "ruby -v"

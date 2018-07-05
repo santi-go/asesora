@@ -1,0 +1,15 @@
+---
+- name: add new lines at end of .bashrc
+  become: yes
+  lineinfile:
+    path: /root/.bashrc
+    line: "{{ item }}"
+  with_items:
+    - "export API_HOST={{ api_host }}"
+    - "export API_PORT={{ api_port }}"
+    - "export MONGODB_URI=mongodb://{{ mongo_ip }}:{{ mongo_port }}{{ mongo_data }}"
+- name: update environment variables
+  become: yes
+  shell: "source /root/.bashrc"
+  args:
+    executable: /bin/bash

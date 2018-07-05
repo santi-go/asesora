@@ -1,0 +1,13 @@
+---
+- name: install various dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    install_recommends: yes
+  with_items:
+    - dirmngr
+    - gnupg
+    - apt-transport-https
+    - ca-certificates
+    - curl

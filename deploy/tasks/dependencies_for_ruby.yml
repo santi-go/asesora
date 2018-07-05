@@ -1,0 +1,26 @@
+---
+- name: install ruby dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    install_recommends: yes
+  with_items:
+    - build-essential
+    - bison
+    - openssl
+    - libreadline7
+    - libreadline-dev
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt-dev
+    - zlib1g
+    - zlib1g-dev
+    - libssl-dev
+    - autoconf
+    - libc6-dev
+    - ncurses-dev
+    - libaprutil1-dev
+    - libffi-dev
+    - libcurl4-openssl-dev
+    - libapr1-dev

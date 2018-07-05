@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_version ">= 1.5.0"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+  config.vm.provider "libvirt" do |libvirt|
+    libvirt.driver = "kvm"
+    libvirt.memory = 1024
+    libvirt.cpus = 1
+  end
+  config.vm.define "vagrant" do |config|
+    config.vm.hostname = "vagrant"
+    config.vm.box = "generic/debian9"
+    config.vm.box_version = "1.6.4"
+    config.vm.synced_folder "./asesora", "/var/www/asesora"
+    config.vm.network "forwarded_port", guest: 80, host: 8180, autocorrect: true
+    config.vm.network "private_network", ip: "10.10.10.10"
+  end
+end

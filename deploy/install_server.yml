@@ -1,0 +1,42 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  vars:
+    api_host: '206.189.1.31'
+    api_port: '80'
+    mongo_backup: /data/backup
+    mongo_data: /data/db
+    mongo_ip: 127.0.0.1
+    mongo_port: 27017
+
+  pre_tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+    - name: update&upgrade system
+      apt:
+        update_cache: yes
+        upgrade: dist
+    - name: remove old ruby
+      apt:
+        name: ruby
+        state: absent
+    - name: remove asesora.conf if exist before their installation
+      file:
+        path: "/etc/apache2/sites-enabled/010-asesora.conf"
+        state: absent
+
+    - include: tasks/dependencies_for_all.yml
+    - include: tasks/dependencies_for_ruby.yml
+    - include: tasks/install_ruby_2-5-1.yml
+
+  tasks:
+    - include: tasks/install_mongodb.yml
+    - include: tasks/install_apache2.yml
+    - include: tasks/install_phusionpassenger.yml
+    - include: tasks/configure_mongodb.yml
+    - include: tasks/update_bashrc.yml
+    - include: tasks/update_envvars_apache2.yml
+    - include: tasks/disable_default_site.yml
+    - include: tasks/enable_site_asesora.yml

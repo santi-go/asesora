@@ -1,0 +1,8 @@
+---
+- name: update envvars apache2
+  lineinfile:
+    path: "/etc/apache2/envvars"
+    line: "{{ item }}"
+  with_items:
+    - "export RUBY_ENV=$(which ruby)"
+    - "export ASESORA_PATH='/var/www/asesora'"
