@@ -1,4 +1,4 @@
-.retry
+*.retry
 .env
 app/node_modules/
 app/package-lock.json
