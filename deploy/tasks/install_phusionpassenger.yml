@@ -1,0 +1,20 @@
+---
+- name: install key of phusionpassenger
+  apt_key:
+    url: http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x561F9B9CAC40B2F7
+    id: AC40B2F7
+    state: present
+- name: add the passenger apt repository
+  apt_repository:
+    repo: 'deb https://oss-binaries.phusionpassenger.com/apt/passenger stretch main'
+    state: present
+- name: install passenger
+  apt:
+    name: passenger
+    state: latest
+    update_cache: yes
+    install_recommends: yes
+- name: enable passenger mod for apache2
+  apache2_module:
+    name: passenger
+    state: present

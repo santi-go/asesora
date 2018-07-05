@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  vars:
+    api_host: '206.189.1.31'
+    api_port: '80'
+    mongo_backup: /data/backup
+    mongo_data: /data/db
+    mongo_ip: 127.0.0.1
+    mongo_port: 27017
+
+  pre_tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+    - name: remove asesora.conf if exist before their installation
+      file:
+        path: "/etc/apache2/sites-enabled/010-asesora.conf"
+        state: absent
+
+  tasks:
+    # - include: tasks/disable_site_asesora.yml
+
+    # - include: tasks/copy_site_asesora.yml
+    # - name: copy asesora site
+    #   copy:
+    #     src: "./asesora"
+    #     dest: "/var/www/asesora"
+
+    - include: tasks/enable_site_asesora.yml

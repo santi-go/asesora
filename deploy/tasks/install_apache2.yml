@@ -1,0 +1,13 @@
+---
+- name: install apache2
+  apt:
+    name: apache2
+    state: latest
+    update_cache: yes
+    install_recommends: yes
+- name: install libapache2-mod-passenger
+  apt:
+    name: libapache2-mod-passenger
+    state: latest
+    update_cache: yes
+    install_recommends: yes

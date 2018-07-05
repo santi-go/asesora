@@ -1,0 +1,3 @@
+---
+- name: disable default site from apache2
+  shell: "a2dissite 000-default"
