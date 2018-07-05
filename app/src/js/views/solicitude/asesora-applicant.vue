@@ -23,7 +23,10 @@
                   v-model="values.applicantSurname"
           >
         </div>
-
+        <asesora-applicant-ccaa :labels="labels"
+                                :values="values"
+                                :ccaa-catalog="ccaaCatalog">
+        </asesora-applicant-ccaa>
         <asesora-applicant-contact :values="values"
                                    :editionmode="editionmode"
                                    :labels="labels"
@@ -46,15 +49,18 @@
 <script>
 import ApplicantContactView from './applicant/asesora-applicant-contact'
 import ApplicantMatchesView from './applicant/asesora-applicant-matches'
+import ApplicantCCAAView from './applicant/asesora-applicant-ccaa'
+
 
 export default {
   name: 'asesora-applicant',
 
-  props: ['labels', 'values', 'editionmode', 'isValidContact', 'suggestedApplicants', 'isValidPhone', 'isValidEmail'],
+  props: ['labels', 'values', 'editionmode', 'isValidContact', 'suggestedApplicants', 'isValidPhone', 'isValidEmail', 'ccaaCatalog'],
 
   components: {
     "asesora-applicant-contact" : ApplicantContactView,
-    "asesora-applicant-matches" : ApplicantMatchesView
+    "asesora-applicant-matches" : ApplicantMatchesView,
+    "asesora-applicant-ccaa":ApplicantCCAAView
   },
   methods: {
     refreshSuggestion() {

@@ -5,6 +5,8 @@ export default class Applicants {
   constructor() {
     this.client = APIClient
     this.subscribe()
+    this.getCcaaCatalog()
+    this.ccaaCatalog = []
   }
 
   subscribe() {
@@ -23,6 +25,13 @@ export default class Applicants {
     let callback = this.buildCallback('got.applicant.matches')
     let body = criteria
     let url = 'applicant-matches'
+    this.client.hit(url, body, callback)
+  }
+
+  getCcaaCatalog(){
+    let callback = this.buildCallback('got.ccaa-catalog')
+    let body = {}
+    let url = 'ccaa'
     this.client.hit(url, body, callback)
   }
 

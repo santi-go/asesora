@@ -31,6 +31,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("updated.company", this.updatedCompany.bind(this))
     Bus.subscribe("got.company.count", this.gotCompanyCount.bind(this))
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
+    Bus.subscribe("got.ccaa-catalog", this.gotCcaaCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
     Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
   }
@@ -146,6 +147,14 @@ export default class Solicitude extends Component {
       catalog.push({ value: topic, text: topic.name })
     }
     this.data.topicsCatalog = catalog
+  }
+
+  gotCcaaCatalog(payload) {
+    let catalog = []
+    for (const ccaa of payload.data) {
+      catalog.push({ value: ccaa.id, text: ccaa.name })
+    }
+    this.data.ccaaCatalog = catalog
   }
 
   gotProposalsCatalog(payload) {

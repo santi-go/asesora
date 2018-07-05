@@ -80,7 +80,8 @@ module Translation
                 "subject": "Caso",
                 "modifySubject": "Guardar cambios",
                 "subjectModified": "Se han guardado los cambios del asesoramiento",
-                "modify": "Modificar "
+                "modify": "Modificar",
+                "ccaa": "Comunidad autónoma"
               },
 
               "solicitudes-list": {
