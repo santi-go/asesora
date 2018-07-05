@@ -44,7 +44,8 @@ export let SolicitudeModel = {
     "subject": "xxxxx",
     "modifySubject": "xxxxx",
     "subjectModified": "xxxxx",
-    "modify": "xxxxx"
+    "modify": "xxxxx",
+    "ccaa": "xxxxx"
   },
   values: {
     "text": "",
@@ -64,8 +65,10 @@ export let SolicitudeModel = {
     "proposals": [],
     "analysis": "",
     "selectedTopics": [],
-    "subjectId": ""
+    "subjectId": "",
+    "ccaa": ""
   },
+  ccaaCatalog: [],
   suggestedCompanies: [],
   suggestedApplicants: [],
   fullfilled: false,

@@ -6,9 +6,9 @@
                        :is-valid-contact="isValidContact"
                        :suggested-applicants='suggestedApplicants'
                        :is-valid-phone="isValidPhone"
-                       :is-valid-email='isValidEmail'
+                       :is-valid-email="isValidEmail"
+                       :ccaa-catalog="ccaaCatalog"
                        ></asesora-applicant>
-
     <div  class="card large-card" >
     <asesora-date :values="values"
                   :labels="labels"
@@ -104,7 +104,7 @@ export default {
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
-          'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId'],
+          'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId', 'ccaaCatalog'],
 
   components: {
     "asesora-date" : DateView,
