@@ -1,0 +1,7 @@
+---
+- name: disable default site from apache2
+  shell: "a2dissite 010-asesora"
+- name: restart apache2 service
+  service:
+    name: apache2
+    state: restarted

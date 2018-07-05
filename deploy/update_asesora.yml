@@ -14,18 +14,7 @@
     - name: test python and install (dependency for ansible)
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
-    - name: remove asesora.conf if exist before their installation
-      file:
-        path: "/etc/apache2/sites-enabled/010-asesora.conf"
-        state: absent
-
   tasks:
-    # - include: tasks/disable_site_asesora.yml
-
-    # - include: tasks/copy_site_asesora.yml
-    # - name: copy asesora site
-    #   copy:
-    #     src: "./asesora"
-    #     dest: "/var/www/asesora"
-
+    - include: tasks/disable_asesora_site.yml
+    - include: tasks/copy_asesora_folder.yml
     - include: tasks/enable_site_asesora.yml
