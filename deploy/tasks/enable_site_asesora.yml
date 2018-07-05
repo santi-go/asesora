@@ -9,10 +9,6 @@
   service:
     name: apache2
     state: restarted
-# - name: Install Bundler
-#   become: yes
-#   command: bash -lc "gem install bundler"
-# gem install bundle, bundle install
 - name: gem install bundler
   shell: "gem install bundler"
   args:

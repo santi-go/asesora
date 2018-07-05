@@ -1,8 +1,10 @@
+const Solicitude = require('./solicitude')
+
 const APPLICANT_COLUMN = '3'
 const DATE_COLUMN = '2'
 const COMPANY_NAME_COLUMN = '4'
 
-class SolicitudesList{
+class SolicitudesList {
 
   constructor(){
     browser.url('/solicitudes-list.html')
@@ -67,6 +69,9 @@ class SolicitudesList{
       browser.waitForVisible('#solicitudes-list', 2000)
       const data = $(`.solicitude-edit-button:nth-child(${item})` )
       data.click()
+
+      const visitURL = false
+      return new Solicitude(visitURL)
   }
 
   clickOnShowButtonOnItem(item){
