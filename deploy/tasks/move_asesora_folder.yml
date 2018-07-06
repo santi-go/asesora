@@ -1,8 +1,4 @@
 ---
-- name: upload new asesora folder
-  copy:
-    src: "../staging"
-    dest: "/var/www"
 - name: Remove old backup
   file:
     path: "/var/www/asesora_backup/"

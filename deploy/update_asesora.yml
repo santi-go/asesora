@@ -15,6 +15,7 @@
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
   tasks:
+    - include: tasks/upload_asesora_folder.yml
     - include: tasks/disable_asesora_site.yml
-    - include: tasks/copy_asesora_folder.yml
+    - include: tasks/move_asesora_folder.yml
     - include: tasks/enable_site_asesora.yml

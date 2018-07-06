@@ -1,0 +1,5 @@
+---
+- name: upload new asesora folder
+  copy:
+    src: "../staging"
+    dest: "/var/www"
