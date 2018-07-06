@@ -56,6 +56,7 @@ export let SolicitudeModel = {
     "applicantEmail": "",
     "applicantPhonenumber": "",
     "applicantId": "",
+    "applicantCcaa": "",
     "companyName": "",
     "companyCif": "",
     "companyEmployees": "",
@@ -66,7 +67,6 @@ export let SolicitudeModel = {
     "analysis": "",
     "selectedTopics": [],
     "subjectId": "",
-    "ccaa": ""
   },
   ccaaCatalog: [],
   suggestedCompanies: [],

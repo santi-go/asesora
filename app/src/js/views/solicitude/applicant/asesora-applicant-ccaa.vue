@@ -3,8 +3,9 @@
     <label>{{labels.ccaa}}</label>
     <basic-select id="applicant-ccaa"
                   :options="ccaaCatalog"
-                  :selected-option="item"
+                  :selected-option="values.applicantCcaa"
                   @select="onSelect"
+                  v-model="values.applicantCcaa"
                   >
     </basic-select>
   </div>
@@ -16,19 +17,9 @@
   export default {
     name: 'asesora-applicant-ccaa',
     props: ['labels', 'values', 'ccaaCatalog'],
-    data () {
-      return {
-        searchText: '', // If value is falsy, reset searchText & searchItem
-        item: {
-          value: '',
-          text: ''
-        }
-      }
-    },
     methods: {
       onSelect (item) {
-        this.item = item
-        this.values.ccaa = item.value + ' - ' + item.text
+        this.values.applicantCcaa = item
       },
       reset () {
         this.item = {}

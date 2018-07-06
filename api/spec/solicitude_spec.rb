@@ -145,6 +145,7 @@ describe 'Solicitude Api' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
         'applicantEmail': Fixtures::APPLICANT_EMAIL,
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'applicantCcaa': Fixtures::APPLICANT_CCAA,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': "",
@@ -167,6 +168,7 @@ describe 'Solicitude Api' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
         'applicantEmail': Fixtures::APPLICANT_EMAIL,
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'applicantCcaa': Fixtures::APPLICANT_CCAA,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
         'applicantId': "",
@@ -196,7 +198,7 @@ describe 'Solicitude Api' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
         'applicantEmail': '',
         'applicantPhonenumber': '',
-        'ccaa': ''
+        'applicantCcaa': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)

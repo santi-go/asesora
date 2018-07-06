@@ -26,6 +26,7 @@ context 'of the applicant' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
         'applicantEmail': Fixtures::APPLICANT_EMAIL,
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'applicantCcaa': "",
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE,
@@ -37,6 +38,7 @@ context 'of the applicant' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
         'applicantEmail': Fixtures::APPLICANT_EMAIL_2,
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
+        'applicantCcaa': "",
         'text': Fixtures::TEXT,
         'applicantId': "",
         'date': Fixtures::DATE,
@@ -49,7 +51,7 @@ context 'of the applicant' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
         'applicantEmail': '',
         'applicantPhonenumber': '',
-        'ccaa': ''
+        'applicantCcaa': ""
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
@@ -60,7 +62,7 @@ context 'of the applicant' do
         'applicantSurname': '',
         'applicantEmail': '',
         'applicantPhonenumber': '',
-        'ccaa': ''
+        'applicantCcaa': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
@@ -74,6 +76,7 @@ context 'of the applicant' do
           'applicantSurname': Fixtures::APPLICANT_SURNAME,
           'applicantEmail': Fixtures::APPLICANT_EMAIL,
           'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+          'applicantCcaa': "",
           'text': Fixtures::TEXT,
           'applicantId': "",
           'companyCif': ""
@@ -88,6 +91,7 @@ context 'of the applicant' do
           'applicantSurname': Fixtures::APPLICANT_SURNAME,
           'applicantEmail': Fixtures::APPLICANT_EMAIL,
           'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER_2,
+          'applicantCcaa': "",
           'applicantId': applicant_id,
           }.to_json
 
@@ -105,6 +109,7 @@ context 'of the applicant' do
         'applicantSurname': Fixtures::APPLICANT_SURNAME,
         'applicantEmail': Fixtures::APPLICANT_EMAIL,
         'applicantPhonenumber': Fixtures::APPLICANT_PHONENUMBER,
+        'applicantCcaa': "",
         'text': Fixtures::TEXT,
         'applicantId': "",
         'companyCif': ""
