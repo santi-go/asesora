@@ -21,6 +21,7 @@
   with_items:
     - /tmp/ruby-2.5.1.tar.gz
     - /tmp/ruby-2.5.1
-
-- name: version of ruby
-  shell: "ruby -v"
+- set_fact:
+    ruby: installed
+- debug:
+    var: ruby

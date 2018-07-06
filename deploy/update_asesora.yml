@@ -5,8 +5,8 @@
   vars:
     api_host: '206.189.1.31'
     api_port: '80'
-    mongo_backup: /data/backup
-    mongo_data: /data/db
+    mongo_backup: /data/backup/
+    mongo_data: /data/db/
     mongo_ip: 127.0.0.1
     mongo_port: 27017
 

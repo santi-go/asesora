@@ -1,7 +1,7 @@
 ---
 - name: create asesora site for apache2
   copy:
-    src: "tasks/010-asesora.conf"
+    src: "files/010-asesora.conf"
     dest: "/etc/apache2/sites-available/010-asesora.conf"
 - name: enable asesora site from apache2
   shell: "a2ensite 010-asesora"
@@ -15,5 +15,9 @@
     chdir: "/var/www/asesora/"
 - name: bundle install
   shell: "bundle install"
+  args:
+    chdir: "/var/www/asesora/"
+- name: bundle exec rake digitalocean
+  shell: "bundle exec rake digitalocean"
   args:
     chdir: "/var/www/asesora/"

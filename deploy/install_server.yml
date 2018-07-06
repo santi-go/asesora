@@ -14,6 +14,11 @@
     - name: test python and install (dependency for ansible)
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
+    - name: add repository for use mongodb
+      apt_repository:
+        repo: deb http://ftp.debian.org/debian jessie-backports main
+        state: present
+
     - name: update&upgrade system
       apt:
         update_cache: yes
@@ -27,15 +32,19 @@
         path: "/etc/apache2/sites-enabled/010-asesora.conf"
         state: absent
 
+    - name: Check if ruby is installed
+      command: ruby -v
+      register: ruby
+
     - include: tasks/dependencies_for_all.yml
     - include: tasks/dependencies_for_ruby.yml
     - include: tasks/install_ruby_2-5-1.yml
+      when: ruby.stdout.find('ruby 2.5') == 1
 
   tasks:
     - include: tasks/install_mongodb.yml
     - include: tasks/install_apache2.yml
     - include: tasks/install_phusionpassenger.yml
-    - include: tasks/configure_mongodb.yml
     - include: tasks/update_bashrc.yml
     - include: tasks/update_envvars_apache2.yml
     - include: tasks/disable_default_site.yml

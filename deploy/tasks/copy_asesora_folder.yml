@@ -1,13 +1,13 @@
 ---
+- name: upload new asesora folder
+  copy:
+    src: "../staging"
+    dest: "/var/www"
 - name: Remove old backup
   file:
     path: "/var/www/asesora_backup/"
     state: absent
 - name: Backup folder asesora
   command: mv /var/www/asesora /var/www/asesora_backup
-- name: upload new asesora folder
-  copy:
-    src: "../staging"
-    dest: "/var/www"
 - name: Rename folder staging to asesora
   command: mv /var/www/staging /var/www/asesora
