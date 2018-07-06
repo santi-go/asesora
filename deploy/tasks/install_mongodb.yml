@@ -2,7 +2,7 @@
 - name: create directory for mongodb
   become: yes
   file:
-    dest: "{{ mongo_data }}"
+    dest: "{{ mongo_data_folder }}"
     owner: mongodb
     group: mongodb
     recurse: yes

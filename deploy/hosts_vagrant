@@ -1,9 +1,0 @@
-[all:vars]
-env=vagrant
-
-[vagrant]
-10.10.10.10
-
-[vagrant:vars]
-ansible_ssh_user=vagrant
-ansible_ssh_pass=vagrant
