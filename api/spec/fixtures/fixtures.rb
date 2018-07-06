@@ -78,7 +78,6 @@ class Fixtures
   def create_solicitude(applicant, company)
     solicitude = ::Solicitudes::Service.create(DATE_1, TEXT_1, applicant["id"], company["cif"])
     full_solicitude = ::Actions::RetrieveSolicitude.do(id: solicitude["creation_moment"])
-    puts "Created solicitude: #{full_solicitude}"
 
     full_solicitude
   end
