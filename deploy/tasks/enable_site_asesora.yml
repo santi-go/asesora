@@ -17,7 +17,3 @@
   shell: "bundle install"
   args:
     chdir: "/var/www/asesora/"
-- name: bundle exec rake digitalocean
-  shell: "bundle exec rake digitalocean"
-  args:
-    chdir: "/var/www/asesora/"
