@@ -1,6 +1,8 @@
+# encoding: UTF-8
 require_relative '../../system/services/companies/service'
 require_relative '../../system/services/applicant/service'
 require_relative '../../system/services/solicitudes/service'
+require_relative '../../system/actions/retrieve_solicitude'
 
 require 'mongo'
 
@@ -72,7 +74,11 @@ class Fixtures
   end
 
   def create_solicitude(applicant, company)
-    ::Solicitudes::Service.create(DATE_1, TEXT_1, applicant["id"], company["cif"])
+    solicitude = ::Solicitudes::Service.create(DATE_1, TEXT_1, applicant["id"], company["cif"])
+    full_solicitude = ::Actions::RetrieveSolicitude.do(id: solicitude["creation_moment"])
+    puts "Created solicitude: #{full_solicitude}"
+
+    full_solicitude
   end
 
   def client
