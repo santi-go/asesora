@@ -48,7 +48,8 @@ context 'of the applicant' do
         'applicantName': '',
         'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
         'applicantEmail': '',
-        'applicantPhonenumber': ''
+        'applicantPhonenumber': '',
+        'ccaa': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)
@@ -58,7 +59,8 @@ context 'of the applicant' do
         'applicantName': Fixtures::APPLICANT_NAME,
         'applicantSurname': '',
         'applicantEmail': '',
-        'applicantPhonenumber': ''
+        'applicantPhonenumber': '',
+        'ccaa': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)

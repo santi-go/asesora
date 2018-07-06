@@ -5,11 +5,11 @@ require_relative '../services/applicant/service'
 
 module Actions
   class CreateSolicitude
-    def self.do(date:, text:, name:, surname:, email:, phonenumber:, id:, company_name:, company_cif:, company_employees:, company_cnae:)
+    def self.do(date:, text:, name:, surname:, email:, phonenumber:, ccaa:, id:, company_name:, company_cif:, company_employees:, company_cnae:)
       if ( id == "" )
-        applicant = create_applicant(name, surname, email, phonenumber)
+        applicant = create_applicant(name, surname, email, phonenumber, ccaa)
       else
-        applicant = retrieve_applicant(name, surname, email, phonenumber, id)
+        applicant = retrieve_applicant(name, surname, email, phonenumber, ccaa, id)
       end
       company = create_company(company_name, company_cif, company_employees, company_cnae)
       solicitude = create_solicitude(date, text, applicant, company)
@@ -18,21 +18,23 @@ module Actions
 
     private
 
-    def self.create_applicant(name, surname, email, phonenumber)
+    def self.create_applicant(name, surname, email, phonenumber, ccaa)
       ::Applicant::Service.create(
         name,
         surname,
         email,
-        phonenumber
+        phonenumber,
+        ccaa
       )
     end
 
-    def self.retrieve_applicant(name, surname, email, phonenumber, id)
+    def self.retrieve_applicant(name, surname, email, phonenumber, ccaa, id)
       ::Applicant::Service.retrieve_with_id(
         name,
         surname,
         email,
         phonenumber,
+        ccaa,
         id
       )
     end
