@@ -5,6 +5,10 @@ module.exports = class Fixtures {
     this.fixtures = {}
   }
 
+  solicitudes() {
+    return this.fixtures
+  }
+
   pristine() {
     const response = this.hit('pristine')
     this.fixtures = response['fixtures']
@@ -12,6 +16,7 @@ module.exports = class Fixtures {
 
   clean() {
     this.hit('clean')
+    this.fixtures = {}
   }
 
   hit(endpoint) {

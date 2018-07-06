@@ -1,7 +1,11 @@
-class Solicitude{
+const SOLICITUDE_URL = '/index.html'
 
-  constructor(){
-    browser.url('/')
+class Solicitude {
+
+  constructor(visitURL = true){
+    if (visitURL) {
+      browser.url(SOLICITUDE_URL)
+    }
   }
 
   acceptAlert(){
