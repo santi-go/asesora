@@ -5,8 +5,8 @@
   vars:
     api_host: '206.189.1.31'
     api_port: '80'
-    mongo_backup: /data/backup
-    mongo_data: /data/db
+    mongo_backup: /data/backup/
+    mongo_data: /data/db/
     mongo_ip: 127.0.0.1
     mongo_port: 27017
 
@@ -15,6 +15,7 @@
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
 
   tasks:
+    - include: tasks/upload_asesora_folder.yml
     - include: tasks/disable_asesora_site.yml
-    - include: tasks/copy_asesora_folder.yml
+    - include: tasks/move_asesora_folder.yml
     - include: tasks/enable_site_asesora.yml

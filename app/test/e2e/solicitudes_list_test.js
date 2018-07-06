@@ -3,25 +3,24 @@ const Solicitude = require('./page-object/solicitude')
 const SolicitudesList = require('./page-object/solicitudes-list')
 const Fixtures = require('./fixtures')
 
+let fixtures = new Fixtures()
 
 describe('Solicitude List', () => {
   before(() => {
-    this.fixtures = new Fixtures()
-    this.fixtures.clean()
+    fixtures.pristine()
   })
 
-  afterEach(() => {
-    this.fixtures = new Fixtures()
-    this.fixtures.clean()
+  after(() => {
+    fixtures.clean()
   })
 
- it ('can be populated', () => {
+  it ('can be populated with just applicant name', () => {
     const solicitude = new Solicitude()
     const applicantName = 'John'
     const applicant = applicantName
 
     solicitude.fill().required()
-                     .applicantName(applicantName)
+                    .applicantName(applicantName)
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
@@ -29,50 +28,37 @@ describe('Solicitude List', () => {
     expect(solicitudesList.existApplicant(applicant)).to.be.true
   })
 
- it ('can be populated with complete name', () => {
-    const solicitude = new Solicitude()
-    const applicantName = 'John'
-    const applicantSurname = 'Doe'
-    const applicant = applicantName + " " + applicantSurname
-
-    solicitude.fill().required()
-                     .applicantName(applicantName)
-                     .applicantSurname(applicantSurname)
-    solicitude.submit()
+  it ('can be populated with applicant complete name', () => {
+    const solicitudes = fixtures.solicitudes()
+    const name = solicitudes[0]['applicant_name']
+    const surname = solicitudes[0]['applicant_surname']
 
     const solicitudesList = new SolicitudesList()
 
-    expect(solicitudesList.existApplicant(applicant)).to.be.true
+    const applicantFullName = name + ' ' + surname
+    expect(solicitudesList.existApplicant(applicantFullName)).to.be.true
   })
 
- it ('can be populated without complete name', () => {
+  it ('can be populated without applican', () => {
     const solicitude = new Solicitude()
-    const notApplicant = "n/a"
     const solicitudeDate = "01/01/2018"
-
     solicitude.fill().required()
                      .date(solicitudeDate)
     solicitude.submit()
 
     const solicitudesList = new SolicitudesList()
 
+    const notApplicant = "n/a"
     expect(solicitudesList.existNotApplicant(solicitudeDate, notApplicant)).to.be.true
   })
 
- it ('can be populated with company name', () => {
-    const solicitude = new Solicitude()
-    const solicitudeCompanyName = 'John Inc.'
-    const solicitudeCompanyCif = '12345678Z'
-
-    solicitude.fill().required()
-                     .companyName(solicitudeCompanyName)
-                     .companyCif(solicitudeCompanyCif)
-                     .lostFocus()
-    solicitude.submit()
+  it ('can be populated with company name', () => {
+    const solicitudes = fixtures.solicitudes()
+    const companyName = solicitudes[0]['company_name']
 
     const solicitudesList = new SolicitudesList()
 
-    expect(solicitudesList.existCompanyName(solicitudeCompanyName)).to.be.true
+    expect(solicitudesList.existCompanyName(companyName)).to.be.true
   })
 
   it ('can be populated without company', () => {
@@ -91,5 +77,4 @@ describe('Solicitude List', () => {
 
      expect(solicitudesList.withoutCompany(solicitudeDate, notCompany)).to.be.true
    })
-
 })
