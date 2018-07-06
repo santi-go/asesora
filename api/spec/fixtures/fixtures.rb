@@ -15,6 +15,8 @@ class Fixtures
   APPLICANT_NAME = 'Piedad'
   APPLICANT_SURNAME = 'Alarcón'
   APPLICANT_EMAIL = 'piedadalarcon@noname.es'
+  APPLICANT_CCAA = '01 - Baleares'
+  APPLICANT_CCAA_2 = '02 - Cataluña'
   APPLICANT_PHONENUMBER = '000111000'
   COMPANY_NAME = 'De Rape SL'
   COMPANY_CIF = 'A98005978'
@@ -53,10 +55,10 @@ class Fixtures
 
   def insert_solicitudes()
     first_company = create_company(COMPANY_NAME, COMPANY_CIF, COMPANY_EMPLOYEES, COMPANY_CNAE)
-    first_applicant = create_applicant(APPLICANT_NAME, APPLICANT_SURNAME, APPLICANT_EMAIL, APPLICANT_PHONENUMBER)
+    first_applicant = create_applicant(APPLICANT_NAME, APPLICANT_SURNAME, APPLICANT_EMAIL, APPLICANT_PHONENUMBER, APPLICANT_CCAA)
     first_solicitude = create_solicitude(first_applicant, first_company)
     second_company = create_company(COMPANY_NAME_2, COMPANY_CIF_2, COMPANY_EMPLOYEES_2, COMPANY_CNAE_2)
-    second_applicant = create_applicant(APPLICANT_NAME_2, APPLICANT_SURNAME_2, APPLICANT_EMAIL_2, APPLICANT_PHONENUMBER_2)
+    second_applicant = create_applicant(APPLICANT_NAME_2, APPLICANT_SURNAME_2, APPLICANT_EMAIL_2, APPLICANT_PHONENUMBER_2, APPLICANT_CCAA_2)
     second_solicitude = create_solicitude(second_applicant, second_company)
     third_solicitude = create_solicitude(second_applicant, first_company)
 
@@ -67,8 +69,8 @@ class Fixtures
     ::Companies::Service.create(name, cif, employees, cnae)
   end
 
-  def create_applicant(name, surname, email, phonenumber)
-    ::Applicant::Service.create(name, surname, email, phonenumber)
+  def create_applicant(name, surname, email, phonenumber, ccaa)
+    ::Applicant::Service.create(name, surname, email, phonenumber, ccaa)
   end
 
   def create_solicitude(applicant, company)

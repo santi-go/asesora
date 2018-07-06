@@ -6,21 +6,23 @@ module Domain
         applicant.surname = document['surname']
         applicant.email = document['email']
         applicant.phonenumber = document['phonenumber']
+        applicant.ccaa = document['ccaa']
 
         applicant
       end
 
-      def self.with(name, surname, email, phonenumber, id)
+      def self.with(name, surname, email, phonenumber, ccaa, id)
         applicant = new(id)
         applicant.name = name
         applicant.surname = surname
         applicant.email = email
         applicant.phonenumber = phonenumber
+        applicant.ccaa = ccaa
 
         applicant
       end
 
-      attr_writer :name, :surname, :email, :phonenumber
+      attr_writer :name, :surname, :email, :phonenumber, :ccaa
 
       def initialize(id)
         @id = id
@@ -37,6 +39,7 @@ module Domain
           "surname" => @surname,
           "email" => @email,
           "phonenumber" => @phonenumber,
+          "ccaa" => @ccaa,
           "id" => @id
         }
       end

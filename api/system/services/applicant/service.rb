@@ -5,15 +5,15 @@ require_relative 'collection'
 
 module Applicant
   class Service
-    def self.create(name, surname, email, phonenumber)
+    def self.create(name, surname, email, phonenumber, ccaa)
       id = create_id
 
-      applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
+      applicant = Domain::Applicant.with(name, surname, email, phonenumber, ccaa, id)
 
       Collection.create(applicant).serialize
     end
 
-    def self.retrieve_with_id(name, surname, email, phonenumber, id)
+    def self.retrieve_with_id(name, surname, email, phonenumber, ccaa, id)
       Collection.retrieve(id).serialize
     end
 
@@ -31,8 +31,8 @@ module Applicant
       Collection.all_by(criteria).serialize
     end
 
-    def self.update(name, surname, email, phonenumber, id)
-      applicant = Domain::Applicant.with(name, surname, email, phonenumber, id)
+    def self.update(name, surname, email, phonenumber, ccaa, id)
+      applicant = Domain::Applicant.with(name, surname, email, phonenumber, ccaa, id)
       Collection.update(applicant, id).serialize
     end
 

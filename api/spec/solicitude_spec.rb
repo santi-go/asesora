@@ -195,7 +195,8 @@ describe 'Solicitude Api' do
         'applicantName': '',
         'applicantSurname': Fixtures::APPLICANT_SURNAME_2,
         'applicantEmail': '',
-        'applicantPhonenumber': ''
+        'applicantPhonenumber': '',
+        'ccaa': ''
       }.to_json
       post '/api/applicant-matches', matches_body
       response = JSON.parse(last_response.body)

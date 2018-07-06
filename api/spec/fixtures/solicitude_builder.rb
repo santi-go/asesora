@@ -12,6 +12,7 @@ class SolicitudeBuilder
       applicantSurname: Fixtures::APPLICANT_SURNAME,
       applicantEmail: Fixtures::APPLICANT_EMAIL,
       applicantPhonenumber: Fixtures::APPLICANT_PHONENUMBER,
+      ccaa: Fixtures::APPLICANT_CCAA,
       text: Fixtures::TEXT,
       date: Fixtures::DATE,
       companyName: Fixtures::COMPANY_NAME,
