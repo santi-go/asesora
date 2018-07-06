@@ -622,7 +622,8 @@ export default class Solicitude extends Component {
         'applicantName': this.data.values.applicantName,
         'applicantSurname': this.data.values.applicantSurname,
         'applicantPhonenumber': this.data.values.applicantPhonenumber,
-        'applicantEmail': this.data.values.applicantEmail
+        'applicantEmail': this.data.values.applicantEmail,
+        'ccaa': this.data.values.ccaa
       }
       if (this.evaluateCriterion(criteria)){
         Bus.publish('get.applicant.matches', criteria)
