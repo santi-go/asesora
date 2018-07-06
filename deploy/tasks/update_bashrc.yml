@@ -7,7 +7,7 @@
   with_items:
     - "export API_HOST={{ api_host }}"
     - "export API_PORT={{ api_port }}"
-    - "export MONGODB_URI=mongodb://{{ mongo_ip }}:{{ mongo_port }}{{ mongo_data }}"
+    - "export MONGODB_URI=mongodb://{{ mongo_ip }}:{{ mongo_port }}{{ mongo_ddbb }}"
 - name: update environment variables
   become: yes
   shell: "source /root/.bashrc"
