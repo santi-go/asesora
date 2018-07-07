@@ -1,9 +1,9 @@
 ---
-- name: Remove old backup
+- name: Remove old application backup
   file:
     path: "/var/www/asesora_backup/"
     state: absent
-- name: Backup folder asesora
+- name: Backup folder application asesora
   command: mv /var/www/asesora /var/www/asesora_backup
-- name: Rename folder staging to asesora
+- name: Update folder staging to asesora
   command: mv /var/www/staging /var/www/asesora

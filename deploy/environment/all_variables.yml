@@ -1,0 +1,8 @@
+---
+- api_host: '206.189.1.31'
+- api_port: '80'
+- mongo_ip: 127.0.0.1
+- mongo_port: 27017
+- mongo_data_folder: /data/db
+- mongo_ddbb: db
+- tmp_folder: /tmp

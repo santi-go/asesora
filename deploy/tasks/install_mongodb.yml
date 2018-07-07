@@ -6,11 +6,11 @@
     owner: mongodb
     group: mongodb
     recurse: yes
-
 - name: copy config file for mongodb
   copy:
     src: "files/mongodb.conf"
     dest: "/etc/mongodb.conf"
+
 - name: install mongodb
   become: yes
   apt:
