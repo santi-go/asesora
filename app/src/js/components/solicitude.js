@@ -322,10 +322,12 @@ export default class Solicitude extends Component {
   }
 
   updateModel(payload) {
+    console.log(payload.data);
      let dictionary = this.dictionaryOfSolicitude(payload)
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
      }
+     console.log(this.data.values);
      this.initialValues = this.data.cloneValues()
      Bus.publish('get.company.count', payload.data.company_cif)
    }
@@ -339,6 +341,7 @@ export default class Solicitude extends Component {
          'applicantSurname':  payload.data.applicant_surname,
          'applicantEmail':  payload.data.applicant_email,
          'applicantPhonenumber':  payload.data.applicant_phonenumber,
+         'applicantCcaa': payload.data.applicant_ccaa,
          'creation_moment': payload.data.creation_moment,
          'companyName': payload.data.company_name,
          'companyCif': payload.data.company_cif,
@@ -622,7 +625,8 @@ export default class Solicitude extends Component {
         'applicantName': this.data.values.applicantName,
         'applicantSurname': this.data.values.applicantSurname,
         'applicantPhonenumber': this.data.values.applicantPhonenumber,
-        'applicantEmail': this.data.values.applicantEmail
+        'applicantEmail': this.data.values.applicantEmail,
+        'applicantCcaa': this.data.values.applicantCcaa
       }
       if (this.evaluateCriterion(criteria)){
         Bus.publish('get.applicant.matches', criteria)

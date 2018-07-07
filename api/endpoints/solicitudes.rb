@@ -24,7 +24,7 @@ module Endpoints
           surname:params['applicantSurname'],
           email:params['applicantEmail'],
           phonenumber:params['applicantPhonenumber'],
-          ccaa:params['ccaa'],
+          ccaa:params['applicantCcaa'],
           id:params['applicantId'],
           date:params['date'],
           company_name:params['companyName'],

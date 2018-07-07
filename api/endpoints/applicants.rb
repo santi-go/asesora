@@ -11,7 +11,7 @@ module Endpoints
           surname:params['applicantSurname'],
           email:params['applicantEmail'],
           phonenumber:params['applicantPhonenumber'],
-          ccaa:params['ccaa'],
+          ccaa:params['applicantCcaa'],
           id:params['applicantId']
         }
 
@@ -25,15 +25,13 @@ module Endpoints
     def self.define_search_applicants(api)
       api.post '/api/applicant-matches' do
         params = JSON.parse(request.body.read)
-
         criteria = {
           name: params['applicantName'],
           surname: params['applicantSurname'],
           email: params['applicantEmail'],
           phonenumber: params['applicantPhonenumber'],
-          ccaa:params['ccaa']
+          ccaa: params['applicantCcaa']
         }
-
         applicants = Actions::RetrieveSolicitudes.do_applicants(criteria)
         {data: applicants}.to_json
       end
