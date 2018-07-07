@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  vars_files:
+    - environment/all_variables.yml
+
+  pre_tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  tasks:
+  - name: Mongo Drop
+    command: "mongo --eval 'db.dropDatabase()' "

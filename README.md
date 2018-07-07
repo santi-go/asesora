@@ -61,7 +61,7 @@ Demo template available at the project in folder `/app/templates/medialot`
 Template in format svg at `/app/templates/favicon`
 
 
-# Staging
+# Connect with the server
 
 If you are not sure if you have a public key into droplet of Digital Ocean, try to enter:
 
@@ -133,137 +133,60 @@ ssh -i admin_key root@206.189.1.31 "rm /root/new_admin_user_key.pub"
 ~~~
 
 
-## Connect into droplet with ssh
+## Connect into droplet with ssh and a public key
 
 ~~~
 ssh -i ~/.ssh/your_key root@ip.droplet
 ~~~
 
 
-# The server
+# Administrar el servidor
 
-## Script for deploy to a server
+El servidor se administra con recetas realizadas con Ansible. Todas las recetas se lanzan desde la carpeta "deploy".
 
-For copy the applicative to a server, view or run the script:
+Puedes probar si tienes conexión realizando la siguiente prueba:
 
 ~~~
-cd deploy
+ansible -i ./host_digitalocean digitalocean -m ping
+~~~
+
+
+## Instalación del servidor
+
+Hay una receta para la creación del servidor:
+
+~~~
+ansible-playbook -i ./host_digitalocean install_server.yml
+~~~
+
+
+## Actualización del servidor
+
+Para actualizar la aplicación primero debemos realizar un build y posteriormente lanzar la receta de actualización:
+
+~~~
 sh staging.sh
+ansible-playbook -i ./host_digitalocean update_asesora.yml
 ~~~
 
 
-## The droplet in Digital Ocean
+## Mantenimiento de la base de datos
 
-### Prepare the script to launch the application
-
-Create a script that prepare ruby environment and launch application:
+Para realizar una copia de seguridad:
 
 ~~~
-nano ~/bin/launch_asesora.sh
+ansible-playbook -i ./host_digitalocean backup_ddbb_asesora.yml
 ~~~
 
-and copy in:
+Para recuperarla:
 
 ~~~
-#!/bin/bash --login
-
-if [ -f /var/www/asesora/config.dev.ru ]; then
-  cd ~/bin
-  sh down_asesora.sh
-  cd /var/www/asesora
-  bundle exec rake deploy
-  cd ~/bin
-  sh down_asesora.sh
-  rm /var/www/asesora/spec/ -rf
-  rm /var/www/asesora/config.dev.ru -rf
-fi
-
-cd /var/www/asesora
-rvm use 2.5.0
-bundle exec rake digitalocean
-~~~
-
-Set script executable:
-
-~~~
-chmod 755 ~/bin/launch_asesora.sh
-~~~
-
-Edit crontab:
-
-~~~
-crontab -e
-~~~
-
-and add to end the next line:
-
-~~~
-@reboot /root/bin/launch_asesora.sh
+ansible-playbook -i ./host_digitalocean restore_ddbb_asesora.yml
 ~~~
 
 
-### Server installation
+# Otros
 
-You need first prepare the server, install Mongodb. With a root user:
+Es interesante que leas la documentación de Digital Ocean respecto al uso de los servicios en Debian:
 
-~~~
-apt-get update
-apt-get upgrade
-apt-get install mongodb-server curl
-~~~
-
-Rvm, ruby and bundler:
-
-~~~
-curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
-\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
-gpg --verify rvm-installer.asc
-bash rvm-installer stable
-rvm install 2.5.0
-rvm gemset use global && gem install bundler
-rm rvm-installer
-rm rvm-installer.asc
-~~~
-
-
-### Some configurations
-
-Update .bashrc to use rvm and create variable environment adding to ```~/.bashrc``` this:
-
-~~~
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-export API_HOST='206.189.1.31'
-export API_PORT='80'
-export MONGODB_URI=mongodb://127.0.0.1:27017/data/db
-~~~
-
-And launch:
-
-~~~
-source ~/.bashrc
-~~~
-
-
-### Prepare Mongodb
-
-Create directory for databases:
-
-~~~
-mkdir -p /data/db
-chown -R mongodb:mongodb /data/db
-~~~
-
-Edit ```/etc/mongodb.conf``` and configure:
-
-~~~
-bind_ip = 127.0.0.1
-port = 27017
-dbpath=/data/db
-~~~
-
-Reboot system:
-
-~~~
-reboot
-~~~
+https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units

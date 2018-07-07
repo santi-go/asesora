@@ -4,5 +4,6 @@
 - mongo_ip: 127.0.0.1
 - mongo_port: 27017
 - mongo_data_folder: /data/db
-- mongo_ddbb: db
+- ddbb_name: db
 - tmp_folder: /tmp
+- name_file_of_backup: backup_asesora

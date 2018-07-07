@@ -1,0 +1,8 @@
+---
+- name: create a directory for backup database
+  file:
+    path: "{{ tmp_folder }}/{{ ddbb_name }}"
+    state: directory
+    recurse: yes
+    owner: mongodb
+    group: mongodb

@@ -1,0 +1,7 @@
+---
+- name: Create a bz2 archive of database backup folder
+  archive:
+    path:
+    - "{{ tmp_folder }}/{{ ddbb_name }}"
+    dest: "{{ tmp_folder }}/{{ name_file_of_backup }}.tar.bz2"
+    format: bz2

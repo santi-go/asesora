@@ -1,0 +1,5 @@
+---
+- name: upload file from control machine to host
+  copy:
+    src: backup/backup_asesora.tar.bz2
+    dest: "{{ tmp_folder }}/{{ name_file_of_backup }}.tar.bz2"

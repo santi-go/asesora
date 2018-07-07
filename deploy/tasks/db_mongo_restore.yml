@@ -1,0 +1,3 @@
+---
+- name: Mongo Restore
+  command: mongorestore --drop --db {{ ddbb_name }} "{{ tmp_folder }}/{{ ddbb_name }}"

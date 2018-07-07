@@ -1,0 +1,8 @@
+---
+- name: extract dabatase to temp folder
+  unarchive:
+    copy: no
+    src: "{{ tmp_folder }}/{{ name_file_of_backup }}.tar.bz2"
+    dest: "{{ tmp_folder }}"
+    owner: mongodb
+    group: mongodb

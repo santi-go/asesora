@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  vars_files:
+    - environment/all_variables.yml
+
+  pre_tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  tasks:
+  - include: tasks/db_create_a_directory_for_backup_in_remote.yml
+  - include: tasks/db_upload_file.yml
+  - include: tasks/db_extract_database_from_a_file.yml
+  - include: tasks/db_mongo_restore.yml
+  - include: tasks/db_delete_temporary_data.yml

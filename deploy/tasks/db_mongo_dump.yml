@@ -1,0 +1,3 @@
+---
+- name: Mongo Dump
+  command: mongodump --db {{ ddbb_name }} --out "{{ tmp_folder }}/{{ ddbb_name }}"

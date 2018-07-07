@@ -1,0 +1,6 @@
+---
+- name: download file from host to control machine
+  fetch:
+    src: "{{ tmp_folder }}/{{ name_file_of_backup }}.tar.bz2"
+    dest: backup/{{ name_file_of_backup }}.tar.bz2
+    flat: yes

@@ -1,0 +1,9 @@
+---
+- name: delete directory of mongodb backup
+  file:
+    path: "{{ tmp_folder }}/{{ ddbb_name }}/"
+    state: absent
+- name: delete file of mongodb backup
+  file:
+    path: "{{ tmp_folder }}/{{ name_file_of_backup }}.tar.bz2"
+    state: absent
