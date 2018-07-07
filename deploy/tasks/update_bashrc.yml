@@ -1,4 +1,14 @@
 ---
+- name: delete old environment variables from .bashrc
+  become: yes
+  lineinfile:
+    dest: /root/.bashrc
+    regexp: "export {{ item }}=(.*)"
+    state: absent
+  with_items:
+    - API_HOST
+    - API_PORT
+    - MONGODB_URI
 - name: add new lines at end of .bashrc
   become: yes
   lineinfile:

@@ -1,3 +1,7 @@
 ---
 - name: disable default site from apache2
   shell: "a2dissite 000-default"
+- name: delete default html directory
+  file:
+    path: "/var/www/html/"
+    state: absent

@@ -27,7 +27,7 @@
         path: "/etc/apache2/sites-enabled/010-asesora.conf"
         state: absent
 
-    - name: Check if ruby is installed
+    - name: Check if new ruby is installed (from residual installation)
       command: ruby -v
       register: ruby
 

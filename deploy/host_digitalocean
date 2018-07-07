@@ -6,4 +6,4 @@ env=digitalocean
 
 [digitalocean:vars]
 ansible_ssh_user=root
-ansible_ssh_private_key_file=~/.ssh/devscola_elferrer
+ansible_ssh_private_key_file=~/.ssh/id_rsa

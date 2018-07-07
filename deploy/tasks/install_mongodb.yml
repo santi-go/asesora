@@ -10,6 +10,24 @@
   copy:
     src: "files/mongodb.conf"
     dest: "/etc/mongodb.conf"
+- name: update bind_ip
+  replace:
+    path: /etc/mongodb.conf
+    regexp: 'bind_ip(.*)'
+    replace: 'bind_ip = {{ mongo_ip }}'
+    backup: yes
+- name: update port
+  replace:
+    path: /etc/mongodb.conf
+    regexp: 'port(.*)'
+    replace: 'port = {{ mongo_port }}'
+    backup: yes
+- name: update dbpath
+  replace:
+    path: /etc/mongodb.conf
+    regexp: 'dbpath(.*)'
+    replace: 'dbpath = {{ mongo_data_folder }}'
+    backup: yes
 
 - name: install mongodb
   become: yes

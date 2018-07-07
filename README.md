@@ -91,7 +91,7 @@ And change de permission of the folder and file:
 
 ~~~
 chmod 700 ~/.ssh
-chmod 600 ~/.ssh/your_key
+chmod 600 ~/.ssh/id_rsa
 ~~~
 
 Remember: only change the permission of the private key (this not have a _.pub_ extension).
@@ -106,7 +106,7 @@ You need to have access rights as an administrator in order to upload your key t
 
 ~~~
 cd ~/.ssh
-ssh-copy-id -i your_key.pub root@ip.droplet
+ssh-copy-id -i ~/.ssh/id_rsa root@ip.droplet
 ~~~
 
 In this moment we urge you to indicate the password of root in droplet.
@@ -117,26 +117,26 @@ In this moment we urge you to indicate the password of root in droplet.
 The administrator must copy with 'scp' the key:
 
 ~~~
-scp -i admin_key -rC new_admin_user_key.pub root@206.189.1.31:/root/new_admin_user_key.pub
+scp -i ~/.ssh/id_rsa -rC new_admin_user_key.pub root@206.189.1.31:/root/new_admin_user_key.pub
 ~~~
 
 Then, with 'ssh', the administrator add the key to authorized keys:
 
 ~~~
-ssh -i admin_key root@206.189.1.31 "cat /root/new_admin_user_key.pub >> /root/.ssh/authorized_keys"
+ssh -i ~/.ssh/id_rsa root@206.189.1.31 "cat /root/new_admin_user_key.pub >> /root/.ssh/authorized_keys"
 ~~~
 
 And finally, the administrator removes the uploaded file:
 
 ~~~
-ssh -i admin_key root@206.189.1.31 "rm /root/new_admin_user_key.pub"
+ssh -i ~/.ssh/id_rsa root@206.189.1.31 "rm /root/new_admin_user_key.pub"
 ~~~
 
 
 ## Connect into droplet with ssh and a public key
 
 ~~~
-ssh -i ~/.ssh/your_key root@ip.droplet
+ssh -i ~/.ssh/id_rsa root@ip.droplet
 ~~~
 
 
@@ -149,6 +149,8 @@ Puedes probar si tienes conexión realizando la siguiente prueba:
 ~~~
 ansible -i ./host_digitalocean digitalocean -m ping
 ~~~
+
+Si el nombre de la clave no es el dado por defecto (~/.ssh/id_rsa) deberás indicar la correcta en el archivo ```host_digitalocean```.
 
 
 ## Instalación del servidor
