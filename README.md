@@ -140,31 +140,31 @@ ssh -i ~/.ssh/id_rsa root@ip.droplet
 ~~~
 
 
-# Administrar el servidor
+# Manage the server
 
-El servidor se administra con recetas realizadas con Ansible. Todas las recetas se lanzan desde la carpeta "deploy".
+The server is managed with recipes made with Ansible. All recipes are launched from the "deploy" folder.
 
-Puedes probar si tienes conexión realizando la siguiente prueba:
+You can test if you have a connection by performing the following test:
 
 ~~~
 ansible -i ./host_digitalocean digitalocean -m ping
 ~~~
 
-Si el nombre de la clave no es el dado por defecto (~/.ssh/id_rsa) deberás indicar la correcta en el archivo ```host_digitalocean```.
+If the name of the key is not the default one (~ / .ssh / id_rsa) you must indicate the correct one in the file ```host_digitalocean```.
 
 
-## Instalación del servidor
+## Server installation
 
-Hay una receta para la creación del servidor:
+There is a recipe for server creation:
 
 ~~~
 ansible-playbook -i ./host_digitalocean install_server.yml
 ~~~
 
 
-## Actualización del servidor
+## Server update
 
-Para actualizar la aplicación primero debemos realizar un build y posteriormente lanzar la receta de actualización:
+To update the application we must first perform a build and then launch the update recipe:
 
 ~~~
 sh staging.sh
@@ -172,23 +172,23 @@ ansible-playbook -i ./host_digitalocean update_asesora.yml
 ~~~
 
 
-## Mantenimiento de la base de datos
+## Data base maintenance
 
-Para realizar una copia de seguridad:
+To make a backup:
 
 ~~~
 ansible-playbook -i ./host_digitalocean backup_ddbb_asesora.yml
 ~~~
 
-Para recuperarla:
+To recover it:
 
 ~~~
 ansible-playbook -i ./host_digitalocean restore_ddbb_asesora.yml
 ~~~
 
 
-# Otros
+# Others
 
-Es interesante que leas la documentación de Digital Ocean respecto al uso de los servicios en Debian:
+It is interesting that you read the Digital Ocean documentation regarding the use of services in Debian:
 
 https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
