@@ -70,29 +70,3 @@ ${RESET}
    \n"
 read -p "Press enter to run the third chapter" key
 }
-
-third_add_fixture() {
-printf "\n5. Copy the file 'config.dev.ru' and folder 'prepare_staging' to 'staging'.
-   We asked if you want to copy the staging fixture:
-   - If you answer ${GREEN}'y'${RESET} the fixture will be copied,
-     the data from the staging database will be deleted
-     and initialized with those of the fixture.
-   - If you answer ${GREEN}'n'${RESET} the existing data in staging will not be modified.
-\n"
-}
-
-four_copy_to_droplet() {
-printf "${TITLE}\n\n
-Fourth chapter: copy the application to the droplet
-${RESET}
-1. You need to input your ssh-private-key file
-   (enter the key with its complete location).
-   example: '~/.ssh/my_ssh'
-2. Create a folder '/var/www' in the droplet.
-   This will not destruct any other files or folders.
-3. We will create a backup of the older application
-   using the ssh connection.
-4. Copy the folder 'staging' directly to the folder 'asesora' in the droplet.
-\n"
-read -p "Press enter to run the fourth chapter" key
-}

@@ -167,7 +167,7 @@ ansible-playbook -i ./host_digitalocean install_server.yml
 To update the application we must first perform a build and then launch the update recipe:
 
 ~~~
-sh staging.sh
+sh build_staging.sh
 ansible-playbook -i ./host_digitalocean update_asesora.yml
 ~~~
 

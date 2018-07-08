@@ -1,6 +1,6 @@
 #!/bin/sh
 THIS_DIRECTORY=$(dirname "$0")/
-. $THIS_DIRECTORY/staging-explain.sh
+. $THIS_DIRECTORY/help/staging-explain.sh
 
 cd ..
 
