@@ -322,12 +322,10 @@ export default class Solicitude extends Component {
   }
 
   updateModel(payload) {
-    console.log(payload.data);
      let dictionary = this.dictionaryOfSolicitude(payload)
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
      }
-     console.log(this.data.values);
      this.initialValues = this.data.cloneValues()
      Bus.publish('get.company.count', payload.data.company_cif)
    }
