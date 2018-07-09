@@ -44,6 +44,7 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.applicant', this.fillApplicant.bind(this))
     this.reactTo('check.submittable', this.setButtonStatus.bind(this))
     this.reactTo('changed.email', this.runValidations.bind(this))
+    this.reactTo('changed.ccaa', this.changedApplicantField.bind(this))
     this.reactTo('changed.phone', this.runValidations.bind(this))
     this.reactTo('changed.email', this.setValidEmail.bind(this))
     this.reactTo('changed.phone', this.setValidPhone.bind(this))
