@@ -43,7 +43,7 @@ export default class ShowSolicitude extends Component {
   }
 
   addSubject(event){
-    window.location.href = "/subjects.html?id=" + event.detail + "=show"
+    window.location.href = "/subjects.html?id=" + event.detail
   }
 
   initializeViews(){

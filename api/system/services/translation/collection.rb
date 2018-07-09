@@ -118,7 +118,7 @@ module Translation
                 "subjectsList": "Listado de casos",
                 "notApply": "N/A",
                 "subject": "Caso",
-                "applicantCcaa": "Comunidad autónoma",
+                "applicantCcaa": "Comunidad autónoma"
               },
 
               "subjects": {
@@ -131,7 +131,18 @@ module Translation
                 "topics": "Temas del caso",
                 "placeholderAnalysis": "Describe brevemente tu análisis técnico de la solicitud para este caso. Puedes utilizar este campo para extender la información de la temática si lo necesitas, o proporcionar información relevante que hayas extraído del contexto de la solicitud.",
                 "max200Words": "Máximo 200 palabras",
-                "discardButtonSubject": "Descartar"
+                "discardButtonSubject": "Descartar",
+                "date": "Fecha",
+                "text": "Texto",
+                "applicantName": "Nombre",
+                "applicantSurname": "Apellidos",
+                "applicantEmail": "Correo Electrónico",
+                "applicantPhonenumber": "Teléfono",
+                "companyName": "Nombre empresa",
+                "companyCif": "CIF",
+                "companyEmployees": "Número trabajadoras y trabajadores",
+                "companyCnae": "CNAE",
+                "applicantCcaa": "Comunidad autónoma"
               }
             },
 
