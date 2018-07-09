@@ -11,4 +11,4 @@
 
   tasks:
   - name: Mongo Drop
-    command: "mongo --eval 'db.dropDatabase()' "
+    command: "mongo {{ ddbb_name }} --eval 'db.dropDatabase()' "
