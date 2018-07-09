@@ -54,33 +54,4 @@ describe('Solicitude Subjects', () => {
 
     expect(result).to.eq(true)
   })
-
-  it("would show add subject after create solicitude", function () {
-    const solicitude = new Solicitude()
-
-    solicitude.required().submitAndAddSubject()
-
-    const solicitudeSubjects = new SolicitudeSubjects()
-    solicitudeSubjects.waitFor('#show-solicitude')
-
-    expect(solicitudeSubjects.isSubjectsVisible()).to.eq(true)
-  })
-
-  it("would show add subject after modify solicitude", function () {
-    const solicitude = new Solicitude()
-
-    solicitude.required().submit()
-
-    const solicitudesList = new SolicitudesList()
-    solicitudesList.waitForSolicitudesList()
-    solicitudesList.clickOnEditButtonOnItem(1)
-
-    solicitude.fill().applicantName()
-    solicitude.submitAndAddSubject()
-
-    const solicitudeSubjects = new SolicitudeSubjects()
-    solicitudeSubjects.waitFor('#show-solicitude')
-
-    expect(solicitudeSubjects.isSubjectsVisible()).to.eq(true)
-  })
 })
