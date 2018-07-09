@@ -5,7 +5,7 @@
       <label>{{ labels.applicant}}</label>
       <p><em>{{ labels.applicantName }}:</em> {{ values.applicantName }}</p>
       <p><em>{{ labels.applicantSurname }}:</em> {{ values.applicantSurname }}</p>
-      <p><em>{{ labels.applicantCcaa }}:</em> {{ values.applicantCcaa }}</p>
+      <p><em>{{ labels.applicantCcaa }}:</em> {{ values.applicantCcaa.text }}</p>
       <p><em>{{ labels.applicantEmail }}:</em> {{ values.applicantEmail }}</p>
       <p><em>{{ labels.applicantPhonenumber }}:</em> {{ values.applicantPhonenumber }}</p>
       <p><em>{{ labels.date }}:</em> {{ values.date }}</p>
