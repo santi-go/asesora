@@ -43,7 +43,7 @@ export default class ShowSolicitude extends Component {
   }
 
   addSubject(event){
-    window.location.href = "/subjects.html?id=" + event.detail + "=show" 
+    window.location.href = "/subjects.html?id=" + event.detail + "=show"
   }
 
   initializeViews(){
@@ -68,6 +68,7 @@ export default class ShowSolicitude extends Component {
         'date': payload.data.date,
         'applicantName': payload.data.applicant_name,
         'applicantSurname': payload.data.applicant_surname,
+        'applicantCcaa': payload.data.applicant_ccaa,
         'applicantEmail': payload.data.applicant_email,
         'applicantPhonenumber': payload.data.applicant_phonenumber,
         'companyName': payload.data.company_name,
@@ -107,6 +108,7 @@ export default class ShowSolicitude extends Component {
         "company": "xxxxx",
         "applicantName": "XXXX",
         "applicantSurname": "XXXXXXXXX",
+        "applicantCcaa": "xxxxx",
         "applicantEmail": "XXX",
         "applicantPhonenumber": "XXXXXXXXX",
         "date": "XXXXX",
@@ -123,6 +125,7 @@ export default class ShowSolicitude extends Component {
         "id": "",
         "applicantName": "",
         "applicantSurname": "",
+        "applicantCcaa": "",
         "applicantEmail": "",
         "applicantPhonenumber": "",
         "date": "",
