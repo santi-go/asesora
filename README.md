@@ -2,12 +2,12 @@
 
 ## Start project
 
-You need to install docker and docker-compose.
+You need to install docker (1) and docker-compose (2). Have knowledge of ssh, as well as Ansible (3) to do the deploy.
 
 
 ## Project URL
 
-To access the `API` use `localhost:4567`, and acces the `APP` use `localhost:8080`.
+To access the `API` use `localhost:4567`, and to acces the `APP` use `localhost:8080`.
 
 
 ### Up docker
@@ -63,7 +63,7 @@ Template in format svg at `/app/templates/favicon`
 
 # Connect with the server
 
-If you are not sure if you have a public key into droplet of Digital Ocean, try to enter:
+If you are not sure if you have a public key into droplet of Digital Ocean (4), try to enter:
 
 ~~~
 ssh root@ip.droplet
@@ -187,8 +187,13 @@ ansible-playbook -i ./host_digitalocean restore_ddbb_asesora.yml
 ~~~
 
 
-# Others
+# Notes
 
-It is interesting that you read the Digital Ocean documentation regarding the use of services in Debian:
+(1) https://www.docker.com/
 
+(2) https://docs.docker.com/compose/
+
+(3) https://www.ansible.com/
+
+(4) It is interesting that you read the Digital Ocean documentation regarding the use of services in Debian:
 https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units
