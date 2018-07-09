@@ -25,17 +25,13 @@
 </head>
 <body>
     <header class="navbar">
-        <div class="row">
-            <div class="column column-30 col-site-title" id="about">
-                <asesora-about :title="title" :version="version" :labels="labels"></asesora-about>
-            </div>
+        <div class="row" id="about">
+            <asesora-about :title="title" :version="version" :labels="labels"></asesora-about>
         </div>
     </header>
+    
     <main class="row">
-        <aside id="sidebar" class="column">
-            <asesora-sidebar :labels='labels'></asesora-sidebar>
-        </aside>
-        <section id="main-content" class="column column-offset-20">
+          <section id="main-content" class="column">
             <div class="row grid-responsive">
                 <div class="column page-heading">
                     <div id="solicitude">

@@ -26,7 +26,9 @@ module Translation
           {
             "es" => {
               "about": {
-                "description": "Registro de asesoramientos técnicos en salud laboral"
+                "description": "Registro de asesoramientos técnicos en salud laboral",
+                "solicitudeList": "Listado de solicitudes",
+                "createSolicitude": "Nueva solicitud"
               },
 
               "sidebar": {
@@ -81,7 +83,13 @@ module Translation
                 "modifySubject": "Guardar cambios",
                 "subjectModified": "Se han guardado los cambios del asesoramiento",
                 "modify": "Modificar",
-                "ccaa": "Comunidad autónoma"
+                "ccaa": "Comunidad autónoma",
+                "personalData": "Datos personales",
+                "contactData": "Datos de contacto",
+                "solicitudeData": "Datos de solicitud",
+                "solicitude": "Solicitud",
+                "identification": "Identificación",
+                "information": "Información"
               },
 
               "solicitudes-list": {

@@ -44,6 +44,7 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.applicant', this.fillApplicant.bind(this))
     this.reactTo('check.submittable', this.setButtonStatus.bind(this))
     this.reactTo('changed.email', this.runValidations.bind(this))
+    this.reactTo('changed.ccaa', this.changedApplicantField.bind(this))
     this.reactTo('changed.phone', this.runValidations.bind(this))
     this.reactTo('changed.email', this.setValidEmail.bind(this))
     this.reactTo('changed.phone', this.setValidPhone.bind(this))
@@ -322,12 +323,10 @@ export default class Solicitude extends Component {
   }
 
   updateModel(payload) {
-    console.log(payload.data);
      let dictionary = this.dictionaryOfSolicitude(payload)
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
      }
-     console.log(this.data.values);
      this.initialValues = this.data.cloneValues()
      Bus.publish('get.company.count', payload.data.company_cif)
    }

@@ -47,7 +47,11 @@ export default class About extends Component{
     return {
       title: "XXXXXXX",
       version: "Version X.X.X",
-      labels: {"description": "lorem ipsum dolor lorem ipsum dolor"},
+      labels: {
+        "description": "lorem ipsum dolor lorem ipsum dolor",
+        "createSolicitude": "Nueva solicitud",
+        "solicitudeList": "Listado de solicitudes"
+      },
 
       setValues:function(values){
         this.title = values.name

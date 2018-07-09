@@ -18,14 +18,6 @@ export default {
 
   props: ['labels', 'values', 'editionmode', 'submittable', 'editCompany'],
 
-  watch: {
-    editionmode: function(val, oldVal){
-      let button = this.$el.querySelector('button')
-      if (val == true){
-        button.disabled = false
-      }
-    }
-  },
 
   methods: {
     submit(){
@@ -40,7 +32,7 @@ export default {
       this.$el.dispatchEvent(signal)
       let button = this.$el.querySelector('button')
       button.innerText = this.labels.editionsubmitting
-      button.disabled = true
+      this.submittable = false
     }
   }
 }

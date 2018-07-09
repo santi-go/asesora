@@ -6,13 +6,6 @@
     <asesora-applicant-email :values="values"
                    :labels="labels" :is-valid-email="isValidEmail"
                    ></asesora-applicant-email>
-    <div  id="contact-info">
-      <div>
-        <em>
-         {{ labels.noContact }}
-        </em>
-      </div>
-    </div>
   </div>
 </template>
 

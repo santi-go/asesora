@@ -20,6 +20,10 @@
     methods: {
       onSelect (item) {
         this.values.applicantCcaa = item
+        let signal = new CustomEvent('changed.ccaa',
+                                        {'detail': "",
+                                        'bubbles': true})
+        this.$el.dispatchEvent(signal)
       },
       reset () {
         this.item = {}
