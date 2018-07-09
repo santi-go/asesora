@@ -117,7 +117,8 @@ module Translation
                 "topics": "Temas del caso",
                 "subjectsList": "Listado de casos",
                 "notApply": "N/A",
-                "subject": "Caso"
+                "subject": "Caso",
+                "applicantCcaa": "Comunidad autónoma",
               },
 
               "subjects": {
