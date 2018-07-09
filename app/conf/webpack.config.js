@@ -1,42 +1,28 @@
 const webpack = require('webpack')
-const { VueLoaderPlugin } = require('vue-loader')
 const PermissionsOutputPlugin = require('webpack-permissions-plugin')
 const path = require('path')
 const nodeEnv = process.env.NODE_ENV || 'production'
 
 module.exports = {
-  mode: 'production',
   devtool: 'source-map',
-  entry: './src/js/main.js',
+  entry: {
+    filename: './src/js/main.js'
+  },
   output: {
-    path: path.resolve(__dirname, '../public/dist'),
-    filename: 'bundle.js',
+    filename: './public/dist/bundle.js',
     libraryTarget: 'var',
     library: 'Asesora'
   },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            js: 'babel-loader'
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'css-loader'
-        ]
+        loader: 'vue-loader'
       }
     ]
   },
@@ -47,7 +33,15 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   plugins: [
-    new VueLoaderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: true
+    }),
     new webpack.EnvironmentPlugin({
       'API_HOST': 'localhost',
       'API_PORT': '4567'
