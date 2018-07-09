@@ -1,14 +1,33 @@
 <template>
-  <div class="about-header">
-    <div class="about-title">
+
+<div class="header">
+  <div class="about-header column column-20 col-site-title">
+    <div class="about-title ">
       <a href="index.html" class="float-left site-title">
         <img class="float-left asesoraicon" src="favicon.ico" alt="Icono Asesora">
-         &nbsp;{{title}}
+        &nbsp;{{title}}
       </a>
-      <p class="about-version">{{ version }}</p>
     </div>
-    <p class="about-description">{{ labels.description }}</p>
   </div>
+  <div id="links" class="about-links column column-50 col-search">
+      <div class="link">
+        <a href="/">
+          <em class="fa fa-pencil-square-o"></em>{{ labels.createSolicitude }}
+        </a>
+      </div>
+      <div class="link">
+        <a href="/solicitudes-list.html">
+          <em class="fa fa-list"></em>{{ labels.solicitudeList }}
+        </a>
+      </div>
+  </div>
+  <div class="column column-30">
+
+  </div>
+
+</div>
+
+
 </template>
 
 <script>
@@ -18,33 +37,26 @@ export default {
 }
 </script>
 <style scoped>
-.about-header {
+
+.header {
   display: flex;
-  width: 50%;
+  width: 100%;
+}
+
+.about-header {
   flex-direction: column;
 }
 
 .navbar .about-header .about-title > * {
   display: inline-flex;
-  line-height: 1em;
   margin-bottom: 0;
-}
-
-.about-version {
-  margin-top: -4px;
-  font-size: 0.8em;
-  color: var(--light-grey-color);
-}
-
-.about-description  {
-  margin-left: 20px;
-  font-size: 0.8em;
 }
 
 .asesoraicon {
   display: inline-flex;
-  margin: -8px 0px 0px 0px;
-  width: 32px;
-  height: 32px;
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.2em;
+
 }
 </style>

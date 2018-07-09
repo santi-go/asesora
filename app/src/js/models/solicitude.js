@@ -45,7 +45,13 @@ export let SolicitudeModel = {
     "modifySubject": "xxxxx",
     "subjectModified": "xxxxx",
     "modify": "xxxxx",
-    "ccaa": "xxxxx"
+    "ccaa": "xxxxx",
+    "personalData": "xxxxxxx",
+    "contactData": "xxxxxxx",
+    "solicitudeData": "xxxxxxx",
+    "solicitude": "xxxxxxx",
+    "identification": "xxxxxxx",
+    "information": "xxxxxxx"
   },
   values: {
     "text": "",

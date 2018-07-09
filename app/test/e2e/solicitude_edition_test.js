@@ -89,6 +89,21 @@ describe('Solicitude Edition', () => {
     assert(solicitude.isDeleteSolicitudeButtonVisible(), true)
   })
 
+  it("hides date alert when is not needed", () => {
+    const solicitude = new Solicitude()
+    solicitude.fill()
+              .applicantName()
+              .applicantPhonenumber()
+              .description()
+    solicitude.submit()
+
+    const solicitudesList = new SolicitudesList()
+
+    solicitudesList.clickOnEditButtonOnItem(1)
+
+    expect(solicitude.isDateInfoHiden()).to.eq(true)
+  })
+
   describe ("when editing a company", function() {
     it ("shows a notification when the company is related with only ONE solicitude", () => {
 

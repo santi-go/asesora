@@ -10,6 +10,23 @@
                        :ccaa-catalog="ccaaCatalog"
                        ></asesora-applicant>
     <div  class="card large-card" >
+      <div class="card-title">
+        <h2>{{ labels.solicitude }}</h2>
+      </div>
+      <div class="row grid-responsive">
+      <div class="column column-20 box">
+        <div class="subtitle-container">
+          <div class="subtitle-item">
+            <div class="subtitle">
+              {{ labels.solicitudeData }}
+            </div>
+            <div <div id="date-info" v-if="!editionmode">
+              {{ labels.noDate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="column column-80">
     <asesora-date :values="values"
                   :labels="labels"
                   :edit-solicitude='editSolicitude'
@@ -19,6 +36,9 @@
                   :edit-solicitude='editSolicitude'
                   ></asesora-text>
     </div>
+    </div>
+  </div>
+
     <asesora-company :values="values"
                      :labels="labels"
                      :suggested-companies="suggestedCompanies"
@@ -160,21 +180,11 @@ export default {
 </script>
 
 <style scoped>
-  input::placeholder {
-    text-align: right;
-    font-size: 32px;
-    color: var(--error-color);
-    line-height: 1.4em;
-  }
-  input::-webkit-input-placeholder {
-    position: relative;
-    top: 12px;
-  }
 
-  .message-sent, .message-error {
-    margin-bottom: 0;
-    margin-top: 1em;
-    display: none;
-  }
+.message-sent, .message-error {
+  margin-bottom: 0;
+  margin-top: 1em;
+  display: none;
+}
 
 </style>

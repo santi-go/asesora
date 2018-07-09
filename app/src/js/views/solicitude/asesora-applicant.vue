@@ -1,26 +1,39 @@
 <template>
   <div  class="card large-card" >
     <div class="card-title">
-      <h3>{{ labels.applicant }}</h3>
+      <h2>{{ labels.applicant }}</h2>
     </div>
     <div class="row grid-responsive">
-      <div class="column column-50">
+      <div class="column column-20 box">
+        <div class="subtitle-container">
+          <div class="subtitle-item">
+            <div class="subtitle">{{ labels.personalData }}</div>
+          </div>
+          <div class="subtitle-item">
+            <div class="subtitle">{{ labels.contactData }}<span>*</span></div>
+            <div>
+              {{ labels.noContact }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column column-40 box">
         <div>
           <label for="name">{{ labels.applicantName }}</label>
           <input  id="name"
-                  name="name"
-                  type="text"
-                  v-on:keyup="refreshSuggestion"
-                  v-model="values.applicantName"
+          name="name"
+          type="text"
+          v-on:keyup="refreshSuggestion"
+          v-model="values.applicantName"
           >
         </div>
         <div>
           <label for="surname">{{ labels.applicantSurname }}</label>
           <input  id="surname"
-                  name="surname"
-                  type="text"
-                  v-on:keyup="refreshSuggestion"
-                  v-model="values.applicantSurname"
+          name="surname"
+          type="text"
+          v-on:keyup="refreshSuggestion"
+          v-model="values.applicantSurname"
           >
         </div>
         <asesora-applicant-ccaa :labels="labels"
@@ -28,22 +41,23 @@
                                 :ccaa-catalog="ccaaCatalog">
         </asesora-applicant-ccaa>
         <asesora-applicant-contact :values="values"
-                                   :editionmode="editionmode"
-                                   :labels="labels"
-                                   :is-valid-contact="isValidContact"
-                                   :is-valid-phone="isValidPhone"
-                                   :is-valid-email='isValidEmail'>
-        </asesora-applicant-contact>
-      </div>
-
-      <div class="column column-50" id="applicant-matches">
-        <asesora-applicant-matches :values="values"
-                                   :labels="labels"
-                                   :suggested-applicants='suggestedApplicants'>
-        </asesora-applicant-matches>
-      </div>
+        :editionmode="editionmode"
+        :labels="labels"
+        :is-valid-contact="isValidContact"
+        :is-valid-phone="isValidPhone"
+        :is-valid-email='isValidEmail'>
+      </asesora-applicant-contact>
     </div>
+
+    <div class="column column-40" id="applicant-matches">
+      <asesora-applicant-matches :values="values"
+      :labels="labels"
+      :suggested-applicants='suggestedApplicants'>
+    </asesora-applicant-matches>
   </div>
+</div>
+</div>
+
 </template>
 
 <script>

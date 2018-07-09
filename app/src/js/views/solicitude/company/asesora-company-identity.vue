@@ -41,7 +41,6 @@
          {{ labels.incompleteCompanyIdentity }}
       </div>
     </div>
-    <em>{{ labels.companyInfo }}</em>
   </div>
 </template>
 
@@ -70,7 +69,7 @@ export default {
                                     'companyCnae': this.values.companyCnae
                                     },
                                   'bubbles': true})
-      this.$el.dispatchEvent(signal)  
+      this.$el.dispatchEvent(signal)
     }
   }
 }
