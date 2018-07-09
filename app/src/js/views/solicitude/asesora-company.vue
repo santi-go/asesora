@@ -1,10 +1,27 @@
 <template>
   <div  class="card large-card" >
     <div class="card-title">
-      <h3>{{ labels.company }}</h3>
+      <h2>{{ labels.company }}</h2>
     </div>
     <div class="row grid-responsive">
-      <div class="column column-50">
+      <div class="column column-20 box">
+        <div class="subtitle-container">
+          <div class="subtitle-item">
+            <div class="subtitle">
+              {{ labels.identification }}
+            </div>
+            <div>
+              {{ labels.companyInfo }}
+            </div>
+          </div>
+        <div class="subtitle-item">
+          <div class="subtitle">
+            {{ labels.information }}
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="column column-40 box">
         <asesora-company-identity :values="values"
                                   :labels="labels"
                                   :isValidCif="isValidCif"
@@ -42,7 +59,7 @@
                               :cnae-catalog="cnaeCatalog"
                               ></asesora-company-cnae>
       </div>
-      <div class="column column-50" id="company-matches">
+      <div class="column column-40" id="company-matches">
         <asesora-company-matches :labels="labels" :suggested-companies="suggestedCompanies"></asesora-company-matches>
 
       </div>

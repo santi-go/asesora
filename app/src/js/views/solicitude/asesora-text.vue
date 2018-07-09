@@ -1,8 +1,7 @@
 <template>
   <div>
-    <label for="solicitude-text">{{ labels.text }}</label>
+    <label for="solicitude-text">{{ labels.text }}<span>*</span></label>
     <textarea id="solicitude-text"
-              placeholder="*"
               v-on:keyup="onKeyup"
               v-on:focus="onFocus"
               v-model="values.text">

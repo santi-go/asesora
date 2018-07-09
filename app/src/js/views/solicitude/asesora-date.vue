@@ -6,13 +6,6 @@
                 v-model="values.date"
                 v-bind:required="editionmode"
                 v-bind:class="{editionmode: editionmode}">
-        <div id="date-info"
-                v-if="!mustBeHidden">
-          <div class="alert">
-            <em class="fa fa-calendar"></em>
-             {{ labels.noDate }}
-          </div>
-        </div>
     </div>
 </template>
 <script>
