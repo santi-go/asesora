@@ -3,6 +3,7 @@
       <div class="card-title">
         <h4>{{ labels.subjectsData}}</h4>
       </div>
+      <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
         <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
         <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
         <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
@@ -30,6 +31,7 @@ import ButtonCreateCounseling from './subjects/asesora-button-create-counseling'
 import ButtonDiscardSubjectView from './subjects/asesora-button-discard-subject'
 import SubjectTopicsView from './subjects/subject-topics'
 import ButtonModifyCounseling from './subjects/asesora-button-modify-counseling'
+import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
 
 export default {
   name: 'asesora-subjects',
@@ -41,6 +43,7 @@ export default {
     "asesora-button-create-counseling": ButtonCreateCounseling,
     "asesora-button-discard-subject" : ButtonDiscardSubjectView,
     "subject-topics": SubjectTopicsView,
+    "asesora-summary-solicitude" : SummarySolicitudeView,
     "asesora-button-modify-counseling": ButtonModifyCounseling
     }
   }

@@ -17,10 +17,12 @@ export default class Subjects extends Component {
     Bus.subscribe("subject.created", this.subjectCreated.bind(this))
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
+    Bus.subscribe("got.solicitude", this.updateModel.bind(this))
   }
 
   load(){
     this.data.values.solicitudeId = this.getSolicitudeId()
+    Bus.publish('get.solicitude', {id: this.data.values.solicitudeId})
   }
 
   watchActions(){
@@ -48,9 +50,7 @@ export default class Subjects extends Component {
 
   discardCard(event){
     let url = ""
-    if (this.origin == "show") {
-      url =  "/show-solicitude.html?id=" + this.data.values.solicitudeId
-    }
+    
     if (this.origin == "edit") {
       url =  "/index.html?id=" + this.data.values.solicitudeId
     }
@@ -131,6 +131,32 @@ export default class Subjects extends Component {
     this.data.proposalsCatalog = catalog
   }
 
+  updateModel(payload){
+    this.data.values.id = payload.data.creation_moment
+
+    let dictionary = this.dictionaryOfSolicitude(payload)
+     for (let [labelKey, valueKey] of Object.entries(dictionary)) {
+       this.data.setValues(labelKey, valueKey)
+     }
+  }
+
+  dictionaryOfSolicitude(payload){
+    return {
+        'text': payload.data.text,
+        'date': payload.data.date,
+        'applicantName': payload.data.applicant_name,
+        'applicantSurname': payload.data.applicant_surname,
+        'applicantCcaa': payload.data.applicant_ccaa,
+        'applicantEmail': payload.data.applicant_email,
+        'applicantPhonenumber': payload.data.applicant_phonenumber,
+        'companyName': payload.data.company_name,
+        'companyCif': payload.data.company_cif,
+        'companyEmployees': payload.data.company_employees,
+        'companyCnae': payload.data.company_cnae,
+        'subjects': payload.data.subjects
+        }
+    }
+
   model(){
     return {
       labels: {
@@ -144,7 +170,18 @@ export default class Subjects extends Component {
         "notApply": "xxxx",
         "placeholderAnalysis": "xxxx",
         "max200Words": "xxxx",
-        "discardButtonSubject": "xxxxxx"
+        "discardButtonSubject": "xxxxxx",
+        "applicantName": "XXXX",
+        "applicantSurname": "XXXXXXXXX",
+        "applicantCcaa": "xxxxx",
+        "applicantEmail": "XXX",
+        "applicantPhonenumber": "XXXXXXXXX",
+        "date": "XXXXX",
+        "text": "XXXXX",
+        "companyName": "XXXXXXXX",
+        "companyCif": "XXXXXX",
+        "companyEmployees": "XXXXXX",
+        "companyCnae": "XXXXXXXX"
       },
       values: {
         "solicitudeId": "",
@@ -152,12 +189,27 @@ export default class Subjects extends Component {
         "analysis": "",
         "subjectId":"",
         "topics": "",
-        "selectedTopics": []
+        "selectedTopics": [],
+        "id": "",
+        "applicantName": "",
+        "applicantSurname": "",
+        "applicantCcaa": "",
+        "applicantEmail": "",
+        "applicantPhonenumber": "",
+        "date": "",
+        "text": "",
+        "companyName": "",
+        "companyCif": "",
+        "companyEmployees": "",
+        "companyCnae": ""
       },
       submittable: false,
       topicsCatalog: [],
       proposalsCatalog: [],
       origin: "none",
+      setValues:function(key, value) {
+        this.values[key] = value
+      },
       translate:function(key,value) {
         this.labels[key] = value
       }
