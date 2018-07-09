@@ -3,8 +3,9 @@
 app/node_modules/
 app/package-lock.json
 api/Gemfile.lock
-app/dist/
-dist/
+app/public/dist/*
+!app/public/dist/.gitkeep
+
 staging/
 backup/
 
