@@ -1,7 +1,7 @@
 <template>
     <div class="card large-card">
       <div class="card-title">
-        <h4>{{ labels.summary }}</h4>
+        <h2>{{ labels.summary }}</h2>
       </div>
         <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
         <template v-if="hasSubjects">
@@ -56,8 +56,3 @@ export default {
 
 }
 </script>
-<style scoped>
-  .card-title {
-    margin-left: 1rem;
-  }
-</style>

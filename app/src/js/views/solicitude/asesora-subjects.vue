@@ -1,28 +1,27 @@
 <template>
-    <div class="card large-card">
-      <div class="card-title">
-        <h4>{{ labels.subjectsData}}</h4>
-      </div>
-      <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
-        <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
-        <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
-        <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
-        <template v-if="!editionmode">
-          <asesora-button-create-counseling :labels="labels"
-                                            :values="values"
-                                            :submittable="submittable"
-                                            >
-          </asesora-button-create-counseling>
-        </template>
-        <template v-else>
-          <asesora-button-modify-counseling :labels="labels"
-                                            :values="values"
-                                            :submittable="submittable">
-          </asesora-button-modify-counseling>
-        </template>
-        <asesora-button-discard-subject :labels="labels">
-        </asesora-button-discard-subject>
+  <div class="card large-card">
+    <div class="card-title">
+      <h2>{{ labels.subjectsData}}</h2>
     </div>
+    <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
+    <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
+    <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
+    <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
+    <template v-if="!editionmode">
+      <asesora-button-create-counseling :labels="labels"
+      :values="values"
+      :submittable="submittable">
+      </asesora-button-create-counseling>
+    </template>
+    <template v-else>
+      <asesora-button-modify-counseling :labels="labels"
+      :values="values"
+      :submittable="submittable">
+      </asesora-button-modify-counseling>
+    </template>
+    <asesora-button-discard-subject :labels="labels">
+    </asesora-button-discard-subject>
+  </div>
 </template>
 <script>
 import ProposalsView from './subjects/asesora-proposals-for-action'

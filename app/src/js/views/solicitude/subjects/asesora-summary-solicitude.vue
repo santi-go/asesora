@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="row grid-resposive">
-    <div class="colum colum-50" id="colum">
+    <div class="column column-25">
       <label>{{ labels.applicant}}</label>
       <p><em>{{ labels.applicantName }}:</em> {{ values.applicantName }}</p>
       <p><em>{{ labels.applicantSurname }}:</em> {{ values.applicantSurname }}</p>
@@ -10,17 +10,17 @@
       <p><em>{{ labels.applicantPhonenumber }}:</em> {{ values.applicantPhonenumber }}</p>
       <p><em>{{ labels.date }}:</em> {{ values.date }}</p>
     </div>
-    <div class="colum colum-50">
+    <div class="column column-25">
       <label>{{ labels.company}}</label>
       <p><em>{{ labels.companyName }}:</em> {{ values.companyName }}</p>
       <p><em>{{ labels.companyCif }}:</em> {{ values.companyCif }}</p>
       <p><em>{{ labels.companyEmployees }}:</em> {{ values.companyEmployees }}</p>
       <p><em>{{ labels.companyCnae }}:</em> {{ values.companyCnae }}</p>
     </div>
-  </div>
-  <div>
-    <label> {{ labels.text }}:</label>
-    <p><em>{{ values.text }}</em></p>
+    <div id="text"class="column column-50">
+      <label> {{ labels.text }}:</label>
+      <p>{{ values.text }}</p>
+    </div>
   </div>
 </div>
 </template>
@@ -34,18 +34,26 @@ export default {
 }
 </script>
 <style scoped>
-label {
-  margin-bottom: 1rem;
-  margin-left: 1rem;
+
+#text {
+  overflow: hidden;
 }
 
-#colum {
-  margin-left: 1rem;
-  margin-right: 20rem;
+label {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+p em {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.9em;
 }
 
 p {
-  margin-left: 1rem;
+  overflow-y: scroll;
 }
+
+
 
 </style>

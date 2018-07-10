@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card-title">
-      <h3>{{ labels.listTitle }}</h3>
+      <h2>{{ labels.listTitle }}</h2>
     </div>
     <table>
       <thead>
