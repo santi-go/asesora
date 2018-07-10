@@ -15,7 +15,7 @@
 
   export default {
     name: 'subject-topics',
-    props: ['labels', 'values', 'topicsCatalog',"submittable"],
+    props: ['labels', 'values', 'topicsCatalog', 'submittable'],
     computed: {
         filteredCatalog: function(){
             return this.topicsCatalog
@@ -32,10 +32,7 @@
                                       {'detail':[],
                                       'bubbles':true})
         this.$el.dispatchEvent(signal)
-      },
-
-
-
+      }
     },
     components: {
       MultiSelect

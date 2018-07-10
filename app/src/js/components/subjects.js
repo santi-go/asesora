@@ -50,7 +50,7 @@ export default class Subjects extends Component {
 
   discardCard(event){
     let url = ""
-    
+
     if (this.origin == "edit") {
       url =  "/index.html?id=" + this.data.values.solicitudeId
     }
@@ -154,8 +154,8 @@ export default class Subjects extends Component {
         'companyEmployees': payload.data.company_employees,
         'companyCnae': payload.data.company_cnae,
         'subjects': payload.data.subjects
-        }
-    }
+      }
+  }
 
   model(){
     return {
@@ -166,6 +166,7 @@ export default class Subjects extends Component {
         "addSubject": "XXXXXX",
         "createSubject": "XxX",
         "subjectsData": "xxxxx",
+        "subjectsList": "xxxxx",
         "topics": "xxxxxx",
         "notApply": "xxxx",
         "placeholderAnalysis": "xxxx",
@@ -181,7 +182,8 @@ export default class Subjects extends Component {
         "companyName": "XXXXXXXX",
         "companyCif": "XXXXXX",
         "companyEmployees": "XXXXXX",
-        "companyCnae": "XXXXXXXX"
+        "companyCnae": "XXXXXXXX",
+        "subject": "xxxxxx"
       },
       values: {
         "solicitudeId": "",
@@ -201,7 +203,8 @@ export default class Subjects extends Component {
         "companyName": "",
         "companyCif": "",
         "companyEmployees": "",
-        "companyCnae": ""
+        "companyCnae": "",
+        "subjects": []
       },
       submittable: false,
       topicsCatalog: [],
