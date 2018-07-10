@@ -439,6 +439,7 @@ export default class Solicitude extends Component {
     this.data.setValues('applicantSurname', item.detail.surname)
     this.data.setValues('applicantEmail', item.detail.email)
     this.data.setValues('applicantPhonenumber', item.detail.phonenumber)
+    this.data.setValues('applicantCcaa', item.detail.ccaa)
     this.data.setValues('applicantId', item.detail.id)
 
     this.runValidations()
