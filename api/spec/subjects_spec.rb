@@ -25,6 +25,7 @@ describe 'Subjects Api' do
 		subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
+            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
 		}.to_json
@@ -40,6 +41,7 @@ describe 'Subjects Api' do
     created_subject = {
       "solicitudeId": Fixtures::CREATION_MOMENT,
       "proposal": Fixtures::PROPOSAL,
+      "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
       "analysis": Fixtures::ANALYSIS,
       "topics": Fixtures::TOPICS
     }.to_json
@@ -54,6 +56,7 @@ describe 'Subjects Api' do
     response = JSON.parse(last_response.body)
 
     expect(response["data"][0]["proposal"]).to eq(Fixtures::PROPOSAL)
+    expect(response["data"][0]["proposals_description"]).to eq(Fixtures::PROPOSALS_DESCRIPTION)
     expect(response["data"][0]["solicitude_id"]).to eq(Fixtures::CREATION_MOMENT)
 	end
 
@@ -61,6 +64,7 @@ describe 'Subjects Api' do
 		subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
+            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
 		}.to_json

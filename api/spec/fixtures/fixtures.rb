@@ -36,6 +36,7 @@ class Fixtures
   COMPANY_CIF_3 = 'U7053991A'
   PROPOSAL = 'Propuestas de actuación'
   PROPOSAL_2 = 'Otras Propuestas de actuación'
+  PROPOSALS_DESCRIPTION = 'Descripción de la propuesta'
   ANALYSIS = 'Análisis de la solicitud'
   ANALYSIS_2 = 'Otros Análisis de la solicitud'
   TOPICS = 'Temas del caso'

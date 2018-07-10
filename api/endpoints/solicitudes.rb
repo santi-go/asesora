@@ -108,6 +108,7 @@ module Endpoints
         data = {
           solicitude_id: params['solicitudeId'],
           proposal: params['proposal'],
+          proposals_description: params['proposalsDescription'],
           analysis: params['analysis'],
           topics: params['topics']
         }
@@ -125,6 +126,7 @@ module Endpoints
           id: params['subjectId'],
           solicitude_id: params['solicitudeId'],
           proposal: params['proposal'],
+          proposals_description: params['proposalDescription'],
           analysis: params['analysis'],
           topics: params['topics']
         }
