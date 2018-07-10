@@ -99,6 +99,7 @@ export default class Subjects extends Component {
       solicitudeId: payload.detail.solicitudeId,
       proposal: payload.detail.proposals.map(item => item.value),
       analysis: payload.detail.analysis,
+      proposalsDescription: payload.detail.proposalsDescription,
       topics: payload.detail.topics.map(item => item.value)
     }
     Bus.publish('create.subject', subject)
@@ -170,6 +171,8 @@ export default class Subjects extends Component {
         "createSubject": "XxX",
         "subjectsData": "xxxxx",
         "subjectsList": "xxxxx",
+        "applicant": "xxxxx",
+        "company": "xxxxx",
         "topics": "xxxxxx",
         "notApply": "xxxx",
         "placeholderAnalysis": "xxxx",

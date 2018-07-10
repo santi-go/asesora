@@ -133,6 +133,8 @@ module Translation
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "subjectsData": "Datos del caso",
+                "applicant": "Solicitante",
+                "company": "Empresa",
                 "edit": "Editar",
                 "addSubject": "Añadir caso",
                 "createSubject": "Crear asesoramiento",
