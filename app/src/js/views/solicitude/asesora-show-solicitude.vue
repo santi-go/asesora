@@ -8,7 +8,7 @@
           <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
         </template>
 
-        <div v-if="buttonsPresent" class="card large-card" >
+        <div v-if="buttonsPresent">
           <div class="button-inline">
             <button   id='edit-button'
               type="button"
