@@ -1,7 +1,7 @@
 <template>
     <div class="card large-card">
         <div class="card-title">
-          <h4>{{ labels.subjectsData}}</h4>
+          <h2>{{ labels.subjectsData}}</h2>
         </div>
         <asesora-summary-solicitude :labels="labels" :values="values"></asesora-summary-solicitude>
         <asesora-subjects-list :labels="labels" :values="values"></asesora-subjects-list>
