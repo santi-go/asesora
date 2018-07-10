@@ -16,7 +16,7 @@
           </asesora-button-create-counseling>
         </template>
         <asesora-button-discard-subject :labels="labels"></asesora-button-discard-subject>
-    </div>
+  </div>
 </template>
 
 <script>

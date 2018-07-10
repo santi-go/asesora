@@ -9,15 +9,15 @@
       </a>
     </div>
   </div>
-  <div id="links" class="about-links column column-50 col-search">
+  <div id="links" class="about-links column column-50">
       <div class="link">
         <a href="/">
-          <em class="fa fa-pencil-square-o"></em>{{ labels.createSolicitude }}
+          {{ labels.createSolicitude }}
         </a>
       </div>
       <div class="link">
         <a href="/solicitudes-list.html">
-          <em class="fa fa-list"></em>{{ labels.solicitudeList }}
+          {{ labels.solicitudeList }}
         </a>
       </div>
   </div>
@@ -41,6 +41,7 @@ export default {
 .header {
   display: flex;
   width: 100%;
+  height: 3em;
 }
 
 .about-header {

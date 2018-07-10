@@ -51,6 +51,9 @@ export default class Subjects extends Component {
   discardCard(event){
     let url = ""
 
+    if (this.origin == "show") {
+      url =  "/show-solicitude.html?id=" + this.data.values.solicitudeId
+    }
     if (this.origin == "edit") {
       url =  "/index.html?id=" + this.data.values.solicitudeId
     }
