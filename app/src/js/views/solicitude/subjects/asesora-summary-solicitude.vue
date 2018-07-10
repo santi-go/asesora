@@ -50,9 +50,9 @@ p em {
   font-size: 0.9em;
 }
 
-p {
+/*p {
   overflow-y: scroll;
-}
+}*/
 
 
 
