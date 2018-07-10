@@ -186,7 +186,9 @@ export default class Subjects extends Component {
         "companyCif": "XXXXXX",
         "companyEmployees": "XXXXXX",
         "companyCnae": "XXXXXXXX",
-        "subject": "xxxxxx"
+        "subject": "xxxxxx",
+        "proposalsDescription": "XXXXXXXX",
+        "placeholderProposalsDescription": "xxxxxxxxx"
       },
       values: {
         "solicitudeId": "",
@@ -207,7 +209,8 @@ export default class Subjects extends Component {
         "companyCif": "",
         "companyEmployees": "",
         "companyCnae": "",
-        "subjects": []
+        "subjects": [],
+        "proposalsDescription": ""
       },
       submittable: false,
       topicsCatalog: [],

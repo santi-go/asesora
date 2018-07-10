@@ -153,7 +153,9 @@ module Translation
                 "applicantCcaa": "Comunidad autónoma",
                 "subjectsList": "Listado de casos",
                 "notApply": "N/A",
-                "subject": "Caso"
+                "subject": "Caso",
+                "proposalsDescription": "Descripción de las propuestas",
+                "placeholderProposalsDescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
               }
             },
 
