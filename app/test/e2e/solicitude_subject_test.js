@@ -29,8 +29,7 @@ describe('Solicitude Subjects', () => {
 
     solicitudeSubjects.clickOnCreateCounseling()
     solicitudeSubjects.waitForSubjectsList()
-
-    result = solicitudeSubjects.includeSubjectProposal()
+    result = solicitudeSubjects.includeSubjectList()
     expect(result).to.eq(true)
   })
 
