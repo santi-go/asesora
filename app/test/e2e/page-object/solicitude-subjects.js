@@ -88,7 +88,7 @@ class SolicitudeSubjects{
     return isDisabled == null
   }
 
-  includeSubjectProposal(){
+  includeSubjectList(){
     browser.waitForVisible('#subjects-list', 2000)
     if(browser.isVisible('#subjects-list')) return true
     return false

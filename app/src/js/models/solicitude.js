@@ -68,7 +68,7 @@ export let SolicitudeModel = {
     "companyEmployees": "",
     "companyCnae": "",
     "suggestions" : "",
-    "subjects": "",
+    "subjects": [],
     "proposals": [],
     "analysis": "",
     "selectedTopics": [],

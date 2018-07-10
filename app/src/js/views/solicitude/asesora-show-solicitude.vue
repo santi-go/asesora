@@ -22,8 +22,6 @@
     </div>
 </template>
 <script>
-import ProposalsView from './subjects/asesora-proposals-for-action'
-import AnalysisView from './subjects/asesora-analysis-for-solicitude'
 import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
 import ButtonAddSubject from './asesora-button-add-subject'
 import SubjectsListView from './subjects/asesora-subjects-list'
@@ -47,8 +45,6 @@ export default {
     }
   },
   components: {
-    "asesora-proposals-for-action" : ProposalsView,
-    "asesora-analysis-for-solicitude" : AnalysisView,
     "asesora-summary-solicitude" : SummarySolicitudeView,
     "asesora-button-add-subject" : ButtonAddSubject,
     "asesora-subjects-list" : SubjectsListView

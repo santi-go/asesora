@@ -150,7 +150,10 @@ module Translation
                 "companyCif": "CIF",
                 "companyEmployees": "Número trabajadoras y trabajadores",
                 "companyCnae": "CNAE",
-                "applicantCcaa": "Comunidad autónoma"
+                "applicantCcaa": "Comunidad autónoma",
+                "subjectsList": "Listado de casos",
+                "notApply": "N/A",
+                "subject": "Caso"
               }
             },
 

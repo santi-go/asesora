@@ -124,7 +124,6 @@ export default class Solicitude extends Component {
   }
 
   editSubject(event){
-
     this.data.editionSubject = event.detail.id
     let valuesProposals = []
     for (const proposal of event.detail.proposal) {
@@ -201,7 +200,7 @@ export default class Solicitude extends Component {
   refreshModifiedSubject(updatedSubject){
     for (let subject of this.data.values.subjects){
       if (subject.id == updatedSubject.id){
-        subject.proposals = updatedSubject.proposals
+        subject.proposal = updatedSubject.proposal
         subject.analysis = updatedSubject.analysis
         subject.topics = updatedSubject.topics
       }

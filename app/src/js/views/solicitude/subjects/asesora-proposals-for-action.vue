@@ -5,7 +5,6 @@
                   :selected-options="values.proposals"
                   id="subject-proposals"
                   @select="onSelect"
-                  v-on:keyup="changedProposal"
                   v-model="values.proposals">
     </multi-select>
   </div>
@@ -17,6 +16,7 @@
   export default {
     name: 'asesora-proposals-for-action',
     props: ['labels', 'values', 'proposalsCatalog'],
+
     methods: {
       onSelect (items, lastSelectItem) {
         this.values.proposals = items
@@ -24,7 +24,7 @@
       },
       changedProposal(event) {
         let signal = new CustomEvent('changed.subject',
-                                    {'detail': "",
+                                    {'detail': [],
                                     'bubbles': true})
         this.$el.dispatchEvent(signal)
       }
