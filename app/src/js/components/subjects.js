@@ -170,6 +170,8 @@ export default class Subjects extends Component {
         "createSubject": "XxX",
         "subjectsData": "xxxxx",
         "subjectsList": "xxxxx",
+        "applicant": "xxxxx",
+        "company": "xxxxx",
         "topics": "xxxxxx",
         "notApply": "xxxx",
         "placeholderAnalysis": "xxxx",

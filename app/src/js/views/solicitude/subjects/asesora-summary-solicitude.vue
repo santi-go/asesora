@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="summary">
   <div class="row grid-resposive">
     <div class="column column-30 box">
       <label>{{ labels.applicant}}</label>
@@ -34,6 +34,10 @@ export default {
 }
 </script>
 <style scoped>
+
+#summary{
+  margin-bottom: 2em;
+}
 
 #text {
   flex: 1;
