@@ -81,7 +81,7 @@ header.navbar div.row {
   height: inherit;
 }
 
-.navbar .about-links > * {
+.navbar .navbar-links > * {
   color: #fff;
   display: block;
   border-radius: 2px;

@@ -1,7 +1,7 @@
-require_relative '../../domain/about'
+require_relative '../../domain/navbar'
 require 'mongo'
 
-module About
+module Navbar
   class Collection
     DEFAULT_ABOUT = {
       "name" => 'Asesora',
@@ -13,29 +13,29 @@ module About
       def retrieve
         document = find
 
-        Domain::About.from_document(document)
+        Domain::Navbar.from_document(document)
       end
 
       private
 
       def find
-        get_about
+        get_navbar
       end
 
-      def get_about
-        MongoClient.about()
+      def get_navbar
+        MongoClient.navbar()
       end
 
       class MongoClient
         class << self
 
-          def about
-            return set_default if client[:about].count({})== 0
-            client[:about].find().first
+          def navbar
+            return set_default if client[:navbar].count({})== 0
+            client[:navbar].find().first
           end
 
           def set_default
-              client[:about].insert_one(DEFAULT_ABOUT)
+              client[:navbar].insert_one(DEFAULT_ABOUT)
               DEFAULT_ABOUT
           end
 

@@ -1,15 +1,15 @@
 <template>
 
 <div class="header">
-  <div class="about-header column column-20 col-site-title">
-    <div class="about-title ">
+  <div class="navbar-header column column-20 col-site-title">
+    <div class="navbar-title ">
       <a href="index.html" class="float-left site-title">
         <img class="float-left asesoraicon" src="favicon.ico" alt="Icono Asesora">
         &nbsp;{{title}}
       </a>
     </div>
   </div>
-  <div id="links" class="about-links column column-50">
+  <div id="links" class="navbar-links column column-50">
       <div class="link">
         <a href="/">
           {{ labels.createSolicitude }}
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'asesora-about',
+  name: 'asesora-navbar',
   props: ['title', 'version', 'labels']
 }
 </script>
@@ -44,11 +44,11 @@ export default {
   height: 3em;
 }
 
-.about-header {
+.navbar-header {
   flex-direction: column;
 }
 
-.navbar .about-header .about-title > * {
+.navbar .navbar-header .navbar-title > * {
   display: inline-flex;
   margin-bottom: 0;
 }

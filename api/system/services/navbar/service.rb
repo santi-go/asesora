@@ -1,6 +1,6 @@
 require_relative 'collection'
 
-module About
+module Navbar
   class Service
     def self.retrieve
       information = Collection.retrieve

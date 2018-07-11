@@ -1,6 +1,6 @@
 
 module Domain
-  class About
+  class Navbar
     def self.from_document(document)
       new(
         document['name'],

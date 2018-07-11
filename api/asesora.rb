@@ -32,7 +32,7 @@ class Asesora < Sinatra::Base
 
   Endpoints::Translations.define_retrieve_translations(self)
 
-  Endpoints::Information.define_retrieve_about(self)
+  Endpoints::Information.define_retrieve_navbar(self)
 
   Endpoints::Solicitudes.define_create_solicitude(self)
   Endpoints::Solicitudes.define_retrieve_solicitude(self)
