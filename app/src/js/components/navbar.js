@@ -1,17 +1,14 @@
-import AsesoraNavbar from '../views/asesora-navbar'
-import Component from '../infrastructure/component'
 import {Bus} from '../bus'
+import Component from '../infrastructure/component'
+import AsesoraNavbar from '../views/asesora-navbar'
 
 export default class Navbar extends Component{
 
   constructor(){
     super('navbar')
-    this.retrieve()
   }
 
   subscribe(){
-    Bus.subscribe("got.information", this.setInfo.bind(this))
-    Bus.subscribe("got.information", this.askTranslationsFor.bind(this))
     Bus.subscribe("got.translation.for.navbar", this.translate.bind(this))
   }
 
@@ -21,18 +18,13 @@ export default class Navbar extends Component{
     this.data.translate(key,label)
   }
 
-  askTranslationsFor(payload) {
-    let data = {  for: this.element,
-                  key: payload.description }
-    Bus.publish('ask.translation', data)
-  }
-
-  setInfo(payload){
-    this.data.setValues(payload)
-  }
-
-  retrieve(){
-    Bus.publish("get.information")
+  askTranslations() {
+    let labelKeys = Object.keys(this.model().labels)
+    for (const labelKey of labelKeys) {
+      let data = {  for: this.element,
+                    key: labelKey }
+      Bus.publish('ask.translation', data)
+    }
   }
 
   initializeViews(){
@@ -45,22 +37,15 @@ export default class Navbar extends Component{
 
   model(){
     return {
-      title: "XXXXXXX",
-      version: "Version X.X.X",
       labels: {
-        "description": "lorem ipsum dolor lorem ipsum dolor",
-        "createSolicitude": "Nueva solicitud",
-        "solicitudeList": "Listado de solicitudes"
+        "name": "XXXXXXX",
+        "createSolicitude": "XXXXXXXXXX",
+        "solicitudeList": "xXxXxXxX"
       },
 
-      setValues:function(values){
-        this.title = values.name
-        this.descriptionKey = values.description
-        this.version = values.version
-      },
-
-      translate:function(key,value) {
+    translate:function(key,value) {
         this.labels[key] = value
+        console.log(this.labels);
       }
     }
   }

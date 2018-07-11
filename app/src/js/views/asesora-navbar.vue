@@ -5,11 +5,12 @@
     <div class="navbar-title ">
       <a href="index.html" class="float-left site-title">
         <img class="float-left asesoraicon" src="favicon.ico" alt="Icono Asesora">
-        &nbsp;{{title}}
+        &nbsp;{{ labels.name }}
       </a>
     </div>
   </div>
   <div id="links" class="navbar-links column column-50">
+
       <div class="link">
         <a href="/">
           {{ labels.createSolicitude }}
@@ -33,7 +34,7 @@
 <script>
 export default {
   name: 'asesora-navbar',
-  props: ['title', 'version', 'labels']
+  props: ['labels']
 }
 </script>
 <style scoped>
