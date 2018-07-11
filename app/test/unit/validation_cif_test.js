@@ -1,7 +1,4 @@
-const expect = require('chai').expect
-
 import {ValidationCif} from '../../src/js/library/validation-cif'
-
 
 describe('Validation CIF', () => {
   it('valides a correct CIF/NIF', ()=> {
@@ -25,5 +22,4 @@ describe('Validation CIF', () => {
       expect(result).to.be.false
     })
   })
-
 })

@@ -13,12 +13,16 @@
     "xhr2": "^0.1.4"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "chai": "^3.5.0",
     "css-loader": "*",
-    "mocha": "^3.4.1",
+    "jsdom": "^11.11.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "^2.0.0-beta",
     "sinon": "^4.5.0",
     "sync-request": "^6.0.0",
     "vue": "^2.5.13",
@@ -35,12 +39,12 @@
   "scripts": {
     "build": "webpack --config conf/webpack.config.js --mode development",
     "build-watch": "webpack --config conf/webpack.config.js --mode development --watch",
-    "test-all": "npm run builde2e -s && wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
-    "test-e2e": "npm run builde2e -s && wdio ./conf/wdio.conf.js",
-    "builde2e": "API_HOST=api API_PORT=4567 webpack --config ./conf/webpack.config.js --mode production",
+    "builde2e": "API_HOST=api API_PORT=4567 webpack --config conf/webpack.config.js --mode production",
     "build-vagrant": "API_HOST=10.10.10.10 API_PORT=80 webpack --config conf/webpack.config.js --mode production",
     "build-digitalocean": "API_HOST=206.189.1.31 API_PORT=80 webpack --config conf/webpack.config.js",
-    "test-unit": "mocha test/unit --compilers js:babel-core/register"
+    "test-all": "npm run test-unit && npm run test-e2e",
+    "test-e2e": "npm run builde2e -s && wdio conf/wdio.conf.js",
+    "test-unit": "mocha-webpack --webpack-config conf/webpack.test.config.js --interactive false --require test/setup.js \"test/unit/**/*_test.js\""
   },
   "babel": {
     "presets": [
