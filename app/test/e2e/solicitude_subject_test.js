@@ -16,23 +16,6 @@ describe('Solicitude Subjects', () => {
     fixtures.clean()
   })
 
-  it("are rendered in a subject list within show solicitude", function () {
-    const newAnalysis = "Other Analysis"
-    const solicitudesList = new SolicitudesList()
-    solicitudesList.waitForSolicitudesList()
-    solicitudesList.clickOnShowButtonOnItem(1)
-
-    const solicitudeSubjects = new SolicitudeSubjects()
-    solicitudeSubjects.clickOnAddSubjectButton()
-    solicitudeSubjects.fill().subjectAnalysis(newAnalysis)
-
-
-    solicitudeSubjects.clickOnCreateCounseling()
-    solicitudeSubjects.waitForSubjectsList()
-    result = solicitudeSubjects.includeSubjectList()
-    expect(result).to.eq(true)
-  })
-
   it("enables button when there is an analysis", function () {
 
     const newAnalysis = "Other Analysis"
