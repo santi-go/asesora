@@ -29,7 +29,7 @@
   import SubjectTopicsView from './subjects/subject-topics'
   import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
   import SubjectsListView from './subjects/asesora-subjects-list'
-  import ProposalsDescription from './subjects/asesora-proposals-description'
+  import ProposalsDescriptionView from './subjects/asesora-proposals-description'
 
   export default {
     name: 'asesora-subjects',
@@ -43,7 +43,7 @@
       "subject-topics": SubjectTopicsView,
       "asesora-summary-solicitude" : SummarySolicitudeView,
       "asesora-subjects-list": SubjectsListView,
-      "asesora-proposals-description": ProposalsDescription
+      "asesora-proposals-description": ProposalsDescriptionView
     }
   }
 </script>

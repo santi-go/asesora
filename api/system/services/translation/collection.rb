@@ -89,7 +89,9 @@ module Translation
                 "solicitudeData": "Datos de solicitud",
                 "solicitude": "Solicitud",
                 "identification": "Identificación",
-                "information": "Información"
+                "information": "Información",
+                "description": "Descripción de las propuestas",
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
               },
 
               "solicitudes-list": {
@@ -101,7 +103,9 @@ module Translation
                 "topics": "Temas del caso",
                 "notApply": "n/a",
                 "edit": "Editar",
-                "show": "Mostrar"
+                "show": "Mostrar",
+                "description": "Descripción de las propuestas",
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
               },
 
               "show-solicitude": {
@@ -126,7 +130,9 @@ module Translation
                 "subjectsList": "Listado de casos",
                 "notApply": "N/A",
                 "subject": "Caso",
-                "applicantCcaa": "Comunidad autónoma"
+                "applicantCcaa": "Comunidad autónoma",
+                "description": "Descripción de las propuestas",
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
               },
 
               "subjects": {
@@ -156,8 +162,8 @@ module Translation
                 "subjectsList": "Listado de casos",
                 "notApply": "N/A",
                 "subject": "Caso",
-                "proposalsDescription": "Descripción de las propuestas",
-                "placeholderProposalsDescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
+                "description": "Descripción de las propuestas",
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
               }
             },
 

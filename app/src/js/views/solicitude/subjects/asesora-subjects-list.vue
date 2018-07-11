@@ -36,6 +36,12 @@
                     </li>
                   </ul>
                 </template>
+
+                <template v-if=" item.description !='' ">
+                  <label>{{ labels.description }}</label>
+                  <p>{{ item.description }}</p>
+                </template>
+
                 <template v-if=" item.analysis !='' ">
                   <label>{{ labels.analysis }}</label>
                   <p>{{ item.analysis }}</p>

@@ -24,6 +24,7 @@ export default {
                                     subjectId: this.values.subjectId,
                                     solicitudeId: this.values.id,
                                     proposals: this.values.proposals,
+                                    description: this.values.description,
                                     analysis: this.values.analysis,
                                     topics:this.values.selectedTopics
                                   },

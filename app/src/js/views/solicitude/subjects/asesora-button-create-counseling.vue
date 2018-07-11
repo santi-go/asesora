@@ -24,7 +24,7 @@ export default {
                                     solicitudeId: this.values.solicitudeId,
                                     proposals: this.values.proposals,
                                     analysis: this.values.analysis,
-                                    proposalsDescription: this.values.proposalsDescription,
+                                    description: this.values.description,
                                     topics:this.values.selectedTopics
                                   },
                                   'bubbles': true})
