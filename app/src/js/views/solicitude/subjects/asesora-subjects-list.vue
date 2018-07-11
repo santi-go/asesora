@@ -8,7 +8,7 @@
         <tr v-for="item in values.subjects"
             v-on:click="onClick(item)">
             <td>
-            <div class="row grid-responsive">
+            <div class="row grid-responsive" v-bind:class="{ closedSubject: isClosed(item) }">
               <div class="column column-20">
                 <h4>
                   <template v-if="editionmode">{{labels.modify}}</template>
@@ -16,7 +16,7 @@
                 </h4>
               </div>
               <div class="column column-80">
-                <template v-if="editionSubject == item.id">
+                <template v-if="editionSubject == item.id" >
                  <asesora-subjects-edition :labels="labels"
                                            :values="values"
                                            :topics-catalog="topicsCatalog"
@@ -79,6 +79,11 @@ import SubjectsEditionView from './asesora-subjects-edition'
       "asesora-subjects-edition" : SubjectsEditionView
     },
     methods: {
+      isClosed(item){
+        if (item.closing_moment !== null){return true}
+        return false
+      },
+
       onClick(item){
         if (item.id != this.editionSubject){
           let signal = new CustomEvent('clicked.subject.list',
