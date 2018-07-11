@@ -5,7 +5,7 @@ import Applicants from './services/applicants'
 import Companies from './services/companies'
 
 
-import About from './components/about'
+import Navbar from './components/navbar'
 import Sidebar from './components/sidebar'
 import Solicitude from './components/solicitude'
 import SolicitudesList from './components/solicitudes-list'
@@ -18,7 +18,7 @@ new Solicitudes()
 new Applicants()
 new Companies()
 
-new About()
+new Navbar()
 new Sidebar()
 
 module.exports = {

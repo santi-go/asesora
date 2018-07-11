@@ -25,7 +25,7 @@ module Translation
         def dictionary
           {
             "es" => {
-              "about": {
+              "navbar": {
                 "description": "Registro de asesoramientos técnicos en salud laboral",
                 "solicitudeList": "Listado de solicitudes",
                 "createSolicitude": "Nueva solicitud"
@@ -162,7 +162,7 @@ module Translation
             },
 
             "en" => {
-              "about": {
+              "navbar": {
                 "description": "asesora application"
               }
             }
