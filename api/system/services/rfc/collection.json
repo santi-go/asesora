@@ -1,0 +1,7 @@
+[
+  {"id": "01","name": "Consulta puntual"},
+  {"id": "02","name": "Resuelto satisfactoriamente"},
+  {"id": "03","name": "Aplazado"},
+  {"id": "04","name": "Sin mas acciones posibles"},
+  {"id": "05","name": "Bloqueado"},
+]
