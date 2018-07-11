@@ -5,6 +5,7 @@ require_relative '../system/actions/update_solicitude'
 require_relative '../system/actions/delete_solicitude'
 require_relative '../system/actions/retrieve_cnae'
 require_relative '../system/actions/retrieve_ccaa'
+require_relative '../system/actions/retrieve_close_reasons'
 require_relative '../system/actions/create_subject'
 require_relative '../system/actions/update_subject'
 require_relative '../system/actions/close_subject'
@@ -99,6 +100,14 @@ module Endpoints
         ccaa_catalog = Actions::RetrieveCcaa.do()
 
         {data: ccaa_catalog}.to_json
+      end
+    end
+
+    def self.define_retrieve_close_reasons(api)
+      api.post '/api/close_reasons' do
+        close_reasons_catalog = Actions::RetrieveCloseReasons.do()
+
+        {data: close_reasons_catalog}.to_json
       end
     end
 

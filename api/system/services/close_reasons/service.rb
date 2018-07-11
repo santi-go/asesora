@@ -1,6 +1,6 @@
 require 'json'
 
-module Rfc
+module CloseReasons
   class Service
     def self.all
       from_path = File.dirname(__FILE__)
