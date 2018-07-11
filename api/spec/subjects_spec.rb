@@ -94,7 +94,7 @@ describe 'Subjects Api' do
     subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
-            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
+            "description": Fixtures::DESCRIPTION,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
 		}.to_json
