@@ -1,18 +1,18 @@
-import AsesoraAbout from '../views/asesora-about'
+import AsesoraNavbar from '../views/asesora-navbar'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
-export default class About extends Component{
+export default class Navbar extends Component{
 
   constructor(){
-    super('about')
+    super('navbar')
     this.retrieve()
   }
 
   subscribe(){
     Bus.subscribe("got.information", this.setInfo.bind(this))
     Bus.subscribe("got.information", this.askTranslationsFor.bind(this))
-    Bus.subscribe("got.translation.for.about", this.translate.bind(this))
+    Bus.subscribe("got.translation.for.navbar", this.translate.bind(this))
   }
 
   translate(payload) {
@@ -37,7 +37,7 @@ export default class About extends Component{
 
   initializeViews(){
     let listView =  {
-        'asesora-about': AsesoraAbout
+        'asesora-navbar': AsesoraNavbar
       }
     super.initializeViews(listView)
 

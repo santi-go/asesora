@@ -9,13 +9,13 @@ export default class Information {
   }
 
   subscribe() {
-    Bus.subscribe("get.information", this.retrieveAbout.bind(this))
+    Bus.subscribe("get.information", this.retrieveNavbar.bind(this))
   }
 
-  retrieveAbout(payload) {
+  retrieveNavbar(payload) {
     let callback = this.buildCallback('got.information')
     let body = {}
-    let url = 'about'
+    let url = 'navbar'
     this.client.hit(url, body, callback)
   }
 

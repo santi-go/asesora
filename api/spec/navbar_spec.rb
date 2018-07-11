@@ -5,7 +5,7 @@ require 'rack/test'
 
 require_relative './fixtures/asesora_with_fixtures'
 
-describe 'About Api' do
+describe 'Navbar Api' do
 
   include Rack::Test::Methods
 
@@ -13,9 +13,9 @@ describe 'About Api' do
     AsesoraWithFixtures
   end
 
-  context 'retieves the about information' do
+  context 'retieves the navbar information' do
     it 'returns all' do
-      post '/api/about'
+      post '/api/navbar'
 
       retrieved_information = JSON.parse(last_response.body)
 
