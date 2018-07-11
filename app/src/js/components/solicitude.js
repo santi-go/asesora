@@ -67,7 +67,6 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.add.subject', this.addSubject.bind(this))
     this.reactTo('clicked.subject.list', this.editSubject.bind(this))
     this.reactTo('changed.subject', this.setModifySubjectButtonStatus.bind(this))
-    this.reactTo('changed.proposals.description', this.setModifySubjectButtonStatus.bind(this))
     this.reactTo('clicked.modify.counseling', this.modifyCounseling.bind(this))
 
     window.addEventListener("beforeunload", this.leaving.bind(this))
@@ -137,6 +136,7 @@ export default class Solicitude extends Component {
     }
 
     this.data.setValues('proposals', valuesProposals)
+    this.data.setValues('description', event.detail.description)
     this.data.setValues('analysis', event.detail.analysis)
     this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
@@ -181,7 +181,7 @@ export default class Solicitude extends Component {
       subjectId: payload.detail.subjectId,
       solicitudeId: payload.detail.solicitudeId,
       proposal: payload.detail.proposals.map(item => item.value),
-      proposalsDescription: payload.detail.proposalsDescription,
+      description: payload.detail.description,
       analysis: payload.detail.analysis,
       topics: payload.detail.topics.map(item => item.value)
     }
@@ -203,7 +203,7 @@ export default class Solicitude extends Component {
     for (let subject of this.data.values.subjects){
       if (subject.id == updatedSubject.id){
         subject.proposal = updatedSubject.proposal
-        subject.proposalsDescription = updatedSubject.proposalsDescription
+        subject.description = updatedSubject.description
         subject.analysis = updatedSubject.analysis
         subject.topics = updatedSubject.topics
       }

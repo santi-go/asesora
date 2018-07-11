@@ -1,10 +1,10 @@
 <template>
   <div>
-    <label for="solicitude-proposals-description">{{ labels.proposalsDescription }}</label>
+    <label for="solicitude-proposals-description">{{ labels.description }}</label>
     <textarea id="solicitude-proposals-description"
-              :placeholder="labels.placeholderProposalsDescription"
-              v-on:keyup="onKeyup"
-              v-model="values.proposalsDescription">
+              :placeholder="labels.placeholderdescription"
+              v-model="values.description"
+              v-on:keyup="onKeyup">
     </textarea>
   </div>
 </template>
@@ -17,9 +17,9 @@ export default {
 
   methods: {
     onKeyup(event){
-      let signal = new CustomEvent('changed.proposals.description',
-                                      {'detail': {},
-                                      'bubbles': true})
+      let signal = new CustomEvent('changed.subject',
+                                    {'detail': "",
+                                    'bubbles': true})
       this.$el.dispatchEvent(signal)
     }
   }

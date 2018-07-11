@@ -99,7 +99,7 @@ export default class Subjects extends Component {
       solicitudeId: payload.detail.solicitudeId,
       proposal: payload.detail.proposals.map(item => item.value),
       analysis: payload.detail.analysis,
-      proposalsDescription: payload.detail.proposalsDescription,
+      description: payload.detail.description,
       topics: payload.detail.topics.map(item => item.value)
     }
     Bus.publish('create.subject', subject)
@@ -190,8 +190,8 @@ export default class Subjects extends Component {
         "companyEmployees": "XXXXXX",
         "companyCnae": "XXXXXXXX",
         "subject": "xxxxxx",
-        "proposalsDescription": "XXXXXXXX",
-        "placeholderProposalsDescription": "xxxxxxxxx"
+        "description": "XXXXXXXX",
+        "placeholderdescription": "xxxxxxxxx"
       },
       values: {
         "solicitudeId": "",
@@ -213,7 +213,7 @@ export default class Subjects extends Component {
         "companyEmployees": "",
         "companyCnae": "",
         "subjects": [],
-        "proposalsDescription": ""
+        "description": ""
       },
       submittable: false,
       topicsCatalog: [],

@@ -2,8 +2,8 @@ require_relative '../services/subjects/service'
 
 module Actions
   class UpdateSubject
-    def self.do(id:, proposal:, proposals_description:, analysis:, topics:, solicitude_id:)
-      ::Subjects::Service.update(id, proposal, proposals_description, analysis, topics, solicitude_id)
+    def self.do(solicitude_id:, id:, proposal:, description:, analysis:, topics:)
+      ::Subjects::Service.update(solicitude_id, id, proposal, description, analysis, topics)
     end
   end
 end

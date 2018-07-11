@@ -25,7 +25,7 @@ describe 'Subjects Api' do
 		subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
-            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
+            "description": Fixtures::DESCRIPTION,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
 		}.to_json
@@ -41,7 +41,7 @@ describe 'Subjects Api' do
     created_subject = {
       "solicitudeId": Fixtures::CREATION_MOMENT,
       "proposal": Fixtures::PROPOSAL,
-      "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
+      "description": Fixtures::DESCRIPTION,
       "analysis": Fixtures::ANALYSIS,
       "topics": Fixtures::TOPICS
     }.to_json
@@ -56,7 +56,7 @@ describe 'Subjects Api' do
     response = JSON.parse(last_response.body)
 
     expect(response["data"][0]["proposal"]).to eq(Fixtures::PROPOSAL)
-    expect(response["data"][0]["proposals_description"]).to eq(Fixtures::PROPOSALS_DESCRIPTION)
+    expect(response["data"][0]["description"]).to eq(Fixtures::DESCRIPTION)
     expect(response["data"][0]["solicitude_id"]).to eq(Fixtures::CREATION_MOMENT)
 	end
 
@@ -64,7 +64,7 @@ describe 'Subjects Api' do
 		subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
-            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
+            "description": Fixtures::DESCRIPTION,
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS
 		}.to_json
@@ -75,6 +75,7 @@ describe 'Subjects Api' do
     other_subject = {
             "subjectId": response['id'],
             "proposal": Fixtures::PROPOSAL_2,
+            "description": Fixtures::DESCRIPTION_2,
             "analysis": Fixtures::ANALYSIS_2,
             "topics": Fixtures::TOPICS
 		}.to_json
@@ -84,6 +85,7 @@ describe 'Subjects Api' do
 
 
     expect(updated_response["proposal"]).to eq(Fixtures::PROPOSAL_2)
+    expect(updated_response["description"]).to eq(Fixtures::DESCRIPTION_2)
     expect(updated_response["analysis"]).to eq(Fixtures::ANALYSIS_2)
     expect(updated_response["topics"]).to eq(Fixtures::TOPICS)
   end
