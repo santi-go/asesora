@@ -19,6 +19,16 @@ module Subjects
       collection.serialize
     end
 
+    def self.close(id, reason, counseling_comment)
+      subject = Collection.retrieve(id)
+      subject.reason = reason
+      subject.counseling_comment = counseling_comment
+      subject.closing_moment = Time.now.to_i
+
+      updated_subject = Collection.update(subject, id)
+      updated_subject.serialize
+    end
+
     def self.all_by(solicitude_id)
       Collection.all_by(solicitude_id).serialize
     end

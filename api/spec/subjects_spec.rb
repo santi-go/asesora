@@ -89,4 +89,31 @@ describe 'Subjects Api' do
     expect(updated_response["analysis"]).to eq(Fixtures::ANALYSIS_2)
     expect(updated_response["topics"]).to eq(Fixtures::TOPICS)
   end
+
+  it 'allows to add closing moment' do
+    subject = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "proposal": Fixtures::PROPOSAL,
+            "proposalsDescription": Fixtures::PROPOSALS_DESCRIPTION,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS
+		}.to_json
+
+    post '/api/create-subject', subject
+    response = JSON.parse(last_response.body)
+
+    expect(response["closing_moment"]).to eq(nil)
+
+    closing_subject = {
+            "subjectId": response['id'],
+            "reason": "A reason",
+            "counselingComment": "A comment"
+		}.to_json
+
+    post '/api/close-subject', closing_subject
+    closed_response = JSON.parse(last_response.body)
+    expect(closed_response["reason"]).to eq("A reason")
+    expect(closed_response["counseling_comment"]).to eq("A comment")
+    expect(closed_response["closing_moment"]).not_to eq(nil)
+  end
 end

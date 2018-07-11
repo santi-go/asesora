@@ -7,6 +7,7 @@ require_relative '../system/actions/retrieve_cnae'
 require_relative '../system/actions/retrieve_ccaa'
 require_relative '../system/actions/create_subject'
 require_relative '../system/actions/update_subject'
+require_relative '../system/actions/close_subject'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
@@ -132,6 +133,21 @@ module Endpoints
         }
 
         updated = Actions::UpdateSubject.do(data)
+        return {}.to_json if updated.nil?
+        updated.to_json
+      end
+    end
+
+    def self.define_close_subject(api)
+      api.post '/api/close-subject' do
+        params = JSON.parse(request.body.read)
+        data = {
+          id: params['subjectId'],
+          reason: params['reason'],
+          counseling_comment: params['counselingComment']
+        }
+
+        updated = Actions::CloseSubject.do(data)
         return {}.to_json if updated.nil?
         updated.to_json
       end

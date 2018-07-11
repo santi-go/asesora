@@ -22,6 +22,12 @@ module Subjects
         Domain::Subject.from_document(document)
       end
 
+      def retrieve(id)
+        subject = MongoClient.find(id)
+
+        Domain::Subject.from_document(subject)
+      end
+
       def all_by(solicitude_id)
         subjects = MongoClient.all_by(solicitude_id)
 
@@ -43,6 +49,10 @@ module Subjects
 
         def update(subject, id)
           client[:subjects].find_one_and_replace({ "id": id }, subject, :return_document => :after)
+        end
+
+        def find(id)
+          client[:subjects].find({"id": id}).first
         end
 
         private

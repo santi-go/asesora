@@ -9,6 +9,9 @@ module Domain
         subject.description = document['description']
         subject.analysis = document['analysis']
         subject.topics = document['topics']
+        subject.reason = document['reason']
+        subject.counseling_comment = document['counseling_comment']
+        subject.closing_moment = document['closing_moment']
 
         subject
       end
@@ -23,7 +26,7 @@ module Domain
         subject
       end
 
-      attr_writer :proposal, :description, :analysis, :topics
+      attr_writer :proposal, :description, :analysis, :topics, :reason, :counseling_comment, :closing_moment
 
       def initialize(solicitude_id, id = nil)
         @solicitude_id = solicitude_id
@@ -40,6 +43,9 @@ module Domain
           "analysis" => @analysis,
           "topics" => @topics,
           "solicitude_id" => @solicitude_id,
+          "reason" => @reason,
+          "counseling_comment" => @counseling_comment,
+          "closing_moment" => @closing_moment,
           "id" => @id
         }
       end
