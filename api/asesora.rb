@@ -30,34 +30,15 @@ class Asesora < Sinatra::Base
   end
 
 
-  Endpoints::Translations.define_retrieve_translations(self)
+  Endpoints::Translations.define_endpoints(self)
 
-  Endpoints::Information.define_retrieve_navbar(self)
+  Endpoints::Information.define_endpoints(self)
 
-  Endpoints::Solicitudes.define_create_solicitude(self)
-  Endpoints::Solicitudes.define_retrieve_solicitude(self)
-  Endpoints::Solicitudes.define_retrieve_solicitudes(self)
-  Endpoints::Solicitudes.define_update_solicitude(self)
-  Endpoints::Solicitudes.define_delete_solicitude(self)
-  Endpoints::Solicitudes.define_retrieve_cnae(self)
-  Endpoints::Solicitudes.define_retrieve_ccaa(self)
-  Endpoints::Solicitudes.define_retrieve_close_reasons(self)
-  Endpoints::Solicitudes.define_create_subject(self)
-  Endpoints::Solicitudes.define_update_subject(self)
-  Endpoints::Solicitudes.define_close_subject(self)
-  Endpoints::Solicitudes.define_retrieve_subjects(self)
-  Endpoints::Solicitudes.define_retrieve_topics(self)
-  Endpoints::Solicitudes.define_retrieve_proposals(self)
+  Endpoints::Solicitudes.define_endpoints(self)
 
+  Endpoints::Applicants.define_endpoints(self)
 
-  Endpoints::Applicants.define_update_applicant(self)
-  Endpoints::Applicants.define_search_applicants(self)
-
-  Endpoints::Companies.define_update_company(self)
-  Endpoints::Companies.define_company_matches(self)
-  Endpoints::Companies.define_duplicated_company(self)
-  Endpoints::Companies.define_count_company_in_solicitudes(self)
-
+  Endpoints::Companies.define_endpoints(self)
 
   options "*" do
     response.headers["Allow"] = "GET, POST, OPTIONS"
