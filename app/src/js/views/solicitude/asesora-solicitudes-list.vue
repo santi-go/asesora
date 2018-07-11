@@ -52,25 +52,24 @@
     props: ['labels', 'solicitudes'],
     filters: {
       es: function (date_en) {
+        if (date_en === undefined) { return date_en }
         const date_parts = date_en.split('-')
         return date_parts.reverse().join('/')
       }
     },
-      methods: {
-        solicitudeEdit(id){
-          let signal = new CustomEvent('load.solicitude',
-                                      {'detail': id,
-                                      'bubbles': true})
-          this.$el.dispatchEvent(signal)
-        },
-        showSolicitude(id){
-          let signal = new CustomEvent('show.solicitude',
-                                      {'detail': id,
-                                      'bubbles': true})
-          this.$el.dispatchEvent(signal)
-        }
-
+    methods: {
+      solicitudeEdit(id) {
+        let signal = new CustomEvent('load.solicitude',
+                                    {'detail': id,
+                                    'bubbles': true})
+        this.$el.dispatchEvent(signal)
+      },
+      showSolicitude(id) {
+        let signal = new CustomEvent('show.solicitude',
+                                    {'detail': id,
+                                    'bubbles': true})
+        this.$el.dispatchEvent(signal)
+      }
     }
-
-    }
-  </script>
+  }
+</script>

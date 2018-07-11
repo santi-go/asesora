@@ -1,6 +1,6 @@
-import {Bus} from '../bus'
-import Component from '../infrastructure/component'
 import AsesoraNavbar from '../views/asesora-navbar'
+import Component from '../infrastructure/component'
+import {Bus} from '../bus'
 
 export default class Navbar extends Component{
 
@@ -27,6 +27,7 @@ export default class Navbar extends Component{
     }
   }
 
+
   initializeViews(){
     let listView =  {
         'asesora-navbar': AsesoraNavbar
@@ -38,14 +39,13 @@ export default class Navbar extends Component{
   model(){
     return {
       labels: {
-        "name": "XXXXXXX",
-        "createSolicitude": "XXXXXXXXXX",
-        "solicitudeList": "xXxXxXxX"
+        "name": "xxxxxxxxxxxxx",
+        "createSolicitude": "xxxxxxxxxxxxx",
+        "solicitudeList": "xxxxxxxxxxxxx"
       },
 
-    translate:function(key,value) {
+      translate:function(key,value) {
         this.labels[key] = value
-        console.log(this.labels);
       }
     }
   }

@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  connection: ssh
+  vars_files:
+    - environment/all_variables.yml
+
+  pre_tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+- name: a play that runs entirely on the ansible host
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+      - name: remove and create now the staging folder
+        local_action:
+          module: script
+          _raw_params: "scripts/clean_staging.sh"
+      - name: build a new app for staging
+        local_action:
+          module: script
+          _raw_params: "scripts/docker_build.sh"
+      - name: copy app to staging folder
+        local_action:
+          module: script
+          _raw_params: "scripts/copy_app_to_staging_folder.sh"

@@ -1,6 +1,3 @@
-const expect = require('chai').expect
-const sinon = require('sinon')
-
 import {Bus} from '../../src/js/bus'
 import {APIClient} from '../../src/js/infrastructure/api_client'
 import Translations from '../../src/js/services/translations'

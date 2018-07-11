@@ -27,7 +27,6 @@ module Translation
             "es" => {
               "navbar": {
                 "name": "Asesora",
-                "description": "Registro de asesoramientos técnicos en salud laboral",
                 "solicitudeList": "Listado de solicitudes",
                 "createSolicitude": "Nueva solicitud"
               },

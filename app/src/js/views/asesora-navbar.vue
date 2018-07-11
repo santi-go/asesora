@@ -10,7 +10,6 @@
     </div>
   </div>
   <div id="links" class="navbar-links column column-50">
-
       <div class="link">
         <a href="/">
           {{ labels.createSolicitude }}
@@ -37,6 +36,7 @@ export default {
   props: ['labels']
 }
 </script>
+
 <style scoped>
 
 .header {

@@ -3,11 +3,10 @@ require 'mongo'
 
 module Navbar
   class Collection
-    DEFAULT_NAVBAR = {
+    DEFAULT_ABOUT = {
       "name" => 'Asesora',
-      "description" =>"Registro de asesoramientos técnicos en salud laboral",
-      "solicitudeList" => "Listado de solicitudes",
-      "createSolicitude" => "Nueva solicitud"
+      "description" => 'description',
+      "version" => '0.0.1'
     }
 
     class << self
@@ -36,8 +35,8 @@ module Navbar
           end
 
           def set_default
-              client[:navbar].insert_one(DEFAULT_NAVBAR)
-              DEFAULT_NAVBAR
+              client[:navbar].insert_one(DEFAULT_ABOUT)
+              DEFAULT_ABOUT
           end
 
           private
