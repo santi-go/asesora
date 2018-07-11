@@ -5,7 +5,7 @@ require_relative '../system/actions/count_company_in_solicitudes'
 
 module Endpoints
   class Companies
-    def self.define_update_company(api)
+    def self.define_endpoints(api)
       api.post '/api/update-company' do
         params = JSON.parse(request.body.read)
         data = {
@@ -18,10 +18,8 @@ module Endpoints
         return {}.to_json if updated.nil?
 
         updated.to_json
-        end
       end
 
-    def self.define_company_matches(api)
       api.post '/api/company-matches' do
         params = JSON.parse(request.body.read)
 
@@ -33,17 +31,13 @@ module Endpoints
 
         {data: companies}.to_json
       end
-    end
 
-    def self.define_duplicated_company(api)
       api.post '/api/duplicated-company' do
         params = JSON.parse(request.body.read)
         company = Actions::RetrieveCompany.do(id: params['id'])
         company.to_json
       end
-    end
 
-    def self.define_count_company_in_solicitudes(api)
       api.post '/api/count-company-in-solicitudes' do
 
         params = JSON.parse(request.body.read)

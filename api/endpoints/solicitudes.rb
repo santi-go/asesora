@@ -5,6 +5,7 @@ require_relative '../system/actions/update_solicitude'
 require_relative '../system/actions/delete_solicitude'
 require_relative '../system/actions/retrieve_cnae'
 require_relative '../system/actions/retrieve_ccaa'
+require_relative '../system/actions/retrieve_close_reasons'
 require_relative '../system/actions/create_subject'
 require_relative '../system/actions/update_subject'
 require_relative '../system/actions/close_subject'
@@ -16,7 +17,7 @@ require_relative '../system/actions/retrieve_proposals'
 
 module Endpoints
   class Solicitudes
-    def self.define_create_solicitude(api)
+    def self.define_endpoints(api)
       api.post '/api/create-solicitude' do
         params = JSON.parse(request.body.read)
         data = {
@@ -37,9 +38,7 @@ module Endpoints
         created = Actions::CreateSolicitude.do(data)
         created.to_json
       end
-    end
 
-    def self.define_retrieve_solicitude(api)
       api.post '/api/retrieve-solicitude' do
         params = JSON.parse(request.body.read)
 
@@ -47,9 +46,7 @@ module Endpoints
 
         {data: solicitude}.to_json
       end
-    end
 
-    def self.define_retrieve_solicitudes(api)
       api.post '/api/retrieve-solicitudes' do
         retrieve_solicitudes = Actions::RetrieveSolicitudes.do()
 
@@ -57,9 +54,7 @@ module Endpoints
 
         {data: list_solicitudes}.to_json
       end
-    end
 
-    def self.define_update_solicitude(api)
       api.post '/api/update-solicitude' do
         params = JSON.parse(request.body.read)
         data = {
@@ -74,9 +69,7 @@ module Endpoints
         return {}.to_json if updated.nil?
         updated.to_json
       end
-    end
 
-    def self.define_delete_solicitude(api)
       api.post '/api/delete-solicitude' do
         params = JSON.parse(request.body.read)
 
@@ -84,25 +77,25 @@ module Endpoints
         return status 500 if response == "500"
         status 200
       end
-    end
 
-    def self.define_retrieve_cnae(api)
       api.post '/api/cnae' do
         cnae_catalog = Actions::RetrieveCnae.do()
 
         {data: cnae_catalog}.to_json
       end
-    end
 
-    def self.define_retrieve_ccaa(api)
       api.post '/api/ccaa' do
         ccaa_catalog = Actions::RetrieveCcaa.do()
 
         {data: ccaa_catalog}.to_json
       end
-    end
 
-    def self.define_create_subject(api)
+      api.post '/api/close_reasons' do
+        close_reasons_catalog = Actions::RetrieveCloseReasons.do()
+
+        {data: close_reasons_catalog}.to_json
+      end
+
       api.post '/api/create-subject' do
         params = JSON.parse(request.body.read)
 
@@ -118,9 +111,7 @@ module Endpoints
 
         solicitude_subject.to_json
       end
-    end
 
-    def self.define_update_subject(api)
       api.post '/api/update-subject' do
         params = JSON.parse(request.body.read)
         data = {
@@ -136,9 +127,7 @@ module Endpoints
         return {}.to_json if updated.nil?
         updated.to_json
       end
-    end
 
-    def self.define_close_subject(api)
       api.post '/api/close-subject' do
         params = JSON.parse(request.body.read)
         data = {
@@ -151,9 +140,7 @@ module Endpoints
         return {}.to_json if updated.nil?
         updated.to_json
       end
-    end
 
-    def self.define_retrieve_subjects(api)
       api.post '/api/retrieve-subjects' do
         params = JSON.parse(request.body.read)
 
@@ -161,16 +148,12 @@ module Endpoints
 
         {data: subjects}.to_json
       end
-    end
 
-    def self.define_retrieve_topics(api)
       api.post '/api/topics' do
         topics_catalog = Actions::RetrieveTopics.do()
         {data: topics_catalog}.to_json
       end
-    end
 
-    def self.define_retrieve_proposals(api)
       api.post '/api/proposals' do
         proposals_catalog = Actions::RetrieveProposals.do()
         {data: proposals_catalog}.to_json

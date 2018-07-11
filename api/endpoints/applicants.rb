@@ -3,7 +3,7 @@ require_relative '../system/actions/retrieve_solicitudes'
 
 module Endpoints
   class Applicants
-    def self.define_update_applicant(api)
+    def self.define_endpoints(api)
       api.post '/api/update-applicant' do
         params = JSON.parse(request.body.read)
         data = {
@@ -20,9 +20,7 @@ module Endpoints
 
         updated.to_json
       end
-    end
 
-    def self.define_search_applicants(api)
       api.post '/api/applicant-matches' do
         params = JSON.parse(request.body.read)
         criteria = {
