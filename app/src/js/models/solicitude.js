@@ -53,7 +53,8 @@ export let SolicitudeModel = {
     "identification": "xxxxxxx",
     "information": "xxxxxxx",
     "description": "xxxxxxxxx",
-    "placeholderdescription": "xxxxxxxxx"
+    "placeholderdescription": "xxxxxxxxx",
+    "comments": "xxxxxxxx"
   },
   values: {
     "text": "",
@@ -75,7 +76,8 @@ export let SolicitudeModel = {
     "analysis": "",
     "selectedTopics": [],
     "subjectId": "",
-    "description": ""
+    "description": "",
+    "comments": ""
   },
   ccaaCatalog: [],
   suggestedCompanies: [],

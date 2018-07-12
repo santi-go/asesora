@@ -91,7 +91,8 @@ module Translation
                 "identification": "Identificación",
                 "information": "Información",
                 "description": "Descripción de las propuestas",
-                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
+                "comments": "Comentarios sobre el asesoramiento"
               },
 
               "solicitudes-list": {
@@ -105,7 +106,8 @@ module Translation
                 "edit": "Editar",
                 "show": "Mostrar",
                 "description": "Descripción de las propuestas",
-                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
+                "comments": "Comentarios sobre el asesoramiento"
               },
 
               "show-solicitude": {
@@ -132,7 +134,8 @@ module Translation
                 "subject": "Caso",
                 "applicantCcaa": "Comunidad autónoma",
                 "description": "Descripción de las propuestas",
-                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
+                "comments": "Comentarios sobre el asesoramiento"
               },
 
               "subjects": {
@@ -163,7 +166,8 @@ module Translation
                 "notApply": "N/A",
                 "subject": "Caso",
                 "description": "Descripción de las propuestas",
-                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento"
+                "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
+                "comments": "Comentarios sobre el asesoramiento"
               }
             },
 

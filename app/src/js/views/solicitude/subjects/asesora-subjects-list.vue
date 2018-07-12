@@ -55,6 +55,11 @@
                     </li>
                   </ul>
                 </template>
+
+                <template v-if=" item.comments !='' ">
+                  <label>{{ labels.comments }}</label>
+                  <p>{{ item.comments }}</p>
+                </template>
                 </template>
               </div>
             </div>

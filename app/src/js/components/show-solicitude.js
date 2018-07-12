@@ -121,7 +121,8 @@ export default class ShowSolicitude extends Component {
         "notApply": "xxxx",
         "subject": "xxxx",
         "description": "XXXXXXXX",
-        "placeholderdescription": "xxxxxxxxx"
+        "placeholderdescription": "xxxxxxxxx",
+        "comments": "xxxxxxxxxxx"
       },
       values: {
         "id": "",

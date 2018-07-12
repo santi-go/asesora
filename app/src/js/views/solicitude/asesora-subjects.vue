@@ -9,6 +9,8 @@
     <asesora-proposals-description :labels="labels" :values="values"></asesora-proposals-description>
     <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
     <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
+    <asesora-subject-comments :labels="labels" :values="values"></asesora-subject-comments>
+
     <template>
       <asesora-button-create-counseling :labels="labels"
                                         :values="values"
@@ -30,20 +32,22 @@
   import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
   import SubjectsListView from './subjects/asesora-subjects-list'
   import ProposalsDescriptionView from './subjects/asesora-proposals-description'
+  import SubjectCommentsView from './subjects/asesora-subject-comments'
 
   export default {
     name: 'asesora-subjects',
     props: ['labels', 'values', 'topicsCatalog', 'submittable',
             'proposalsCatalog', 'editionSubject', 'editionmode'],
     components: {
-      "asesora-proposals-for-action" : ProposalsView,
-      "asesora-analysis-for-solicitude" : AnalysisView,
+      "asesora-proposals-for-action": ProposalsView,
+      "asesora-analysis-for-solicitude": AnalysisView,
       "asesora-button-create-counseling": ButtonCreateCounseling,
-      "asesora-button-discard-subject" : ButtonDiscardSubjectView,
+      "asesora-button-discard-subject": ButtonDiscardSubjectView,
       "subject-topics": SubjectTopicsView,
-      "asesora-summary-solicitude" : SummarySolicitudeView,
+      "asesora-summary-solicitude": SummarySolicitudeView,
       "asesora-subjects-list": SubjectsListView,
-      "asesora-proposals-description": ProposalsDescriptionView
+      "asesora-proposals-description": ProposalsDescriptionView,
+      "asesora-subject-comments": SubjectCommentsView
     }
   }
 </script>

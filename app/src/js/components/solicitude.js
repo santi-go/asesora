@@ -140,6 +140,7 @@ export default class Solicitude extends Component {
     this.data.setValues('analysis', event.detail.analysis)
     this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
+    this.data.setValues('comments', event.detail.comments)
   }
 
   gotTopicsCatalog(payload) {
@@ -183,7 +184,8 @@ export default class Solicitude extends Component {
       proposal: payload.detail.proposals.map(item => item.value),
       description: payload.detail.description,
       analysis: payload.detail.analysis,
-      topics: payload.detail.topics.map(item => item.value)
+      topics: payload.detail.topics.map(item => item.value),
+      comments: payload.detail.comments,
     }
     Bus.publish('update.subject', subject)
   }
@@ -206,6 +208,7 @@ export default class Solicitude extends Component {
         subject.description = updatedSubject.description
         subject.analysis = updatedSubject.analysis
         subject.topics = updatedSubject.topics
+        subject.comments = updatedSubject.comments
       }
     }
   }
