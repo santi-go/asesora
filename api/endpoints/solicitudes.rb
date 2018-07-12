@@ -131,7 +131,12 @@ module Endpoints
       api.post '/api/close-subject' do
         params = JSON.parse(request.body.read)
         data = {
+          solicitude_id: params['solicitudeId'],
           id: params['subjectId'],
+          proposal: params['proposal'],
+          description: params['description'],
+          analysis: params['analysis'],
+          topics: params['topics'],
           reason: params['reason'],
           counseling_comment: params['counselingComment']
         }
