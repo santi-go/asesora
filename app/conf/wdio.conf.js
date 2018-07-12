@@ -1,6 +1,6 @@
 exports.config = {
   specs: [
-    './test/e2e/**/*.js'
+    './test/e2e/solicitude_test.js'
   ],
   maxInstances: 1,
   host: 'selenium',

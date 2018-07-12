@@ -17,6 +17,7 @@ describe('Solicitude', () => {
 
   it("didn't have delete button", function () {
     const solicitude = new Solicitude()
+    browser.saveScreenshot('solicitude.jpg')
     solicitude.fill()
       .applicantPhonenumber()
       .description()
