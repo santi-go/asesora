@@ -1,4 +1,8 @@
 ---
+- name: Remove residual staging folder if exist
+  file:
+    path: "/var/www/staging/"
+    state: absent
 - name: upload new asesora folder
   copy:
     src: "../staging"

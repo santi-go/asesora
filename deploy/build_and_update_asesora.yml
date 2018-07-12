@@ -5,14 +5,10 @@
   vars_files:
     - environment/all_variables.yml
 
-  pre_tasks:
-    - name: test python and install (dependency for ansible)
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-
 - name: a play that runs entirely on the ansible host
   hosts: 127.0.0.1
   connection: local
-  tasks:
+  pre_tasks:
       - name: remove and create now the staging folder
         local_action:
           module: script
@@ -25,3 +21,14 @@
         local_action:
           module: script
           _raw_params: "scripts/copy_app_to_staging_folder.sh"
+
+- name: a play that runs entirely on the remote
+  hosts: digitalocean
+  connection: ssh
+  tasks:
+    - name: test python and install (dependency for ansible)
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    - include: tasks/upload_asesora_folder.yml
+    - include: tasks/disable_asesora_site.yml
+    - include: tasks/move_asesora_folder.yml
+    - include: tasks/enable_site_asesora.yml
