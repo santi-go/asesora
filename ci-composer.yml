@@ -22,6 +22,8 @@ services:
     environment:
       - API_HOST=api
       - API_PORT=4567
+    volumes:
+      - './app/public:/test/public'
     depends_on:
       - asesora
       - api
