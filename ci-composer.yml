@@ -12,6 +12,8 @@ services:
     image: selenium/standalone-chrome
     environment:
       - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    links:
+      - asesora
     ports:
       - '4444:4444'
 
