@@ -1,11 +1,10 @@
 ---
 - hosts: all
   become: yes
-  connection: ssh
   vars_files:
     - environment/all_variables.yml
 
-- name: a play that runs entirely on the ansible host
+- name: «A PLAY THAT RUNS ENTIRELY ON THE ANSIBLE HOST»
   hosts: 127.0.0.1
   connection: local
   pre_tasks:
@@ -22,7 +21,7 @@
           module: script
           _raw_params: "scripts/copy_app_to_staging_folder.sh"
 
-- name: a play that runs entirely on the remote
+- name: «A PLAY THAT RUNS ENTIRELY ON THE REMOTE»
   hosts: digitalocean
   connection: ssh
   tasks:
