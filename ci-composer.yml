@@ -16,19 +16,18 @@ services:
       - '4444:4444'
 
   app:
-    image: 'node:8.11.1'
+    build: ./app
     user: node
     environment:
       - API_HOST=localhost
       - API_PORT=4567
-    working_dir: '/test'
     volumes:
       - './app/:/test'
     depends_on:
       - asesora
       - api
       - selenium
-    command: sh -c 'npm install && npm run test-all'
+    command: sh -c 'npm run test-all'
 
   api:
     build: ./api

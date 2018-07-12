@@ -1,8 +1,6 @@
 *.retry
 .env
 app/node_modules/
-app/package-lock.json
-api/Gemfile.lock
 app/public/dist/*
 !app/public/dist/.gitkeep
 

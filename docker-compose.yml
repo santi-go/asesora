@@ -16,19 +16,18 @@ services:
       - '4444:4444'
 
   app:
-    image: 'node:8.11.1'
+    build: ./app
     user: node
     environment:
       - API_HOST=localhost
       - API_PORT=4567
-    working_dir: '/test'
     volumes:
       - './app/:/test'
     depends_on:
       - asesora
       - api
       - selenium
-    command: sh -c 'npm install && npm run build -s'
+    command: sh -c 'npm run build -s'
 
   api:
     build: ./api
@@ -43,7 +42,7 @@ services:
       - '4567:4567'
     links:
       - mongo
-    command: sh -c 'gem install bundler && bundle install && bundle exec rake start_dev'
+    command: sh -c 'bundle exec rake start_dev'
 
   mongo:
     image: mongo
