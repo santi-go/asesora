@@ -17,7 +17,6 @@ services:
 
   app:
     build: ./app
-    user: node
     environment:
       - API_HOST=localhost
       - API_PORT=4567
@@ -35,7 +34,6 @@ services:
       - API_HOST=localhost
       - API_PORT=4567
       - MONGODB_URI=mongodb://mongo:27017/db
-    working_dir: '/api'
     volumes:
       - './api/:/api'
     ports:

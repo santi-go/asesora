@@ -21,4 +21,4 @@ test_app:
   script:
     - docker-compose -f ci-composer.yml pull
     - docker-compose -f ci-composer.yml build
-    - docker-compose -f ci-composer.yml run --rm -T app
+    - docker-compose -f ci-composer.yml run --rm -T app npm run test-all

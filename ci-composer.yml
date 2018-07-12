@@ -17,7 +17,6 @@ services:
 
   app:
     build: ./app
-    user: node
     environment:
       - API_HOST=localhost
       - API_PORT=4567
@@ -25,7 +24,6 @@ services:
       - asesora
       - api
       - selenium
-    command: sh -c 'npm run test-all'
 
   api:
     build: ./api
