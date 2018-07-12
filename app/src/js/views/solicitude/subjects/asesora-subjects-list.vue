@@ -57,6 +57,7 @@
                 </template>
 
                 <template v-if=" item.comments !='' ">
+                  <pre>{{ item }}</pre>
                   <label>{{ labels.comments }}</label>
                   <p>{{ item.comments }}</p>
                 </template>
@@ -84,6 +85,11 @@ import SubjectsEditionView from './asesora-subjects-edition'
       "asesora-subjects-edition" : SubjectsEditionView
     },
     methods: {
+      existComment(comment){
+        if (comment != null) {return false}
+        if (comment != '') {return false}
+      },
+
       isClosed(item){
         if (item.closing_moment !== null){return true}
         return false
