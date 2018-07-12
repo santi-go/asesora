@@ -150,7 +150,7 @@ You can test if you have a connection by performing the following test:
 ansible -i ./host_digitalocean digitalocean -m ping
 ~~~
 
-If the name of the key is not the default one (~ / .ssh / id_rsa) you must indicate the correct one in the file ```host_digitalocean```.
+If the name of the key is not the default one (~/.ssh/id_rsa) you must indicate the correct one in the file ```host_digitalocean```.
 
 
 ## Server installation
