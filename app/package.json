@@ -21,8 +21,8 @@
     "css-loader": "*",
     "jsdom": "^11.11.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^5.2.0",
-    "mocha-webpack": "^2.0.0-beta",
+    "mocha": "~5.2.0",
+    "mocha-webpack": "~2.0.0-beta",
     "sinon": "^4.5.0",
     "sync-request": "^6.0.0",
     "vue": "^2.5.13",
@@ -32,9 +32,9 @@
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
-    "webpack": "^4.15.0",
-    "webpack-cli": "^2.1.5",
-    "webpack-permissions-plugin": "^1.0.0"
+    "webpack": "~4.15.0",
+    "webpack-cli": "~2.1.5",
+    "webpack-permissions-plugin": "~1.0.0"
   },
   "scripts": {
     "build": "webpack --config conf/webpack.config.js --mode development",
