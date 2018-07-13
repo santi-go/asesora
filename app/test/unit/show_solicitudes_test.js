@@ -1,13 +1,27 @@
 import { mount } from '@vue/test-utils'
 import ShowSolicitudes from '../../src/js/views/solicitude/asesora-show-solicitude.vue'
 
+let labels = {
+  comments: "Default Label Comments"
+}
+
+let subject = {
+  id: 1,
+  proposal: [],
+  description: "Default Description",
+  topics: [],
+  analysis: "Default Analysis",
+  comments: "Default Comments"
+}
+
 describe('Show solicitudes', () => {
   it('renders subject list', () => {
-    const subject = {id: 1, proposal: [], topics: [], analysis: "An analysis"}
+    let analysis = 'An analysis'
+    subject.analysis = analysis
 
     const component = mount(ShowSolicitudes, {
       propsData: {
-        labels: {},
+        labels: labels,
         values: {
           applicantCcaa: {},
           subjects: [
@@ -17,16 +31,16 @@ describe('Show solicitudes', () => {
       }
     })
 
-    expect(component.text()).to.contain('An analysis')
-  }),
+    expect(component.text()).to.contain(analysis)
+  })
 
   it('renders a comment in subject list', () => {
-    const subject = {id: 1, proposal: [], topics: [], analysis: "An analysis",
-                     comments: "A text in comment"}
+    let comments = 'A text in comment'
+    subject.comments = comments
 
     const component = mount(ShowSolicitudes, {
       propsData: {
-        labels: {},
+        labels: labels,
         values: {
           applicantCcaa: {},
           subjects: [
@@ -36,18 +50,18 @@ describe('Show solicitudes', () => {
       }
     })
 
-    expect(component.text()).to.contain('A text in comment')
+    expect(component.text()).to.contain(comments)
   })
-,
 
-  it('not render label if not exist a comment in subject list', () => {
-    const subject = {id: 1, proposal: [], topics: [], analysis: "An analysis"}
+
+  it('not render label if not exist a subject comments in subject list', () => {
+    let labelComments = 'Label de comentarios'
+    subject.comments = ''
+    labels.comments = labelComments
 
     const component = mount(ShowSolicitudes, {
       propsData: {
-        labels: {
-          comments: "Label de comentarios"
-        },
+        labels: labels,
         values: {
           applicantCcaa: {},
           subjects: [
@@ -57,7 +71,7 @@ describe('Show solicitudes', () => {
       }
     })
 
-    expect(component.text()).not.to.contain('Label de comentarios')
+    expect(component.text()).not.to.contain(labelComments)
   })
 
 })

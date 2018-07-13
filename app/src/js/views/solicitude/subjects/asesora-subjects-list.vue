@@ -28,7 +28,7 @@
                  </asesora-subjects-edition>
                </template>
                <template v-else>
-                <template v-if=" item.proposal.length > 0 ">
+                <template v-if=" isEmpty(item.proposal) ">
                   <label>{{ labels.proposals }}</label>
                   <ul>
                     <li v-for="proposal in item.proposal">
@@ -37,17 +37,17 @@
                   </ul>
                 </template>
 
-                <template v-if=" item.description !='' ">
+                <template v-if=" isEmpty(item.description) ">
                   <label>{{ labels.description }}</label>
                   <p>{{ item.description }}</p>
                 </template>
 
-                <template v-if=" item.analysis !='' ">
+                <template v-if=" isEmpty(item.analysis) ">
                   <label>{{ labels.analysis }}</label>
                   <p>{{ item.analysis }}</p>
                 </template>
 
-                <template v-if=" item.topics.length > 0 ">
+                <template v-if=" isEmpty(item.topics) ">
                   <label>{{ labels.topics }}</label>
                   <ul>
                     <li v-for="topic in item.topics">
@@ -56,8 +56,7 @@
                   </ul>
                 </template>
 
-                <template v-if=" item.comments !='' ">
-                  <pre>{{ item }}</pre>
+                <template v-if=" isEmpty(item.comments) ">
                   <label>{{ labels.comments }}</label>
                   <p>{{ item.comments }}</p>
                 </template>
@@ -85,9 +84,8 @@ import SubjectsEditionView from './asesora-subjects-edition'
       "asesora-subjects-edition" : SubjectsEditionView
     },
     methods: {
-      existComment(comment){
-        if (comment != null) {return false}
-        if (comment != '') {return false}
+      isEmpty(comment){
+        return (comment.length > 0)
       },
 
       isClosed(item){

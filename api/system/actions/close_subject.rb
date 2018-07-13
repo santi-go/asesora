@@ -2,13 +2,13 @@ require_relative '../services/subjects/service'
 
 module Actions
   class CloseSubject
-    def self.do(id:, solicitude_id:, proposal:, description:, analysis:, topics:, reason:, counseling_comment:)
+    def self.do(id:, solicitude_id:, proposal:, description:, analysis:, topics:, reason:, comments:)
       if id.nil?
         subject = create(solicitude_id, proposal, description, analysis, topics)
       else
         subject = update(solicitude_id, id, proposal, description, analysis, topics)
       end
-      ::Subjects::Service.close(subject['id'], reason, counseling_comment)
+      ::Subjects::Service.close(subject['id'], reason, comments)
     end
 
     private

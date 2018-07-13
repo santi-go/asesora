@@ -118,7 +118,7 @@ describe 'Subjects Api' do
     post '/api/close-subject', closing_subject
     closed_response = JSON.parse(last_response.body)
     expect(closed_response["reason"]).to eq("A reason")
-    expect(closed_response["counseling_comment"]).to eq("A comment")
+    expect(closed_response["comments"]).to eq("A comment")
     expect(closed_response["closing_moment"]).not_to eq(nil)
   end
 
@@ -138,7 +138,7 @@ describe 'Subjects Api' do
 
     expect(closed_response["id"]).not_to eq(nil)
     expect(closed_response["reason"]).to eq("A reason")
-    expect(closed_response["counseling_comment"]).to eq("A comment")
+    expect(closed_response["comments"]).to eq("A comment")
     expect(closed_response["closing_moment"]).not_to eq(nil)
   end
 end
