@@ -26,7 +26,6 @@ export default {
                                     analysis: this.values.analysis,
                                     description: this.values.description,
                                     topics: this.values.selectedTopics,
-                                    comments: this.values.comments
                                   },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

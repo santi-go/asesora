@@ -202,7 +202,6 @@ export default class Solicitude extends Component {
       topics: payload.detail.topics.map(item => item.value),
       comments: payload.detail.comments,
       reasons: payload.detail.reasons,
-      counseling_comment: payload.detail.reasons
     }
     Bus.publish('close.subject', subject)
   }
