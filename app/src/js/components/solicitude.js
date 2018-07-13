@@ -34,6 +34,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.ccaa-catalog", this.gotCcaaCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
     Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
+    Bus.subscribe("subject.closed", this.subjectClosed.bind(this))
   }
 
   watchActions() {
@@ -68,6 +69,7 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.subject.list', this.editSubject.bind(this))
     this.reactTo('changed.subject', this.setModifySubjectButtonStatus.bind(this))
     this.reactTo('clicked.modify.counseling', this.modifyCounseling.bind(this))
+    this.reactTo('clicked.close.counseling', this.closeCounseling.bind(this))
 
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -190,7 +192,29 @@ export default class Solicitude extends Component {
     Bus.publish('update.subject', subject)
   }
 
+  closeCounseling(payload) {
+    const subject = {
+      subjectId: payload.detail.subjectId,
+      solicitudeId: payload.detail.solicitudeId,
+      proposal: payload.detail.proposals.map(item => item.value),
+      description: payload.detail.description,
+      analysis: payload.detail.analysis,
+      topics: payload.detail.topics.map(item => item.value),
+      comments: payload.detail.comments,
+      reasons: payload.detail.reasons,
+      counseling_comment: payload.detail.reasons
+    }
+    Bus.publish('close.subject', subject)
+  }
+
   subjectUpdated(payload){
+    this.refreshModifiedSubject(payload)
+    this.data.submittable = false
+    this.showSubjectModified()
+    this.data.editionSubject = false
+  }
+
+  subjectClosed(payload){
     this.refreshModifiedSubject(payload)
     this.data.submittable = false
     this.showSubjectModified()
@@ -209,6 +233,8 @@ export default class Solicitude extends Component {
         subject.analysis = updatedSubject.analysis
         subject.topics = updatedSubject.topics
         subject.comments = updatedSubject.comments
+        subject.reasons = updatedSubject.reasons
+        subject.closing_moment = updatedSubject.closing_moment
       }
     }
   }
