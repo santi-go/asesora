@@ -8,6 +8,7 @@ module Actions
       else
         subject = update(solicitude_id, id, proposal, description, analysis, topics)
       end
+
       if closing_moment.nil?
         ::Subjects::Service.close(subject['id'], reason, comments)
       else

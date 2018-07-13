@@ -10,8 +10,12 @@ module Subjects
     end
 
     def self.update(solicitude_id, id, proposal, description, analysis, topics)
-      subject = Domain::Subject.with(solicitude_id, proposal, description, analysis, topics, id)
-
+      subject = Collection.retrieve(id)
+      subject.proposal = proposal
+      subject.description = description
+      subject.analysis = analysis
+      subject.topics = topics
+      
       collection = Collection.update(subject, id)
 
       return if collection.nil?

@@ -112,7 +112,7 @@ describe 'Subjects Api' do
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS,
             "reason": "A reason",
-            "counselingComment": "A comment"
+            "comments": "A comment"
 		}.to_json
 
     post '/api/close-subject', closing_subject
@@ -130,7 +130,7 @@ describe 'Subjects Api' do
       "analysis": Fixtures::ANALYSIS,
       "topics": Fixtures::TOPICS,
       "reason": "A reason",
-      "counselingComment": "A comment"
+      "comments": "A comment"
     }.to_json
 
     post '/api/close-subject', closing_subject
@@ -142,7 +142,7 @@ describe 'Subjects Api' do
     expect(closed_response["closing_moment"]).not_to eq(nil)
   end
 
-  it 'not allows close two times' do
+  it 'not allows close two times', :wip do
     subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
@@ -162,7 +162,7 @@ describe 'Subjects Api' do
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS,
             "reason": "A reason",
-            "counselingComment": "A comment"
+            "comments": "A comment"
 		}.to_json
 
     post '/api/close-subject', closing_subject_1
@@ -178,7 +178,7 @@ describe 'Subjects Api' do
             "analysis": Fixtures::ANALYSIS,
             "topics": Fixtures::TOPICS,
             "reason": "A reason",
-            "counselingComment": "A comment",
+            "comments": "A comment",
             "closing_moment": closing_moment_1
 		}.to_json
 

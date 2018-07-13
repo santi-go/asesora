@@ -14,7 +14,6 @@ require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
 require_relative '../system/actions/retrieve_proposals'
 
-
 module Endpoints
   class Solicitudes
     def self.define_endpoints(api)
@@ -139,7 +138,7 @@ module Endpoints
           topics: params['topics'],
           reason: params['reason'],
           comments: params['comments'],
-          closing_moment: params['closingMoment']
+          closing_moment: params['closing_moment']
         }
 
         updated = Actions::CloseSubject.do(data)
