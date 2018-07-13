@@ -92,7 +92,8 @@ module Translation
                 "information": "Información",
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
-                "comments": "Comentarios sobre el asesoramiento"
+                "comments": "Comentarios sobre el asesoramiento",
+                "closeCounseling": "Cerrar caso"
               },
 
               "solicitudes-list": {
@@ -167,7 +168,8 @@ module Translation
                 "subject": "Caso",
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
-                "comments": "Comentarios sobre el asesoramiento"
+                "comments": "Comentarios sobre el asesoramiento",
+                "closeCounseling": "Cerrar caso"
               }
             },
 

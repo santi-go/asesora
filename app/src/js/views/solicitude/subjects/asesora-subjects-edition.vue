@@ -10,6 +10,11 @@
                                         :values="values"
                                         :submittable="submittable">
       </asesora-button-modify-counseling>
+
+      <asesora-button-close-counseling :labels="labels"
+                                        :values="values"
+                                        :submittable="submittable">
+      </asesora-button-close-counseling>
     </div>
   </div>
 </template>
@@ -19,6 +24,7 @@ import ProposalsView from './asesora-proposals-for-action'
 import AnalysisView from './asesora-analysis-for-solicitude'
 import SubjectTopicsView from './subject-topics'
 import ButtonModifyCounseling from './asesora-button-modify-counseling'
+import ButtonCloseCounseling from './asesora-button-close-counseling'
 import ProposalsDescriptionView from './asesora-proposals-description'
 import SubjectCommentsView from './asesora-subject-comments'
 
@@ -31,6 +37,7 @@ import SubjectCommentsView from './asesora-subject-comments'
       "asesora-analysis-for-solicitude" : AnalysisView,
       "subject-topics": SubjectTopicsView,
       "asesora-button-modify-counseling": ButtonModifyCounseling,
+      "asesora-button-close-counseling": ButtonCloseCounseling,
       "asesora-proposals-description": ProposalsDescriptionView,
       "asesora-subject-comments": SubjectCommentsView
     }
