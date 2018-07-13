@@ -1,9 +1,9 @@
-require_relative '../services/close_reasons/service'
+require_relative '../services/catalogs/service'
 
 module Actions
   class RetrieveCloseReasons
     def self.do(*_)
-      ::CloseReasons::Service.all
+      ::Catalogs::Service.close_reasons
     end
   end
 end

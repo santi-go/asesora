@@ -1,9 +1,9 @@
-require_relative '../services/ccaa/service'
+require_relative '../services/catalogs/service'
 
 module Actions
   class RetrieveCcaa
     def self.do(*_)
-      ::Ccaa::Service.all
+      ::Catalogs::Service.ccaa
     end
   end
 end

@@ -138,7 +138,8 @@ module Endpoints
           analysis: params['analysis'],
           topics: params['topics'],
           reason: params['reason'],
-          comments: params['counselingComment']
+          comments: params['comments'],
+          closing_moment: params['closingMoment']
         }
 
         updated = Actions::CloseSubject.do(data)

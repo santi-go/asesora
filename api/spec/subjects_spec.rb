@@ -141,4 +141,52 @@ describe 'Subjects Api' do
     expect(closed_response["comments"]).to eq("A comment")
     expect(closed_response["closing_moment"]).not_to eq(nil)
   end
+
+  it 'not allows close two times' do
+    subject = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "proposal": Fixtures::PROPOSAL,
+            "description": Fixtures::DESCRIPTION,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS
+		}.to_json
+
+    post '/api/create-subject', subject
+    response = JSON.parse(last_response.body)
+
+    closing_subject_1 = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "subjectId": response['id'],
+            "proposal": Fixtures::PROPOSAL,
+            "description": Fixtures::DESCRIPTION,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS,
+            "reason": "A reason",
+            "counselingComment": "A comment"
+		}.to_json
+
+    post '/api/close-subject', closing_subject_1
+    closed_response_1 = JSON.parse(last_response.body)
+
+    closing_moment_1 = closed_response_1['closing_moment']
+
+    closing_subject_2 = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "subjectId": response['id'],
+            "proposal": Fixtures::PROPOSAL,
+            "description": Fixtures::DESCRIPTION,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS,
+            "reason": "A reason",
+            "counselingComment": "A comment",
+            "closing_moment": closing_moment_1
+		}.to_json
+
+    post '/api/close-subject', closing_subject_2
+    closed_response_2 = JSON.parse(last_response.body)
+
+    closing_moment_2 = closed_response_2['closing_moment']
+
+    expect(closing_moment_1).to eq(closing_moment_2)
+  end
 end

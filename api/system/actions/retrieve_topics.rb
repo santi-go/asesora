@@ -1,9 +1,9 @@
-require_relative '../services/topics/service'
+require_relative '../services/catalogs/service'
 
 module Actions
   class RetrieveTopics
     def self.do(*_)
-      ::Topics::Service.all
+      ::Catalogs::Service.topics
     end
   end
 end

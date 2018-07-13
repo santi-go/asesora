@@ -1,9 +1,9 @@
-require_relative '../services/cnae/service'
+require_relative '../services/catalogs/service'
 
 module Actions
   class RetrieveCnae
     def self.do(*_)
-      ::Cnae::Service.all
+      ::Catalogs::Service.cnae
     end
   end
 end
