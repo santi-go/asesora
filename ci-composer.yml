@@ -12,27 +12,28 @@ services:
     image: selenium/standalone-chrome
     environment:
       - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    links:
+      - asesora
     ports:
       - '4444:4444'
 
   app:
     build: ./app
-    user: node
     environment:
-      - API_HOST=localhost
+      - API_HOST=api
       - API_PORT=4567
     volumes:
-      - './app/:/test'
+      - './app/public:/test/public'
     depends_on:
       - asesora
       - api
       - selenium
-    command: sh -c 'npm run test-all'
 
   api:
     build: ./api
     environment:
-      - API_HOST=localhost
+      - API_HOST=api
+      - API_PORT=4567
       - MONGODB_URI=mongodb://mongo:27017/db
     ports:
       - '4567:4567'

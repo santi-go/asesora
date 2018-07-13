@@ -65,15 +65,15 @@ export default class SolicitudesList extends Component {
 
   model(){
     return {
-      labels: { "code": "XXXXXXXX",
-                "date": "XXXXX",
-                "applicant": "XXXXX",
-                "company": "XXXXX",
-                "topics": "xxxxxxxxxx",
-                "listTitle": "XXXXXXXX",
-                "notApply": "xxxxxxx",
-                "edit": "xxxxxx",
-                "show": "xxxx"
+      labels: { "code": "",
+                "date": "",
+                "applicant": "",
+                "company": "",
+                "topics": "",
+                "listTitle": "",
+                "notApply": "",
+                "edit": "",
+                "show": ""
               },
       solicitudes: [
         {
