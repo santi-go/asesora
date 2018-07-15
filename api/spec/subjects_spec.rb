@@ -102,7 +102,7 @@ describe 'Subjects Api' do
     post '/api/create-subject', subject
     response = JSON.parse(last_response.body)
 
-    expect(response["closing_moment"]).to eq(nil)
+    expect(response["closed"]).to eq(nil)
 
     closing_subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
@@ -119,7 +119,7 @@ describe 'Subjects Api' do
     closed_response = JSON.parse(last_response.body)
     expect(closed_response["reason"]).to eq("A reason")
     expect(closed_response["comments"]).to eq("A comment")
-    expect(closed_response["closing_moment"]).not_to eq(nil)
+    expect(closed_response["closed"]).not_to eq(nil)
   end
 
   it 'allows to create and close subject at the moment' do
@@ -139,7 +139,7 @@ describe 'Subjects Api' do
     expect(closed_response["id"]).not_to eq(nil)
     expect(closed_response["reason"]).to eq("A reason")
     expect(closed_response["comments"]).to eq("A comment")
-    expect(closed_response["closing_moment"]).not_to eq(nil)
+    expect(closed_response["closed"]).not_to eq(nil)
   end
 
   it 'not allows close two times', :wip do
@@ -168,7 +168,7 @@ describe 'Subjects Api' do
     post '/api/close-subject', closing_subject_1
     closed_response_1 = JSON.parse(last_response.body)
 
-    closing_moment_1 = closed_response_1['closing_moment']
+    closed_1 = closed_response_1['closed']
 
     closing_subject_2 = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
@@ -179,14 +179,14 @@ describe 'Subjects Api' do
             "topics": Fixtures::TOPICS,
             "reason": "A reason",
             "comments": "A comment",
-            "closing_moment": closing_moment_1
+            "closed": closed_1
 		}.to_json
 
     post '/api/close-subject', closing_subject_2
     closed_response_2 = JSON.parse(last_response.body)
 
-    closing_moment_2 = closed_response_2['closing_moment']
+    closed_2 = closed_response_2['closed']
 
-    expect(closing_moment_1).to eq(closing_moment_2)
+    expect(closed_1).to eq(closed_2)
   end
 end

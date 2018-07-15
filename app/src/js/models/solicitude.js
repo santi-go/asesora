@@ -55,7 +55,9 @@ export let SolicitudeModel = {
     "description": "xxxxxxxxx",
     "placeholderdescription": "xxxxxxxxx",
     "comments": "xxxxxxxx",
-    "closeCounseling": "xxxxx"
+    "reason": "xxxxx",
+    "closeCounseling": "xxxxx",
+    "closedSubject": "xxxx"
   },
   values: {
     "text": "",
@@ -80,8 +82,8 @@ export let SolicitudeModel = {
     "subjectId": "",
     "description": "",
     "comments": "",
-    "reasons": "",
-    "closing_moment": ""
+    "reason": "",
+    "closed": ""
   },
   ccaaCatalog: [],
   suggestedCompanies: [],

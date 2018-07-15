@@ -15,7 +15,7 @@ module Subjects
       subject.description = description
       subject.analysis = analysis
       subject.topics = topics
-      
+
       collection = Collection.update(subject, id)
 
       return if collection.nil?
@@ -27,7 +27,7 @@ module Subjects
       subject = Collection.retrieve(id)
       subject.reason = reason
       subject.comments = comments
-      subject.closing_moment = Time.now.to_i
+      subject.closed = DateTime.now
 
       updated_subject = Collection.update(subject, id)
       updated_subject.serialize

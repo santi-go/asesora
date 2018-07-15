@@ -5,10 +5,10 @@ describe('SubjectsList', () => {
   it('add class when subject closed', () => {
     const subjects = [
       {
-        closing_moment: null
+        closed: null
       },
       {
-        closing_moment: 'a_moment'
+        closed: 'a_moment'
       }
     ]
 

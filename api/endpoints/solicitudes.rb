@@ -129,6 +129,7 @@ module Endpoints
 
       api.post '/api/close-subject' do
         params = JSON.parse(request.body.read)
+
         data = {
           solicitude_id: params['solicitudeId'],
           id: params['subjectId'],
@@ -138,10 +139,11 @@ module Endpoints
           topics: params['topics'],
           reason: params['reason'],
           comments: params['comments'],
-          closing_moment: params['closing_moment']
+          closed: params['closed']
         }
 
         updated = Actions::CloseSubject.do(data)
+
         return {}.to_json if updated.nil?
         updated.to_json
       end

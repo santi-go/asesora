@@ -28,7 +28,8 @@ export default {
                                     analysis: this.values.analysis,
                                     topics: this.values.selectedTopics,
                                     comments: this.values.comments,
-                                    reasons: this.values.reasons
+                                    reason: this.values.reason,
+                                    closed: this.values.closed
                                   },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)

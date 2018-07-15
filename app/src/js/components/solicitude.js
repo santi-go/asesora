@@ -142,7 +142,9 @@ export default class Solicitude extends Component {
     this.data.setValues('analysis', event.detail.analysis)
     this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
+    this.data.setValues('reason', event.detail.reason)
     this.data.setValues('comments', event.detail.comments)
+    this.data.setValues('closed', event.detail.closed)
   }
 
   gotTopicsCatalog(payload) {
@@ -188,6 +190,7 @@ export default class Solicitude extends Component {
       analysis: payload.detail.analysis,
       topics: payload.detail.topics.map(item => item.value),
       comments: payload.detail.comments,
+      reason: payload.detail.reason
     }
     Bus.publish('update.subject', subject)
   }
@@ -201,7 +204,8 @@ export default class Solicitude extends Component {
       analysis: payload.detail.analysis,
       topics: payload.detail.topics.map(item => item.value),
       comments: payload.detail.comments,
-      reasons: payload.detail.reasons,
+      reason: payload.detail.reason,
+      closed: payload.detail.closed
     }
     Bus.publish('close.subject', subject)
   }
@@ -232,8 +236,8 @@ export default class Solicitude extends Component {
         subject.analysis = updatedSubject.analysis
         subject.topics = updatedSubject.topics
         subject.comments = updatedSubject.comments
-        subject.reasons = updatedSubject.reasons
-        subject.closing_moment = updatedSubject.closing_moment
+        subject.reason = updatedSubject.reason
+        subject.closed = updatedSubject.closed
       }
     }
   }

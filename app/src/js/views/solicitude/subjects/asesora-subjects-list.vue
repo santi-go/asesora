@@ -90,7 +90,7 @@ import SubjectsEditionView from './asesora-subjects-edition'
       },
 
       isClosed(item){
-        if (item.closing_moment !== null){return true}
+        if (item.closed !== null){return true}
         return false
       },
 

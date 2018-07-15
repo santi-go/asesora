@@ -101,7 +101,8 @@ export default class Subjects extends Component {
       analysis: payload.detail.analysis,
       description: payload.detail.description,
       topics: payload.detail.topics.map(item => item.value),
-      comments: payload.detail.comments
+      comments: payload.detail.comments,
+      reason: payload.detail.reason
     }
     Bus.publish('create.subject', subject)
   }
@@ -194,6 +195,7 @@ export default class Subjects extends Component {
         "description": "XXXXXXXX",
         "placeholderdescription": "xxxxxxxxx",
         "comments": "xxxxxxxx",
+        "reason": "xxxxx",
         "closeCounseling": "xxxxx"
       },
       values: {
@@ -218,8 +220,8 @@ export default class Subjects extends Component {
         "subjects": [],
         "description": "",
         "comments": "",
-        "reasons": "",
-        "closing_moment": ""
+        "reason": "",
+        "closed": ""
       },
       submittable: false,
       topicsCatalog: [],

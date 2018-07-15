@@ -11,10 +11,13 @@
                                         :submittable="submittable">
       </asesora-button-modify-counseling>
 
-      <asesora-button-close-counseling :labels="labels"
-                                        :values="values"
-                                        :submittable="submittable">
-      </asesora-button-close-counseling>
+      <template v-if="this.values.closed == null">
+        <asesora-button-close-counseling  :labels="labels"
+                                          :values="values"
+                                          :submittable="submittable">
+        </asesora-button-close-counseling>
+       </template>
+       <template v-else> {{labels.closedSubject}}: {{this.values.closed}}</template>
     </div>
   </div>
 </template>
