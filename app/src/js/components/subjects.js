@@ -18,6 +18,7 @@ export default class Subjects extends Component {
     Bus.subscribe("got.topics-catalog", this.gotTopicsCatalog.bind(this))
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
     Bus.subscribe("got.solicitude", this.updateModel.bind(this))
+    Bus.subscribe("got.reasons-catalog", this.gotReasonsCatalog.bind(this))
   }
 
   load(){
@@ -137,6 +138,14 @@ export default class Subjects extends Component {
     this.data.proposalsCatalog = catalog
   }
 
+  gotReasonsCatalog(payload) {
+    let catalog = []
+    for (const reason of payload.data) {
+      catalog.push({ value: reason.id, text: reason.name })
+    }
+    this.data.reasonsCatalog = catalog
+  }
+
   updateModel(payload){
     this.data.values.id = payload.data.creation_moment
 
@@ -225,6 +234,7 @@ export default class Subjects extends Component {
       },
       submittable: false,
       topicsCatalog: [],
+      reasonsCatalog: [],
       proposalsCatalog: [],
       origin: "none",
       setValues:function(key, value) {

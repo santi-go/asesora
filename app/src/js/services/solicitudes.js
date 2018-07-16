@@ -11,6 +11,8 @@ export default class Solicitudes {
     this.topicsCatalog = []
     this.retrieveProposals()
     this.proposalsCatalog = []
+    this.retrieveReasons()
+    this.reasonsCatalog = []
   }
 
   subscribe() {
@@ -114,6 +116,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('updated.solicitude.and.add.subject')
     let body = payload
     let url = 'update-solicitude'
+    this.client.hit(url, body, callback)
+  }
+
+  retrieveReasons() {
+    let callback = this.buildCallback('got.reasons-catalog')
+    let body = {}
+    let url = 'close-reasons'
     this.client.hit(url, body, callback)
   }
 

@@ -94,7 +94,8 @@ module Translation
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
                 "closeCounseling": "Cerrar caso",
-                "closedSubject": "Cerrado"
+                "closedSubject": "Cerrado",
+                "reason": "Motivo de cierre"
               },
 
               "solicitudes-list": {
@@ -137,7 +138,8 @@ module Translation
                 "applicantCcaa": "Comunidad autónoma",
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
-                "comments": "Comentarios sobre el asesoramiento"
+                "comments": "Comentarios sobre el asesoramiento",
+                "reason": "Motivo de cierre"
               },
 
               "subjects": {
@@ -170,7 +172,8 @@ module Translation
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
-                "closeCounseling": "Cerrar caso"
+                "closeCounseling": "Cerrar caso",
+                "reason": "Motivo de cierre"
               }
             },
 

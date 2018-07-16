@@ -122,7 +122,9 @@ export default class ShowSolicitude extends Component {
         "subject": "",
         "description": "",
         "placeholderdescription": "",
-        "comments": ""
+        "comments": "",
+        "reason": ""
+
       },
       values: {
         "id": "",

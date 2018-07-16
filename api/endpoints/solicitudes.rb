@@ -89,7 +89,7 @@ module Endpoints
         {data: ccaa_catalog}.to_json
       end
 
-      api.post '/api/close_reasons' do
+      api.post '/api/close-reasons' do
         close_reasons_catalog = Actions::RetrieveCloseReasons.do()
 
         {data: close_reasons_catalog}.to_json
