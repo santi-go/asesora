@@ -117,7 +117,7 @@ In this moment we urge you to indicate the password of root in droplet.
 The administrator must copy with 'scp' the key:
 
 ~~~
-scp -i ~/.ssh/id_rsa new_admin_user_key.pub root@206.189.1.31:/root/new_admin_user_key.pub
+scp -i ~/.ssh/id_rsa new_admin_user_key.pub root@ip.droplet:/root/new_admin_user_key.pub
 ~~~
 
 Then, with 'ssh', the administrator add the key to authorized keys:
