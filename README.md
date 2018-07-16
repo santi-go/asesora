@@ -123,13 +123,13 @@ scp -i ~/.ssh/id_rsa new_admin_user_key.pub root@206.189.1.31:/root/new_admin_us
 Then, with 'ssh', the administrator add the key to authorized keys:
 
 ~~~
-ssh -i ~/.ssh/id_rsa root@206.189.1.31 "cat /root/new_admin_user_key.pub >> /root/.ssh/authorized_keys"
+ssh -i ~/.ssh/id_rsa root@ip.droplet "cat /root/new_admin_user_key.pub >> /root/.ssh/authorized_keys"
 ~~~
 
 And finally, the administrator removes the uploaded file:
 
 ~~~
-ssh -i ~/.ssh/id_rsa root@206.189.1.31 "rm /root/new_admin_user_key.pub"
+ssh -i ~/.ssh/id_rsa root@ip.droplet "rm /root/new_admin_user_key.pub"
 ~~~
 
 
