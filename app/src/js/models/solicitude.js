@@ -1,5 +1,5 @@
 
-eport let SolicitudeModel = {
+export let SolicitudeModel = {
   labels: {
     "analysis": "",
     "applicant": "",
