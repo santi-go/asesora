@@ -5,7 +5,6 @@
       <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
       <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
       <asesora-proposals-description :labels="labels" :values="values"></asesora-proposals-description>
-      <asesora-subject-comments :labels="labels" :values="values"></asesora-subject-comments>
 
       <div id="button-container">
         <asesora-button-modify-counseling :labels="labels"
