@@ -4,7 +4,6 @@
             type="button"
             name="submit"
             class="submitbutton"
-            :disabled="!submittable"
             v-on:click="closeCounseling()">
             {{labels.closeCounseling}}
     </button>
@@ -15,7 +14,7 @@
 export default {
   name: 'asesora-button-close-counseling',
 
-  props: ['labels', 'values', 'submittable'],
+  props: ['labels', 'values'],
 
   methods: {
     closeCounseling(event) {
