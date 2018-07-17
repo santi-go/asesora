@@ -6,13 +6,10 @@ export default class Solicitudes {
     this.client = APIClient
     this.subscribe()
     this.retrieveCnae()
-    this.cnaeCatalog = []
     this.retrieveTopics()
-    this.topicsCatalog = []
     this.retrieveProposals()
-    this.proposalsCatalog = []
     this.retrieveReasons()
-    this.reasonsCatalog = []
+    this.retriveCatalogSourceFormats()
   }
 
   subscribe() {
@@ -123,6 +120,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('got.reasons-catalog')
     let body = {}
     let url = 'close-reasons'
+    this.client.hit(url, body, callback)
+  }
+
+  retriveCatalogSourceFormats() {
+    let callback = this.buildCallback('got.source-formats-catalog')
+    let body = {}
+    let url = 'source_formats'
     this.client.hit(url, body, callback)
   }
 

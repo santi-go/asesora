@@ -84,8 +84,10 @@ export let SolicitudeModel = {
     "description": "",
     "comments": "",
     "reason": "",
-    "closed": ""
+    "closed": "",
+    "source": []
   },
+  sourceCatalog: [],
   ccaaCatalog: [],
   suggestedCompanies: [],
   suggestedApplicants: [],
