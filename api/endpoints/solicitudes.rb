@@ -13,6 +13,7 @@ require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
 require_relative '../system/actions/retrieve_proposals'
+require_relative '../system/actions/retrieve_source_formats'
 
 module Endpoints
   class Solicitudes
@@ -28,6 +29,7 @@ module Endpoints
           ccaa:params['applicantCcaa'],
           id:params['applicantId'],
           date:params['date'],
+          source:params['source'],
           company_name:params['companyName'],
           company_cif:params['companyCif'],
           company_employees:params['companyEmployees'],
@@ -59,6 +61,7 @@ module Endpoints
         data = {
           date:params['date'],
           text:params['text'],
+          source:params['source'],
           id:params['applicantId'],
           company_cif:params['companyCif'],
           creation_moment:params['creation_moment']
@@ -87,6 +90,12 @@ module Endpoints
         ccaa_catalog = Actions::RetrieveCcaa.do()
 
         {data: ccaa_catalog}.to_json
+      end
+
+      api.post '/api/source_formats' do
+        source_formats_catalog = Actions::RetrieveSourceFormats.do()
+
+        {data: source_formats_catalog}.to_json
       end
 
       api.post '/api/close-reasons' do

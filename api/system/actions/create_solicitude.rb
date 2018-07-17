@@ -5,14 +5,14 @@ require_relative '../services/applicant/service'
 
 module Actions
   class CreateSolicitude
-    def self.do(date:, text:, name:, surname:, email:, phonenumber:, ccaa:, id:, company_name:, company_cif:, company_employees:, company_cnae:)
+    def self.do(date:, text:, source:, name:, surname:, email:, phonenumber:, ccaa:, id:, company_name:, company_cif:, company_employees:, company_cnae:)
       if ( id == "" )
         applicant = create_applicant(name, surname, email, phonenumber, ccaa)
       else
         applicant = retrieve_applicant(name, surname, email, phonenumber, ccaa, id)
       end
       company = create_company(company_name, company_cif, company_employees, company_cnae)
-      solicitude = create_solicitude(date, text, applicant, company)
+      solicitude = create_solicitude(date, text, source, applicant, company)
       solicitude
     end
 
@@ -48,13 +48,14 @@ module Actions
       )
     end
 
-    def self.create_solicitude(date, text, applicant, company)
+    def self.create_solicitude(date, text, source, applicant, company)
       company_id = company["cif"]
       applicant_id = applicant["id"]
 
       ::Solicitudes::Service.create(
         date,
         text,
+        source,
         applicant_id,
         company_id
       )

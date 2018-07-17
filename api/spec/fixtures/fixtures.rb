@@ -11,6 +11,7 @@ class Fixtures
   SOLICITUDES_COUNT = 3
   SOLICITUDES_COUNT_FOR_DEFAULT_COMPANY = 2
   DATE = '2018-04-25'
+  SOURCE = 'Telefonico'
   TEXT = 'La primera solicitud'
   DATE_1 = '2018-04-25'
   TEXT_1 = 'La primera solicitud'
@@ -78,7 +79,7 @@ class Fixtures
   end
 
   def create_solicitude(applicant, company)
-    solicitude = ::Solicitudes::Service.create(DATE_1, TEXT_1, applicant["id"], company["cif"])
+    solicitude = ::Solicitudes::Service.create(DATE_1, TEXT_1, SOURCE, applicant["id"], company["cif"])
     full_solicitude = ::Actions::RetrieveSolicitude.do(id: solicitude["creation_moment"])
 
     full_solicitude
