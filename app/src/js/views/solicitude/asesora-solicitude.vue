@@ -31,6 +31,11 @@
                   :labels="labels"
                   :edit-solicitude='editSolicitude'
                   ></asesora-date>
+    <asesora-source-format  :values="values"
+                            :labels="labels"
+                            :source-catalog="sourceCatalog"
+                            >
+    </asesora-source-format>
     <asesora-text :values="values"
                   :labels="labels"
                   :edit-solicitude='editSolicitude'
@@ -115,6 +120,7 @@ import ButtonDiscardView from './asesora-button-discard'
 import ButtonDeleteView from './asesora-button-solicitude-delete'
 import ButtonAddSubject from './asesora-button-add-subject'
 import SubjectsListView from './subjects/asesora-subjects-list'
+import SourceFormatView from './asesora-source-format'
 
 export default {
   name: 'asesora-solicitude',
@@ -124,7 +130,7 @@ export default {
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
-          'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId', 'ccaaCatalog'],
+          'topicsCatalog', 'sourceCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId', 'ccaaCatalog'],
 
   components: {
     "asesora-date" : DateView,
@@ -136,7 +142,8 @@ export default {
     "asesora-button-discard" : ButtonDiscardView,
     "asesora-button-delete" : ButtonDeleteView,
     "asesora-button-add-subject": ButtonAddSubject,
-    "asesora-subjects-list" : SubjectsListView
+    "asesora-subjects-list" : SubjectsListView,
+    "asesora-source-format" : SourceFormatView
   },
 
   watch: {

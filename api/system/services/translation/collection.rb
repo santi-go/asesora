@@ -95,7 +95,8 @@ module Translation
                 "comments": "Comentarios sobre el asesoramiento",
                 "closeCounseling": "Cerrar caso",
                 "closedSubject": "Cerrado",
-                "reason": "Motivo de cierre"
+                "reason": "Motivo de cierre",
+                "source": "Formato de origen"
               },
 
               "solicitudes-list": {
