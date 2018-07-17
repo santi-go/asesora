@@ -24,6 +24,7 @@ describe('Show solicitudes', () => {
         labels: labels,
         values: {
           applicantCcaa: {},
+          source: {},
           subjects: [
             subject
           ]
@@ -43,6 +44,7 @@ describe('Show solicitudes', () => {
         labels: labels,
         values: {
           applicantCcaa: {},
+          source: {},
           subjects: [
             subject
           ]
@@ -64,6 +66,7 @@ describe('Show solicitudes', () => {
         labels: labels,
         values: {
           applicantCcaa: {},
+          source: {},
           subjects: [
             subject
           ]

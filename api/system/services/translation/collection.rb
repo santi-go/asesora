@@ -140,7 +140,8 @@ module Translation
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
-                "reason": "Motivo de cierre"
+                "reason": "Motivo de cierre",
+                "source": "Formato de origen"
               },
 
               "subjects": {

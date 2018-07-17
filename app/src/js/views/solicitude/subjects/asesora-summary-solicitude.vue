@@ -9,6 +9,7 @@
       <p><em>{{ labels.applicantEmail }}:</em> {{ values.applicantEmail }}</p>
       <p><em>{{ labels.applicantPhonenumber }}:</em> {{ values.applicantPhonenumber }}</p>
       <p><em>{{ labels.date }}:</em> {{ values.date }}</p>
+      <p><em>{{ labels.source }}:</em> {{ values.source.text }}</p>
     </div>
     <div class="column column-30 box">
       <label>{{ labels.company}}</label>

@@ -52,6 +52,7 @@ export default class Solicitude extends Component {
     this.reactTo('changed.email', this.setValidEmail.bind(this))
     this.reactTo('changed.phone', this.setValidPhone.bind(this))
     this.reactTo('changed.text', this.setButtonStatus.bind(this))
+    this.reactTo('changed.source', this.setButtonStatus.bind(this))
     this.reactTo('edit.solicitude', this.update.bind(this))
     this.reactTo('edit.solicitude.and.add.subject', this.updateAndAddSubject.bind(this))
     this.reactTo('clicked.discard.button', this.discardAnimation.bind(this))
@@ -183,8 +184,8 @@ export default class Solicitude extends Component {
 
   gotSourceFormatsCatalog(payload) {
     let catalog = []
-    for (const ccaa of payload.data) {
-      catalog.push({ value: ccaa.id, text: ccaa.name })
+    for (const source of payload.data) {
+      catalog.push({ value: source.id, text: source.name })
     }
     this.data.sourceCatalog = catalog
   }
@@ -386,6 +387,7 @@ export default class Solicitude extends Component {
    dictionaryOfSolicitude(payload){
      return {
          'text':  payload.data.text,
+         'source': payload.data.source,
          'date':  payload.data.date,
          'applicantId':  payload.data.applicant,
          'applicantName':  payload.data.applicant_name,
@@ -398,7 +400,6 @@ export default class Solicitude extends Component {
          'companyCif': payload.data.company_cif,
          'companyEmployees': payload.data.company_employees,
          'companyCnae': payload.data.company_cnae,
-         'source': payload.data.source,
          'subjects': payload.data.subjects
          }
      }

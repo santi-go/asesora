@@ -66,6 +66,7 @@ export default class ShowSolicitude extends Component {
     return {
         'text': payload.data.text,
         'date': payload.data.date,
+        'source': payload.data.source,
         'applicantName': payload.data.applicant_name,
         'applicantSurname': payload.data.applicant_surname,
         'applicantCcaa': payload.data.applicant_ccaa,
@@ -123,7 +124,8 @@ export default class ShowSolicitude extends Component {
         "description": "",
         "placeholderdescription": "",
         "comments": "",
-        "reason": ""
+        "reason": "",
+        "source": ""
 
       },
       values: {
@@ -139,7 +141,8 @@ export default class ShowSolicitude extends Component {
         "companyCif": "",
         "companyEmployees": "",
         "companyCnae": "",
-        "subjects": ""
+        "subjects": "",
+        "source": ""
       },
       buttonsPresent: true,
       hasSubjects: false,
