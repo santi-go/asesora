@@ -21,8 +21,12 @@ module Catalogs
         read("proposals.json")
       end
 
+      def source_formats
+        read("source_formats.json")
+      end
+
       private
-      
+
       def read(name)
         from_path = File.dirname(__FILE__)
         collection_file = File.join(from_path, "collections", name)
