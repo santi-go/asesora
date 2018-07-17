@@ -11,6 +11,11 @@
     <div class="modal-wrapper" id="popup">
        <div class="popup-container">
           <h2>{{labels.closeCounseling}}</h2>
+          <asesora-subject-reason :labels="labels"
+                                  :values="values"
+                                  :reasons-catalog="reasonsCatalog">
+          </asesora-subject-reason>
+
           <asesora-button-close-counseling  :labels="labels"
                                             :values="values">
           </asesora-button-close-counseling>
@@ -22,14 +27,16 @@
 
 <script>
   import ButtonCloseCounseling from './asesora-button-close-counseling'
+  import AsesoraSubjectReason from './asesora-subject-reason'
 
   export default {
     name: 'subject-close-modal-open',
 
-    props: ['labels', 'values'],
+    props: ['labels', 'values', 'reasonsCatalog'],
 
     components:{
-      "asesora-button-close-counseling": ButtonCloseCounseling
+      "asesora-button-close-counseling": ButtonCloseCounseling,
+      "asesora-subject-reason": AsesoraSubjectReason
     }
   }
 </script>

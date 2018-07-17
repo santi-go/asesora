@@ -12,10 +12,11 @@
                                           :values="values"
                                           :submittable="submittable">
         </asesora-button-modify-counseling>
-        
+
         <template v-if="this.values.closed == null">
           <button-subject-close-modal-open  :labels="labels"
-                                            :values="values">
+                                            :values="values"
+                                            :reasons-catalog="reasonsCatalog">
           </button-subject-close-modal-open>
         </template>
         <template v-else> {{labels.closedSubject}}: {{this.values.closed}}</template>
@@ -38,7 +39,7 @@ import SubjectCommentsView from './asesora-subject-comments'
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
-            'submittable'],
+            'submittable', 'reasonsCatalog'],
     components: {
       "asesora-proposals-for-action" : ProposalsView,
       "asesora-analysis-for-solicitude" : AnalysisView,

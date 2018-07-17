@@ -35,6 +35,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
     Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
     Bus.subscribe("subject.closed", this.subjectClosed.bind(this))
+    Bus.subscribe("got.reasons-catalog", this.gotReasonsCatalog.bind(this))
   }
 
   watchActions() {
@@ -169,6 +170,14 @@ export default class Solicitude extends Component {
       catalog.push({ value: proposal, text: proposal })
     }
     this.data.proposalsCatalog = catalog
+  }
+
+  gotReasonsCatalog(payload) {
+    let catalog = []
+    for (const reason of payload.data) {
+      catalog.push({ value: reason.id, text: reason.name })
+    }
+    this.data.reasonsCatalog = catalog
   }
 
   setModifySubjectButtonStatus(){

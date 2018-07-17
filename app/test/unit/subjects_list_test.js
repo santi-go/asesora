@@ -15,6 +15,7 @@ describe('SubjectsList', () => {
     const component = mount(SubjectsList, {
       propsData: {
         labels: {},
+        reasonsCatalog:{},
         values: {
           subjects: subjects
         }

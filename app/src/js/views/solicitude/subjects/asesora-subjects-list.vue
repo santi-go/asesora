@@ -24,6 +24,7 @@
                                            :submittable="submittable"
                                            :edition-subject="editionSubject"
                                            :editionmode="editionmode"
+                                           :reasons-catalog="reasonsCatalog"
                                            >
                  </asesora-subjects-edition>
                </template>
@@ -79,7 +80,7 @@ import SubjectsEditionView from './asesora-subjects-edition'
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
-            'editionSubject', 'modifiedSubjectId', 'submittable', 'editionmode'],
+            'editionSubject', 'modifiedSubjectId', 'submittable', 'editionmode', 'reasonsCatalog'],
     components: {
       "asesora-subjects-edition" : SubjectsEditionView
     },
