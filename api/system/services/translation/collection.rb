@@ -96,7 +96,8 @@ module Translation
                 "closeCounseling": "Cerrar caso",
                 "closedSubject": "Cerrado",
                 "reason": "Motivo de cierre",
-                "source": "Formato de origen"
+                "source": "Formato de origen",
+                "discard": "Descartar"
               },
 
               "solicitudes-list": {

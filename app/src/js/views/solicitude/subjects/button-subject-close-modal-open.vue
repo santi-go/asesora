@@ -22,6 +22,7 @@
           <asesora-button-close-counseling  :labels="labels"
                                             :values="values">
           </asesora-button-close-counseling>
+          <a href="#">{{labels.discard}}</a>
           <a class="popup-close" href="#">X</a>
        </div>
     </div>
