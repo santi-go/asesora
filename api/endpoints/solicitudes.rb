@@ -28,6 +28,7 @@ module Endpoints
           ccaa:params['applicantCcaa'],
           id:params['applicantId'],
           date:params['date'],
+          source:params['source'],
           company_name:params['companyName'],
           company_cif:params['companyCif'],
           company_employees:params['companyEmployees'],
@@ -59,6 +60,7 @@ module Endpoints
         data = {
           date:params['date'],
           text:params['text'],
+          source:params['source'],
           id:params['applicantId'],
           company_cif:params['companyCif'],
           creation_moment:params['creation_moment']

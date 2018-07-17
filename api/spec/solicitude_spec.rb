@@ -148,6 +148,7 @@ describe 'Solicitude Api' do
         'applicantCcaa': Fixtures::APPLICANT_CCAA,
         'text': Fixtures::TEXT,
         'date': Fixtures::DATE,
+        'source': Fixtures::SOURCE,
         'applicantId': "",
         'companyCif': ""
       }.to_json
@@ -158,6 +159,7 @@ describe 'Solicitude Api' do
 
       expect(created_solicitude['applicant']).not_to be_empty
       expect(created_solicitude['text']).to eq(Fixtures::TEXT)
+      expect(created_solicitude['source']).to eq(Fixtures::SOURCE)
       expect(created_solicitude['date']).to eq(Fixtures::DATE)
       expect(created_solicitude['creation_moment']).not_to be_nil
     end

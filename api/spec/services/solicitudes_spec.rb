@@ -35,14 +35,15 @@ describe 'Solicitude service' do
   it 'update edition moment' do
       date = Fixtures::DATE
       text = Fixtures::TEXT
+      source = Fixtures::SOURCE
       applicant = '1'
       company = '12345678Z'
 
-      solicitude = Solicitudes::Service.create(date, text, applicant, company)
+      solicitude = Solicitudes::Service.create(date, text, source, applicant, company)
       creation_moment = solicitude['creation_moment']
       first_solicitude = Solicitudes::Service.retrieve(creation_moment)
       sleep 1
-      solicitude_update = Solicitudes::Service.update(date, text, applicant, company, creation_moment)
+      solicitude_update = Solicitudes::Service.update(date, text, source, applicant, company, creation_moment)
       second_solicitude = Solicitudes::Service.retrieve(creation_moment)
 
       first_solicitude['edition_moment']

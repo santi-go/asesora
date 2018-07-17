@@ -11,11 +11,12 @@ module Domain
       solicitude.edition_moment = document['edition_moment']
       solicitude.solicited_at(document['date'])
       solicitude.text = document['text']
-      
+      solicitude.source = document['source']
+
       solicitude
     end
 
-    def self.with(date, text, applicant, company, creation_moment = nil, edition_moment = nil)
+    def self.with(date, text, source, applicant, company, creation_moment = nil, edition_moment = nil)
       solicitude = new(
         applicant,
         company,
@@ -24,11 +25,12 @@ module Domain
       solicitude.edition_moment = Time.now.to_i
       solicitude.solicited_at(date)
       solicitude.text = text
-      
+      solicitude.source = source
+
       solicitude
     end
-      
-    attr_writer :text, :date
+
+    attr_writer :text, :date, :source
 
     def initialize(applicant, company, creation_moment = nil)
       @applicant = applicant
@@ -43,12 +45,13 @@ module Domain
 
     def edition_moment=(value)
       @edition_moment = value
-    end 
+    end
 
     def serialize
       {
         "date" => @date.to_s,
         "text" => @text,
+        "source" => @source,
         "applicant" => @applicant,
         "creation_moment" => @creation_moment,
         "edition_moment" => @edition_moment,
