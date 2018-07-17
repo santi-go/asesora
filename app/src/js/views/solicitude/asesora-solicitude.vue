@@ -131,7 +131,7 @@ export default {
           'submittable', 'isValidContact', 'suggestedApplicants', 'editCompany',
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
-          'topicsCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId',
+          'topicsCatalog', 'sourceCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId',
           'ccaaCatalog', 'reasonsCatalog'],
 
   components: {

@@ -36,6 +36,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("subject.updated", this.subjectUpdated.bind(this))
     Bus.subscribe("subject.closed", this.subjectClosed.bind(this))
     Bus.subscribe("got.reasons-catalog", this.gotReasonsCatalog.bind(this))
+    Bus.subscribe("got.source-formats-catalog", this.gotSourceFormatsCatalog.bind(this))
   }
 
   watchActions() {
@@ -178,6 +179,14 @@ export default class Solicitude extends Component {
       catalog.push({ value: reason.id, text: reason.name })
     }
     this.data.reasonsCatalog = catalog
+  }
+
+  gotSourceFormatsCatalog(payload) {
+    let catalog = []
+    for (const ccaa of payload.data) {
+      catalog.push({ value: ccaa.id, text: ccaa.name })
+    }
+    this.data.sourceCatalog = catalog
   }
 
   setModifySubjectButtonStatus(){
@@ -389,6 +398,7 @@ export default class Solicitude extends Component {
          'companyCif': payload.data.company_cif,
          'companyEmployees': payload.data.company_employees,
          'companyCnae': payload.data.company_cnae,
+         'source': payload.data.source,
          'subjects': payload.data.subjects
          }
      }
