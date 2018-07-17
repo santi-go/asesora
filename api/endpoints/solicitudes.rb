@@ -13,6 +13,7 @@ require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
 require_relative '../system/actions/retrieve_proposals'
+require_relative '../system/actions/retrieve_source_formats'
 
 module Endpoints
   class Solicitudes
@@ -87,6 +88,12 @@ module Endpoints
         ccaa_catalog = Actions::RetrieveCcaa.do()
 
         {data: ccaa_catalog}.to_json
+      end
+
+      api.post '/api/source_formats' do
+        source_formats_catalog = Actions::RetrieveSourceFormats.do()
+
+        {data: source_formats_catalog}.to_json
       end
 
       api.post '/api/close-reasons' do

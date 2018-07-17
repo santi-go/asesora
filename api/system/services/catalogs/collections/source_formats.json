@@ -1,0 +1,7 @@
+[
+  {"id": "01","name": "Telefónico"},
+  {"id": "02","name": "Correo electrónico"},
+  {"id": "03","name": "Carta"},
+  {"id": "04","name": "Presencial"},
+  {"id": "05","name": "Otra organización"}
+]
