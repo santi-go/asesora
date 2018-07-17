@@ -13,9 +13,9 @@ describe 'Reasons for close' do
   end
 
   it 'retrieves complete catalog' do
-    post '/api/close_reasons', {}
+    post '/api/close-reasons', {}
     catalog = JSON.parse(last_response.body)
 
-    expect(catalog['data'].size).to be 5  
+    expect(catalog['data'].size).to be 5
   end
 end

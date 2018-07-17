@@ -1,10 +1,10 @@
 <template>
   <div id='subjects-edition'>
     <div>
+      <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
+      <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
       <asesora-proposals-for-action :labels="labels" :values="values" :proposals-catalog="proposalsCatalog"></asesora-proposals-for-action>
       <asesora-proposals-description :labels="labels" :values="values"></asesora-proposals-description>
-      <asesora-analysis-for-solicitude :labels="labels" :values="values"></asesora-analysis-for-solicitude>
-      <subject-topics :labels="labels" :values="values" :topics-catalog="topicsCatalog" :submittable="submittable"></subject-topics>
       <asesora-subject-comments :labels="labels" :values="values"></asesora-subject-comments>
       <asesora-button-modify-counseling :labels="labels"
                                         :values="values"
