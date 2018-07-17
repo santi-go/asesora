@@ -3,8 +3,8 @@ require_relative 'collection'
 
 module Solicitudes
   class Service
-    def self.create(date, text, applicant, company)
-      solicitude = Domain::Solicitude.with(date, text, applicant, company)
+    def self.create(date, text, source, applicant, company)
+      solicitude = Domain::Solicitude.with(date, text, source, applicant, company)
 
       Collection.create(solicitude).serialize
     end
@@ -19,9 +19,9 @@ module Solicitudes
       Collection.delete(id)
     end
 
-    def self.update(date, text, applicant, company, creation_moment)
+    def self.update(date, text, source, applicant, company, creation_moment)
       return nil if applicant.nil?
-      solicitude = Domain::Solicitude.with(date, text, applicant, company, creation_moment)
+      solicitude = Domain::Solicitude.with(date, text, source, applicant, company, creation_moment)
       Collection.update(creation_moment, solicitude).serialize
     end
 
