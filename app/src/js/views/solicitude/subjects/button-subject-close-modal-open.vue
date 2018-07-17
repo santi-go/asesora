@@ -15,6 +15,9 @@
                                   :values="values"
                                   :reasons-catalog="reasonsCatalog">
           </asesora-subject-reason>
+          <asesora-subject-comments :labels="labels"
+                                    :values="values">
+          </asesora-subject-comments>
 
           <asesora-button-close-counseling  :labels="labels"
                                             :values="values">
@@ -28,6 +31,7 @@
 <script>
   import ButtonCloseCounseling from './asesora-button-close-counseling'
   import AsesoraSubjectReason from './asesora-subject-reason'
+  import AsesoraSubjectComents from './asesora-subject-comments'
 
   export default {
     name: 'subject-close-modal-open',
@@ -36,7 +40,8 @@
 
     components:{
       "asesora-button-close-counseling": ButtonCloseCounseling,
-      "asesora-subject-reason": AsesoraSubjectReason
+      "asesora-subject-reason": AsesoraSubjectReason,
+      "asesora-subject-comments": AsesoraSubjectComents
     }
   }
 </script>
