@@ -28,6 +28,20 @@
                  </asesora-subjects-edition>
                </template>
                <template v-else>
+                 <template v-if=" isFilled(item.topics) ">
+                   <label>{{ labels.topics }}</label>
+                   <ul>
+                     <li v-for="topic in item.topics">
+                       {{ topic.name }}
+                     </li>
+                   </ul>
+                 </template>
+
+                 <template v-if=" isFilled(item.analysis) ">
+                   <label>{{ labels.analysis }}</label>
+                   <p>{{ item.analysis }}</p>
+                 </template>
+
                 <template v-if=" isFilled(item.proposal) ">
                   <label>{{ labels.proposals }}</label>
                   <ul>
@@ -40,20 +54,6 @@
                 <template v-if=" isFilled(item.description) ">
                   <label>{{ labels.description }}</label>
                   <p>{{ item.description }}</p>
-                </template>
-
-                <template v-if=" isFilled(item.analysis) ">
-                  <label>{{ labels.analysis }}</label>
-                  <p>{{ item.analysis }}</p>
-                </template>
-
-                <template v-if=" isFilled(item.topics) ">
-                  <label>{{ labels.topics }}</label>
-                  <ul>
-                    <li v-for="topic in item.topics">
-                      {{ topic.name }}
-                    </li>
-                  </ul>
                 </template>
 
                 <template v-if=" isFilled(item.comments) ">
