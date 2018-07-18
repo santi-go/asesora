@@ -14,6 +14,22 @@
                   <template v-if="editionmode">{{labels.modify}}</template>
                   {{labels.subject}} {{values.subjects.indexOf(item) +1 }}:
                 </h4>
+
+                <template v-if=" isFilled(item.closed) ">
+                  <label>{{ labels.closedSubject }}</label>
+                  <p>{{ item.closed }}</p>
+                </template>
+
+                <template v-if=" isFilled(item.reason) ">
+                  <label>{{ labels.reason }}</label>
+                  <p>{{ item.reason.text }}</p>
+                </template>
+
+                <template v-if=" isFilled(item.comments) ">
+                  <label>{{ labels.comments }}</label>
+                  <p>{{ item.comments }}</p>
+                </template>
+
               </div>
               <div class="column column-80">
                 <template v-if="editionSubject == item.id" >
@@ -43,24 +59,19 @@
                    <p>{{ item.analysis }}</p>
                  </template>
 
-                <template v-if=" isFilled(item.proposal) ">
-                  <label>{{ labels.proposals }}</label>
-                  <ul>
-                    <li v-for="proposal in item.proposal">
-                      {{ proposal }}
-                    </li>
-                  </ul>
-                </template>
+                  <template v-if=" isFilled(item.proposal) ">
+                    <label>{{ labels.proposals }}</label>
+                    <ul>
+                      <li v-for="proposal in item.proposal">
+                        {{ proposal }}
+                      </li>
+                    </ul>
+                  </template>
 
-                <template v-if=" isFilled(item.description) ">
-                  <label>{{ labels.description }}</label>
-                  <p>{{ item.description }}</p>
-                </template>
-
-                <template v-if=" isFilled(item.comments) ">
-                  <label>{{ labels.comments }}</label>
-                  <p>{{ item.comments }}</p>
-                </template>
+                  <template v-if=" isFilled(item.description) ">
+                    <label>{{ labels.description }}</label>
+                    <p>{{ item.description }}</p>
+                  </template>
                 </template>
               </div>
             </div>

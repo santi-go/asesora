@@ -176,7 +176,8 @@ module Translation
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
                 "closeCounseling": "Cerrar caso",
-                "reason": "Motivo de cierre"
+                "reason": "Motivo de cierre",
+                "source": "Formato de origen"
               }
             },
 

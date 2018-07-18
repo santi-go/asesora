@@ -145,7 +145,7 @@ export default class Solicitude extends Component {
     this.data.setValues('analysis', event.detail.analysis)
     this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
-    this.data.setValues('reason', event.detail.reason)
+    this.data.setValues('reason', this.data.reasonsCatalog[0])
     this.data.setValues('comments', event.detail.comments)
     this.data.setValues('closed', event.detail.closed)
   }

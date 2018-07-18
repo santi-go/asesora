@@ -18,7 +18,13 @@
                                             :reasons-catalog="reasonsCatalog">
           </button-subject-close-modal-open>
         </template>
-        <template v-else> {{labels.closedSubject}}: {{this.values.closed}}</template>
+        <template v-else>
+                          {{labels.closedSubject}}: {{this.values.closed}}
+                          <br>{{labels.reason}}: {{this.values.reason.text}}
+                          <template v-if= "this.values.comments">
+                            <br>{{labels.comments}}: {{this.values.comments}}
+                          </template>
+        </template>
       </div>
 
     </div>

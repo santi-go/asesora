@@ -168,7 +168,8 @@ export default class Subjects extends Component {
         'companyCif': payload.data.company_cif,
         'companyEmployees': payload.data.company_employees,
         'companyCnae': payload.data.company_cnae,
-        'subjects': payload.data.subjects
+        'subjects': payload.data.subjects,
+        'source': payload.data.source
       }
   }
 
@@ -205,7 +206,8 @@ export default class Subjects extends Component {
         "placeholderdescription": "xxxxxxxxx",
         "comments": "xxxxxxxx",
         "reason": "xxxxx",
-        "closeCounseling": "xxxxx"
+        "closeCounseling": "xxxxx",
+        "source": "xxx"
       },
       values: {
         "solicitudeId": "",
@@ -230,7 +232,8 @@ export default class Subjects extends Component {
         "description": "",
         "comments": "",
         "reason": "",
-        "closed": ""
+        "closed": "",
+        "source": ""
       },
       submittable: false,
       topicsCatalog: [],

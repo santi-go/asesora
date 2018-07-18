@@ -4,7 +4,6 @@
     <basic-select id="subject-reason"
                   :options="reasonsCatalog"
                   :selected-option="values.reason"
-                  :selectedOption="reasonsCatalog[0]"
                   @select="onSelect"
                   v-model="values.reason"
                   >
@@ -30,8 +29,7 @@
         this.item = {}
       },
       selectOption () {
-        // select option from parent component
-        this.item = this.options[1]
+        this.item = this.options[0]
       }
     },
     components: {
