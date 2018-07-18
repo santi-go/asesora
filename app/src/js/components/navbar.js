@@ -39,9 +39,9 @@ export default class Navbar extends Component{
   model(){
     return {
       labels: {
-        "name": "xxxxxxxxxxxxx",
-        "createSolicitude": "xxxxxxxxxxxxx",
-        "solicitudeList": "xxxxxxxxxxxxx"
+        "name": "",
+        "createSolicitude": "",
+        "solicitudeList": ""
       },
 
       translate:function(key,value) {
