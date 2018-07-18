@@ -19,6 +19,7 @@ export default class Subjects extends Component {
     Bus.subscribe("got.proposals-catalog", this.gotProposalsCatalog.bind(this))
     Bus.subscribe("got.solicitude", this.updateModel.bind(this))
     Bus.subscribe("got.reasons-catalog", this.gotReasonsCatalog.bind(this))
+    Bus.subscribe("subject.closed", this.subjectClosed.bind(this))
   }
 
   load(){
@@ -38,6 +39,11 @@ export default class Subjects extends Component {
     document.getElementById(this.element).addEventListener(
       'clicked.discard.subject.button',
       this.discardCard.bind(this)
+    )
+
+    document.getElementById(this.element).addEventListener(
+      'clicked.close.counseling',
+      this.closeCounseling.bind(this)
     )
   }
 
@@ -108,9 +114,29 @@ export default class Subjects extends Component {
     Bus.publish('create.subject', subject)
   }
 
+  subjectClosed(payload){
+    window.location.href = "/show-solicitude.html?id=" + payload.solicitude_id
+  }
+
+  closeCounseling(payload) {
+    const subject = {
+      subjectId: payload.detail.subjectId,
+      solicitudeId: payload.detail.solicitudeId,
+      proposal: payload.detail.proposals.map(item => item.value),
+      description: payload.detail.description,
+      analysis: payload.detail.analysis,
+      topics: payload.detail.topics.map(item => item.value),
+      comments: payload.detail.comments,
+      reason: payload.detail.reason,
+      closed: payload.detail.closed
+    }
+    Bus.publish('close.subject', subject)
+  }
+
+
   setButtonStatus(){
     this.data.submittable = false
-
+    this.data.values.reason = this.data.reasonsCatalog[0]
     let analysis = (this.data.values.analysis != "")
     let topics = (this.data.values.selectedTopics.length > 0)
     if(analysis || topics){

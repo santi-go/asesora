@@ -16,11 +16,17 @@
                                         :submittable="submittable"
                                         >
       </asesora-button-create-counseling>
+
+      <asesora-button-discard-subject :labels="labels">
+      </asesora-button-discard-subject>
     </template>
 
-
-    <asesora-button-discard-subject :labels="labels">
-    </asesora-button-discard-subject>
+    <template v-if="submittable">
+      <button-subject-close-modal-open  :labels="labels"
+                                        :values="values"
+                                        :reasons-catalog="reasonsCatalog">
+      </button-subject-close-modal-open>
+    </template>
   </div>
 </template>
 
@@ -33,6 +39,7 @@
   import SummarySolicitudeView from './subjects/asesora-summary-solicitude'
   import SubjectsListView from './subjects/asesora-subjects-list'
   import ProposalsDescriptionView from './subjects/asesora-proposals-description'
+  import ButtonSubjectCloseModalOpen from './subjects/button-subject-close-modal-open'
 
   export default {
     name: 'asesora-subjects',
@@ -48,7 +55,8 @@
       "subject-topics": SubjectTopicsView,
       "asesora-summary-solicitude": SummarySolicitudeView,
       "asesora-subjects-list": SubjectsListView,
-      "asesora-proposals-description": ProposalsDescriptionView
+      "asesora-proposals-description": ProposalsDescriptionView,
+      "button-subject-close-modal-open": ButtonSubjectCloseModalOpen,
     }
   }
 </script>

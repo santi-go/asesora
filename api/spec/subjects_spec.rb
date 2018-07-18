@@ -124,6 +124,7 @@ describe 'Subjects Api' do
 
   it 'allows to create and close subject at the moment' do
     closing_subject = {
+      "subjectId": "",
       "solicitudeId": Fixtures::CREATION_MOMENT,
       "proposal": Fixtures::PROPOSAL,
       "description": Fixtures::DESCRIPTION,
