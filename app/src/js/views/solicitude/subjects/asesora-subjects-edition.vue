@@ -60,5 +60,6 @@ import SubjectCommentsView from './asesora-subject-comments'
 <style scoped>
   #button-container {
     display: inline-flex;
+    height: 8rem;
   }
 </style>
