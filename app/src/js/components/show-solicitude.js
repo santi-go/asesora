@@ -142,6 +142,7 @@ export default class ShowSolicitude extends Component {
         "companyEmployees": "",
         "companyCnae": "",
         "subjects": "",
+        "reason": "",
         "source": ""
       },
       buttonsPresent: true,

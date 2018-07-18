@@ -20,7 +20,7 @@
                   <p>{{ item.closed }}</p>
                 </template>
 
-                <template v-if=" isFilled(item.reason) ">
+                <template v-if=" item.reason != null ">
                   <label>{{ labels.reason }}</label>
                   <p>{{ item.reason.text }}</p>
                 </template>
