@@ -80,6 +80,9 @@ class SolicitudesList {
       data.click()
   }
 
+  isSolicitudesListVisible(){
+    return browser.isVisible('#solicitudes-list')
+  }
 
   waitFor(field){
     browser.waitForVisible(field, 2000)

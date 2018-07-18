@@ -202,6 +202,12 @@ class Solicitude {
     return this
   }
 
+  clickOnDiscardButton(){
+    const data = $('#discard')
+    data.click()
+    return this
+  }
+
   submit(){
     this.lostFocus()
     $('#submit').click()
@@ -295,13 +301,17 @@ class Solicitude {
     browser.waitForVisible(field, 2000)
     browser.scroll(field)
   }
-
+  
   waitForSubmitAndAddSubject(){
     this.waitFor('#submit-and-add-subject')
   }
 
   waitForSolicitude(){
     this.waitFor('#solicitude')
+  }
+
+  waitForPhonenumber(){
+    this.waitFor('#phonenumber')
   }
 
   waitForAlertEditCompany(){
