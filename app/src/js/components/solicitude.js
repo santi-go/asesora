@@ -556,11 +556,12 @@ export default class Solicitude extends Component {
     }
 
     discardAnimation(){
+      let url = "/solicitudes-list.html"
       this.data.submittable = true
       this.data.showAlert = false
 
       this.moveCardAnimation('discardCard')
-      this.setTimeToRelocateUrl()
+      this.setTimeToRelocateUrl(url)
     }
 
     transitToList(){

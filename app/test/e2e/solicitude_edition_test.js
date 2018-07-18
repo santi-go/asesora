@@ -70,6 +70,30 @@ describe('Solicitude Edition', () => {
     expect(solicitude.dateValue()).to.eq(DATE_ENGLISH)
   })
 
+  it ("when discard changes navigate to solicitudes list", () => {
+    const solicitude = new Solicitude()
+    solicitude.fill()
+              .applicantName()
+              .applicantPhonenumber('987654321')
+              .description()
+              .companyName('Empresa 1')
+              .companyCif('W1626268E')
+    solicitude.submit()
+
+    const solicitudesList = new SolicitudesList()
+    solicitudesList.waitForSolicitudesList()
+    solicitudesList.clickOnEditButtonOnItem(1)
+    solicitude.waitForPhonenumber()
+
+    solicitude.fill()
+              .applicantPhonenumber('123456789')
+    solicitude.clickOnDiscardButton()
+
+    solicitudesList.waitForSolicitudesList()
+
+    assert(solicitudesList.isSolicitudesListVisible(), true)
+  })
+
   it("shows delete solicitude button", function(){
     const solicitude = new Solicitude()
     solicitude.fill()
