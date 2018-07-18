@@ -36,8 +36,8 @@ export default class Sidebar extends Component {
   model(){
     return {
       labels: {
-        "createSolicitude": "XXXXXXXXXXXXXXX",
-        "solicitudeList": "XXXXXXX"
+        "createSolicitude": "",
+        "solicitudeList": ""
       },
 
       translate:function(key,value) {
