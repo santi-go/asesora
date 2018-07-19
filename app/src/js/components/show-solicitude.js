@@ -125,8 +125,8 @@ export default class ShowSolicitude extends Component {
         "placeholderdescription": "",
         "comments": "",
         "reason": "",
-        "source": ""
-
+        "source": "",
+        "deleteSubject": ""
       },
       values: {
         "id": "",

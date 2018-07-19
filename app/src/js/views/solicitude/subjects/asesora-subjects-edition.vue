@@ -25,6 +25,9 @@
                             <br>{{labels.comments}}: {{this.values.comments}}
                           </template>
         </template>
+        <button-delete-subject  :labels="labels"
+                                :values="values">
+        </button-delete-subject>
       </div>
 
     </div>
@@ -37,6 +40,7 @@ import AnalysisView from './asesora-analysis-for-solicitude'
 import SubjectTopicsView from './subject-topics'
 import ButtonModifyCounseling from './asesora-button-modify-counseling'
 import ButtonCloseCounseling from './asesora-button-close-counseling'
+import ButtonDeleteSubject from './button-delete-subject'
 import ButtonSubjectCloseModalOpen from './button-subject-close-modal-open'
 import ProposalsDescriptionView from './asesora-proposals-description'
 import SubjectCommentsView from './asesora-subject-comments'
@@ -53,7 +57,8 @@ import SubjectCommentsView from './asesora-subject-comments'
       "asesora-button-close-counseling": ButtonCloseCounseling,
       "button-subject-close-modal-open": ButtonSubjectCloseModalOpen,
       "asesora-proposals-description": ProposalsDescriptionView,
-      "asesora-subject-comments": SubjectCommentsView
+      "asesora-subject-comments": SubjectCommentsView,
+      "button-delete-subject": ButtonDeleteSubject
     }
   }
 </script>

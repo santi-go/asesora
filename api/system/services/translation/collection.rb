@@ -92,7 +92,8 @@ module Translation
                 "closedSubject": "Cerrado",
                 "reason": "Motivo de cierre",
                 "source": "Formato de origen",
-                "discard": "Descartar"
+                "discard": "Descartar",
+                "deleteSubject": "Eliminar"
               },
 
               "solicitudes-list": {
@@ -137,7 +138,8 @@ module Translation
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
                 "reason": "Motivo de cierre",
-                "source": "Formato de origen"
+                "source": "Formato de origen",
+                "deleteSubject": "Eliminar"
               },
 
               "subjects": {
@@ -173,7 +175,8 @@ module Translation
                 "closeCounseling": "Cerrar caso",
                 "reason": "Motivo de cierre",
                 "source": "Formato de origen",
-                "discard": "Descartar"
+                "discard": "Descartar",
+                "deleteSubject": "Eliminar"
               }
             },
 
