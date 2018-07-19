@@ -40,7 +40,6 @@ export default class Subjects extends Component {
       'clicked.discard.subject.button',
       this.discardCard.bind(this)
     )
-
     document.getElementById(this.element).addEventListener(
       'clicked.close.counseling',
       this.closeCounseling.bind(this)
@@ -136,7 +135,6 @@ export default class Subjects extends Component {
 
   setButtonStatus(){
     this.data.submittable = false
-    this.data.values.reason = this.data.reasonsCatalog[0]
     let analysis = (this.data.values.analysis != "")
     let topics = (this.data.values.selectedTopics.length > 0)
     if(analysis || topics){
@@ -170,6 +168,7 @@ export default class Subjects extends Component {
       catalog.push({ value: reason.id, text: reason.name })
     }
     this.data.reasonsCatalog = catalog
+    this.data.values.reason = catalog[0]
   }
 
   updateModel(payload){
@@ -233,7 +232,8 @@ export default class Subjects extends Component {
         "comments": "",
         "reason": "",
         "closeCounseling": "",
-        "source": ""
+        "source": "",
+        "discard": ""
       },
       values: {
         "solicitudeId": "",

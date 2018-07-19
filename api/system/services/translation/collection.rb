@@ -177,7 +177,8 @@ module Translation
                 "comments": "Comentarios sobre el asesoramiento",
                 "closeCounseling": "Cerrar caso",
                 "reason": "Motivo de cierre",
-                "source": "Formato de origen"
+                "source": "Formato de origen",
+                "discard": "Descartar"
               }
             },
 
