@@ -10,10 +10,10 @@ require_relative '../system/actions/create_subject'
 require_relative '../system/actions/update_subject'
 require_relative '../system/actions/close_subject'
 require_relative '../system/actions/retrieve_subjects'
-require_relative '../system/actions/retrieve_subjects'
 require_relative '../system/actions/retrieve_topics'
 require_relative '../system/actions/retrieve_proposals'
 require_relative '../system/actions/retrieve_source_formats'
+require_relative '../system/actions/delete_subject'
 
 module Endpoints
   class Solicitudes
@@ -163,6 +163,14 @@ module Endpoints
         subjects = Actions::RetrieveSubjects.do(solicitude_id: params['solicitudeId'])
 
         {data: subjects}.to_json
+      end
+
+      api.post '/api/delete-subject' do
+        params = JSON.parse(request.body.read)
+
+        response = Actions::DeleteSubject.do(solicitude_id: params['solicitudeId'], id: params['id'])
+        return status 500 if response == "500"
+        status 200
       end
 
       api.post '/api/topics' do

@@ -23,6 +23,13 @@ module Subjects
       collection.serialize
     end
 
+    def self.retrieve(solicitude_id, id)
+
+      subject = Collection.retrieve(id)
+      return if subject.nil?
+      subject.serialize
+    end
+
     def self.close(subject, id, reason, comments, closed)
       return Collection.retrieve(id).serialize if !(closed.nil? || closed.empty?)
 
@@ -33,6 +40,10 @@ module Subjects
 
       updated_subject = Collection.update(subject, id)
       updated_subject.serialize
+    end
+
+    def self.delete(id)
+      Collection.delete(id)
     end
 
     def self.all_by(solicitude_id)

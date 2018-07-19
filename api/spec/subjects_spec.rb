@@ -143,7 +143,7 @@ describe 'Subjects Api' do
     expect(closed_response["closed"]).not_to eq(nil)
   end
 
-  it 'not allows close two times', :wip do
+  it 'not allows close two times' do
     subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
@@ -189,5 +189,52 @@ describe 'Subjects Api' do
     closed_2 = closed_response_2['closed']
 
     expect(closed_1).to eq(closed_2)
+  end
+
+  it 'delete subject', :wip do
+		a_subject = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "proposal": Fixtures::PROPOSAL,
+            "description": Fixtures::DESCRIPTION,
+            "analysis": Fixtures::ANALYSIS,
+            "topics": Fixtures::TOPICS
+		}.to_json
+
+    other_subject = {
+            "solicitudeId": Fixtures::CREATION_MOMENT,
+            "proposal": Fixtures::PROPOSAL_2,
+            "description": Fixtures::DESCRIPTION_2,
+            "analysis": Fixtures::ANALYSIS_2,
+            "topics": Fixtures::TOPICS_2
+		}.to_json
+
+    post '/api/create-subject', a_subject
+
+    post '/api/create-subject', other_subject
+    response = JSON.parse(last_response.body)
+    subject_id = response["id"]
+
+    retrieve_subject = {
+      "solicitudeId": Fixtures::CREATION_MOMENT
+    }.to_json
+
+    post '/api/retrieve-subjects', retrieve_subject
+    response = JSON.parse(last_response.body)
+    subjects_before_remove = response["data"].count
+
+    subject_for_delete = {
+      "solicitudeId": Fixtures::CREATION_MOMENT,
+      "id": subject_id
+    }.to_json
+
+    post '/api/delete-subject', subject_for_delete
+
+    post '/api/retrieve-subjects', retrieve_subject
+    response = JSON.parse(last_response.body)
+    subjects_after_remove = response["data"].count
+
+    id_deleted = subjects_before_remove > subjects_after_remove
+    expect(id_deleted).to be(true)
+
   end
 end

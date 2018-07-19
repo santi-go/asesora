@@ -42,6 +42,8 @@ class Fixtures
   ANALYSIS = 'Análisis de la solicitud'
   ANALYSIS_2 = 'Otros Análisis de la solicitud'
   TOPICS = 'Temas del caso'
+  TOPICS_2 = 'Más temas del caso 2'
+
 
   def pristine
     clean_collections

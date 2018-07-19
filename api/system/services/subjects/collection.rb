@@ -28,6 +28,10 @@ module Subjects
         Domain::Subject.from_document(subject)
       end
 
+      def delete(id)
+        MongoClient.delete(id)
+      end
+
       def all_by(solicitude_id)
         subjects = MongoClient.all_by(solicitude_id)
 
@@ -53,6 +57,10 @@ module Subjects
 
         def find(id)
           client[:subjects].find({"id": id}).first
+        end
+
+        def delete(id)
+          client[:subjects].delete_one({"id": id})
         end
 
         private
