@@ -6,7 +6,6 @@ import Companies from './services/companies'
 
 
 import Navbar from './components/navbar'
-import Sidebar from './components/sidebar'
 import Solicitude from './components/solicitude'
 import SolicitudesList from './components/solicitudes-list'
 import ShowSolicitude from './components/show-solicitude'
@@ -19,7 +18,6 @@ new Applicants()
 new Companies()
 
 new Navbar()
-new Sidebar()
 
 module.exports = {
   Solicitude: Solicitude,
