@@ -215,7 +215,8 @@ export default class Solicitude extends Component {
       analysis: payload.detail.analysis,
       topics: payload.detail.topics.map(item => item.value),
       comments: payload.detail.comments,
-      reason: payload.detail.reason
+      reason: payload.detail.reason,
+      closed: payload.detail.closed
     }
     Bus.publish('update.subject', subject)
   }
@@ -236,6 +237,7 @@ export default class Solicitude extends Component {
   }
 
   subjectUpdated(payload){
+    this.data.showAlert = false
     this.refreshModifiedSubject(payload)
     this.data.submittable = false
     this.showSubjectModified()
@@ -243,6 +245,7 @@ export default class Solicitude extends Component {
   }
 
   subjectClosed(payload){
+    this.data.showAlert = false
     this.refreshModifiedSubject(payload)
     this.data.submittable = false
     this.showSubjectModified()

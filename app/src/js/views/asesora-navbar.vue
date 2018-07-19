@@ -22,7 +22,7 @@
       </div>
   </div>
   <div class="column column-30">
-
+    <!-- Este espacio esta reservado para la vista de USER -->
   </div>
 
 </div>
