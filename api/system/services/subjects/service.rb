@@ -23,7 +23,9 @@ module Subjects
       collection.serialize
     end
 
-    def self.close(id, reason, comments)
+    def self.close(subject, id, reason, comments, closed)
+      return Collection.retrieve(id).serialize if !(closed.nil? || closed.empty?)
+
       subject = Collection.retrieve(id)
       subject.reason = reason
       subject.comments = comments
