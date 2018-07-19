@@ -2,7 +2,6 @@ require 'sinatra/base'
 require 'sinatra/cross_origin'
 require 'json'
 
-require_relative 'endpoints/information'
 require_relative 'endpoints/translations'
 require_relative 'endpoints/solicitudes'
 require_relative 'endpoints/applicants'
@@ -31,8 +30,6 @@ class Asesora < Sinatra::Base
 
 
   Endpoints::Translations.define_endpoints(self)
-
-  Endpoints::Information.define_endpoints(self)
 
   Endpoints::Solicitudes.define_endpoints(self)
 
