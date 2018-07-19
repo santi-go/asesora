@@ -64,8 +64,11 @@
 }
 
 tbody tr:hover {
-  cursor: text;
   background-color: rgb(239, 239, 239);
+}
+
+tbody tr td:hover {
+  cursor: auto;
 }
 
 .alert {
@@ -168,8 +171,4 @@ span:first-child {
 
 label {
   margin-top: 1em;
-}
-
-td{
-  cursor: pointer;
 }
