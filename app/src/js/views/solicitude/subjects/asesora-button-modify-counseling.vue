@@ -26,7 +26,10 @@ export default {
                                     proposals: this.values.proposals,
                                     description: this.values.description,
                                     analysis: this.values.analysis,
-                                    topics:this.values.selectedTopics
+                                    topics: this.values.selectedTopics,
+                                    comments: this.values.comments,
+                                    reason: this.values.reason,
+                                    closed: this.values.closed
                                   },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
