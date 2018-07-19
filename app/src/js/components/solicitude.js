@@ -129,6 +129,12 @@ export default class Solicitude extends Component {
   }
 
   editSubject(event){
+    let reason = event.detail.reason
+    if (event.detail.reason == null){
+      reason = this.data.reasonsCatalog[0]
+      }
+
+
     this.data.editionSubject = event.detail.id
     let valuesProposals = []
     for (const proposal of event.detail.proposal) {
@@ -145,7 +151,7 @@ export default class Solicitude extends Component {
     this.data.setValues('analysis', event.detail.analysis)
     this.data.setValues('subjectId', event.detail.id)
     this.data.setValues('selectedTopics', valuesTopics)
-    this.data.setValues('reason', this.data.reasonsCatalog[0])
+    this.data.setValues('reason', reason)
     this.data.setValues('comments', event.detail.comments)
     this.data.setValues('closed', event.detail.closed)
   }
