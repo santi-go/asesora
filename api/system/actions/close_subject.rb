@@ -9,9 +9,7 @@ module Actions
         subject = update(solicitude_id, id, proposal, description, analysis, topics)
       end
 
-      if is_not?(closed)
-        subject = ::Subjects::Service.close(subject['id'], reason, comments)
-      end
+      subject = ::Subjects::Service.close(subject, subject['id'], reason, comments, closed)
       subject
     end
 

@@ -31,11 +31,6 @@ module Translation
                 "createSolicitude": "Nueva solicitud"
               },
 
-              "sidebar": {
-                "solicitudeList": "Listado de solicitudes",
-                "createSolicitude": "Nueva solicitud"
-              },
-
               "solicitude": {
                 "applicant": "Solicitante",
                 "date": "Fecha",
@@ -184,7 +179,9 @@ module Translation
 
             "en" => {
               "navbar": {
-                "description": "asesora application"
+                "name": "Asesora",
+                "solicitudeList": "List of solicitudes",
+                "createSolicitude": "New solicitude"
               }
             }
           }
