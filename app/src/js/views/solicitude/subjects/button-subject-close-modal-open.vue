@@ -52,6 +52,7 @@
    visibility: hidden;
    opacity: 0;
    margin-top: -300px;
+   margin-left: -300px;
 }
 #popup:target {
    visibility:visible;

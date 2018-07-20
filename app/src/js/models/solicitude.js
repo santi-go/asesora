@@ -59,7 +59,8 @@ export let SolicitudeModel = {
     "closeCounseling": "",
     "closedSubject": "",
     "source": "",
-    "discard": ""
+    "discard": "",
+    "deleteSubject": ""
   },
   values: {
     "text": "",

@@ -233,7 +233,8 @@ export default class Subjects extends Component {
         "reason": "",
         "closeCounseling": "",
         "source": "",
-        "discard": ""
+        "discard": "",
+        "deleteSubject": ""
       },
       values: {
         "solicitudeId": "",

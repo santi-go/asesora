@@ -29,6 +29,12 @@
                   <label>{{ labels.comments }}</label>
                   <p>{{ item.comments }}</p>
                 </template>
+                <template v-if="!editionmode">
+                  <button-delete-subject  :labels="labels"
+                                          :values="values">
+                  </button-delete-subject>
+                </template>
+
 
               </div>
               <div class="column column-80">
@@ -87,13 +93,15 @@
 
 <script>
 import SubjectsEditionView from './asesora-subjects-edition'
+import ButtonDeleteSubject from './button-delete-subject'
 
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
             'editionSubject', 'modifiedSubjectId', 'submittable', 'editionmode', 'reasonsCatalog'],
     components: {
-      "asesora-subjects-edition" : SubjectsEditionView
+      "asesora-subjects-edition" : SubjectsEditionView,
+      "button-delete-subject": ButtonDeleteSubject
     },
     methods: {
       isFilled(value){
