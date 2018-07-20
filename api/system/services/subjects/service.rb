@@ -24,9 +24,8 @@ module Subjects
     end
 
     def self.retrieve(solicitude_id, id)
-
       subject = Collection.retrieve(id)
-      return if subject.nil?
+      return {} if subject.nil?
       subject.serialize
     end
 

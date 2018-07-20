@@ -24,7 +24,7 @@ module Subjects
 
       def retrieve(id)
         subject = MongoClient.find(id)
-
+        return subject if subject == nil
         Domain::Subject.from_document(subject)
       end
 
