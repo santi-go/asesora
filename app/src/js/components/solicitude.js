@@ -385,12 +385,31 @@ export default class Solicitude extends Component {
   }
 
   updateModel(payload) {
-     let dictionary = this.dictionaryOfSolicitude(payload)
+    let dictionarySolicitude = this.dictionaryOfSolicitude(payload)
+    this.chargeDictionary(dictionarySolicitude)
+
+     if (payload.data.company != undefined){
+       let dictionaryCompany = this.dictionaryOfCompany(payload)
+       this.chargeDictionary(dictionaryCompany)
+     }
+
+     this.initialValues = this.data.cloneValues()
+     Bus.publish('get.company.count', payload.data.company_cif)
+   }
+
+   chargeDictionary(dictionary){
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
      }
-     this.initialValues = this.data.cloneValues()
-     Bus.publish('get.company.count', payload.data.company_cif)
+   }
+
+   dictionaryOfCompany(payload){
+     return {
+       'companyName': payload.data.company_name,
+       'companyCif': payload.data.company_cif,
+       'companyEmployees': payload.data.company_employees,
+       'companyCnae': payload.data.company_cnae
+     }
    }
 
    dictionaryOfSolicitude(payload){
@@ -405,10 +424,6 @@ export default class Solicitude extends Component {
          'applicantPhonenumber':  payload.data.applicant_phonenumber,
          'applicantCcaa': payload.data.applicant_ccaa,
          'creation_moment': payload.data.creation_moment,
-         'companyName': payload.data.company_name,
-         'companyCif': payload.data.company_cif,
-         'companyEmployees': payload.data.company_employees,
-         'companyCnae': payload.data.company_cnae,
          'subjects': payload.data.subjects
          }
      }
