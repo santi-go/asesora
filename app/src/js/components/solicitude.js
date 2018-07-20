@@ -73,6 +73,7 @@ export default class Solicitude extends Component {
     this.reactTo('changed.subject', this.setModifySubjectButtonStatus.bind(this))
     this.reactTo('clicked.modify.counseling', this.modifyCounseling.bind(this))
     this.reactTo('clicked.close.counseling', this.closeCounseling.bind(this))
+    this.reactTo('clicked.delete.subject', this.deleteSubject.bind(this))
 
     window.addEventListener("beforeunload", this.leaving.bind(this))
   }
@@ -346,6 +347,13 @@ export default class Solicitude extends Component {
     }
 
     Bus.publish('delete.solicitude', payload.detail.solicitudeId)
+  }
+
+  deleteSubject(payload){
+    if (!confirm("¿Estas seguro/a de que quieres eliminar el caso asociado? Ten en cuenta que esta operación no se puede deshacer")){
+      return
+    }
+    Bus.publish('delete.subject', payload.detail)
   }
 
   gotCompanyCount(count){

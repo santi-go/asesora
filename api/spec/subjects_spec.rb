@@ -191,7 +191,7 @@ describe 'Subjects Api' do
     expect(closed_1).to eq(closed_2)
   end
 
-  it 'delete subject', :wip do
+  it 'delete subject' do
 		a_subject = {
             "solicitudeId": Fixtures::CREATION_MOMENT,
             "proposal": Fixtures::PROPOSAL,
@@ -224,7 +224,7 @@ describe 'Subjects Api' do
 
     subject_for_delete = {
       "solicitudeId": Fixtures::CREATION_MOMENT,
-      "id": subject_id
+      "subjectId": subject_id
     }.to_json
 
     post '/api/delete-subject', subject_for_delete
@@ -233,8 +233,20 @@ describe 'Subjects Api' do
     response = JSON.parse(last_response.body)
     subjects_after_remove = response["data"].count
 
-    id_deleted = subjects_before_remove > subjects_after_remove
-    expect(id_deleted).to be(true)
+    is_deleted = subjects_before_remove > subjects_after_remove
+    expect(is_deleted).to be(true)
+  end
 
+  it 'delete subject return error 500 when subject not exist ' do
+    subject_inexitent = "0"
+    subject_for_delete = {
+      "solicitudeId": Fixtures::CREATION_MOMENT,
+      "subjectId": subject_inexitent
+    }.to_json
+
+    post '/api/delete-subject', subject_for_delete
+    response = last_response.status
+
+    expect(response).to eq(500)
   end
 end

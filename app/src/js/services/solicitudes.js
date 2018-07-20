@@ -23,6 +23,7 @@ export default class Solicitudes {
     Bus.subscribe("create.subject", this.createSubject.bind(this))
     Bus.subscribe("update.subject", this.updateSubject.bind(this))
     Bus.subscribe("close.subject", this.closeSubject.bind(this))
+    Bus.subscribe("delete.subject", this.deleteSubject.bind(this))
   }
 
   retrieveCnae() {
@@ -71,6 +72,13 @@ export default class Solicitudes {
     let callback = this.buildCallback('deleted.solicitude')
     let body = {id: payload}
     let url = 'delete-solicitude'
+    this.client.hit(url, body, callback)
+  }
+
+  deleteSubject(payload){
+    let callback = this.buildCallback('deleted.subject')
+    let body = payload
+    let url = 'delete-subject'
     this.client.hit(url, body, callback)
   }
 
