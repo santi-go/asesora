@@ -31,7 +31,8 @@
                 </template>
                 <template v-if="!editionmode">
                   <button-delete-subject  :labels="labels"
-                                          :values="values">
+                                          :values="values"
+                                          :subject-id="item.id">
                   </button-delete-subject>
                 </template>
 

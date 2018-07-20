@@ -14,13 +14,12 @@
 export default {
   name: 'button-delete-subject',
 
-  props: ['labels', 'values'],
+  props: ['labels', 'values', 'subjectId'],
 
   methods: {
     deleteSubject(event) {
     let signal = new CustomEvent('clicked.delete.subject',
-                                  {'detail': {'subjectId': this.values.subjectId || this.values.subjects[0]['id'],
-                                              'solicitudeId': this.values.id},
+                                  {'detail': {'subjectId': this.subjectId},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     }

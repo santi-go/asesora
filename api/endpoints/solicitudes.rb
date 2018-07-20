@@ -171,6 +171,7 @@ module Endpoints
         response = Actions::DeleteSubject.do(id: params['subjectId'])
         return status 500 if response == "500"
         status 200
+        {data: {id: params['subjectId']}}.to_json
       end
 
       api.post '/api/topics' do

@@ -26,7 +26,8 @@
                           </template>
         </template>
         <button-delete-subject  :labels="labels"
-                                :values="values">
+                                :values="values"
+                                :subject-id="values.subjectId">
         </button-delete-subject>
       </div>
 

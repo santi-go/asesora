@@ -23,6 +23,7 @@ export default class Solicitude extends Component {
     Bus.subscribe("updated.solicitude", this.updatedSolicitude.bind(this))
     Bus.subscribe("updated.solicitude.and.add.subject", this.updatedSolicitudeAndAddSubject.bind(this))
     Bus.subscribe("deleted.solicitude", this.deletedSolicitude.bind(this))
+    Bus.subscribe("deleted.subject", this.deletedSubject.bind(this))
     Bus.subscribe("got.cnae-catalog", this.gotCnaeCatalog.bind(this))
     Bus.subscribe("verified.company.duplicate", this.showDuplicate.bind(this))
     Bus.subscribe("got.company-matches", this.populateSuggestedCompanies.bind(this))
@@ -386,6 +387,14 @@ export default class Solicitude extends Component {
     window.setTimeout(function(){
       window.location = "/solicitudes-list.html"
     }, 1250)
+  }
+
+  deletedSubject(payload){
+    let id = payload.data.id
+    let subjects = this.data.values.subjects
+    this.data.values.subjects = subjects.filter(function(subject){
+      return subject.id != id
+    })
   }
 
   updatedCompany(){

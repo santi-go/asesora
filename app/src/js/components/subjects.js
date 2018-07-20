@@ -21,6 +21,7 @@ export default class Subjects extends Component {
     Bus.subscribe("got.solicitude", this.updateModel.bind(this))
     Bus.subscribe("got.reasons-catalog", this.gotReasonsCatalog.bind(this))
     Bus.subscribe("subject.closed", this.subjectClosed.bind(this))
+    Bus.subscribe("deleted.subject", this.deletedSubject.bind(this))
   }
 
   load(){
@@ -98,6 +99,14 @@ export default class Subjects extends Component {
         Bus.publish('ask.translation', data)
       }
     }
+
+  deletedSubject(payload){
+    let id = payload.data.id
+    let subjects = this.data.values.subjects
+    this.data.values.subjects = subjects.filter(function(subject){
+      return subject.id != id
+    })
+  }
 
   translate(payload) {
     let key = payload.key

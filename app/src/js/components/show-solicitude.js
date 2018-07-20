@@ -15,6 +15,7 @@ export default class ShowSolicitude extends Component {
   subscribe(){
     Bus.subscribe("got.translation.for.show-solicitude", this.translate.bind(this))
     Bus.subscribe("got.solicitude", this.updateModel.bind(this))
+    Bus.subscribe("deleted.subject", this.deletedSubject.bind(this))
   }
 
   load(){
@@ -64,6 +65,14 @@ export default class ShowSolicitude extends Component {
       return
     }
     Bus.publish('delete.subject', payload.detail)
+  }
+
+  deletedSubject(payload){
+    let id = payload.data.id
+    let subjects = this.data.values.subjects
+    this.data.values.subjects = subjects.filter(function(subject){
+      return subject.id != id
+    })
   }
 
   updateModel(payload){
