@@ -4,7 +4,7 @@
       type="button"
       name="delete-subject"
       class="discardbutton button-clear"
-      v-on:click="deleteSubject()">
+      v-on:click="deleteSubject">
     {{labels.deleteSubject}}
   </button>
 </div>
@@ -19,7 +19,8 @@ export default {
   methods: {
     deleteSubject(event) {
     let signal = new CustomEvent('clicked.delete.subject',
-                                  {'detail': {'subjectId': this.values.subjectId},
+                                  {'detail': {'subjectId': this.values.subjectId || this.values.subjects[0]['id'],
+                                              'solicitudeId': this.values.id},
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     }

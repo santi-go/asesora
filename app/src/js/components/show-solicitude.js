@@ -36,6 +36,11 @@ export default class ShowSolicitude extends Component {
       'clicked.add.subject',
       this.addSubject.bind(this)
     )
+    
+    document.getElementById(this.element).addEventListener(
+      'clicked.delete.subject',
+      this.deleteSubject.bind(this)
+    )
   }
 
   loadSolicitudeToEdit(event){
@@ -51,6 +56,13 @@ export default class ShowSolicitude extends Component {
       'asesora-show-solicitude': ShowSolicitudeView
     }
     super.initializeViews(listView)
+  }
+
+  deleteSubject(payload){
+    if (!confirm("¿Estas seguro/a de que quieres eliminar el caso asociado? Ten en cuenta que esta operación no se puede deshacer")){
+      return
+    }
+    Bus.publish('delete.subject', payload.detail)
   }
 
   updateModel(payload){

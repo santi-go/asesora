@@ -44,6 +44,10 @@ export default class Subjects extends Component {
       'clicked.close.counseling',
       this.closeCounseling.bind(this)
     )
+    document.getElementById(this.element).addEventListener(
+      'clicked.delete.subject',
+      this.deleteSubject.bind(this)
+    )
   }
 
   getSolicitudeId() {
@@ -132,6 +136,12 @@ export default class Subjects extends Component {
     Bus.publish('close.subject', subject)
   }
 
+  deleteSubject(payload){
+    if (!confirm("¿Estas seguro/a de que quieres eliminar el caso asociado? Ten en cuenta que esta operación no se puede deshacer")){
+      return
+    }
+    Bus.publish('delete.subject', payload.detail)
+  }
 
   setButtonStatus(){
     this.data.submittable = false
