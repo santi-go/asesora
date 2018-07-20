@@ -224,7 +224,7 @@ describe 'Subjects Api' do
 
     subject_for_delete = {
       "solicitudeId": Fixtures::CREATION_MOMENT,
-      "id": subject_id
+      "subjectId": subject_id
     }.to_json
 
     post '/api/delete-subject', subject_for_delete
@@ -241,7 +241,7 @@ describe 'Subjects Api' do
     subject_inexitent = "0"
     subject_for_delete = {
       "solicitudeId": Fixtures::CREATION_MOMENT,
-      "id": subject_inexitent
+      "subjectId": subject_inexitent
     }.to_json
 
     post '/api/delete-subject', subject_for_delete

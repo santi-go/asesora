@@ -168,7 +168,7 @@ module Endpoints
       api.post '/api/delete-subject' do
         params = JSON.parse(request.body.read)
 
-        response = Actions::DeleteSubject.do(solicitude_id: params['solicitudeId'], id: params['id'])
+        response = Actions::DeleteSubject.do(id: params['subjectId'])
         return status 500 if response == "500"
         status 200
       end
