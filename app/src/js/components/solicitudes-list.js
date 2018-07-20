@@ -1,4 +1,5 @@
 import SolicitudesListView from '../views/solicitude/asesora-solicitudes-list'
+import {SolicitudesListModel} from '../models/solicitudes-list'
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 
@@ -64,27 +65,6 @@ export default class SolicitudesList extends Component {
   }
 
   model(){
-    return {
-      labels: { "code": "",
-                "date": "",
-                "applicant": "",
-                "company": "",
-                "topics": "",
-                "listTitle": "",
-                "notApply": "",
-                "edit": "",
-                "show": ""
-              },
-      solicitudes: [
-        {
-          creation_moment:"",
-          date:""
-        },
-      ],
-      fullfilled: false,
-      translate:function(key,value) {
-        this.labels[key] = value
-      }
-    }
+    return SolicitudesListModel
   }
 }

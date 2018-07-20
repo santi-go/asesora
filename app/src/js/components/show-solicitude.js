@@ -1,6 +1,7 @@
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
+import {ShowSolicitudeModel} from '../models/show-solicitude'
 import ShowSolicitudeView from '../views/solicitude/asesora-show-solicitude'
 
 export default class ShowSolicitude extends Component {
@@ -36,7 +37,7 @@ export default class ShowSolicitude extends Component {
       'clicked.add.subject',
       this.addSubject.bind(this)
     )
-    
+
     document.getElementById(this.element).addEventListener(
       'clicked.delete.subject',
       this.deleteSubject.bind(this)
@@ -108,63 +109,6 @@ export default class ShowSolicitude extends Component {
     }
 
   model(){
-    return {
-      labels: {
-        "proposals": "",
-        "analysis": "",
-        "topics": "",
-        "edit": "",
-        "addSubject": "",
-        "subjectsData": "",
-        "summary": "",
-        "applicant": "",
-        "company": "",
-        "applicantName": "",
-        "applicantSurname": "",
-        "applicantCcaa": "",
-        "applicantEmail": "",
-        "applicantPhonenumber": "",
-        "date": "",
-        "text": "",
-        "companyName": "",
-        "companyCif": "",
-        "companyEmployees": "",
-        "companyCnae": "",
-        "subjectsList": "",
-        "notApply": "",
-        "subject": "",
-        "description": "",
-        "placeholderdescription": "",
-        "comments": "",
-        "reason": "",
-        "source": "",
-        "deleteSubject": ""
-      },
-      values: {
-        "id": "",
-        "applicantName": "",
-        "applicantSurname": "",
-        "applicantCcaa": "",
-        "applicantEmail": "",
-        "applicantPhonenumber": "",
-        "date": "",
-        "text": "",
-        "companyName": "",
-        "companyCif": "",
-        "companyEmployees": "",
-        "companyCnae": "",
-        "subjects": "",
-        "reason": "",
-        "source": ""
-      },
-      buttonsPresent: true,
-      hasSubjects: false,
-      setValues:function(key, value) {
-        this.values[key] = value
-      },
-      translate:function(key,value) {
-        this.labels[key] = value
-      }
-    }
+    return ShowSolicitudeModel
   }
 }

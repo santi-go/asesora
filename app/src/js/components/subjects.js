@@ -1,6 +1,7 @@
 import Component from '../infrastructure/component'
 import {Bus} from '../bus'
 import {APIClient} from '../infrastructure/api_client'
+import {SubjectsModel} from '../models/subjects'
 import SubjectsView from '../views/solicitude/asesora-subjects'
 
 
@@ -209,80 +210,6 @@ export default class Subjects extends Component {
   }
 
   model(){
-    return {
-      labels: {
-        "proposals": "",
-        "analysis": "",
-        "edit": "",
-        "addSubject": "",
-        "createSubject": "",
-        "subjectsData": "",
-        "subjectsList": "",
-        "applicant": "",
-        "company": "",
-        "topics": "",
-        "notApply": "",
-        "placeholderAnalysis": "",
-        "max200Words": "",
-        "discardButtonSubject": "",
-        "applicantName": "",
-        "applicantSurname": "",
-        "applicantCcaa": "",
-        "applicantEmail": "",
-        "applicantPhonenumber": "",
-        "date": "",
-        "text": "",
-        "companyName": "",
-        "companyCif": "",
-        "companyEmployees": "",
-        "companyCnae": "",
-        "subject": "",
-        "description": "",
-        "placeholderdescription": "",
-        "comments": "",
-        "reason": "",
-        "closeCounseling": "",
-        "source": "",
-        "discard": "",
-        "deleteSubject": ""
-      },
-      values: {
-        "solicitudeId": "",
-        "proposals": [],
-        "analysis": "",
-        "subjectId":"",
-        "topics": "",
-        "selectedTopics": [],
-        "id": "",
-        "applicantName": "",
-        "applicantSurname": "",
-        "applicantCcaa": "",
-        "applicantEmail": "",
-        "applicantPhonenumber": "",
-        "date": "",
-        "text": "",
-        "companyName": "",
-        "companyCif": "",
-        "companyEmployees": "",
-        "companyCnae": "",
-        "subjects": [],
-        "description": "",
-        "comments": "",
-        "reason": "",
-        "closed": "",
-        "source": ""
-      },
-      submittable: false,
-      topicsCatalog: [],
-      reasonsCatalog: [],
-      proposalsCatalog: [],
-      origin: "none",
-      setValues:function(key, value) {
-        this.values[key] = value
-      },
-      translate:function(key,value) {
-        this.labels[key] = value
-      }
-    }
+    return SubjectsModel
   }
 }
