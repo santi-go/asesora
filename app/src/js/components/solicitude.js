@@ -391,6 +391,7 @@ export default class Solicitude extends Component {
   }
 
   deletedSubject(payload){
+    this.data.showAlert = false
     let id = payload.data.id
     let subjects = this.data.values.subjects
     this.data.values.subjects = subjects.filter(function(subject){

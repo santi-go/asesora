@@ -23,6 +23,7 @@ module Actions
     end
 
     def self.delete_company_orphans(company_id)
+      return if company_id.nil? || company_id == ""
       criteria_company = {"company": company_id}
       if only_one_solicitude_in(criteria_company)
         ::Companies::Service.delete(company_id)

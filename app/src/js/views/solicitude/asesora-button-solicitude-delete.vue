@@ -19,7 +19,7 @@ export default {
   methods: {
     submit(){
       let signal = new CustomEvent('clicked.delete.solicitude',
-                                  {'detail': {'solicitudeId': this.values.creation_moment },
+                                  {'detail': {'solicitudeId': this.values.id },
                                   'bubbles': true})
       this.$el.dispatchEvent(signal)
     }
