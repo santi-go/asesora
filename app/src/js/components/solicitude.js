@@ -382,6 +382,7 @@ export default class Solicitude extends Component {
   }
 
   deletedSolicitude(){
+    this.data.showAlert = false
     let element = document.querySelector('#solicitude')
     element.classList.add('discardCard')
     window.setTimeout(function(){
