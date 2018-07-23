@@ -63,7 +63,7 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.edit.company', this.enableCompanyFields.bind(this))
     this.reactTo('clicked.save.company', this.saveCompanyInfo.bind(this))
     this.reactTo('clicked.discard.company.button', this.discardCompanyInfo.bind(this))
-    this.reactTo('changed.company.employees', this.toggleSaveCompanyButton.bind(this))
+    this.reactTo('changed.company.employees', this.changedCompanyEmployees.bind(this))
     this.reactTo('changed.company.cnae', this.changedCompanyCnae.bind(this))
     this.reactTo('changed.company.cif', this.changedCompanyCif.bind(this))
     this.reactTo('clicked.delete.solicitude', this.deleteSolicitude.bind(this))
@@ -477,6 +477,7 @@ export default class Solicitude extends Component {
 
   changedCompanyCnae(event){
     this.searchCompanies(event)
+    this.proveCompanyIdentityMessage()
     this.toggleSaveCompanyButton()
   }
 
@@ -484,7 +485,11 @@ export default class Solicitude extends Component {
     this.ensureCif()
     this.toggleCompanyIdentityMessage()
     this.toggleSaveCompanyButton()
+  }
 
+  changedCompanyEmployees(event){
+    this.proveCompanyIdentityMessage()
+    this.toggleSaveCompanyButton()
   }
 
   searchCompanies(event){
@@ -564,11 +569,38 @@ export default class Solicitude extends Component {
     this.showMessageCompanyName()
     this.showMessageCompanyIdentity()
 
-    if(this.isNameEmpty() && this.isCifEmpty()){
+    if( this.isNameEmpty() && this.isCifEmpty() && !this.hasEmployees() && !this.hasCnae() ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
     this.setButtonStatus()
+  }
+
+  proveCompanyIdentityMessage(){
+    this.data.isValidCompanyIdentity = false
+    this.data.isValidCompanyName = false
+    if( !this.isNameEmpty() && !this.isCifEmpty() && this.hasEmployees() && this.hasCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if( this.isNameEmpty() && this.isCifEmpty() && !this.hasEmployees() && !this.hasCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if ( !this.isNameEmpty() && !this.isCifEmpty() &&  !this.hasEmployees() && !this.hasCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    this.showMessageCompanyName()
+    this.showMessageCompanyIdentity()
+  }
+
+  hasCnae(){
+    return this.data.values.companyCnae !== ""
+  }
+
+  hasEmployees(){
+    return this.data.values.companyEmployees !== ""
   }
 
   isNameEmpty(){
