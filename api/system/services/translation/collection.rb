@@ -93,7 +93,9 @@ module Translation
                 "reason": "Motivo de cierre",
                 "source": "Formato de origen",
                 "discard": "Descartar",
-                "deleteSubject": "Eliminar"
+                "deleteSubject": "Eliminar",
+                "required": "Necesario para justificar",
+                "notJustifiable": "Solicitud no justificable"
               },
 
               "solicitudes-list": {
@@ -139,7 +141,9 @@ module Translation
                 "comments": "Comentarios sobre el asesoramiento",
                 "reason": "Motivo de cierre",
                 "source": "Formato de origen",
-                "deleteSubject": "Eliminar"
+                "deleteSubject": "Eliminar",
+                "required": "Necesario para justificar",
+                "notJustifiable": "Solicitud no justificable"
               },
 
               "subjects": {
@@ -176,7 +180,9 @@ module Translation
                 "reason": "Motivo de cierre",
                 "source": "Formato de origen",
                 "discard": "Descartar",
-                "deleteSubject": "Eliminar"
+                "deleteSubject": "Eliminar",
+                "required": "Necesario para justificar",
+                "notJustifiable": "Solicitud no justificable"
               }
             },
 

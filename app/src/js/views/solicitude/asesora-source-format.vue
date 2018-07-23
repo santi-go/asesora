@@ -1,6 +1,12 @@
 <template>
   <div>
-    <label>{{labels.source}}</label>
+    <label for="source">{{labels.source}}
+      <label  v-if="!values.source.text"
+              class="fa fa-warning"
+              :title="labels.required"
+              :alt="labels.required">
+      </label>
+    </label>
     <basic-select id="source"
                   :options="sourceCatalog"
                   :selected-option="values.source"

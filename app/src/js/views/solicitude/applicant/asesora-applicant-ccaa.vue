@@ -1,6 +1,12 @@
 <template>
   <div>
-    <label>{{labels.ccaa}}</label>
+    <label for="applicant-ccaa">{{labels.ccaa}}
+      <label  v-if="!values.applicantCcaa.text"
+              class="fa fa-warning"
+              :title="labels.required"
+              :alt="labels.required">
+      </label>
+    </label>
     <basic-select id="applicant-ccaa"
                   :options="ccaaCatalog"
                   :selected-option="values.applicantCcaa"
