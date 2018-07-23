@@ -1,6 +1,12 @@
  <template>
   <div>
-    <label for="company-cnae">{{ labels.companyCnae }}</label>
+    <label for="company-cnae">{{labels.companyCnae}}
+      <label  v-if="!values.companyCnae"
+              class="fa fa-warning"
+              :title="labels.required"
+              :alt="labels.required">
+      </label>
+    </label>
     <input  id="company-cnae"
             name="company-cnae"
             type="text"

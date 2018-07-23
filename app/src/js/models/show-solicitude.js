@@ -29,7 +29,9 @@ export let ShowSolicitudeModel = {
       "comments": "",
       "reason": "",
       "source": "",
-      "deleteSubject": ""
+      "deleteSubject": "",
+      "required": "",
+      "notJustifiable": ""
     },
     values: {
       "id": "",

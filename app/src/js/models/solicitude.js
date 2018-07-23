@@ -60,7 +60,9 @@ export let SolicitudeModel = {
     "closedSubject": "",
     "source": "",
     "discard": "",
-    "deleteSubject": ""
+    "deleteSubject": "",
+    "required": "",
+    "notJustifiable": ""
   },
   values: {
     "text": "",

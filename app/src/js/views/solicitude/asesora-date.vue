@@ -1,6 +1,14 @@
 <template>
     <div>
-        <label for="date">{{labels.date}}</label>
+      <div>
+        <label for="date">{{labels.date}}
+          <label  v-if="!values.date"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+        </label>
+      </div>
         <input  id="date"
                 type="date"
                 v-model="values.date"

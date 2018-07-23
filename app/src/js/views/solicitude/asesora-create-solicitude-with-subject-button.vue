@@ -8,6 +8,11 @@
             v-on:click="submit()">
     <template v-if="!editionmode">{{ labels.submittoSubject }}</template>
     <template v-else>{{ labels.editionsubmittoSubject }}</template>
+      <label  v-if="!submittable"
+              class="fa fa-warning"
+              :title="labels.notJustifiable"
+              :alt="labels.notJustifiable">
+      </label>
     </button>
   </div>
 </template>

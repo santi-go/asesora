@@ -5,18 +5,48 @@
       <label>{{ labels.applicant}}</label>
       <p><em>{{ labels.applicantName }}:</em> {{ values.applicantName }}</p>
       <p><em>{{ labels.applicantSurname }}:</em> {{ values.applicantSurname }}</p>
-      <p><em>{{ labels.applicantCcaa }}:</em> {{ values.applicantCcaa.text }}</p>
+      <p><em>{{ labels.applicantCcaa }}:
+          <label  v-if="!values.applicantCcaa.text"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+         </em> {{ values.applicantCcaa.text }}</p>
       <p><em>{{ labels.applicantEmail }}:</em> {{ values.applicantEmail }}</p>
       <p><em>{{ labels.applicantPhonenumber }}:</em> {{ values.applicantPhonenumber }}</p>
-      <p><em>{{ labels.date }}:</em> {{ values.date }}</p>
-      <p><em>{{ labels.source }}:</em> {{ values.source.text }}</p>
+      <p><em>{{ labels.date }}:
+          <label  v-if="!values.date"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+         </em> {{ values.date }}</p>
+      <p><em>{{ labels.source }}:
+          <label  v-if="!values.source.text"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+         </em> {{ values.source.text }}</p>
     </div>
     <div class="column column-30 box">
       <label>{{ labels.company}}</label>
       <p><em>{{ labels.companyName }}:</em> {{ values.companyName }}</p>
       <p><em>{{ labels.companyCif }}:</em> {{ values.companyCif }}</p>
-      <p><em>{{ labels.companyEmployees }}:</em> {{ values.companyEmployees }}</p>
-      <p><em>{{ labels.companyCnae }}:</em> {{ values.companyCnae }}</p>
+      <p><em>{{ labels.companyEmployees }}:
+          <label  v-if="!values.companyEmployees"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+         </em> {{ values.companyEmployees }}</p>
+      <p><em>{{ labels.companyCnae }}:
+          <label  v-if="!values.companyCnae"
+                  class="fa fa-warning"
+                  :title="labels.required"
+                  :alt="labels.required">
+          </label>
+         </em> {{ values.companyCnae }}</p>
     </div>
     <div class="column column-40">
       <label> {{ labels.text }}:</label>

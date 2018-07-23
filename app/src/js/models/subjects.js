@@ -34,7 +34,9 @@ export let SubjectsModel = {
     "closeCounseling": "",
     "source": "",
     "discard": "",
-    "deleteSubject": ""
+    "deleteSubject": "",
+    "required": "",
+    "notJustifiable": ""
   },
   values: {
     "solicitudeId": "",
