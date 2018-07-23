@@ -569,7 +569,7 @@ export default class Solicitude extends Component {
     this.showMessageCompanyName()
     this.showMessageCompanyIdentity()
 
-    if( this.isNameEmpty() && this.isCifEmpty() && !this.hasEmployees() && !this.hasCnae() ){
+    if( this.isNameEmpty() && this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
@@ -579,15 +579,15 @@ export default class Solicitude extends Component {
   proveCompanyIdentityMessage(){
     this.data.isValidCompanyIdentity = false
     this.data.isValidCompanyName = false
-    if( !this.isNameEmpty() && !this.isCifEmpty() && this.hasEmployees() && this.hasCnae() ){
+    if( !this.isNameEmpty() && !this.isCifEmpty() && ( this.hasEmployees() || this.hasCnae() ) ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
-    if( this.isNameEmpty() && this.isCifEmpty() && !this.hasEmployees() && !this.hasCnae() ){
+    if( this.isNameEmpty() && this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
-    if ( !this.isNameEmpty() && !this.isCifEmpty() &&  !this.hasEmployees() && !this.hasCnae() ){
+    if ( !this.isNameEmpty() && !this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
