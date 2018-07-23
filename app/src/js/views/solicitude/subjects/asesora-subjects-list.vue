@@ -29,13 +29,12 @@
                   <label>{{ labels.comments }}</label>
                   <p>{{ item.comments }}</p>
                 </template>
-                <template v-if="!editionmode">
+                <template>
                   <button-delete-subject  :labels="labels"
                                           :values="values"
                                           :subject-id="item.id">
                   </button-delete-subject>
                 </template>
-
 
               </div>
               <div class="column column-80">

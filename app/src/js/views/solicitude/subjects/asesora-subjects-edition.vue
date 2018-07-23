@@ -25,10 +25,6 @@
                             <br>{{labels.comments}}: {{this.values.comments}}
                           </template>
         </template>
-        <button-delete-subject  :labels="labels"
-                                :values="values"
-                                :subject-id="values.subjectId">
-        </button-delete-subject>
       </div>
 
     </div>
