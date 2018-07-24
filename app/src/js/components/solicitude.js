@@ -485,7 +485,7 @@ export default class Solicitude extends Component {
 
   changedCompanyCnae(event){
     this.searchCompanies(event)
-    this.proveCompanyIdentityMessage()
+    this.updateCompanyCnaeMessageStatus()
     this.toggleSaveCompanyButton()
   }
 
@@ -496,7 +496,7 @@ export default class Solicitude extends Component {
   }
 
   changedCompanyEmployees(event){
-    this.proveCompanyIdentityMessage()
+    this.updateCompanyEmployeesMessageStatus()
     this.toggleSaveCompanyButton()
   }
 
@@ -576,31 +576,71 @@ export default class Solicitude extends Component {
   toggleCompanyIdentityMessage(){
     this.showMessageCompanyName()
     this.showMessageCompanyIdentity()
-
-    if( this.isNameEmpty() && this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
+    if( this.isNameEmpty() && this.isCifEmpty() ){
       this.data.isValidCompanyIdentity = true
       this.data.isValidCompanyName = true
     }
     this.setButtonStatus()
   }
 
-  proveCompanyIdentityMessage(){
-    this.data.isValidCompanyIdentity = false
-    this.data.isValidCompanyName = false
-    if( !this.isNameEmpty() && !this.isCifEmpty() && ( this.hasEmployees() || this.hasCnae() ) ){
-      this.data.isValidCompanyIdentity = true
-      this.data.isValidCompanyName = true
-    }
-    if( this.isNameEmpty() && this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
-      this.data.isValidCompanyIdentity = true
-      this.data.isValidCompanyName = true
-    }
-    if ( !this.isNameEmpty() && !this.isCifEmpty() && ( !this.hasEmployees() || !this.hasCnae() ) ){
-      this.data.isValidCompanyIdentity = true
-      this.data.isValidCompanyName = true
-    }
+  updateCompanyEmployeesMessageStatus(){
     this.showMessageCompanyName()
     this.showMessageCompanyIdentity()
+    if( this.isCompanyFullfilledWithEmployees() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if( this.isCompanyEmptyWithoutEmployees() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if ( this.isCompanyFullfilledWithoutEmployees() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    this.setButtonStatus()
+  }
+
+  isCompanyEmptyWithoutEmployees(){
+    return this.isNameEmpty() && this.isCifEmpty() && !this.hasEmployees()
+  }
+
+  isCompanyFullfilledWithEmployees(){
+    return !this.isNameEmpty() && !this.isCifEmpty() && this.hasEmployees()
+  }
+
+  isCompanyFullfilledWithoutEmployees(){
+    return !this.isNameEmpty() && !this.isCifEmpty() && !this.hasEmployees()
+  }
+
+  isCompanyEmptyWithoutCnae(){
+    return this.isNameEmpty() && this.isCifEmpty() && !this.hasCnae()
+  }
+
+  isCompanyFullfilledWithCnae(){
+    return !this.isNameEmpty() && !this.isCifEmpty() && this.hasCnae()
+  }
+
+  isCompanyFullfilledWithoutCnae(){
+    return !this.isNameEmpty() && !this.isCifEmpty() && !this.hasCnae()
+  }
+
+  updateCompanyCnaeMessageStatus(){
+    this.showMessageCompanyName()
+    this.showMessageCompanyIdentity()
+    if( this.isCompanyFullfilledWithCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if( this.isCompanyEmptyWithoutCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    if ( this.isCompanyFullfilledWithoutCnae() ){
+      this.data.isValidCompanyIdentity = true
+      this.data.isValidCompanyName = true
+    }
+    this.setButtonStatus()
   }
 
   hasCnae(){
