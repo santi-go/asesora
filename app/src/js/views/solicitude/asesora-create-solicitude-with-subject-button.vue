@@ -8,7 +8,7 @@
             v-on:click="submit()">
     <template v-if="!editionmode">{{ labels.submittoSubject }}</template>
     <template v-else>{{ labels.editionsubmittoSubject }}</template>
-      <label  v-if="!submittable"
+      <label  v-if="warning"
               class="fa fa-warning"
               :title="labels.notJustifiable"
               :alt="labels.notJustifiable">
@@ -21,7 +21,7 @@
 export default {
   name: 'asesora-create-solicitude-with-subject-button',
 
-  props: ['labels', 'values', 'editionmode', 'submittable', 'editCompany'],
+  props: ['labels', 'values', 'editionmode', 'submittable', 'editCompany', 'warning'],
 
   watch: {
     editionmode: function(val, oldVal){

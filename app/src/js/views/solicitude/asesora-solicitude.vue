@@ -79,14 +79,16 @@
                       :labels="labels"
                       :editionmode="editionmode"
                       :submittable="submittable"
-                      :edit-company='editCompany'
+                      :edit-company="editCompany"
+                      :warning="warning"
                       ></asesora-button>
       <asesora-create-solicitude-with-subject-button
                       :values="values"
                       :labels="labels"
                       :editionmode="editionmode"
                       :submittable="submittable"
-                      :edit-company='editCompany'
+                      :edit-company="editCompany"
+                      :warning="warning"
                       ></asesora-create-solicitude-with-subject-button>
       <template v-if="editionmode">
         <asesora-button-discard :labels="labels" :edit-company='editCompany' :submittable="submittable" ></asesora-button-discard>
@@ -132,7 +134,7 @@ export default {
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
           'topicsCatalog', 'sourceCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId',
-          'ccaaCatalog', 'reasonsCatalog'],
+          'ccaaCatalog', 'reasonsCatalog', 'warning'],
 
   components: {
     "asesora-date" : DateView,

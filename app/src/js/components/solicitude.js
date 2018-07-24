@@ -49,11 +49,14 @@ export default class Solicitude extends Component {
     this.reactTo('check.submittable', this.setButtonStatus.bind(this))
     this.reactTo('changed.email', this.runValidations.bind(this))
     this.reactTo('changed.ccaa', this.changedApplicantField.bind(this))
+    this.reactTo('changed.ccaa', this.warningRequired.bind(this))
     this.reactTo('changed.phone', this.runValidations.bind(this))
     this.reactTo('changed.email', this.setValidEmail.bind(this))
     this.reactTo('changed.phone', this.setValidPhone.bind(this))
     this.reactTo('changed.text', this.setButtonStatus.bind(this))
+    this.reactTo('changed.date', this.warningRequired.bind(this))
     this.reactTo('changed.source', this.setButtonStatus.bind(this))
+    this.reactTo('changed.source', this.warningRequired.bind(this))
     this.reactTo('edit.solicitude', this.update.bind(this))
     this.reactTo('edit.solicitude.and.add.subject', this.updateAndAddSubject.bind(this))
     this.reactTo('clicked.discard.button', this.discardAnimation.bind(this))
@@ -64,7 +67,10 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.save.company', this.saveCompanyInfo.bind(this))
     this.reactTo('clicked.discard.company.button', this.discardCompanyInfo.bind(this))
     this.reactTo('changed.company.employees', this.changedCompanyEmployees.bind(this))
+    this.reactTo('changed.company.employees', this.toggleSaveCompanyButton.bind(this))
+    this.reactTo('changed.company.employees', this.warningRequired.bind(this))
     this.reactTo('changed.company.cnae', this.changedCompanyCnae.bind(this))
+    this.reactTo('changed.company.cnae', this.warningRequired.bind(this))
     this.reactTo('changed.company.cif', this.changedCompanyCif.bind(this))
     this.reactTo('clicked.delete.solicitude', this.deleteSolicitude.bind(this))
     this.reactTo('clicked.add.value.employees.to.company', this.addEmployeesValueToCompany.bind(this))
@@ -102,6 +108,7 @@ export default class Solicitude extends Component {
       this.data.values.id = id
       Bus.publish('get.solicitude', {id: id})
     }
+    this.warningRequired()
   }
 
   leaving(event){
@@ -420,6 +427,7 @@ export default class Solicitude extends Component {
      for (let [labelKey, valueKey] of Object.entries(dictionary)) {
        this.data.setValues(labelKey, valueKey)
      }
+     this.warningRequired()
    }
 
    dictionaryOfCompany(payload){
@@ -779,6 +787,19 @@ export default class Solicitude extends Component {
 
     populateSuggestedApplicants(payload){
       this.data.suggestedApplicants = payload.data
+    }
+
+    warningRequired(){
+      this.data.warning = true
+
+      if(this.data.values.companyEmployees &&
+         this.data.values.companyCnae &&
+         this.data.values.source.text &&
+         this.data.values.applicantCcaa.text &&
+         this.data.values.date){
+
+        this.data.warning = false
+      }
     }
 
     model() {

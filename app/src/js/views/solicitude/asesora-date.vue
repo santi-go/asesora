@@ -12,6 +12,7 @@
         <input  id="date"
                 type="date"
                 v-model="values.date"
+                v-on:keyup="onKeyup"
                 v-bind:required="editionmode"
                 v-bind:class="{editionmode: editionmode}">
     </div>
@@ -24,6 +25,14 @@ export default {
     mustBeHidden() {
       return (this.editionmode || this.values.date)
     }
+  },
+  methods: {
+    onKeyup(event){
+      let signal = new CustomEvent('changed.date',
+                                      {'detail': "",
+                                      'bubbles': true})
+      this.$el.dispatchEvent(signal)
+    },
   }
 }
 </script>
