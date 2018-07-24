@@ -39,6 +39,10 @@ export default class Subjects extends Component {
       this.setButtonStatus.bind(this)
     )
     document.getElementById(this.element).addEventListener(
+      'changed.subject',
+      this.warningRequired.bind(this)
+    )
+    document.getElementById(this.element).addEventListener(
       'clicked.discard.subject.button',
       this.discardCard.bind(this)
     )
@@ -216,6 +220,16 @@ export default class Subjects extends Component {
         'subjects': payload.data.subjects,
         'source': payload.data.source
       }
+  }
+
+  warningRequired(){
+    this.data.warningSubject = true
+
+    if(this.data.values.selectedTopics.length > 0 &&
+       this.data.values.proposals.length > 0){
+
+      this.data.warningSubject = false
+    }
   }
 
   model(){

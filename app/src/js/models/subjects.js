@@ -69,6 +69,7 @@ export let SubjectsModel = {
   reasonsCatalog: [],
   proposalsCatalog: [],
   origin: "none",
+  warningSubject: true,
   setValues:function(key, value) {
     this.values[key] = value
   },

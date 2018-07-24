@@ -14,6 +14,7 @@
       <asesora-button-create-counseling :labels="labels"
                                         :values="values"
                                         :submittable="submittable"
+                                        :warning-subject="warningSubject"
                                         >
       </asesora-button-create-counseling>
 
@@ -45,7 +46,7 @@
     name: 'asesora-subjects',
     props: ['labels', 'values', 'topicsCatalog', 'submittable',
             'proposalsCatalog', 'editionSubject', 'editionmode',
-            'reasonsCatalog'],
+            'reasonsCatalog', 'warningSubject'],
 
     components: {
       "asesora-proposals-for-action": ProposalsView,
