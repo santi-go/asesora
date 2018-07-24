@@ -51,8 +51,14 @@
                  </asesora-subjects-edition>
                </template>
                <template v-else>
-                 <template v-if=" isFilled(item.topics) ">
-                   <label>{{ labels.topics }}</label>
+                 <template>
+                   <label>{{ labels.topics }}
+                     <label  v-if="!item.topics.length > 0"
+                             class="fa fa-warning"
+                             :title="labels.required"
+                             :alt="labels.required">
+                     </label>
+                   </label>
                    <ul>
                      <li v-for="topic in item.topics">
                        {{ topic.name }}
@@ -65,8 +71,14 @@
                    <p>{{ item.analysis }}</p>
                  </template>
 
-                  <template v-if=" isFilled(item.proposal) ">
-                    <label>{{ labels.proposals }}</label>
+                  <template>
+                    <label>{{ labels.proposals }}
+                      <label  v-if="!item.proposal.length > 0"
+                              class="fa fa-warning"
+                              :title="labels.required"
+                              :alt="labels.required">
+                      </label>
+                    </label>
                     <ul>
                       <li v-for="proposal in item.proposal">
                         {{ proposal }}

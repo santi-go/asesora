@@ -1,6 +1,12 @@
 <template>
   <div>
-    <label for="subject-proposals">{{ labels.proposals }}</label>
+    <label for="subject-proposals">{{ labels.proposals }}
+      <label  v-if="!values.proposals.length > 0"
+              class="fa fa-warning"
+              :title="labels.required"
+              :alt="labels.required">
+      </label>
+    </label>
     <multi-select :options="proposalsCatalog"
                   :selected-options="values.proposals"
                   id="subject-proposals"
