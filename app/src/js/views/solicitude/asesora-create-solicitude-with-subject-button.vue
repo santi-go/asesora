@@ -4,14 +4,13 @@
             type="button"
             name="submit-and-add-subject"
             class="submitbutton"
+            :title="showWarningIfNotJustifiable()"
             :disabled="!submittable && !editCompany"
             v-on:click="submit()">
     <template v-if="!editionmode">{{ labels.submittoSubject }}</template>
     <template v-else>{{ labels.editionsubmittoSubject }}</template>
       <label  v-if="warning"
-              class="fa fa-warning"
-              :title="labels.notJustifiable"
-              :alt="labels.notJustifiable">
+              class="fa fa-warning">
       </label>
     </button>
   </div>
@@ -33,6 +32,13 @@ export default {
   },
 
   methods: {
+    showWarningIfNotJustifiable(){
+      if(this.warning){
+        return this.labels.notJustifiable
+      }
+      return ""
+    },
+
     submit(){
       let event = 'submit.solicitude.and.add.subject'
       if (this.editionmode) {
