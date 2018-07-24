@@ -9,12 +9,12 @@ You need to install docker (1) and docker-compose (2). Have knowledge of ssh, as
 
 To access the `API` use `localhost:4567`, and to acces the `APP` use `localhost:8080`.
 
-## Firts start
+## First start
 
 To have a Dockerized image with a fast start, it is necessary that the installation of the packages through npm be configured in the Dockerfile; however, this configuration prevents the project from rising for the first time. Because of this, the first time we are going to build the project we will have to use a specific command:
 
 ~~~
-docker-compose -f docker-compose.yml -f docker-compose.firts_start.yml up --build
+docker-compose -f docker-compose.yml -f docker-compose.first_start.yml up --build
 ~~~
 
 ### Up docker
