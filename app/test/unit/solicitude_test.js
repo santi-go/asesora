@@ -17,7 +17,7 @@ describe('SourceFormat', () => {
         }
       }
     })
-
+    
     expect(component.text()).to.eq('Telefonico')
   })
 })

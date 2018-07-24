@@ -129,22 +129,23 @@ describe('Solicitude', () => {
     expect(solicitude.isCompanyIdentityInfoHidden()).to.eq(false)
   })
 
-  it ("uses CNAE catalog",()=> {
+  it.only("uses CNAE catalog",()=> {
     const solicitude = new Solicitude()
-    solicitude.acceptAlert()
-
+    // solicitude.acceptAlert()
 
     const invalidCnaeID = "99999"
     solicitude.fill().CNAE(invalidCnaeID)
     solicitude.lostFocus()
     assert.equal(solicitude.CNAEIDisValid(invalidCnaeID), false, "cnae id is invalid")
 
+
     const cnaeID = "200"
     solicitude.fill().CNAE(cnaeID)
-    solicitude.lostFocus()
-    assert(solicitude.CNAEIDisValid(cnaeID), true)
+    solicitude.selectedFirstOption()
+    assert(solicitude.CNAEIDisValid(cnaeID), "Hola")
 
-    let CNAELongFormat = solicitude.CNAELongFormat(cnaeID)
+    let CNAELongFormat = solicitude.CNAELongFormat()
+
     let addedCorrectly = cnaeID.length < CNAELongFormat.length
     expect(addedCorrectly).to.eq(true)
   })

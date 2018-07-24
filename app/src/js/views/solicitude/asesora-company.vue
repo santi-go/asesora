@@ -54,6 +54,7 @@
         </template>
 
         <asesora-company-cnae :values="values"
+                              :company-cnae="values.companyCnae"
                               :labels="labels"
                               :edit-company="editCompany"
                               :cnae-catalog="cnaeCatalog"

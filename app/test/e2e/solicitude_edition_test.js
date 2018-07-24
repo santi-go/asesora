@@ -40,10 +40,11 @@ describe('Solicitude Edition', () => {
       .companyName(COMPANY_NAME)
       .companyCif(COMPANY_CIF)
       .companyEmployees(COMPANY_EMPLOYEES)
-      .companyCnae(COMPANY_CNAE)
-      .lostFocus()
-    solicitude.submit()
 
+    solicitude.fill().CNAE(COMPANY_CNAE)
+    solicitude.selectedFirstOption()
+
+    solicitude.submit()
     const solicitudesList = new SolicitudesList()
     solicitudesList.clickOnEditButtonOnItem(1)
 
@@ -58,6 +59,8 @@ describe('Solicitude Edition', () => {
 
     solicitude.waitForSolicitude()
 
+    browser.scroll("#company-cnae")
+
     expect(solicitude.applicantNameValue()).to.eq(APPLICANT_NAME)
     expect(solicitude.applicantSurnameValue()).to.eq(APPLICANT_SURNAME)
     expect(solicitude.applicantEmailValue()).to.eq(APPLICANT_EMAIL)
@@ -65,7 +68,7 @@ describe('Solicitude Edition', () => {
     expect(solicitude.companyNameValue()).to.not.eq(COMPANY_NAME)
     expect(solicitude.companyCifValue()).to.eq(COMPANY_CIF)
     expect(solicitude.companyEmployeesValue()).to.eq(COMPANY_EMPLOYEES)
-    expect(solicitude.companyCnaeValue()).to.eq(COMPANY_CNAE)
+    expect(solicitude.CNAEIDisValid(COMPANY_CNAE)).to.eq(true)
     expect(solicitude.textValue()).to.eq(TEXT)
     expect(solicitude.dateValue()).to.eq(DATE_ENGLISH)
   })

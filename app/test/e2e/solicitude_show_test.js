@@ -41,7 +41,6 @@ describe('Solicitude', () => {
       .companyName(COMPANY_NAME)
       .companyCif(COMPANY_CIF)
       .companyEmployees(COMPANY_EMPLOYEES)
-      .companyCnae(COMPANY_CNAE)
       .lostFocus()
     solicitude.submit()
 

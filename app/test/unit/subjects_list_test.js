@@ -17,7 +17,9 @@ describe('SubjectsList', () => {
         labels: {},
         reasonsCatalog:{},
         values: {
-          subjects: subjects
+          subjects: subjects,
+          selectedTopics: [],
+          proposals: []
         }
       }
     })

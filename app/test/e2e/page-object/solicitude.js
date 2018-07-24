@@ -87,14 +87,23 @@ class Solicitude {
 
   companyCnae(value){
     value = value || "011"
-    let cnae = $("#company-cnae")
-    cnae.addValue(value)
+    let cnae = $("#company-cnae input")
+    cnae.selectByValue(value);
     return this
   }
 
   lostFocus(){
     let keyTab="\u0009"
     browser.keys(keyTab)
+  }
+
+  selectedFirstOption(){
+      let selected = $('#company-cnae .current')
+      selected.click()
+  }
+
+  timeout(time){
+    browser.timeouts('script', time);
   }
 
   isSubmitEnabled(){
@@ -227,27 +236,24 @@ class Solicitude {
   }
 
   CNAE(value){
-    let cnae =  $('#company-cnae')
+    let cnae =  $('#company-cnae input')
     cnae.setValue(value)
     return this
   }
 
   CNAEIDisValid(id){
-    browser.waitForVisible('#company-cnae', 2000)
-    let cnae =  $('#company-cnae')
-    let input = cnae.getValue()
+    browser.waitForVisible('#company-cnae .text', 2000)
+    let input = this.companyCnaeValue()
     return input.includes(id)
   }
 
   cnaeIsEmpty(id){
-    let cnae =  $('#company-cnae')
-    let input = cnae.getValue()
+    let input = this.companyCnaeValue()
     return "" == input.includes(id)
   }
 
-  CNAELongFormat(id){
-    let cnae =  $('#company-cnae')
-    let input = cnae.getValue()
+  CNAELongFormat(){
+    let input = this.companyCnaeValue()
     return input
   }
 
@@ -286,7 +292,7 @@ class Solicitude {
   }
 
   companyCnaeValue(){
-     return $('#company-cnae').getValue()
+     return $('#company-cnae .text').getText()
   }
 
   dateValue(){
@@ -301,7 +307,7 @@ class Solicitude {
     browser.waitForVisible(field, 2000)
     browser.scroll(field)
   }
-  
+
   waitForSubmitAndAddSubject(){
     this.waitFor('#submit-and-add-subject')
   }
