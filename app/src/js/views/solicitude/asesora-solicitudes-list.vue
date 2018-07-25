@@ -10,7 +10,8 @@
           <th>{{ labels.date }}</th>
           <th>{{ labels.applicant }}</th>
           <th>{{ labels.company }}</th>
-          <th>{{ labels.topics }}</th>
+          <th>{{ labels.subjects }}</th>
+          <th>{{ labels.feprl }}</th>
         </tr>
       </thead>
       <tbody>
@@ -25,20 +26,28 @@
             <template v-if=" item.company_name == undefined || item.company_name == '' ">{{ labels.notApply }}</template>
             <template v-else>{{ item.company_name }}</template>
           </td>
-          <td>{{ labels.notApply }}</td>
-          <td><button class="solicitude-show-button"
-                      type="button"
-                      name="button"button border="1"
-                      v-on:click='showSolicitude(item.creation_moment)'>
-                {{ labels.show }}
-              </button>
+          <td>
+            <template v-if="item.subjects">{{ justifiedSubjects(item.subjects) }}/{{ item.subjects.length }}</template>
+            <template v-else>0/0</template>
           </td>
-          <td><button class="solicitude-edit-button"
-                      type="button"
-                      name="button"button border="1"
-                      v-on:click='solicitudeEdit(item.creation_moment)'>
-                {{ labels.edit }}
-              </button>
+
+          <td>
+            <template v-if="justifiedSolicitude(item)">
+              <i id="check" class="fa fa-check fa-2"></i>
+            </template>
+          </td>
+
+          <td>
+            <a class="solicitude-show-button"
+               v-on:click='showSolicitude(item.creation_moment)'>
+               {{ labels.show }}
+            </a>
+          </td>
+          <td>
+            <a class="solicitude-edit-button"
+               v-on:click='solicitudeEdit(item.creation_moment)'>
+               {{ labels.edit }}
+            </a>
           </td>
         </tr>
       </tbody>
@@ -58,12 +67,39 @@
       }
     },
     methods: {
+      justifiedSubjects(subjects){
+        if (subjects == null) {
+          return 0
+        }
+        let justified = 0
+        for(let subject of subjects){
+         if(subject.topics.length > 0
+           && subject.proposal.length > 0){
+             justified = justified + 1
+           }
+         }
+         return justified
+      },
+
+      justifiedSolicitude(item){
+        console.log(item);
+        if(item.date &&
+           item.company_cnae &&
+           item.company_employees &&
+           item.source.text &&
+           item.ccaa.text){
+             return true
+          }
+        return false
+      },
+
       solicitudeEdit(id) {
         let signal = new CustomEvent('load.solicitude',
                                     {'detail': id,
                                     'bubbles': true})
         this.$el.dispatchEvent(signal)
       },
+
       showSolicitude(id) {
         let signal = new CustomEvent('show.solicitude',
                                     {'detail': id,
@@ -73,3 +109,12 @@
     }
   }
 </script>
+<style scoped>
+#check {
+  color: #35cebe;
+}
+a {
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>

@@ -8,8 +8,15 @@ module Actions
       lista = solicitudes.map do |solicitude|
         company = ::Companies::Service.retrieve(solicitude['company'], solicitude['edition_moment'])
         applicant = ::Applicant::Service.retrieve(solicitude['applicant'])
+        subjects = ::Subjects::Service.all_by(solicitude['creation_moment'])
+
         prepared_solicitude = add_with_prefix(solicitude,company,'company')
-        add(prepared_solicitude, applicant)
+        prepared_solicitude = add(prepared_solicitude, applicant)
+        if subjects.count > 0 
+          prepared_solicitude[:subjects] = subjects
+        end
+
+        prepared_solicitude
       end
     end
 
