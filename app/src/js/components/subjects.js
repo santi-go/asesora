@@ -171,11 +171,7 @@ export default class Subjects extends Component {
   }
 
   gotTopicsCatalog(payload) {
-    let catalog = []
-    for (const topic of payload.data) {
-      catalog.push({ value: topic, text: topic.name })
-    }
-    this.data.topicsCatalog = catalog
+    this.data.topicsCatalog = payload.data
   }
 
   gotProposalsCatalog(payload) {

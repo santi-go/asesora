@@ -22,11 +22,13 @@
   export default {
     name: 'subject-topics',
     props: ['labels', 'values', 'topicsCatalog', 'submittable'],
+
     computed: {
-        filteredCatalog: function(){
-            return this.topicsCatalog
+        filteredCatalog(){
+          return this.parseCatalog(this.topicsCatalog)
         }
     },
+
     methods:{
       onSelect (items, lastSelectItem) {
         this.values.selectedTopics = items
@@ -38,6 +40,13 @@
                                       {'detail':[],
                                       'bubbles':true})
         this.$el.dispatchEvent(signal)
+      },
+
+      parseCatalog(catalog){
+        return catalog.map((item) => {
+                 return {value: item.id,
+                        text: item.name}
+              })
       }
     },
     components: {
