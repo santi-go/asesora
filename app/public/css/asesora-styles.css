@@ -1,6 +1,6 @@
 :root {
   --main-color: #35cebe;
-  --warming-color: #f4cd4a;
+  --warning-color: #f4cd4a;
   --error-color: #fc4660;
   --success-color: #aee460;
   --grey-color: #888888;
@@ -171,4 +171,8 @@ span:first-child {
 
 label {
   margin-top: 1em;
+}
+
+label.fa.fa-warning {
+    color: var(--warning-color);
 }

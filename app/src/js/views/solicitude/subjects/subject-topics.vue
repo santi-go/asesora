@@ -29,6 +29,8 @@
     },
     methods:{
       onSelect (items, lastSelectItem) {
+        console.log(items);
+        console.log(lastSelectItem);
         this.values.selectedTopics = items
         this.emitSignal()
       },
