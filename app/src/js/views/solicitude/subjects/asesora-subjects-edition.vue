@@ -9,7 +9,8 @@
       <div id="button-container">
         <asesora-button-modify-counseling :labels="labels"
                                           :values="values"
-                                          :submittable="submittable">
+                                          :submittable="submittable"
+                                          :warning-subject="warningSubject">
         </asesora-button-modify-counseling>
 
         <template v-if="this.values.closed == null">
@@ -45,7 +46,7 @@ import SubjectCommentsView from './asesora-subject-comments'
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
-            'submittable', 'reasonsCatalog'],
+            'submittable', 'reasonsCatalog', 'warningSubject'],
     components: {
       "asesora-proposals-for-action" : ProposalsView,
       "asesora-analysis-for-solicitude" : AnalysisView,

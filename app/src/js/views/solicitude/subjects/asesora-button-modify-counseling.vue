@@ -4,9 +4,13 @@
             type="button"
             name="submit"
             class="submitbutton"
+            :title="showWarningIfNotJustifiable()"
             :disabled="!submittable"
             v-on:click="modifyCounseling()">
             {{ labels.modifySubject }}
+            <label  v-if="warningSubject"
+                    class="fa fa-warning">
+            </label>
     </button>
   </div>
 </template>
@@ -15,9 +19,16 @@
 export default {
   name: 'asesora-button-modify-counseling',
 
-  props: ['labels', 'values', 'submittable'],
+  props: ['labels', 'values', 'submittable', 'warningSubject'],
 
   methods: {
+    showWarningIfNotJustifiable(){
+      if(this.warningSubject){
+        return this.labels.notJustifiable
+      }
+      return ""
+    },
+
     modifyCounseling(event) {
     let signal = new CustomEvent('clicked.modify.counseling',
                                   {'detail': {

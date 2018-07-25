@@ -47,6 +47,7 @@
                                            :edition-subject="editionSubject"
                                            :editionmode="editionmode"
                                            :reasons-catalog="reasonsCatalog"
+                                           :warning-subject="warningSubject"
                                            >
                  </asesora-subjects-edition>
                </template>
@@ -110,7 +111,8 @@ import ButtonDeleteSubject from './button-delete-subject'
   export default {
     name: 'asesora-subjects-list',
     props: ['labels', 'values', 'topicsCatalog', 'proposalsCatalog',
-            'editionSubject', 'modifiedSubjectId', 'submittable', 'editionmode', 'reasonsCatalog'],
+            'editionSubject', 'modifiedSubjectId', 'submittable',
+            'editionmode', 'reasonsCatalog', 'warningSubject'],
     components: {
       "asesora-subjects-edition" : SubjectsEditionView,
       "button-delete-subject": ButtonDeleteSubject

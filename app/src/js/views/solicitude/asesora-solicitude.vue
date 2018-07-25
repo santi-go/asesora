@@ -69,7 +69,8 @@
                                 :edition-subject="editionSubject"
                                 :editionmode="editionmode"
                                 :modified-subject-id="modifiedSubjectId"
-                                :reasons-catalog="reasonsCatalog">
+                                :reasons-catalog="reasonsCatalog"
+                                :warning-subject="warningSubject">
         </asesora-subjects-list>
         <asesora-button-add-subject :labels="labels" :values="values"></asesora-button-add-subject>
       </div>
@@ -134,7 +135,7 @@ export default {
           'saveCompany', 'isValidPhone', 'isValidEmail',
           'showUpdatedEmployeesValueMessage', 'showUpdatedNameValueMessage', 'showEditCompanyButton',
           'topicsCatalog', 'sourceCatalog', 'proposalsCatalog', 'editionSubject', 'modifiedSubjectId',
-          'ccaaCatalog', 'reasonsCatalog', 'warning'],
+          'ccaaCatalog', 'reasonsCatalog', 'warning', 'warningSubject'],
 
   components: {
     "asesora-date" : DateView,
