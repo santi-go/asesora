@@ -26,9 +26,8 @@ export default {
   methods: {
 
     onKeyup(){
-      let valid = this.emailValidation()
       let signal = new CustomEvent('changed.email',
-                                      {'detail': {"valid":valid},
+                                      {'detail': {},
                                       'bubbles': true})
       this.$el.dispatchEvent(signal)
       this.refreshSuggestion()
@@ -45,19 +44,6 @@ export default {
       event.target.classList.remove("error")
     },
 
-    emailValidation(){
-      let field = this.$el.querySelector('#email')
-      field.classList.remove("error")
-      const EMAIL_PATTERN = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/
-      let email = field.value
-      if(email == ""){
-        return false
-      }else if(!EMAIL_PATTERN.test(email)){
-        field.classList.add("error")
-        return false
-      }
-      return true
-    }
   }
 }
 </script>
