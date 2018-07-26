@@ -1,3 +1,4 @@
+require_relative '../../infrastructure/clients'
 require_relative '../../domain/applicant'
 require_relative '../../domain/list'
 
@@ -78,10 +79,7 @@ module Applicant
         private
 
         def client
-          mongo_uri = ENV['MONGODB_URI']
-          Mongo::Logger.logger.level = Logger::INFO
-
-          @client ||= Mongo::Client.new(mongo_uri, { max_pool_size: 5 })
+          @client ||= Infrastructure::Clients.mongo
         end
       end
     end
