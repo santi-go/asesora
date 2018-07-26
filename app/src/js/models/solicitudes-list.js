@@ -8,12 +8,19 @@ export let SolicitudesListModel = {
             "listTitle": "",
             "notApply": "",
             "edit": "",
-            "show": ""
+            "show": "",
+            "subjects": "",
+            "feprl": "",
+            "zeroSubjects": "",
+            "titleWithoutSubject": "",
+            "of": "",
+            "justifiedSubjects": ""
           },
   solicitudes: [
     {
-      creation_moment:"",
-      date:""
+      creation_moment: "",
+      date: "",
+      subjects: ""
     },
   ],
   fullfilled: false,

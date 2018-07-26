@@ -67,7 +67,7 @@ module Translation
                 "sent": "Todo Ok! Enviado!",
                 "addedEmployeesValueMessage": "Se ha agregado información actualizada de número de empleados a la empresa",
                 "addedNameValueMessage": "Se ha agregado información actualizada del nombre de la empresa",
-                "addValue": "Agregar valor",
+                "addValue": "Actualizar valor",
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
@@ -102,15 +102,21 @@ module Translation
                 "listTitle": "Tus asesoramientos",
                 "code": "Código de registro",
                 "date": "Fecha de solicitud",
-                "applicant": "Nombre completo del solicitante",
-                "company": "Nombre de empresa",
+                "applicant": "Solicitante",
+                "company": "Empresa",
                 "topics": "Temas del caso",
                 "notApply": "n/a",
                 "edit": "Editar",
                 "show": "Mostrar",
                 "description": "Descripción de las propuestas",
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
-                "comments": "Comentarios sobre el asesoramiento"
+                "comments": "Comentarios sobre el asesoramiento",
+                "subjects": "Casos",
+                "feprl": "FEPRL",
+                "zeroSubjects": "0/0",
+                "titleWithoutSubject": "No contiene ningún caso",
+                "of": " de ",
+                "justifiedSubjects": " casos justificables"
               },
 
               "show-solicitude": {
