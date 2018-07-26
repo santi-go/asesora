@@ -78,6 +78,7 @@ export default class Solicitude extends Component {
     this.reactTo('clicked.add.subject', this.addSubject.bind(this))
     this.reactTo('clicked.subject.list', this.editSubject.bind(this))
     this.reactTo('changed.subject', this.setModifySubjectButtonStatus.bind(this))
+    this.reactTo('changed.subject', this.warningSubjectRequired.bind(this))
     this.reactTo('clicked.modify.counseling', this.modifyCounseling.bind(this))
     this.reactTo('clicked.close.counseling', this.closeCounseling.bind(this))
     this.reactTo('clicked.delete.subject', this.deleteSubject.bind(this))
@@ -109,6 +110,7 @@ export default class Solicitude extends Component {
       Bus.publish('get.solicitude', {id: id})
     }
     this.warningRequired()
+    this.warningSubjectRequired()
   }
 
   leaving(event){
@@ -163,6 +165,8 @@ export default class Solicitude extends Component {
     this.data.setValues('reason', reason)
     this.data.setValues('comments', event.detail.comments)
     this.data.setValues('closed', event.detail.closed)
+
+    this.warningSubjectRequired()
   }
 
   gotTopicsCatalog(payload) {
@@ -835,6 +839,15 @@ export default class Solicitude extends Component {
          this.data.values.date){
 
         this.data.warning = false
+      }
+    }
+
+    warningSubjectRequired(){
+      this.data.warningSubject = true
+      if(this.data.values.selectedTopics.length > 0 &&
+         this.data.values.proposals.length > 0){
+
+        this.data.warningSubject = false
       }
     }
 

@@ -118,6 +118,7 @@ export let SolicitudeModel = {
   modifiedSubjectId: 0,
   reasonsCatalog: [],
   warning: true,
+  warningSubject: true, 
   translate:function(key,value) {
     this.labels[key] = value
   },
