@@ -67,7 +67,7 @@ module Translation
                 "sent": "Todo Ok! Enviado!",
                 "addedEmployeesValueMessage": "Se ha agregado información actualizada de número de empleados a la empresa",
                 "addedNameValueMessage": "Se ha agregado información actualizada del nombre de la empresa",
-                "addValue": "Agregar valor",
+                "addValue": "Actualizar valor",
                 "proposals": "Propuestas de actuación",
                 "analysis": "Análisis de la solicitud",
                 "topics": "Temas del caso",
