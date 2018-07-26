@@ -27,8 +27,16 @@
             <template v-else>{{ item.company_name }}</template>
           </td>
           <td>
-            <template v-if="item.subjects">{{ justifiedSubjects(item.subjects) }}/{{ item.subjects.length }}</template>
-            <template v-else>0/0</template>
+            <template v-if="item.subjects">
+              <label :title='titleForJustifiedSubjects(item.subjects)'>
+                {{ justifiedSubjects(item.subjects) }}/{{ item.subjects.length }}
+              </label>
+            </template>
+              <template v-else>
+                <label :title='labels.titleWithoutSubject'>
+                  {{ labels.zeroSubjects }}
+                </label>
+              </template>
           </td>
 
           <td>
@@ -66,7 +74,13 @@
         return date_parts.reverse().join('/')
       }
     },
+
     methods: {
+      titleForJustifiedSubjects(subjects){
+        return this.justifiedSubjects(subjects) + this.labels.of + subjects.length + this.labels.justifiedSubjects
+      },
+
+
       justifiedSubjects(subjects){
         if (subjects == null) {
           return 0
@@ -82,7 +96,6 @@
       },
 
       justifiedSolicitude(item){
-        console.log(item);
         if(item.date &&
            item.company_cnae &&
            item.company_employees &&
@@ -116,5 +129,8 @@
 a {
   cursor: pointer;
   font-weight: bold;
+}
+label {
+  font-weight: normal;
 }
 </style>

@@ -112,7 +112,11 @@ module Translation
                 "placeholderdescription": "Escribe con tus palabras en que consisten las propuestas que has realizado en este asesoramiento",
                 "comments": "Comentarios sobre el asesoramiento",
                 "subjects": "Casos",
-                "feprl": "FEPRL"
+                "feprl": "FEPRL",
+                "zeroSubjects": "0/0",
+                "titleWithoutSubject": "No contiene ningún caso",
+                "of": " de ",
+                "justifiedSubjects": " casos justificables"
               },
 
               "show-solicitude": {

@@ -10,7 +10,11 @@ export let SolicitudesListModel = {
             "edit": "",
             "show": "",
             "subjects": "",
-            "feprl": ""
+            "feprl": "",
+            "zeroSubjects": "",
+            "titleWithoutSubject": "",
+            "of": "",
+            "justifiedSubjects": ""
           },
   solicitudes: [
     {
