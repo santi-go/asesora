@@ -17,7 +17,7 @@ describe('SolicitudesList', () => {
       }
     })
 
-    expect(component.text()).to.eq('ApplicantName ApplicantSurname')
+    expect(component.text()).to.includes('ApplicantName ApplicantSurname')
   })
 
   it('renders applicant name when surname is not available', () => {
@@ -34,8 +34,7 @@ describe('SolicitudesList', () => {
         solicitudes: solicitudes
       }
     })
-
-    expect(component.text()).to.eq('ApplicantName')
+    expect(component.text()).to.includes('ApplicantName')
   })
 
   it('renders notApply label when applicant is not provided', () => {
